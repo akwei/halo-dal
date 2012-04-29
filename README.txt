@@ -18,6 +18,7 @@ jdk版本:jdk1.5以及以上版本
 例子:
 看example下的例子
 Insert.java
+spring下面的例子为在spring中使用JdbcTemplate的方式
 
 
 以后会添加

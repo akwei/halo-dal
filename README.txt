@@ -18,3 +18,10 @@ jdk版本:jdk1.5以及以上版本
 例子:
 看example下的例子
 Insert.java
+
+以后会添加
+Select.java
+Update.java
+Delete.java
+
+添加结合spring使用场景

@@ -9,20 +9,20 @@ import java.util.Map;
  */
 public class DALDefPartitionParserFactory implements DALPartitionParserFactory {
 
-    /**
-     * 缓存解析器
-     */
-    private Map<String, DALPartitionParser> parserMap;
+	/**
+	 * 缓存解析器
+	 */
+	private Map<String, DALPartitionParser> parserMap;
 
-    public void setParserMap(Map<String, DALPartitionParser> parserMap) {
-        this.parserMap = parserMap;
-    }
+	public void setParserMap(Map<String, DALPartitionParser> parserMap) {
+		this.parserMap = parserMap;
+	}
 
-    public Map<String, DALPartitionParser> getParserMap() {
-        return parserMap;
-    }
+	public Map<String, DALPartitionParser> getParserMap() {
+		return parserMap;
+	}
 
-    public DALPartitionParser getParser(String key) {
-        return parserMap.get(key);
-    }
+	public DALPartitionParser getParser(String key) {
+		return parserMap.get(key);
+	}
 }

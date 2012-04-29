@@ -46,8 +46,7 @@ public class BasicSQLInfo implements SQLInfo {
     }
 
     /**
-     * @param table
-     *            包括表名与别名的sql片段,例如 user as u,user u
+     * @param table 包括表名与别名的sql片段,例如 user as u,user u
      */
     public void addTable(String table) {
         String[] name_aliases;
@@ -89,14 +88,14 @@ public class BasicSQLInfo implements SQLInfo {
         }
         String subName = columnName.substring(idx + 1);
         SQLExpression[] arr1 = sqlExpressionMap.get(subName);
-        if (arr == null && arr1 == null) {
-            return null;
-        }
-        if (arr != null && arr1 == null) {
-            return arr;
-        }
-        if (arr == null && arr1 != null) {
+        if (arr == null) {
+            if (arr1 == null) {
+                return null;
+            }
             return arr1;
+        }
+        if (arr1 == null) {
+            return arr;
         }
         List<SQLExpression> list = new ArrayList<SQLExpression>(arr.length
                 + arr1.length);

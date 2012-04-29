@@ -1,4 +1,4 @@
-package halo.dal.springexample;
+package spring;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

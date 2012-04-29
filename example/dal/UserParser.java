@@ -1,4 +1,4 @@
-package halo.dal.example;
+package dal;
 
 import halo.dal.partition.DALPartitionParser;
 import halo.dal.partition.DALPartitionTableInfo;

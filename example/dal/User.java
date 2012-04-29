@@ -1,4 +1,4 @@
-package halo.dal.example;
+package dal;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

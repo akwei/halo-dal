@@ -9,12 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
-
-import sun.tools.java.Type;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -107,17 +106,17 @@ public class Insert {
 			ps.setString(5, "intro");// <{intro: }>,
 			ps.setTimestamp(6, new Timestamp(time));// <{createtime: }>,
 			ps.setLong(7, Long.MAX_VALUE);// <{uuid: }>,
-			ps.setDouble(8, Type.NULL);// <{uuid2: }>,
+			ps.setDouble(8, Types.NULL);// <{uuid2: }>,
 			ps.setDouble(9, 90.8);// <{uuid3: }>,
 			ps.setFloat(10, 89.7f);// <{uuid4: }>,
-			ps.setFloat(11, Type.NULL);// <{uuid5: }>,
+			ps.setFloat(11, Types.NULL);// <{uuid5: }>,
 			ps.setInt(12, 10);// <{uuid6: }>,
-			ps.setNull(13, Type.NULL);// <{uuid7: }>,
+			ps.setNull(13, Types.NULL);// <{uuid7: }>,
 			ps.setInt(14, 80);// <{uuid8: }>,
-			ps.setNull(15, Type.NULL);// <{uuid9: }>,
-			ps.setNull(16, Type.NULL);// <{uuid10: }>,
+			ps.setNull(15, Types.NULL);// <{uuid9: }>,
+			ps.setNull(16, Types.NULL);// <{uuid10: }>,
 			ps.setInt(17, Integer.MAX_VALUE);// <{uuid11: }>,
-			ps.setNull(18, Type.NULL);// <{uuid12: }>
+			ps.setNull(18, Types.NULL);// <{uuid12: }>
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 			Number id = 0;// 数据库自动生成的id
@@ -165,17 +164,17 @@ public class Insert {
 			ps.setString(5, "intro");// <{intro: }>,
 			ps.setTimestamp(6, new Timestamp(time));// <{createtime: }>,
 			ps.setLong(7, Long.MAX_VALUE);// <{uuid: }>,
-			ps.setDouble(8, Type.NULL);// <{uuid2: }>,
+			ps.setDouble(8, Types.NULL);// <{uuid2: }>,
 			ps.setDouble(9, 90.8);// <{uuid3: }>,
 			ps.setFloat(10, 89.7f);// <{uuid4: }>,
-			ps.setFloat(11, Type.NULL);// <{uuid5: }>,
+			ps.setFloat(11, Types.NULL);// <{uuid5: }>,
 			ps.setInt(12, 10);// <{uuid6: }>,
-			ps.setNull(13, Type.NULL);// <{uuid7: }>,
+			ps.setNull(13, Types.NULL);// <{uuid7: }>,
 			ps.setInt(14, 80);// <{uuid8: }>,
-			ps.setNull(15, Type.NULL);// <{uuid9: }>,
-			ps.setNull(16, Type.NULL);// <{uuid10: }>,
+			ps.setNull(15, Types.NULL);// <{uuid9: }>,
+			ps.setNull(16, Types.NULL);// <{uuid10: }>,
 			ps.setInt(17, Integer.MAX_VALUE);// <{uuid11: }>,
-			ps.setNull(18, Type.NULL);// <{uuid12: }>
+			ps.setNull(18, Types.NULL);// <{uuid12: }>
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 			Number id = 0;// 数据库自动生成的id

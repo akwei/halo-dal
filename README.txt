@@ -15,3 +15,6 @@ jdk版本:jdk1.5以及以上版本
 2, 嵌套sql使用. (使用嵌套sql时，不会进行sql的分表分库的解析，最终执行的sql是没有解析的)
 3, sql中不支持between ... and ..., 可是使用 >= and <=替代 (使用 between ... and ...时，会抛出异常)
 
+例子:
+看example下的例子
+Insert.java

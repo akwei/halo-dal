@@ -50,8 +50,8 @@ public class Insert {
 		ComboPooledDataSource ds0 = new ComboPooledDataSource();
 		ds0.setDriverClass("com.mysql.jdbc.Driver");
 		ds0.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest0?useUnicode=true&characterEncoding=UTF-8");
-		ds0.setUser(user);
-		ds0.setPassword(password);
+		ds0.setUser(this.user);
+		ds0.setPassword(this.password);
 		ds0.setMaxPoolSize(20);
 		ds0.setInitialPoolSize(10);
 		ds0.setMinPoolSize(10);
@@ -61,18 +61,18 @@ public class Insert {
 		ComboPooledDataSource ds1 = new ComboPooledDataSource();
 		ds1.setDriverClass("com.mysql.jdbc.Driver");
 		ds1.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest1?useUnicode=true&characterEncoding=UTF-8");
-		ds1.setUser(user);
-		ds1.setPassword(password);
+		ds1.setUser(this.user);
+		ds1.setPassword(this.password);
 		ds1.setMaxPoolSize(20);
 		ds1.setInitialPoolSize(10);
 		ds1.setMinPoolSize(10);
 		// 设置数据源key的对应关系
 		dataSourceMap.put("ds1", ds1);
-		dataSource = new DALDataSource();
-		dataSource.setDataSourceMap(dataSourceMap);
+		this.dataSource = new DALDataSource();
+		this.dataSource.setDataSourceMap(dataSourceMap);
 		// 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类
 		// dalFactory=new DALFactory();
-		dalFactory = DALFactory.getInstance();
+		this.dalFactory = DALFactory.getInstance();
 		// 初始化解析器缓存
 		Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
 		// 缓存user的分析器
@@ -80,7 +80,8 @@ public class Insert {
 		// 初始化解析器工厂,可以使用spring进行管理
 		DALDefPartitionParserFactory dalDefPartitionParserFactory = new DALDefPartitionParserFactory();
 		dalDefPartitionParserFactory.setParserMap(parserMap);
-		dalFactory.setDalPartitionParserFactory(dalDefPartitionParserFactory);
+		this.dalFactory
+				.setDalPartitionParserFactory(dalDefPartitionParserFactory);
 	}
 
 	public void insert_into_daltest0_user0() throws Exception {

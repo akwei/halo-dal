@@ -102,4 +102,38 @@ public class UserParser implements DALPartitionParser {
         dataSource.setDataSourceMap(dataSourceMap);
     }
 ````
-
+###在spring中使用
+````xml
+<bean id="dataSource" class="halo.dal.partition.sql.DALDataSource">
+        <property name="dataSourceMap">
+            <map>
+                <entry key="ds0">
+                    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+                        <property name="jdbcUrl"
+                            value="jdbc:mysql://127.0.0.1:3306/daltest0?useUnicode=true&amp;characterEncoding=UTF-8" />
+                        <property name="user" value="root" />
+                        <property name="password" value="asdasd" />
+                        <property name="idleConnectionTestPeriod" value="60" />
+                        <property name="maxPoolSize" value="20" />
+                        <property name="initialPoolSize" value="10" />
+                        <property name="minPoolSize" value="10" />
+                    </bean>
+                </entry>
+                <entry key="ds1">
+                    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+                        <property name="jdbcUrl"
+                            value="jdbc:mysql://127.0.0.1:3306/daltest1?useUnicode=true&amp;characterEncoding=UTF-8" />
+                        <property name="user" value="root" />
+                        <property name="password" value="asdasd" />
+                        <property name="idleConnectionTestPeriod" value="60" />
+                        <property name="maxPoolSize" value="20" />
+                        <property name="initialPoolSize" value="10" />
+                        <property name="minPoolSize" value="10" />
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+````

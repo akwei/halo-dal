@@ -7,7 +7,8 @@ import java.sql.Timestamp;
 import java.sql.Types;
 
 /**
- * 举例使用insert
+ * 举例使用insert<br>
+ * 根据sex进行分区，sex字段必须在insert sql中赋值
  * 
  * @author akwei
  */

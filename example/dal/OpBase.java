@@ -43,6 +43,7 @@ public class OpBase {
 	 */
 	public void init() throws Exception {
 		// 初始化数据库连接池,如果使用spring的话，可以使用spring初始化数据库连接池
+	    //map中的key为数据源key
 		Map<String, DataSource> dataSourceMap = new HashMap<String, DataSource>();
 		// datasource 0
 		ComboPooledDataSource ds0 = new ComboPooledDataSource();

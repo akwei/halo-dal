@@ -16,9 +16,11 @@ jdk版本:jdk1.5以及以上版本
 3, sql中不支持between ... and ..., 可是使用 >= and <=替代 (使用 between ... and ...时，会抛出异常)
 
 #不喜欢看以下说明，可以直接看example下的例子 
-##Insert.java Update.java Delete.java Select.java
-##spring下面的例子为在spring中使用JdbcTemplate的方式
-##example/sql中有测试数据库脚本,例子中使用的数据库为mysql
+Insert.java Update.java Delete.java Select.java
+
+###spring下面的例子为在spring中使用JdbcTemplate的方式，可以自定义扩展hibernate ibatis mybatis的配置
+
+###example/sql中有测试数据库脚本,例子中使用的数据库为mysql
 
 #如何编写数据库表的路有规则:
 1, 编写代码实现 halo.dal.partition.DALPartitionParser 接口

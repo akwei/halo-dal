@@ -1,11 +1,16 @@
 #halo-dal使用说明
-使用场景:数据库分布式访问。
+使用场景:数据库分布式访问
 使用语言:java
 使用条件:支持PreparedStatement处理的任何jdbc框架
 jdk版本:jdk1.5以及以上版本
+项目依赖jar:commons-lang3-3.1.jar, commons-logging.jar,junit-4.10.jar(单元测试使用)
+
+examplelib目录下的jar为例子中使用的jar
+
+springexamplelib目录下的jar为spring例子中使用的jar
 
 #支持功能:
-1, jdbc PreparedStatement。
+1, jdbc PreparedStatement
 2, 数据库分库分表访问，支持insert delete update select
 3, 单数据库事务
 4, 多数据库分步提交事务
@@ -15,12 +20,15 @@ jdk版本:jdk1.5以及以上版本
 2, 嵌套sql使用. (使用嵌套sql时，不会进行sql的分表分库的解析，最终执行的sql是没有解析的)
 3, sql中不支持between ... and ..., 可是使用 >= and <=替代 (使用 between ... and ...时，会抛出异常)
 
-#不喜欢看以下说明，可以直接看example下的例子 
+#如何使用
+
+##不喜欢看以下说明，可以直接看example下的例子 
 Insert.java Update.java Delete.java Select.java
 
 ###spring下面的例子为在spring中使用JdbcTemplate的方式，可以自定义扩展hibernate ibatis mybatis的配置
 
 ###example/sql中有测试数据库脚本,例子中使用的数据库为mysql
+
 
 #如何编写数据库表的分析器:
 ####1, 编写代码实现 halo.dal.partition.DALPartitionParser 接口

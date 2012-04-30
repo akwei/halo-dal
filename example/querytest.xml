@@ -61,10 +61,13 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean class="halo.dal.partition.DALFactory">
+		<!-- 解析器工厂可以自定义实现，详情见README -->
 		<property name="dalPartitionParserFactory">
 			<!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
+			<!-- 原理就是把所有的解析器类放到一个目录中 -->
 			<bean class="halo.dal.partition.DALPackagePartitionParserFactory">
-				<property name="packageName" value="dal" />
+				<!-- 解析器所在目录 -->
+				<property name="packageName" value="parser" />
 			</bean>
 		</property>
 	</bean>

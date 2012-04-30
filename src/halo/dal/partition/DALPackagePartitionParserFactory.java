@@ -8,12 +8,18 @@ import java.util.Map;
  * 
  * @author akwei
  */
-public class DALPackagePartitionParserFactory implements DALPartitionParserFactory {
+public class DALPackagePartitionParserFactory implements
+        DALPartitionParserFactory {
 
     private final Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
 
     private String packageName;
 
+    /**
+     * 设置解析器所在的目录，格式为pack.pack
+     * 
+     * @param packageName
+     */
     public void setPackageName(String packageName) {
         this.packageName = packageName;
     }

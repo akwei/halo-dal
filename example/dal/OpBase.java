@@ -10,6 +10,8 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import parser.UserParser;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class OpBase {

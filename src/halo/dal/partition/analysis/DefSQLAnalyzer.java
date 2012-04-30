@@ -94,13 +94,17 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
         List<String> list = new ArrayList<String>();
         List<String> newList = new ArrayList<String>();
         for (String tableName : info.getTableNames()) {
-            list.add(" " + tableName + ".");
+            String alias = info.getAliasByTableName(tableName);
+            boolean isSame = alias != null && alias.endsWith(tableName);
+            if (!isSame) {
+                list.add(" " + tableName + ".");
+                newList.add(" " + info.getRealTableName(tableName) + ".");
+            }
             list.add(" " + tableName + " ");
-            list.add(" " + tableName + "(");
-            list.add("," + tableName + " ");
-            newList.add(" " + info.getRealTableName(tableName) + ".");
             newList.add(" " + info.getRealTableName(tableName) + " ");
+            list.add(" " + tableName + "(");
             newList.add(" " + info.getRealTableName(tableName) + "(");
+            list.add("," + tableName + " ");
             newList.add("," + info.getRealTableName(tableName) + " ");
         }
         return StringUtils.replaceEach(sql,

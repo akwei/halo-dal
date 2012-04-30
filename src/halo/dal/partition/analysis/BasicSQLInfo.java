@@ -15,6 +15,8 @@ public class BasicSQLInfo implements SQLInfo {
 
     private Map<String, String> aliasTableNameMap = new HashMap<String, String>();
 
+    private Map<String, String> tableNameAliasMap = new HashMap<String, String>();
+
     private Object[] values;
 
     private String whereSQL;
@@ -46,7 +48,8 @@ public class BasicSQLInfo implements SQLInfo {
     }
 
     /**
-     * @param table 包括表名与别名的sql片段,例如 user as u,user u
+     * @param table
+     *            包括表名与别名的sql片段,例如 user as u,user u
      */
     public void addTable(String table) {
         String[] name_aliases;
@@ -69,11 +72,16 @@ public class BasicSQLInfo implements SQLInfo {
         this.setRealTableName(name, name);
         if (alias != null) {
             aliasTableNameMap.put(alias, name);
+            tableNameAliasMap.put(name, alias);
         }
     }
 
     public void addFromSQL(String fromSQL) {
         this.fromSQLs.add(fromSQL);
+    }
+
+    public String getAliasByTableName(String tableName) {
+        return tableNameAliasMap.get(tableName);
     }
 
     public String getTableNameByAalias(String alias) {

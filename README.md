@@ -22,10 +22,10 @@ Insert.java Update.java Delete.java Select.java
 
 ###example/sql中有测试数据库脚本,例子中使用的数据库为mysql
 
-#如何编写数据库表的路有规则:
-1, 编写代码实现 halo.dal.partition.DALPartitionParser 接口
-2, 实现 public DALPartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo)方法
-3，在解析器工厂中配置写好的解析器，或自定义解析器工厂并配置解析器
+#如何编写数据库表的分析器:
+####1, 编写代码实现 halo.dal.partition.DALPartitionParser 接口
+####2, 实现 public DALPartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo)方法
+####3，在解析器工厂中配置写好的解析器，或自定义解析器工厂并配置解析器
 ##举例
 
 ````java

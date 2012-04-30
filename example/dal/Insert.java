@@ -1,88 +1,17 @@
 package dal;
 
-import halo.dal.partition.DALDefPartitionParserFactory;
-import halo.dal.partition.DALFactory;
-import halo.dal.partition.DALPartitionParser;
-import halo.dal.partition.sql.DALDataSource;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
  * 举例使用insert
  * 
  * @author akwei
  */
-public class Insert {
-
-	private DALDataSource dataSource;
-
-	private DALFactory dalFactory;
-
-	/**
-	 * 数据库用户名
-	 */
-	private String user;
-
-	/**
-	 * 数据库密码
-	 */
-	private String password;
-
-	/**
-	 * 此方法的初始化信息可以使用spring进行管理
-	 * 
-	 * @throws Exception
-	 */
-	public void init() throws Exception {
-		// 初始化数据库连接池,如果使用spring的话，可以使用spring初始化数据库连接池
-		Map<String, DataSource> dataSourceMap = new HashMap<String, DataSource>();
-		// datasource 0
-		ComboPooledDataSource ds0 = new ComboPooledDataSource();
-		ds0.setDriverClass("com.mysql.jdbc.Driver");
-		ds0.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest0?useUnicode=true&characterEncoding=UTF-8");
-		ds0.setUser(this.user);
-		ds0.setPassword(this.password);
-		ds0.setMaxPoolSize(20);
-		ds0.setInitialPoolSize(10);
-		ds0.setMinPoolSize(10);
-		// 设置数据源key的对应关系
-		dataSourceMap.put("ds0", ds0);
-		// datasource 1
-		ComboPooledDataSource ds1 = new ComboPooledDataSource();
-		ds1.setDriverClass("com.mysql.jdbc.Driver");
-		ds1.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest1?useUnicode=true&characterEncoding=UTF-8");
-		ds1.setUser(this.user);
-		ds1.setPassword(this.password);
-		ds1.setMaxPoolSize(20);
-		ds1.setInitialPoolSize(10);
-		ds1.setMinPoolSize(10);
-		// 设置数据源key的对应关系
-		dataSourceMap.put("ds1", ds1);
-		this.dataSource = new DALDataSource();
-		this.dataSource.setDataSourceMap(dataSourceMap);
-		// 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类
-		// dalFactory=new DALFactory();
-		this.dalFactory = DALFactory.getInstance();
-		// 初始化解析器缓存
-		Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
-		// 缓存user的分析器
-		parserMap.put("user", new UserParser());
-		// 初始化解析器工厂,可以使用spring进行管理
-		DALDefPartitionParserFactory dalDefPartitionParserFactory = new DALDefPartitionParserFactory();
-		dalDefPartitionParserFactory.setParserMap(parserMap);
-		this.dalFactory
-				.setDalPartitionParserFactory(dalDefPartitionParserFactory);
-	}
+public class Insert extends OpBase {
 
 	public void insert_into_daltest0_user0() throws Exception {
 		final long time = System.currentTimeMillis() / 1000;
@@ -198,14 +127,6 @@ public class Insert {
 			if (con != null)
 				con.close();
 		}
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public static void main(String[] args) throws Exception {

@@ -16,12 +16,7 @@ jdk版本:jdk1.5以及以上版本
 3, sql中不支持between ... and ..., 可是使用 >= and <=替代 (使用 between ... and ...时，会抛出异常)
 
 例子:
-看example下的例子
-Insert.java
+看example下的例子，为基本的sql所用到的操作
+Insert.java Update.java Delete.java Select.java
+
 spring下面的例子为在spring中使用JdbcTemplate的方式
-
-
-以后会添加
-Select.java
-Update.java
-Delete.java

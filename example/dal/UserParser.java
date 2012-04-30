@@ -20,12 +20,12 @@ public class UserParser implements DALPartitionParser {
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
                 Integer l = (Integer) e.getValue();
                 if (l.intValue() % 2 == 0) {
-                    info.setRealTableName("user0");
-                    info.setDsName("ds0");
+                    info.setRealTableName("user0");//真实数据表名称
+                    info.setDsName("ds0");//真实数源key
                 }
                 else {
-                    info.setRealTableName("user1");
-                    info.setDsName("ds1");
+                    info.setRealTableName("user1");//真实数据表名称
+                    info.setDsName("ds1");//真实数源key
                 }
             }
         }

@@ -71,6 +71,21 @@ public class UserParser implements DALPartitionParser {
 }
 
 ````
+#如何创建或自定义解析器工厂
+````java
+        // 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类
+        // dalFactory=new DALFactory();
+        // 初始化解析器缓存
+        Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
+        // 缓存user的分析器
+        parserMap.put("user", new UserParser());
+        // 初始化解析器工厂,可以使用spring进行管理
+        DALDefPartitionParserFactory dalDefPartitionParserFactory = new DALDefPartitionParserFactory();
+        dalDefPartitionParserFactory.setParserMap(parserMap);
+        this.dalFactory = DALFactory.getInstance();
+        this.dalFactory
+                .setDalPartitionParserFactory(dalDefPartitionParserFactory);
+````
 
 #如何使用DALDataDource
 ##举例

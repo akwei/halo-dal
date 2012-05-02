@@ -27,6 +27,7 @@ Insert.java Update.java Delete.java Select.java
 
 ###example/sql中有测试数据库脚本,例子中使用的数据库为mysql
 
+请先创建测试用的数据库，example/sql/dbinit.sql是数据库脚本
 
 #如何编写数据库表的分析器:
 ####1, 编写代码实现 halo.dal.partition.DALPartitionParser 接口

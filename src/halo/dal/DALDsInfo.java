@@ -1,4 +1,4 @@
-package halo.dal.magic;
+package halo.dal;
 
 import java.util.HashMap;
 import java.util.Map;

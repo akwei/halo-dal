@@ -137,7 +137,7 @@ public class DALPreparedStatement implements PreparedStatement {
         PartitionTableInfo[] infos = new PartitionTableInfo[tables.length];
         int i = 0;
         for (String table : tables) {
-            parser = dalFactory.getDalPartitionParserFactory().getParser(table);
+            parser = dalFactory.getPartitionParserFactory().getParser(table);
             infos[i] = parser.parse(table, sqlInfo);
             if (infos[i] != null) {
                 sqlInfo.setRealTableName(table, infos[i].getRealTableName());

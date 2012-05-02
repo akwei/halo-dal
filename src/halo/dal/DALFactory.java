@@ -4,6 +4,8 @@ import halo.dal.analysis.DefSQLAnalyzer;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.partition.DefPartitionParserFactory;
 import halo.dal.partition.PartitionParserFactory;
+import halo.dal.rw.DefRWParserFactory;
+import halo.dal.rw.RWParserFactory;
 
 /**
  * DAL各种服务的赋值
@@ -20,12 +22,15 @@ public class DALFactory {
 
     private SQLAnalyzer sqlAnalyzer;
 
-    private PartitionParserFactory dalPartitionParserFactory;
+    private PartitionParserFactory partitionParserFactory;
+
+    private RWParserFactory rwParserFactory;
 
     public DALFactory() {
         ins = this;
         this.setSqlAnalyzer(new DefSQLAnalyzer());
-        this.setDalPartitionParserFactory(new DefPartitionParserFactory());
+        this.setPartitionParserFactory(new DefPartitionParserFactory());
+        this.setRwParserFactory(new DefRWParserFactory());
     }
 
     public DALFactory(SQLAnalyzer sqlAnalyzer,
@@ -33,7 +38,7 @@ public class DALFactory {
         super();
         ins = this;
         this.sqlAnalyzer = sqlAnalyzer;
-        this.dalPartitionParserFactory = dalDefPartitionParserFactory;
+        this.partitionParserFactory = dalDefPartitionParserFactory;
     }
 
     public void setSqlAnalyzer(SQLAnalyzer sqlAnalyzer) {
@@ -44,12 +49,20 @@ public class DALFactory {
         return sqlAnalyzer;
     }
 
-    public void setDalPartitionParserFactory(
-            PartitionParserFactory dalPartitionParserFactory) {
-        this.dalPartitionParserFactory = dalPartitionParserFactory;
+    public void setPartitionParserFactory(
+            PartitionParserFactory partitionParserFactory) {
+        this.partitionParserFactory = partitionParserFactory;
     }
 
-    public PartitionParserFactory getDalPartitionParserFactory() {
-        return dalPartitionParserFactory;
+    public PartitionParserFactory getPartitionParserFactory() {
+        return partitionParserFactory;
+    }
+
+    public void setRwParserFactory(RWParserFactory rwParserFactory) {
+        this.rwParserFactory = rwParserFactory;
+    }
+
+    public RWParserFactory getRwParserFactory() {
+        return rwParserFactory;
     }
 }

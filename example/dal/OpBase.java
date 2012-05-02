@@ -81,7 +81,6 @@ public class OpBase {
         DefPartitionParserFactory dalDefPartitionParserFactory = new DefPartitionParserFactory();
         dalDefPartitionParserFactory.setParserMap(parserMap);
         this.dalFactory = DALFactory.getInstance();
-        this.dalFactory
-                .setDalPartitionParserFactory(dalDefPartitionParserFactory);
+        this.dalFactory.setPartitionParserFactory(dalDefPartitionParserFactory);
     }
 }

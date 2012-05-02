@@ -5,7 +5,7 @@ package halo.dal.partition;
  * 
  * @author akwei
  */
-public class DALPartitionTableInfo {
+public class PartitionTableInfo {
 
     /**
      * 真实的表名称

@@ -8,10 +8,10 @@ import java.util.Map;
  * 
  * @author akwei
  */
-public class DALPackagePartitionParserFactory implements
-        DALPartitionParserFactory {
+public class PackagePartitionParserFactory implements
+        PartitionParserFactory {
 
-    private final Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
+    private final Map<String, PartitionParser> parserMap = new HashMap<String, PartitionParser>();
 
     private String packageName;
 
@@ -29,8 +29,8 @@ public class DALPackagePartitionParserFactory implements
      * 例如<br>
      * logicTableName=user ,package=com.www,则解析器类名称为com.www.UserParser,key=user
      */
-    public synchronized DALPartitionParser getParser(String key) {
-        DALPartitionParser parser = parserMap.get(key);
+    public synchronized PartitionParser getParser(String key) {
+        PartitionParser parser = parserMap.get(key);
         if (parser == null) {
             if (packageName == null) {
                 throw new IllegalArgumentException("must set packageName");
@@ -39,7 +39,7 @@ public class DALPackagePartitionParserFactory implements
                     + key.substring(1) + "Parser";
             String fullClassName = packageName + "." + className;
             try {
-                parser = (DALPartitionParser) DALPackagePartitionParserFactory.class
+                parser = (PartitionParser) PackagePartitionParserFactory.class
                         .getClassLoader().loadClass(fullClassName)
                         .getConstructor().newInstance();
                 parserMap.put(key, parser);

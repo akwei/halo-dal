@@ -7,7 +7,7 @@ import halo.dal.analysis.SQLInfo;
  * 
  * @author akwei
  */
-public interface DALPartitionParser {
+public interface PartitionParser {
 
     /**
      * 根据内容进行分析，创建表的分区信息
@@ -18,5 +18,5 @@ public interface DALPartitionParser {
      *            参考 {@link SQLInfo}
      * @return
      */
-    DALPartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo);
+    PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo);
 }

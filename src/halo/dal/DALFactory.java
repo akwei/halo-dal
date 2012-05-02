@@ -1,7 +1,9 @@
-package halo.dal.partition;
+package halo.dal;
 
 import halo.dal.analysis.DefSQLAnalyzer;
 import halo.dal.analysis.SQLAnalyzer;
+import halo.dal.partition.DefPartitionParserFactory;
+import halo.dal.partition.PartitionParserFactory;
 
 /**
  * DAL各种服务的赋值
@@ -18,16 +20,16 @@ public class DALFactory {
 
     private SQLAnalyzer sqlAnalyzer;
 
-    private DALPartitionParserFactory dalPartitionParserFactory;
+    private PartitionParserFactory dalPartitionParserFactory;
 
     public DALFactory() {
         ins = this;
         this.setSqlAnalyzer(new DefSQLAnalyzer());
-        this.setDalPartitionParserFactory(new DALDefPartitionParserFactory());
+        this.setDalPartitionParserFactory(new DefPartitionParserFactory());
     }
 
     public DALFactory(SQLAnalyzer sqlAnalyzer,
-            DALPartitionParserFactory dalDefPartitionParserFactory) {
+            PartitionParserFactory dalDefPartitionParserFactory) {
         super();
         ins = this;
         this.sqlAnalyzer = sqlAnalyzer;
@@ -43,11 +45,11 @@ public class DALFactory {
     }
 
     public void setDalPartitionParserFactory(
-            DALPartitionParserFactory dalPartitionParserFactory) {
+            PartitionParserFactory dalPartitionParserFactory) {
         this.dalPartitionParserFactory = dalPartitionParserFactory;
     }
 
-    public DALPartitionParserFactory getDalPartitionParserFactory() {
+    public PartitionParserFactory getDalPartitionParserFactory() {
         return dalPartitionParserFactory;
     }
 }

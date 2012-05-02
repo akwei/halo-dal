@@ -1,8 +1,8 @@
 package dal;
 
-import halo.dal.partition.DALDefPartitionParserFactory;
-import halo.dal.partition.DALFactory;
-import halo.dal.partition.DALPartitionParser;
+import halo.dal.DALFactory;
+import halo.dal.partition.DefPartitionParserFactory;
+import halo.dal.partition.PartitionParser;
 import halo.dal.sql.DALDataSource;
 
 import java.util.HashMap;
@@ -74,11 +74,11 @@ public class OpBase {
         // 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类
         // dalFactory=new DALFactory();
         // 初始化解析器缓存
-        Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
+        Map<String, PartitionParser> parserMap = new HashMap<String, PartitionParser>();
         // 缓存user的分析器
         parserMap.put("user", new UserParser());
         // 初始化解析器工厂,可以使用spring进行管理
-        DALDefPartitionParserFactory dalDefPartitionParserFactory = new DALDefPartitionParserFactory();
+        DefPartitionParserFactory dalDefPartitionParserFactory = new DefPartitionParserFactory();
         dalDefPartitionParserFactory.setParserMap(parserMap);
         this.dalFactory = DALFactory.getInstance();
         this.dalFactory

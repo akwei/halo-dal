@@ -5,13 +5,13 @@ package halo.dal.partition;
  * 
  * @author akwei
  */
-public interface DALPartitionParserFactory {
+public interface PartitionParserFactory {
 
     /**
      * 获取表分区分析器
      * 
      * @param key
-     * @return 参考{@link DALPartitionParser}
+     * @return 参考{@link PartitionParser}
      */
-    DALPartitionParser getParser(String key);
+    PartitionParser getParser(String key);
 }

@@ -1,5 +1,8 @@
 package halo.dal.sql;
 
+import halo.dal.DALCurrentStatus;
+import halo.dal.DALRunTimeException;
+
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,11 +35,14 @@ public class DALDataSource implements DataSource {
     }
 
     public DataSource getCurrentDataSource() {
-        DataSource ds = this.dataSourceMap.get(DALDataSourceStatus
-                .getCurrentDsKey());
+        String name = DALCurrentStatus.getCurrentDsKey();
+        if (name == null) {
+            throw new DALRunTimeException("can not get dsKey");
+        }
+        DataSource ds = this.dataSourceMap.get(name);
         if (ds == null) {
-            throw new RuntimeException("no datasource forKey [ "
-                    + DALDataSourceStatus.getCurrentDsKey() + " ]");
+            throw new DALRunTimeException("no datasource forKey [ " + name
+                    + " ]");
         }
         return ds;
     }

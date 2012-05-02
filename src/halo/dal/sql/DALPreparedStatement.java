@@ -1,9 +1,17 @@
 package halo.dal.sql;
 
+import halo.dal.DALCurrentStatus;
 import halo.dal.DALFactory;
+import halo.dal.DALRunTimeException;
+import halo.dal.MultDataSourceOnOperateException;
+import halo.dal.ResultErrException;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.partition.PartitionParser;
+import halo.dal.partition.PartitionParserNotFoundException;
 import halo.dal.partition.PartitionTableInfo;
+import halo.dal.rw.ConnectionStatus;
+import halo.dal.rw.RWParser;
+import halo.dal.rw.RWParserFactory;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -116,9 +124,9 @@ public class DALPreparedStatement implements PreparedStatement {
                 break;
         }
         if (ps == null) {
-            throw new SQLException(
+            throw new DALRunTimeException(
                     "can not create PreparedStatement for dsKey "
-                            + DALDataSourceStatus.getCurrentDsKey());
+                            + DALCurrentStatus.getCurrentDsKey());
         }
     }
 
@@ -138,15 +146,66 @@ public class DALPreparedStatement implements PreparedStatement {
         int i = 0;
         for (String table : tables) {
             parser = dalFactory.getPartitionParserFactory().getParser(table);
+            if (parser == null) {
+                throw new PartitionParserNotFoundException(
+                        "PartitionParser for table [" + table
+                                + "] was not found");
+            }
             infos[i] = parser.parse(table, sqlInfo);
-            if (infos[i] != null) {
-                sqlInfo.setRealTableName(table, infos[i].getRealTableName());
+            if (infos[i] == null) {
+                throw new ResultErrException(
+                        "parser.parse must not  return null value");
+            }
+            sqlInfo.setRealTableName(table, infos[i].getRealTableName());
+            i++;
+        }
+        String dsKey = null;
+        // build partition dsKey
+        for (PartitionTableInfo info : infos) {
+            if (dsKey == null) {
+                dsKey = info.getDsName();
+            }
+            else {
+                if (!dsKey.equals(info.getDsName())) {
+                    throw new MultDataSourceOnOperateException(
+                            "mult datasource is not supported [" + dsKey
+                                    + " , " + info.getDsName() + "]");
+                }
+            }
+        }
+        // build read/write dsKey
+        ConnectionStatus connectionStatus = new ConnectionStatus();
+        connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());
+        connectionStatus.setReadOnly(this.dalConnection.isReadOnly());
+        RWParserFactory rwParserFactory = dalFactory.getRwParserFactory();
+        String[] dsKeyArr = new String[tables.length];
+        RWParser rwParser;
+        i = 0;
+        for (String table : tables) {
+            rwParser = rwParserFactory.getParser(table);
+            if (rwParser != null) {
+                dsKeyArr[i] = rwParser.parseDsKey(table, sqlInfo,
+                        connectionStatus);
             }
             i++;
         }
-        if (infos[0] != null) {
-            DALDataSourceStatus.setCurrentDsKey(infos[0].getDsName());
+        String rwDsKey = null;
+        for (String s : dsKeyArr) {
+            if (rwDsKey == null) {
+                rwDsKey = s;
+            }
+            else {
+                if (!rwDsKey.equals(s)) {
+                    throw new MultDataSourceOnOperateException(
+                            "mult datasource is not supported on rw ["
+                                    + rwDsKey + " , " + s + "]");
+                }
+            }
         }
+        if (rwDsKey != null) {
+            dsKey = rwDsKey;
+        }
+        DALCurrentStatus.setCurrentDsKey(dsKey);
         this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sqlInfo);
         this.initRealPreparedStatement();
         if (this.maxFieldSize != 0) {

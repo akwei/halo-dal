@@ -1,6 +1,8 @@
 package halo.dal.analysis;
 
-public class SQLExceptionErrException extends RuntimeException {
+import halo.dal.DALRunTimeException;
+
+public class SQLExceptionErrException extends DALRunTimeException {
 
     private static final long serialVersionUID = -5440840544647899033L;
 

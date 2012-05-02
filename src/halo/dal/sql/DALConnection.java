@@ -1,5 +1,8 @@
 package halo.dal.sql;
 
+import halo.dal.DALCurrentStatus;
+import halo.dal.DALRunTimeException;
+
 import java.sql.Array;
 import java.sql.Blob;
 import java.sql.CallableStatement;
@@ -63,7 +66,8 @@ public class DALConnection implements Connection {
         for (Connection con : c) {
             con.close();
         }
-        DALDataSourceStatus.removeCurrentDsKey();
+        // DALDataSourceStatus.removeCurrentDsKey();
+        DALCurrentStatus.remove();
     }
 
     public void commit() throws SQLException {
@@ -83,7 +87,10 @@ public class DALConnection implements Connection {
      * @return
      */
     public Connection getCurrentConnection() {
-        String name = DALDataSourceStatus.getCurrentDsKey();
+        String name = DALCurrentStatus.getCurrentDsKey();
+        if (name == null) {
+            throw new DALRunTimeException("can not get dsKey");
+        }
         Connection con = this.conMap.get(name);
         if (con == null) {
             try {
@@ -92,7 +99,7 @@ public class DALConnection implements Connection {
                 this.conMap.put(name, con);
             }
             catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new DALRunTimeException(e);
             }
         }
         return con;

@@ -1,5 +1,7 @@
 package halo.dal.partition;
 
+import halo.dal.DALRunTimeException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,8 +10,7 @@ import java.util.Map;
  * 
  * @author akwei
  */
-public class PackagePartitionParserFactory implements
-        PartitionParserFactory {
+public class PackagePartitionParserFactory implements PartitionParserFactory {
 
     private final Map<String, PartitionParser> parserMap = new HashMap<String, PartitionParser>();
 
@@ -45,10 +46,10 @@ public class PackagePartitionParserFactory implements
                 parserMap.put(key, parser);
             }
             catch (ClassNotFoundException e) {
-                throw new RuntimeException("can not found " + fullClassName);
+                throw new DALRunTimeException("can not found " + fullClassName);
             }
             catch (Exception e) {
-                throw new RuntimeException(e);
+                throw new DALRunTimeException(e);
             }
         }
         return parser;

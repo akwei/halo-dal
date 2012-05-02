@@ -7,17 +7,20 @@ package halo.dal.sql;
  */
 public class DALDataSourceStatus {
 
-    private static final ThreadLocal<String> currentDsKey = new ThreadLocal<String>();
-
-    public static void setCurrentDsKey(String dsKey) {
-        currentDsKey.set(dsKey);
+    private DALDataSourceStatus() {
     }
 
-    public static void removeCurrentDsKey() {
-        currentDsKey.remove();
-    }
-
-    public static String getCurrentDsKey() {
-        return currentDsKey.get();
-    }
+//    private static final ThreadLocal<String> currentDsKey = new ThreadLocal<String>();
+//
+//    public static void setCurrentDsKey(String dsKey) {
+//        currentDsKey.set(dsKey);
+//    }
+//
+//    public static void removeCurrentDsKey() {
+//        currentDsKey.remove();
+//    }
+//
+//    public static String getCurrentDsKey() {
+//        return currentDsKey.get();
+//    }
 }

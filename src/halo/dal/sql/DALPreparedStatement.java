@@ -1,4 +1,4 @@
-package halo.dal.partition.sql;
+package halo.dal.sql;
 
 import halo.dal.analysis.SQLInfo;
 import halo.dal.partition.DALFactory;

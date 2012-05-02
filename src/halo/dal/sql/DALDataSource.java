@@ -1,4 +1,4 @@
-package halo.dal.partition.sql;
+package halo.dal.sql;
 
 import java.io.PrintWriter;
 import java.sql.Connection;

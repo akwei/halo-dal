@@ -1,6 +1,6 @@
 package dal;
 
-import halo.dal.partition.sql.DALDataSource;
+import halo.dal.sql.DALDataSource;
 
 import java.util.HashMap;
 import java.util.Map;

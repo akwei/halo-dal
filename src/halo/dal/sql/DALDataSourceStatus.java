@@ -1,4 +1,4 @@
-package halo.dal.partition.sql;
+package halo.dal.sql;
 
 /**
  * 当前需要访问的数据源绑定类，此类与当前线程绑定。参考ThreadLocal方式使用

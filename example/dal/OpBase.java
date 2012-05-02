@@ -3,7 +3,7 @@ package dal;
 import halo.dal.partition.DALDefPartitionParserFactory;
 import halo.dal.partition.DALFactory;
 import halo.dal.partition.DALPartitionParser;
-import halo.dal.partition.sql.DALDataSource;
+import halo.dal.sql.DALDataSource;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package halo.dal.partition.analysis;
+package halo.dal.analysis;
 
 /**
  * sql分析器，负责解析sql，换取SQLInfo对象。创建新的sql

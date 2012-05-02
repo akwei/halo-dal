@@ -1,4 +1,4 @@
-package halo.dal.partition.analysis;
+package halo.dal.analysis;
 
 /**
  * sql表达式中的对应符号关系。目前支持 > , < , >= , <= , =

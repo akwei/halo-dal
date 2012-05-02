@@ -1,6 +1,6 @@
 package halo.dal.partition;
 
-import halo.dal.partition.analysis.SQLInfo;
+import halo.dal.analysis.SQLInfo;
 
 /**
  * 数据分区分析器，通过此分析器可以分析表所在的具体的数据库与数据表名称

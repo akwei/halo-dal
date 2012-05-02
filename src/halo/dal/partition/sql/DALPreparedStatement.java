@@ -1,9 +1,9 @@
 package halo.dal.partition.sql;
 
+import halo.dal.analysis.SQLInfo;
 import halo.dal.partition.DALFactory;
 import halo.dal.partition.DALPartitionParser;
 import halo.dal.partition.DALPartitionTableInfo;
-import halo.dal.partition.analysis.SQLInfo;
 
 import java.io.InputStream;
 import java.io.Reader;

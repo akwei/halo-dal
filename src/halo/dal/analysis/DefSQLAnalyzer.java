@@ -1,4 +1,4 @@
-package halo.dal.partition.analysis;
+package halo.dal.analysis;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,7 +1,7 @@
 package halo.dal.partition;
 
-import halo.dal.partition.analysis.DefSQLAnalyzer;
-import halo.dal.partition.analysis.SQLAnalyzer;
+import halo.dal.analysis.DefSQLAnalyzer;
+import halo.dal.analysis.SQLAnalyzer;
 
 /**
  * DAL各种服务的赋值

@@ -1,4 +1,4 @@
-package halo.dal.partition.analysis;
+package halo.dal.analysis;
 
 public class SQLKeyErrException extends RuntimeException {
 

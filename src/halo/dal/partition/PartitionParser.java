@@ -4,7 +4,8 @@ import halo.dal.analysis.SQLInfo;
 import halo.dal.sql.ConnectionStatus;
 
 /**
- * 数据分区分析器，通过此分析器可以分析表所在的具体的数据库与数据表名称
+ * 数据分区分析器，通过此分析器可以分析表所在的具体的数据库与数据表名称。
+ * 增加了读写分离需要的参数。此类不仅作为分表分库的分析器，还作为读写分离的分析器
  * 
  * @author akwei
  */

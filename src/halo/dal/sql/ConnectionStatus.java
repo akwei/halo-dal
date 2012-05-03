@@ -1,4 +1,4 @@
-package halo.dal.rw;
+package halo.dal.sql;
 
 public class ConnectionStatus {
 

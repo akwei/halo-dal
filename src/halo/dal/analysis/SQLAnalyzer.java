@@ -1,5 +1,7 @@
 package halo.dal.analysis;
 
+import halo.dal.DALCustomInfo;
+
 /**
  * sql分析器，负责解析sql，换取SQLInfo对象。创建新的sql
  * 
@@ -23,7 +25,9 @@ public interface SQLAnalyzer {
      * 
      * @param sqlInfo
      *            参考 {@link SQLInfo}
+     * @param customInfo
+     *            如果用户没有指定，此参数会赋值null
      * @return 新的sql语句
      */
-    String outPutSQL(SQLInfo sqlInfo);
+    String outPutSQL(SQLInfo sqlInfo, DALCustomInfo customInfo);
 }

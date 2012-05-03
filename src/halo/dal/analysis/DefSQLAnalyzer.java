@@ -1,5 +1,7 @@
 package halo.dal.analysis;
 
+import halo.dal.DALCustomInfo;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -88,7 +90,7 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
         keySet.add(KEY_SET);
     }
 
-    public String outPutSQL(SQLInfo sqlInfo) {
+    public String outPutSQL(SQLInfo sqlInfo, DALCustomInfo customInfo) {
         BasicSQLInfo info = (BasicSQLInfo) sqlInfo;
         String sql = info.getOriginalSQL();
         List<String> list = new ArrayList<String>();

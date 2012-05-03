@@ -5,6 +5,7 @@ import halo.dal.analysis.SQLExpressionSymbol;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.partition.PartitionParser;
 import halo.dal.partition.PartitionTableInfo;
+import halo.dal.sql.ConnectionStatus;
 
 /**
  * 对user表进行分区，根据奇偶方式，将偶数sex放入daltest0.user0, 奇数sex放入daltest1.user1
@@ -13,7 +14,8 @@ import halo.dal.partition.PartitionTableInfo;
  */
 public class UserParser implements PartitionParser {
 
-    public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo) {
+    public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus) {
         PartitionTableInfo info = new PartitionTableInfo();
         // 从sqlInfo获得条件表达式,由于定义的分区条件为sex字段，那么就需要获取sex字段的表达式
         // /由于获取的表达式会存在多个，例如进行范围判断的情况下，就会出现2个表达式，因此会返回一个数组

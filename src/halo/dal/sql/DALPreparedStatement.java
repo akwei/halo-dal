@@ -1,6 +1,7 @@
 package halo.dal.sql;
 
 import halo.dal.DALCurrentStatus;
+import halo.dal.DALCustomInfo;
 import halo.dal.DALFactory;
 import halo.dal.DALRunTimeException;
 import halo.dal.MultDataSourceOnOperateException;
@@ -9,9 +10,6 @@ import halo.dal.analysis.SQLInfo;
 import halo.dal.partition.PartitionParser;
 import halo.dal.partition.PartitionParserNotFoundException;
 import halo.dal.partition.PartitionTableInfo;
-import halo.dal.rw.ConnectionStatus;
-import halo.dal.rw.RWParser;
-import halo.dal.rw.RWParserFactory;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -126,7 +124,7 @@ public class DALPreparedStatement implements PreparedStatement {
         if (ps == null) {
             throw new DALRunTimeException(
                     "can not create PreparedStatement for dsKey "
-                            + DALCurrentStatus.getCurrentDsKey());
+                            + DALCurrentStatus.getDsKey());
         }
     }
 
@@ -136,77 +134,17 @@ public class DALPreparedStatement implements PreparedStatement {
      * @throws SQLException
      */
     private void prepare() throws SQLException {
-        List<Object> values = dalParameters.getValues();
+        DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
         DALFactory dalFactory = DALFactory.getInstance();
+        List<Object> values = dalParameters.getValues();
         SQLInfo sqlInfo = dalFactory.getSqlAnalyzer().analyse(sql,
                 values.toArray(new Object[values.size()]));
-        String[] tables = sqlInfo.getTables();
-        PartitionParser parser;
-        PartitionTableInfo[] infos = new PartitionTableInfo[tables.length];
-        int i = 0;
-        for (String table : tables) {
-            parser = dalFactory.getPartitionParserFactory().getParser(table);
-            if (parser == null) {
-                throw new PartitionParserNotFoundException(
-                        "PartitionParser for table [" + table
-                                + "] was not found");
-            }
-            infos[i] = parser.parse(table, sqlInfo);
-            if (infos[i] == null) {
-                throw new ResultErrException(
-                        "parser.parse must not  return null value");
-            }
-            sqlInfo.setRealTableName(table, infos[i].getRealTableName());
-            i++;
+        // 如果用户没有自定义设置，那么以解析结果为dsKey
+        if (dalCustomInfo == null) {
+            DALCurrentStatus.setDsKey(this.parsePartitionDsKey(sqlInfo));
         }
-        String dsKey = null;
-        // build partition dsKey
-        for (PartitionTableInfo info : infos) {
-            if (dsKey == null) {
-                dsKey = info.getDsName();
-            }
-            else {
-                if (!dsKey.equals(info.getDsName())) {
-                    throw new MultDataSourceOnOperateException(
-                            "mult datasource is not supported [" + dsKey
-                                    + " , " + info.getDsName() + "]");
-                }
-            }
-        }
-        // build read/write dsKey
-        ConnectionStatus connectionStatus = new ConnectionStatus();
-        connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());
-        connectionStatus.setReadOnly(this.dalConnection.isReadOnly());
-        RWParserFactory rwParserFactory = dalFactory.getRwParserFactory();
-        String[] dsKeyArr = new String[tables.length];
-        RWParser rwParser;
-        i = 0;
-        for (String table : tables) {
-            rwParser = rwParserFactory.getParser(table);
-            if (rwParser != null) {
-                dsKeyArr[i] = rwParser.parseDsKey(table, sqlInfo,
-                        connectionStatus);
-            }
-            i++;
-        }
-        String rwDsKey = null;
-        for (String s : dsKeyArr) {
-            if (rwDsKey == null) {
-                rwDsKey = s;
-            }
-            else {
-                if (!rwDsKey.equals(s)) {
-                    throw new MultDataSourceOnOperateException(
-                            "mult datasource is not supported on rw ["
-                                    + rwDsKey + " , " + s + "]");
-                }
-            }
-        }
-        if (rwDsKey != null) {
-            dsKey = rwDsKey;
-        }
-        DALCurrentStatus.setCurrentDsKey(dsKey);
-        this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sqlInfo);
+        this.sql = dalFactory.getSqlAnalyzer()
+                .outPutSQL(sqlInfo, dalCustomInfo);
         this.initRealPreparedStatement();
         if (this.maxFieldSize != 0) {
             ps.setMaxFieldSize(maxFieldSize);
@@ -233,6 +171,47 @@ public class DALPreparedStatement implements PreparedStatement {
             ps.setPoolable(poolable);
         }
         this.dalParameters.initRealPreparedStatement(ps);
+    }
+
+    private String parsePartitionDsKey(SQLInfo sqlInfo) throws SQLException {
+        String[] tables = sqlInfo.getTables();
+        PartitionParser parser;
+        PartitionTableInfo[] infos = new PartitionTableInfo[tables.length];
+        DALFactory dalFactory = DALFactory.getInstance();
+        int i = 0;
+        ConnectionStatus connectionStatus = new ConnectionStatus();
+        connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());
+        connectionStatus.setReadOnly(this.dalConnection.isReadOnly());
+        for (String table : tables) {
+            parser = dalFactory.getPartitionParserFactory().getParser(table);
+            if (parser == null) {
+                throw new PartitionParserNotFoundException(
+                        "PartitionParser for table [" + table
+                                + "] was not found");
+            }
+            infos[i] = parser.parse(table, sqlInfo, connectionStatus);
+            if (infos[i] == null) {
+                throw new ResultErrException(
+                        "parser.parse must not  return null value");
+            }
+            sqlInfo.setRealTableName(table, infos[i].getRealTableName());
+            i++;
+        }
+        String dsKey = null;
+        // build partition dsKey
+        for (PartitionTableInfo info : infos) {
+            if (dsKey == null) {
+                dsKey = info.getDsName();
+            }
+            else {
+                if (!dsKey.equals(info.getDsName())) {
+                    throw new MultDataSourceOnOperateException(
+                            "mult datasource is not supported [" + dsKey
+                                    + " , " + info.getDsName() + "]");
+                }
+            }
+        }
+        return dsKey;
     }
 
     private void prepare(String sql) throws SQLException {

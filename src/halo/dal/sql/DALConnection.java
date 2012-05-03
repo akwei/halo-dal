@@ -87,7 +87,7 @@ public class DALConnection implements Connection {
      * @return
      */
     public Connection getCurrentConnection() {
-        String name = DALCurrentStatus.getCurrentDsKey();
+        String name = DALCurrentStatus.getDsKey();
         if (name == null) {
             throw new DALRunTimeException("can not get dsKey");
         }

@@ -35,7 +35,7 @@ public class DALDataSource implements DataSource {
     }
 
     public DataSource getCurrentDataSource() {
-        String name = DALCurrentStatus.getCurrentDsKey();
+        String name = DALCurrentStatus.getDsKey();
         if (name == null) {
             throw new DALRunTimeException("can not get dsKey");
         }

@@ -92,6 +92,12 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
 
     public String outPutSQL(SQLInfo sqlInfo, DALCustomInfo customInfo) {
         BasicSQLInfo info = (BasicSQLInfo) sqlInfo;
+        if (customInfo != null) {
+            for (String tableName : info.getTableNames()) {
+                info.setRealTableName(tableName,
+                        customInfo.getRealTableName(tableName));
+            }
+        }
         String sql = info.getOriginalSQL();
         List<String> list = new ArrayList<String>();
         List<String> newList = new ArrayList<String>();

@@ -24,6 +24,10 @@ public class DALCurrentStatus {
     }
 
     public static String getDsKey() {
+        DALCustomInfo dalCustomInfo = getCustomInfo();
+        if (dalCustomInfo != null) {
+            return dalCustomInfo.getDsKey();
+        }
         return (String) getValue(STATUS_DSKEY);
     }
 

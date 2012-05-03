@@ -28,11 +28,11 @@ public class UserParser implements PartitionParser {
                 // 数据源key就是在创建DALDataSource的时候，写入map的key，这个key与真实的DataSource一一对应
                 if (l.intValue() % 2 == 0) {
                     info.setRealTableName("user0");// 真实数据表名称
-                    info.setDsName("ds0");// 真实数源key
+                    info.setDsName("ds00");// 真实数源key
                 }
                 else {
                     info.setRealTableName("user1");// 真实数据表名称
-                    info.setDsName("ds1");// 真实数源key
+                    info.setDsName("ds10");// 真实数源key
                 }
             }
         }

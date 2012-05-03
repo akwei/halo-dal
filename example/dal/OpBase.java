@@ -47,28 +47,50 @@ public class OpBase {
         // 初始化数据库连接池,如果使用spring的话，可以使用spring初始化数据库连接池
         // map中的key为数据源key
         Map<String, DataSource> dataSourceMap = new HashMap<String, DataSource>();
-        // datasource 0
-        ComboPooledDataSource ds0 = new ComboPooledDataSource();
-        ds0.setDriverClass("com.mysql.jdbc.Driver");
-        ds0.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest0?useUnicode=true&characterEncoding=UTF-8");
-        ds0.setUser(this.user);
-        ds0.setPassword(this.password);
-        ds0.setMaxPoolSize(20);
-        ds0.setInitialPoolSize(10);
-        ds0.setMinPoolSize(10);
+        // datasource 00
+        ComboPooledDataSource ds00 = new ComboPooledDataSource();
+        ds00.setDriverClass("com.mysql.jdbc.Driver");
+        ds00.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest00?useUnicode=true&characterEncoding=UTF-8");
+        ds00.setUser(this.user);
+        ds00.setPassword(this.password);
+        ds00.setMaxPoolSize(20);
+        ds00.setInitialPoolSize(10);
+        ds00.setMinPoolSize(10);
         // 设置数据源key的对应关系
-        dataSourceMap.put("ds0", ds0);
-        // datasource 1
-        ComboPooledDataSource ds1 = new ComboPooledDataSource();
-        ds1.setDriverClass("com.mysql.jdbc.Driver");
-        ds1.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest1?useUnicode=true&characterEncoding=UTF-8");
-        ds1.setUser(this.user);
-        ds1.setPassword(this.password);
-        ds1.setMaxPoolSize(20);
-        ds1.setInitialPoolSize(10);
-        ds1.setMinPoolSize(10);
+        dataSourceMap.put("ds00", ds00);
+        // datasource 01
+        ComboPooledDataSource ds01 = new ComboPooledDataSource();
+        ds01.setDriverClass("com.mysql.jdbc.Driver");
+        ds01.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest01?useUnicode=true&characterEncoding=UTF-8");
+        ds01.setUser(this.user);
+        ds01.setPassword(this.password);
+        ds01.setMaxPoolSize(20);
+        ds01.setInitialPoolSize(10);
+        ds01.setMinPoolSize(10);
         // 设置数据源key的对应关系
-        dataSourceMap.put("ds1", ds1);
+        dataSourceMap.put("ds01", ds01);
+        // datasource 10
+        ComboPooledDataSource ds10 = new ComboPooledDataSource();
+        ds10.setDriverClass("com.mysql.jdbc.Driver");
+        ds10.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest10?useUnicode=true&characterEncoding=UTF-8");
+        ds10.setUser(this.user);
+        ds10.setPassword(this.password);
+        ds10.setMaxPoolSize(20);
+        ds10.setInitialPoolSize(10);
+        ds10.setMinPoolSize(10);
+        // 设置数据源key的对应关系
+        dataSourceMap.put("ds10", ds10);
+        // datasource 11
+        ComboPooledDataSource ds11 = new ComboPooledDataSource();
+        ds11.setDriverClass("com.mysql.jdbc.Driver");
+        ds11.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/daltest11?useUnicode=true&characterEncoding=UTF-8");
+        ds11.setUser(this.user);
+        ds11.setPassword(this.password);
+        ds11.setMaxPoolSize(20);
+        ds11.setInitialPoolSize(10);
+        ds11.setMinPoolSize(10);
+        // 设置数据源key的对应关系
+        dataSourceMap.put("ds11", ds11);
         this.dataSource = new DALDataSource();
         this.dataSource.setDataSourceMap(dataSourceMap);
         // 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类

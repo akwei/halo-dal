@@ -21,14 +21,14 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Component" />
 	</context:component-scan>
-	<bean id="dataSource" class="halo.dal.partition.sql.DALDataSource">
+	<bean id="dataSource" class="halo.dal.sql.DALDataSource">
 		<property name="dataSourceMap">
 			<map>
-				<entry key="ds0">
+				<entry key="ds00">
 					<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
 						<property name="driverClass" value="com.mysql.jdbc.Driver" />
 						<property name="jdbcUrl"
-							value="jdbc:mysql://127.0.0.1:3306/daltest0?useUnicode=true&amp;characterEncoding=UTF-8" />
+							value="jdbc:mysql://127.0.0.1:3306/daltest00?useUnicode=true&amp;characterEncoding=UTF-8" />
 						<property name="user" value="root" />
 						<property name="password" value="asdasd" />
 						<property name="idleConnectionTestPeriod" value="60" />
@@ -37,11 +37,37 @@
 						<property name="minPoolSize" value="10" />
 					</bean>
 				</entry>
-				<entry key="ds1">
+				<entry key="ds01">
 					<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
 						<property name="driverClass" value="com.mysql.jdbc.Driver" />
 						<property name="jdbcUrl"
-							value="jdbc:mysql://127.0.0.1:3306/daltest1?useUnicode=true&amp;characterEncoding=UTF-8" />
+							value="jdbc:mysql://127.0.0.1:3306/daltest01?useUnicode=true&amp;characterEncoding=UTF-8" />
+						<property name="user" value="root" />
+						<property name="password" value="asdasd" />
+						<property name="idleConnectionTestPeriod" value="60" />
+						<property name="maxPoolSize" value="20" />
+						<property name="initialPoolSize" value="10" />
+						<property name="minPoolSize" value="10" />
+					</bean>
+				</entry>
+				<entry key="ds10">
+					<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
+						<property name="driverClass" value="com.mysql.jdbc.Driver" />
+						<property name="jdbcUrl"
+							value="jdbc:mysql://127.0.0.1:3306/daltest10?useUnicode=true&amp;characterEncoding=UTF-8" />
+						<property name="user" value="root" />
+						<property name="password" value="asdasd" />
+						<property name="idleConnectionTestPeriod" value="60" />
+						<property name="maxPoolSize" value="20" />
+						<property name="initialPoolSize" value="10" />
+						<property name="minPoolSize" value="10" />
+					</bean>
+				</entry>
+				<entry key="ds11">
+					<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
+						<property name="driverClass" value="com.mysql.jdbc.Driver" />
+						<property name="jdbcUrl"
+							value="jdbc:mysql://127.0.0.1:3306/daltest11?useUnicode=true&amp;characterEncoding=UTF-8" />
 						<property name="user" value="root" />
 						<property name="password" value="asdasd" />
 						<property name="idleConnectionTestPeriod" value="60" />
@@ -60,12 +86,12 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean class="halo.dal.partition.DALFactory">
+	<bean class="halo.dal.DALFactory">
 		<!-- 解析器工厂可以自定义实现，详情见README -->
-		<property name="dalPartitionParserFactory">
+		<property name="partitionParserFactory">
 			<!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
 			<!-- 原理就是把所有的解析器类放到一个目录中 -->
-			<bean class="halo.dal.partition.DALPackagePartitionParserFactory">
+			<bean class="halo.dal.partition.PackagePartitionParserFactory">
 				<!-- 解析器所在目录 -->
 				<property name="packageName" value="parser" />
 			</bean>

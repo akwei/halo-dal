@@ -2,6 +2,7 @@
 #####使用场景:数据库分布式访问
 #####使用语言:java
 #####使用条件:支持PreparedStatement处理的任何jdbc框架
+#####sql语句必须使用小写字符
 #####jdk版本:jdk1.5以及以上版本
 #####项目依赖jar:commons-lang3-3.1.jar, commons-logging.jar,junit-4.10.jar(单元测试使用)
 #####examplelib目录下的jar为例子中使用的jar

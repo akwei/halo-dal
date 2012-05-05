@@ -5,8 +5,6 @@ import java.math.BigInteger;
 import java.util.Date;
 
 /**
- * 目前字段类型只支持long,int,byte,short,float,char,double,String,java.util.Date
- * 
  * @author akwei
  */
 public class User {

@@ -46,9 +46,9 @@ package dal;
 
 import halo.dal.partition.DALPartitionParser;
 import halo.dal.partition.DALPartitionTableInfo;
-import halo.dal.partition.analysis.SQLExpression;
-import halo.dal.partition.analysis.SQLExpressionSymbol;
-import halo.dal.partition.analysis.SQLInfo;
+import halo.dal.analysis.SQLExpression;
+import halo.dal.analysis.SQLExpressionSymbol;
+import halo.dal.analysis.SQLInfo;
 
 /**
  * 对user表进行分区，根据奇偶方式，将偶数sex放入daltest0.user0, 奇数sex放入daltest1.user1
@@ -133,7 +133,7 @@ public class UserParser implements DALPartitionParser {
 ````
 ###在spring中使用
 ````xml
-<bean id="dataSource" class="halo.dal.partition.sql.DALDataSource">
+<bean id="dataSource" class="halo.dal.sql.DALDataSource">
         <property name="dataSourceMap">
             <map>
                 <entry key="ds0">

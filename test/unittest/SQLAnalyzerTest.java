@@ -181,6 +181,17 @@ public class SQLAnalyzerTest {
     }
 
     @Test
+    public void selectForIn() {
+        String sql = "select * from user u,member as m "
+                + "where u.uid=m.uid and u.sex=? or m.age>? id in(1,2,3)"
+                + "group by sex " + "order by sex " + "having name=?";
+        Object[] values = new Object[] { 1, 5, "akwei" };
+        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, values);
+        String sql2 = sqlAnalyzer.outPutSQL(sqlInfo, null);
+        Assert.assertEquals(sql, sql2);
+    }
+
+    @Test
     public void select2() {
         String sql = "select * from user u,member as m "
                 + "where u.uid=m.uid and u.sex=? or m.age>? " + "group by sex "

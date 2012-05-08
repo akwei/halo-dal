@@ -88,30 +88,74 @@ public class BasicSQLInfo implements SQLInfo {
         return aliasTableNameMap.get(alias);
     }
 
+    /**
+     * 忽略columnName大小写进行查询
+     */
     public SQLExpression[] getSQLExpressions(String columnName) {
+        String upperColumnName = columnName.toUpperCase();
+        String lowerColumnName = columnName.toLowerCase();
         SQLExpression[] arr = sqlExpressionMap.get(columnName);
+        SQLExpression[] lowerArr = sqlExpressionMap.get(lowerColumnName);
+        SQLExpression[] upperArr = sqlExpressionMap.get(upperColumnName);
         int idx = columnName.indexOf(".");
+        List<SQLExpression> list = new ArrayList<SQLExpression>();
         if (idx == -1) {
-            return arr;
+            if (arr != null) {
+                for (SQLExpression e : arr) {
+                    list.add(e);
+                }
+            }
+            if (lowerArr != null) {
+                for (SQLExpression e : lowerArr) {
+                    list.add(e);
+                }
+            }
+            if (upperArr != null) {
+                for (SQLExpression e : upperArr) {
+                    list.add(e);
+                }
+            }
+            if (list.isEmpty()) {
+                return null;
+            }
+            return list.toArray(new SQLExpression[list.size()]);
         }
         String subName = columnName.substring(idx + 1);
         SQLExpression[] arr1 = sqlExpressionMap.get(subName);
-        if (arr == null) {
-            if (arr1 == null) {
-                return null;
+        SQLExpression[] lowerArr1 = sqlExpressionMap.get(subName.toLowerCase());
+        SQLExpression[] upperArr1 = sqlExpressionMap.get(subName.toUpperCase());
+        if (arr != null) {
+            for (SQLExpression e : arr) {
+                list.add(e);
             }
-            return arr1;
         }
-        if (arr1 == null) {
-            return arr;
+        if (lowerArr != null) {
+            for (SQLExpression e : lowerArr) {
+                list.add(e);
+            }
         }
-        List<SQLExpression> list = new ArrayList<SQLExpression>(arr.length
-                + arr1.length);
-        for (SQLExpression e : arr) {
-            list.add(e);
+        if (upperArr != null) {
+            for (SQLExpression e : upperArr) {
+                list.add(e);
+            }
         }
-        for (SQLExpression e : arr1) {
-            list.add(e);
+        if (arr1 != null) {
+            for (SQLExpression e : arr1) {
+                list.add(e);
+            }
+        }
+        if (lowerArr1 != null) {
+            for (SQLExpression e : lowerArr1) {
+                list.add(e);
+            }
+        }
+        if (upperArr1 != null) {
+            for (SQLExpression e : upperArr1) {
+                list.add(e);
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
         }
         return list.toArray(new SQLExpression[list.size()]);
     }

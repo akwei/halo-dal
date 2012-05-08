@@ -15,8 +15,6 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
 
     private final static String SQL_KEY_RIGHT_PARENTHESIS = ")";
 
-    private final static Set<String> keySet = new HashSet<String>();
-
     private final static String SQL_BLANK = " ";
 
     private final static String SQL_KEY_SELECT = "select ";
@@ -72,6 +70,22 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
     private final static String KEY_ON = "on";
 
     private final static String KEY_WHERE = "where";
+
+    private final static String KEY_AS = "as";
+
+    private final static String KEY_AND = "and";
+
+    private final static String KEY_OR = "or";
+
+    /**
+     * 存储解析sql使用的sql关键字
+     */
+    private final static Set<String> keySet = new HashSet<String>();
+
+    /**
+     * 存储sql小写转换使用的sql关键字
+     */
+    private final static Set<String> keySet2 = new HashSet<String>();
     static {
         keySet.add(KEY_SELECT);
         keySet.add(KEY_FROM);
@@ -88,6 +102,25 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
         keySet.add(KEY_INTO);
         keySet.add(KEY_VALUES);
         keySet.add(KEY_SET);
+        //
+        keySet2.add(KEY_SELECT);
+        keySet2.add(KEY_FROM);
+        keySet2.add(KEY_FULL);
+        keySet2.add(KEY_INNER);
+        keySet2.add(KEY_LEFT);
+        keySet2.add(KEY_RIGHT);
+        keySet2.add(KEY_JOIN);
+        keySet2.add(KEY_ON);
+        keySet2.add(KEY_WHERE);
+        keySet2.add(KEY_DELETE);
+        keySet2.add(KEY_INSERT);
+        keySet2.add(KEY_UPDATE);
+        keySet2.add(KEY_INTO);
+        keySet2.add(KEY_VALUES);
+        keySet2.add(KEY_SET);
+        keySet2.add(KEY_AS);
+        keySet2.add(KEY_AND);
+        keySet2.add(KEY_OR);
     }
 
     public String outPutSQL(SQLInfo sqlInfo, DALCustomInfo customInfo) {
@@ -105,19 +138,59 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
             String alias = info.getAliasByTableName(tableName);
             boolean isSame = alias != null && alias.endsWith(tableName);
             if (!isSame) {
-                list.add(" " + tableName + ".");
-                newList.add(" " + info.getRealTableName(tableName) + ".");
+                list.add(SQL_BLANK + tableName + ".");
+                newList.add(SQL_BLANK + info.getRealTableName(tableName) + ".");
             }
-            list.add(" " + tableName + " ");
-            newList.add(" " + info.getRealTableName(tableName) + " ");
-            list.add(" " + tableName + "(");
+            list.add(SQL_BLANK + tableName + SQL_BLANK);
+            newList.add(SQL_BLANK + info.getRealTableName(tableName)
+                    + SQL_BLANK);
+            list.add(SQL_BLANK + tableName + "(");
             newList.add(" " + info.getRealTableName(tableName) + "(");
-            list.add("," + tableName + " ");
-            newList.add("," + info.getRealTableName(tableName) + " ");
+            list.add("," + tableName + SQL_BLANK);
+            newList.add("," + info.getRealTableName(tableName) + SQL_BLANK);
         }
-        return StringUtils.replaceEach(sql,
+        String _sql = StringUtils.replaceEach(sql,
                 list.toArray(new String[list.size()]),
                 newList.toArray(new String[newList.size()]));
+        // 解决sql结束字符串为表名，无法解析的问题例如 delete form user
+        String str;
+        for (String tableName : info.getTableNames()) {
+            str = SQL_BLANK + tableName;
+            int idx = _sql.lastIndexOf(str);
+            if (idx == -1) {
+                continue;
+            }
+            if (_sql.substring(idx).equals(str)) {
+                _sql = _sql.substring(0, idx) + SQL_BLANK
+                        + info.getRealTableName(tableName);
+            }
+        }
+        return _sql;
+    }
+
+    private String getLowerSQL(String sql) {
+        String[] sqlWords = sql.split(SQL_BLANK);
+        List<String> wordList = new ArrayList<String>();
+        for (String word : sqlWords) {
+            if (word.equals(SQL_BLANK)) {
+                continue;
+            }
+            wordList.add(word);
+        }
+        StringBuilder sb = new StringBuilder();
+        String lower;
+        for (String word : wordList) {
+            lower = word.toLowerCase();
+            if (this.hasKey2(lower)) {
+                sb.append(lower);
+            }
+            else {
+                sb.append(word);
+            }
+            sb.append(SQL_BLANK);
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     public SQLInfo analyse(String sql, Object[] values) {
@@ -125,23 +198,23 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
             throw new SQLKeyErrException("not supported sql key: between ");
         }
         String _sql = sql.replaceAll("\\. {1,}", "\\.").trim();
+        String lowerSQL = this.getLowerSQL(_sql);
         BasicSQLInfo sqlInfo = new BasicSQLInfo(_sql, values);
-        this.parseSQLSegment(sqlInfo, _sql);
-        if (_sql.indexOf(SQL_KEY_SELECT) != -1) {
+        this.parseSQLSegment(sqlInfo, lowerSQL);
+        if (lowerSQL.indexOf(SQL_KEY_SELECT) != -1) {
             this.parseSelectTable(sqlInfo);
         }
-        else if (_sql.indexOf(SQL_KEY_INSERT_INTO) != -1) {
+        else if (lowerSQL.indexOf(SQL_KEY_INSERT_INTO) != -1) {
             this.parseInsertTable(sqlInfo);
         }
-        else if (_sql.indexOf(SQL_KEY_UPDATE) != -1) {
+        else if (lowerSQL.indexOf(SQL_KEY_UPDATE) != -1) {
             this.parseUpdateTable(sqlInfo);
         }
-        else if (_sql.indexOf(SQL_KEY_DELETE_FROM) != -1) {
+        else if (lowerSQL.indexOf(SQL_KEY_DELETE_FROM) != -1) {
             this.parseDeleteTable(sqlInfo);
         }
         else {
-            throw new SQLAnalyzerException(
-                    "sql key must lower case. or sql is not supported :" + _sql);
+            throw new SQLAnalyzerException("unknown sql : " + lowerSQL);
         }
         this.parseSQLExpressions(sqlInfo, values);
         return sqlInfo;
@@ -364,5 +437,15 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
 
     private boolean hasKey(String key) {
         return keySet.contains(key);
+    }
+
+    /**
+     * 在小写转换时，判断是否含有sql关键字
+     * 
+     * @param key
+     * @return true,含有
+     */
+    private boolean hasKey2(String key) {
+        return keySet2.contains(key);
     }
 }

@@ -4,6 +4,7 @@
 #####使用条件:支持PreparedStatement处理的任何jdbc框架
 #####sql语句必须使用小写字符
 #####jdk版本:jdk1.5以及以上版本
+#####请使用spring管理数据库连接池
 #####项目依赖jar:commons-lang3-3.1.jar, commons-logging.jar,junit-4.10.jar(单元测试使用)
 #####examplelib目录下的jar为例子中使用的jar
 #####springexamplelib目录下的jar为spring例子中使用的jar

@@ -17,7 +17,8 @@ public class PersonParser implements PartitionParser {
     public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
             ConnectionStatus connectionStatus) {
         PartitionTableInfo info = new PartitionTableInfo();
-        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("level");
+        SQLExpression[] sqlExpressions = sqlInfo
+                .getSQLExpressions("person.level");
         for (SQLExpression e : sqlExpressions) {
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
                 Integer l = (Integer) e.getValue();

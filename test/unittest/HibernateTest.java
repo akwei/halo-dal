@@ -1,5 +1,7 @@
 package unittest;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import junit.framework.Assert;
@@ -25,12 +27,20 @@ public class HibernateTest {
 
     @Test
     public void insert() {
+        this.insertByLevel(0);
+        this.insertByLevel(1);
+    }
+
+    public void insertByLevel(int level) {
         Person p = new Person();
         p.setName("akweiwei");
-        sessionFactory.getCurrentSession().save(p);
-        System.out.println("pid:" + p.getPid());
-        Person dbp = (Person) sessionFactory.getCurrentSession().get(
-                Person.class, p.getPid());
+        p.setLevel(level);
+        this.hibernateTemplate.save(p);
+        @SuppressWarnings("unchecked")
+        List<Person> list = this.hibernateTemplate.find(
+                "from Person where level=?", level);
+        Assert.assertEquals(1, list.size());
+        Person dbp = list.get(0);
         Assert.assertEquals(p.getPid(), dbp.getPid());
         Assert.assertEquals(p.getName(), dbp.getName());
         Assert.assertEquals(p.getLevel(), dbp.getLevel());
@@ -40,10 +50,9 @@ public class HibernateTest {
     public void delete() {
         Person p = new Person();
         p.setName("akweiwei");
-        sessionFactory.getCurrentSession().save(p);
-        sessionFactory.getCurrentSession().delete(p);
-        Person dbp = (Person) sessionFactory.getCurrentSession().get(
-                Person.class, p.getPid());
+        hibernateTemplate.save(p);
+        hibernateTemplate.delete(p);
+        Person dbp = this.hibernateTemplate.get(Person.class, p.getPid());
         Assert.assertNull(dbp);
     }
 }

@@ -62,7 +62,7 @@ public class UserParser implements DALPartitionParser {
         DALPartitionTableInfo info = new DALPartitionTableInfo();
         // 从sqlInfo获得条件表达式,由于定义的分区条件为sex字段，那么就需要获取sex字段的表达式
         // /由于获取的表达式会存在多个，例如进行范围判断的情况下，就会出现2个表达式，因此会返回一个数组
-        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("sex");
+        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("user.sex");
         for (SQLExpression e : sqlExpressions) {
             // sex表达式我们只需要获得sex=?的等号表达式
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {

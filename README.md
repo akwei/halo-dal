@@ -1,7 +1,7 @@
 #halo-dal使用说明
 #####使用场景:数据库分布式访问
 #####使用语言:java
-#####使用条件:支持PreparedStatement处理的任何jdbc框架
+#####使用条件:支持PreparedStatement处理的任何jdbc框架,最好配合spring管理数据库连接池.
 #####sql语句必须使用小写字符
 #####jdk版本:jdk1.5以及以上版本
 #####请使用spring管理数据库连接池

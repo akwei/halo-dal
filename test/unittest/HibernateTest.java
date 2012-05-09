@@ -26,8 +26,12 @@ public class HibernateTest {
     SessionFactory sessionFactory;
 
     @Test
-    public void insert() {
+    public void insert0() {
         this.insertByLevel(0);
+    }
+
+    @Test
+    public void insert1() {
         this.insertByLevel(1);
     }
 
@@ -44,6 +48,9 @@ public class HibernateTest {
         Assert.assertEquals(p.getPid(), dbp.getPid());
         Assert.assertEquals(p.getName(), dbp.getName());
         Assert.assertEquals(p.getLevel(), dbp.getLevel());
+        dbp.setName("newakwei");
+        hibernateTemplate.save(dbp);
+        hibernateTemplate.flush();
     }
 
     @Test

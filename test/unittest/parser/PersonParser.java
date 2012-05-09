@@ -1,4 +1,4 @@
-package unittest;
+package unittest.parser;
 
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLExpressionSymbol;
@@ -12,22 +12,22 @@ import halo.dal.sql.ConnectionStatus;
  * 
  * @author akwei
  */
-public class UserParser implements PartitionParser {
+public class PersonParser implements PartitionParser {
 
     public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
             ConnectionStatus connectionStatus) {
         PartitionTableInfo info = new PartitionTableInfo();
-        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("sex");
+        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("level");
         for (SQLExpression e : sqlExpressions) {
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
                 Integer l = (Integer) e.getValue();
                 if (l.intValue() % 2 == 0) {
-                    info.setRealTableName("user0");
-                    info.setDsName("ds0");
+                    info.setRealTableName("person0");
+                    info.setDsName("ds00");
                 }
                 else {
-                    info.setRealTableName("user1");
-                    info.setDsName("ds1");
+                    info.setRealTableName("person0");
+                    info.setDsName("ds01");
                 }
             }
         }

@@ -140,11 +140,13 @@ public class DALPreparedStatement implements PreparedStatement {
         SQLInfo sqlInfo = dalFactory.getSqlAnalyzer().analyse(sql,
                 values.toArray(new Object[values.size()]));
         // 如果用户没有自定义设置，那么以解析结果为dsKey
-        if (dalCustomInfo == null) {
+        if (dalCustomInfo == null && sqlInfo != null) {
             DALCurrentStatus.setDsKey(this.parsePartitionDsKey(sqlInfo));
         }
-        this.sql = dalFactory.getSqlAnalyzer()
-                .outPutSQL(sqlInfo, dalCustomInfo);
+        if (sqlInfo != null) {
+            this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sqlInfo,
+                    dalCustomInfo);
+        }
         this.initRealPreparedStatement();
         if (this.maxFieldSize != 0) {
             ps.setMaxFieldSize(maxFieldSize);

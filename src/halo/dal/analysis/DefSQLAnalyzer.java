@@ -194,11 +194,16 @@ public class DefSQLAnalyzer implements SQLAnalyzer {
     }
 
     public SQLInfo analyse(String sql, Object[] values) {
+        String _sql = sql.replaceAll("\\. {1,}", "\\.").trim();
+        String lowerSQL = this.getLowerSQL(_sql);
+        // 对于只运行数据库函数时，不需要解析
+        if (lowerSQL.startsWith(SQL_KEY_SELECT)
+                && lowerSQL.indexOf(" from ") == -1) {
+            return null;
+        }
         if (sql.indexOf(" between ") != -1) {
             throw new SQLKeyErrException("not supported sql key: between ");
         }
-        String _sql = sql.replaceAll("\\. {1,}", "\\.").trim();
-        String lowerSQL = this.getLowerSQL(_sql);
         BasicSQLInfo sqlInfo = new BasicSQLInfo(_sql, values);
         this.parseSQLSegment(sqlInfo, lowerSQL);
         if (lowerSQL.indexOf(SQL_KEY_SELECT) != -1) {

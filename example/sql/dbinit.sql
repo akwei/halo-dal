@@ -25,6 +25,23 @@ CREATE TABLE daltest00.user0 (
   PRIMARY KEY  (userid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+
+CREATE TABLE daltest00.person0 (
+  pid int(11) NOT NULL auto_increment,
+  name varchar(45) NOT NULL,
+  level int(11) NOT NULL,
+  PRIMARY KEY  (pid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE daltest01.person0 (
+  pid int(11) NOT NULL auto_increment,
+  name varchar(45) NOT NULL,
+  level int(11) NOT NULL,
+  PRIMARY KEY  (pid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE daltest01.user0 (
   userid bigint(20) unsigned NOT NULL auto_increment,
   nick varchar(10) NOT NULL,

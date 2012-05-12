@@ -1,7 +1,7 @@
 package halo.dal;
 
-import halo.dal.analysis.DefSQLAnalyzer;
 import halo.dal.analysis.SQLAnalyzer;
+import halo.dal.analysis.def.DefSQLAnalyzer;
 import halo.dal.partition.DefPartitionParserFactory;
 import halo.dal.partition.PartitionParserFactory;
 

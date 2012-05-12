@@ -1,6 +1,13 @@
-package halo.dal.analysis;
+package halo.dal.analysis.def;
 
 import halo.dal.DALCustomInfo;
+import halo.dal.analysis.BasicSQLInfo;
+import halo.dal.analysis.SQLAnalyzer;
+import halo.dal.analysis.SQLAnalyzerException;
+import halo.dal.analysis.SQLExpression;
+import halo.dal.analysis.SQLExpressionSymbol;
+import halo.dal.analysis.SQLInfo;
+import halo.dal.analysis.SQLKeyErrException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +16,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class DefSQLAnalyzer implements SQLAnalyzer {
+public class DefSQLAnalyzer2 implements SQLAnalyzer {
 
     private final static String SQL_KEY_LEFT_PARENTHESIS = "(";
 

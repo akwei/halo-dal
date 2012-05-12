@@ -1,7 +1,7 @@
 package unittest;
 
 import halo.dal.analysis.BasicSQLInfo;
-import halo.dal.analysis.DefSQLAnalyzer;
+import halo.dal.analysis.def.DefSQLAnalyzer;
 import junit.framework.Assert;
 
 import org.junit.Test;

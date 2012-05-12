@@ -1,0 +1,196 @@
+package halo.dal.analysis.def;
+
+import halo.dal.analysis.BasicSQLInfo;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public abstract class AbsSQLAnalyzer {
+
+    protected final static String SQL_KEY_LEFT_PARENTHESIS = "(";
+
+    protected final static String SQL_KEY_RIGHT_PARENTHESIS = ")";
+
+    protected final static String SQL_BLANK = " ";
+
+    protected final static String SQL_KEY_SELECT = "select ";
+
+    protected final static String SQL_KEY_LEFT_JOIN = "left join ";
+
+    protected final static String SQL_KEY_RIGHT_JOIN = "rihgt join ";
+
+    protected final static String SQL_KEY_FULL_JOIN = "full join ";
+
+    protected final static String SQL_KEY_INNER_JOIN = "inner join ";
+
+    protected final static String SQL_KEY_ON = "on ";
+
+    protected final static String SQL_KEY_UPDATE = "update ";
+
+    protected final static String SQL_KEY_SET = "set ";
+
+    protected final static String SQL_KEY_WHERE = "where ";
+
+    protected final static String SQL_KEY_FROM = "from ";
+
+    protected final static String SQL_KEY_INSERT_INTO = "insert into ";
+
+    protected final static String SQL_KEY_DELETE_FROM = "delete from ";
+
+    protected final static String KEY_SELECT = "select";
+
+    protected final static String KEY_INSERT = "insert";
+
+    protected final static String KEY_UPDATE = "update";
+
+    protected final static String KEY_DELETE = "delete";
+
+    protected final static String KEY_INTO = "into";
+
+    protected final static String KEY_FROM = "from";
+
+    protected final static String KEY_FULL = "full";
+
+    protected final static String KEY_JOIN = "join";
+
+    protected final static String KEY_LEFT = "left";
+
+    protected final static String KEY_RIGHT = "right";
+
+    protected final static String KEY_INNER = "inner";
+
+    protected final static String KEY_VALUES = "values";
+
+    protected final static String KEY_SET = "set";
+
+    protected final static String KEY_ON = "on";
+
+    protected final static String KEY_WHERE = "where";
+
+    protected final static String KEY_AS = "as";
+
+    protected final static String KEY_AND = "and";
+
+    protected final static String KEY_OR = "or";
+
+    /**
+     * 存储解析sql使用的sql关键字
+     */
+    private final static Set<String> keySet = new HashSet<String>();
+
+    /**
+     * 存储sql小写转换使用的sql关键字
+     */
+    private final static Set<String> keySet2 = new HashSet<String>();
+    static {
+        keySet.add(KEY_SELECT);
+        keySet.add(KEY_FROM);
+        keySet.add(KEY_FULL);
+        keySet.add(KEY_INNER);
+        keySet.add(KEY_LEFT);
+        keySet.add(KEY_RIGHT);
+        keySet.add(KEY_JOIN);
+        keySet.add(KEY_ON);
+        keySet.add(KEY_WHERE);
+        keySet.add(KEY_DELETE);
+        keySet.add(KEY_INSERT);
+        keySet.add(KEY_UPDATE);
+        keySet.add(KEY_INTO);
+        keySet.add(KEY_VALUES);
+        keySet.add(KEY_SET);
+        //
+        keySet2.add(KEY_SELECT);
+        keySet2.add(KEY_FROM);
+        keySet2.add(KEY_FULL);
+        keySet2.add(KEY_INNER);
+        keySet2.add(KEY_LEFT);
+        keySet2.add(KEY_RIGHT);
+        keySet2.add(KEY_JOIN);
+        keySet2.add(KEY_ON);
+        keySet2.add(KEY_WHERE);
+        keySet2.add(KEY_DELETE);
+        keySet2.add(KEY_INSERT);
+        keySet2.add(KEY_UPDATE);
+        keySet2.add(KEY_INTO);
+        keySet2.add(KEY_VALUES);
+        keySet2.add(KEY_SET);
+        keySet2.add(KEY_AS);
+        keySet2.add(KEY_AND);
+        keySet2.add(KEY_OR);
+    }
+
+    /**
+     * 格式化sql，输出为一个sql片段集合
+     * 
+     * @param sql
+     * @return
+     */
+    protected List<String> formatSQL(String sql) {
+        String[] sqlWords = sql.split(" ");
+        List<String> wordList = new ArrayList<String>();
+        for (String word : sqlWords) {
+            if (word.equals(SQL_BLANK)) {
+                continue;
+            }
+            wordList.add(word);
+        }
+        boolean onKey = false;
+        List<String> list = new ArrayList<String>();
+        StringBuilder sb = new StringBuilder();
+        String word;
+        for (int i = 0; i < wordList.size(); i++) {
+            word = wordList.get(i);
+            if (onKey) {
+                onKey = hasKey(word);
+                sb.append(word).append(SQL_BLANK);
+            }
+            else {
+                if (hasKey(word)) {
+                    onKey = true;
+                    if (sb.length() > 0) {
+                        list.add(sb.toString().trim());
+                    }
+                    sb.delete(0, sb.length());
+                    sb.append(word).append(SQL_BLANK);
+                }
+                else {
+                    sb.append(word).append(SQL_BLANK);
+                    onKey = false;
+                }
+            }
+        }
+        if (sb.length() > 0) {
+            list.add(sb.toString().trim());
+        }
+        return list;
+    }
+
+    protected boolean hasKey(String key) {
+        return keySet.contains(key);
+    }
+
+    /**
+     * 在小写转换时，判断是否含有sql关键字
+     * 
+     * @param key
+     * @return true,含有
+     */
+    protected boolean hasKey2(String key) {
+        return keySet2.contains(key);
+    }
+
+    protected String parseLogicTableName(BasicSQLInfo sqlInfo, String columnSeg) {
+        int idx = columnSeg.indexOf(".");
+        if (idx == -1) {
+            return null;
+        }
+        String alias = columnSeg.substring(0, idx);
+        String logicTableName = sqlInfo.getTableNameByAalias(alias);
+        if (logicTableName == null) {
+            return alias;
+        }
+        return logicTableName;
+    }
+}

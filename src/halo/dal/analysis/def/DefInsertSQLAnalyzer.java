@@ -41,7 +41,7 @@ public class DefInsertSQLAnalyzer extends AbsSQLAnalyzer {
                 field = columnarr[i].trim();
                 logicTableName = this.parseLogicTableName(sqlInfo, field);
                 sqlExpression = new SQLExpression();
-                sqlExpression.setColumn(field);
+                sqlExpression.setColumn(field.toLowerCase());
                 sqlExpression.setValue(values[i]);
                 sqlExpression.setSqlExpressionSymbol(SQLExpressionSymbol.EQUAL);
                 sqlInfo.addSQLExpression(logicTableName, sqlExpression);

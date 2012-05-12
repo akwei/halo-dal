@@ -11,6 +11,8 @@ public class SQLExpression {
     private static final String[] symbols = new String[] {//
     ">=",//
             "<=", //
+            "<>",//
+            "!=",//
             ">",//
             "<",//
             "=" //
@@ -19,6 +21,8 @@ public class SQLExpression {
     private static final SQLExpressionSymbol[] symbolsEnum = new SQLExpressionSymbol[] {//
     SQLExpressionSymbol.BIGGER_EQUAL,//
             SQLExpressionSymbol.SMALLER_EQUAL, //
+            SQLExpressionSymbol.NOT_EQUAL,//
+            SQLExpressionSymbol.NOT_EQUAL2, //
             SQLExpressionSymbol.BIGGER,//
             SQLExpressionSymbol.SMALLER, //
             SQLExpressionSymbol.EQUAL //
@@ -57,10 +61,10 @@ public class SQLExpression {
                 String tmpName = sqlSeg.substring(0, idx);
                 int dotIdx = tmpName.indexOf(".");
                 if (dotIdx == -1) {
-                    this.column = tmpName;
+                    this.column = tmpName.toLowerCase();
                 }
                 else {
-                    this.column = tmpName.substring(dotIdx + 1);
+                    this.column = tmpName.substring(dotIdx + 1).toLowerCase();
                 }
                 break;
             }
@@ -87,7 +91,12 @@ public class SQLExpression {
     }
 
     public void setColumn(String column) {
-        this.column = column;
+        if (column != null) {
+            this.column = column.toLowerCase();
+        }
+        else {
+            this.column = null;
+        }
     }
 
     public void setValue(Object value) {

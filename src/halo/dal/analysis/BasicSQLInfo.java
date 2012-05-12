@@ -88,83 +88,29 @@ public class BasicSQLInfo implements SQLInfo {
         return aliasTableNameMap.get(alias);
     }
 
-    /**
-     * 忽略columnName大小写进行查询
-     */
     public SQLExpression[] getSQLExpressions(String columnName) {
-        String upperColumnName = columnName.toUpperCase();
         String lowerColumnName = columnName.toLowerCase();
-        SQLExpression[] arr = sqlExpressionMap.get(columnName);
-        SQLExpression[] lowerArr = null;
-        SQLExpression[] upperArr = null;
-        if (!columnName.equals(upperColumnName)) {
-            upperArr = sqlExpressionMap.get(upperColumnName);
-        }
-        if (!columnName.equals(lowerColumnName)) {
-            lowerArr = sqlExpressionMap.get(lowerColumnName);
-        }
+        SQLExpression[] lowerArr = sqlExpressionMap.get(lowerColumnName);
         int idx = columnName.indexOf(".");
         List<SQLExpression> list = new ArrayList<SQLExpression>();
         if (idx == -1) {
-            if (arr != null) {
-                for (SQLExpression e : arr) {
-                    list.add(e);
-                }
-            }
-            if (lowerArr != null) {
-                for (SQLExpression e : lowerArr) {
-                    list.add(e);
-                }
-            }
-            if (upperArr != null) {
-                for (SQLExpression e : upperArr) {
-                    list.add(e);
-                }
-            }
-            if (list.isEmpty()) {
+            if (lowerArr == null) {
                 return null;
+            }
+            for (SQLExpression e : lowerArr) {
+                list.add(e);
             }
             return list.toArray(new SQLExpression[list.size()]);
         }
-        String subName = columnName.substring(idx + 1);
-        String lowerSubName = subName.toLowerCase();
-        String upperSubName = subName.toUpperCase();
-        SQLExpression[] arr1 = sqlExpressionMap.get(subName);
-        SQLExpression[] lowerArr1 = null;
-        SQLExpression[] upperArr1 = null;
-        if (!subName.equals(lowerSubName)) {
-            lowerArr1 = sqlExpressionMap.get(lowerSubName);
-        }
-        if (!subName.equals(upperSubName)) {
-            upperArr1 = sqlExpressionMap.get(upperSubName);
-        }
-        if (arr != null) {
-            for (SQLExpression e : arr) {
-                list.add(e);
-            }
-        }
+        String subName = lowerColumnName.substring(idx + 1);
+        SQLExpression[] lowerArr1 = sqlExpressionMap.get(subName);
         if (lowerArr != null) {
             for (SQLExpression e : lowerArr) {
                 list.add(e);
             }
         }
-        if (upperArr != null) {
-            for (SQLExpression e : upperArr) {
-                list.add(e);
-            }
-        }
-        if (arr1 != null) {
-            for (SQLExpression e : arr1) {
-                list.add(e);
-            }
-        }
         if (lowerArr1 != null) {
             for (SQLExpression e : lowerArr1) {
-                list.add(e);
-            }
-        }
-        if (upperArr1 != null) {
-            for (SQLExpression e : upperArr1) {
                 list.add(e);
             }
         }
@@ -194,9 +140,8 @@ public class BasicSQLInfo implements SQLInfo {
             sqlExpressionMap.put(sqlExpression.getColumn(), sqlExpressions);
         }
         else {
-            sqlExpressionMap.put(
-                    logicTableName + "." + sqlExpression.getColumn(),
-                    sqlExpressions);
+            sqlExpressionMap.put(logicTableName.toLowerCase() + "."
+                    + sqlExpression.getColumn(), sqlExpressions);
         }
     }
 

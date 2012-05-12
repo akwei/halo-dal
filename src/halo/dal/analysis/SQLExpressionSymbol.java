@@ -1,12 +1,39 @@
 package halo.dal.analysis;
 
 /**
- * sql表达式中的对应符号关系。目前支持 > , < , >= , <= , =
+ * sql表达式中的对应符号关系。目前支持 > , < , >= , <= , = , <> , !=
  * 
  * @author akwei
  */
 public enum SQLExpressionSymbol {
-    SMALLER(-2), SMALLER_EQUAL(-1), EQUAL(0), BIGGER(1), BIGGER_EQUAL(2);
+    /**
+     * <
+     */
+    SMALLER(-2),
+    /**
+     * <=
+     */
+    SMALLER_EQUAL(-1),
+    /**
+     * =
+     */
+    EQUAL(0),
+    /**
+     * >
+     */
+    BIGGER(1),
+    /**
+     * >=
+     */
+    BIGGER_EQUAL(2),
+    /**
+     * <>
+     */
+    NOT_EQUAL(3),
+    /**
+     * !=
+     */
+    NOT_EQUAL2(4);
 
     private int value;
 

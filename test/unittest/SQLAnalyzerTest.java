@@ -89,7 +89,8 @@ public class SQLAnalyzerTest {
                 sqlInfo.getSQLExpressions("user.nickname")[0].getValue());
         Assert.assertEquals("sex",
                 sqlInfo.getSQLExpressions("user.sex")[0].getColumn());
-        Assert.assertEquals(22, sqlInfo.getSQLExpressions("sex")[0].getValue());
+        Assert.assertEquals(22,
+                sqlInfo.getSQLExpressions("user.sex")[0].getValue());
     }
 
     @Test
@@ -117,7 +118,8 @@ public class SQLAnalyzerTest {
                 sqlInfo.getSQLExpressions("user.nickname")[0].getValue());
         Assert.assertEquals("sex",
                 sqlInfo.getSQLExpressions("user.sex")[0].getColumn());
-        Assert.assertEquals(22, sqlInfo.getSQLExpressions("sex")[0].getValue());
+        Assert.assertEquals(22,
+                sqlInfo.getSQLExpressions("user.sex")[0].getValue());
     }
 
     @Test

@@ -79,17 +79,18 @@ public class SQLAnalyzerForUpperTest {
         Assert.assertEquals(sqlInfo.getValues().length, values.length);
         String sql2 = sqlAnalyzer.outPutSQL(sqlInfo, null);
         Assert.assertEquals(sql, sql2);
-        Assert.assertEquals("USERID",
+        Assert.assertEquals("userid",
                 sqlInfo.getSQLExpressions("user.userid")[0].getColumn());
         Assert.assertEquals(4,
                 sqlInfo.getSQLExpressions("user.userid")[0].getValue());
-        Assert.assertEquals("NICKNAME",
+        Assert.assertEquals("nickname",
                 sqlInfo.getSQLExpressions("user.nickname")[0].getColumn());
         Assert.assertEquals("jack",
                 sqlInfo.getSQLExpressions("user.nickname")[0].getValue());
-        Assert.assertEquals("SEX",
+        Assert.assertEquals("sex",
                 sqlInfo.getSQLExpressions("user.sex")[0].getColumn());
-        Assert.assertEquals(22, sqlInfo.getSQLExpressions("sex")[0].getValue());
+        Assert.assertEquals(22,
+                sqlInfo.getSQLExpressions("sex")[0].getValue());
     }
 
     @Test
@@ -107,17 +108,18 @@ public class SQLAnalyzerForUpperTest {
         String sql2 = sqlAnalyzer.outPutSQL(sqlInfo, null);
         Assert.assertEquals(
                 "INSERT INTO user2(USERID,NICKNAME,SEX) VLAUES(?,?,?)", sql2);
-        Assert.assertEquals("USERID",
+        Assert.assertEquals("userid",
                 sqlInfo.getSQLExpressions("user.userid")[0].getColumn());
         Assert.assertEquals(4,
                 sqlInfo.getSQLExpressions("user.userid")[0].getValue());
-        Assert.assertEquals("NICKNAME",
+        Assert.assertEquals("nickname",
                 sqlInfo.getSQLExpressions("user.nickname")[0].getColumn());
         Assert.assertEquals("jack",
                 sqlInfo.getSQLExpressions("user.nickname")[0].getValue());
-        Assert.assertEquals("SEX",
+        Assert.assertEquals("sex",
                 sqlInfo.getSQLExpressions("user.sex")[0].getColumn());
-        Assert.assertEquals(22, sqlInfo.getSQLExpressions("sex")[0].getValue());
+        Assert.assertEquals(22,
+                sqlInfo.getSQLExpressions("user.sex")[0].getValue());
     }
 
     @Test

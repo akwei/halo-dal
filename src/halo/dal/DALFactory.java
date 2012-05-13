@@ -14,7 +14,7 @@ public class DALFactory {
 
     private static DALFactory ins = new DALFactory();
 
-    public static DALFactory getInstance() {
+    public static DALFactory getDefault() {
         return ins;
     }
 

@@ -17,6 +17,7 @@
 #####4, 多数据库分步提交事务
 #####5, 读写分离
 #####6, 编程指定数据源和表
+#####7, 缓存sql结构
 
 #不支持功能:
 #####1, jdbc Statement访问. (使用 Statement访问时，不会进行sql的分表分库的解析，最终执行的sql是没有解析的)
@@ -25,8 +26,6 @@
 #####5, sql中不支持 in(?,?,?)这种使用in 的预处理语句
 #####6, 分布式事务
 #####7, 不支持与同一张表进行join查询
-
-#如何使用
 
 ##不喜欢看以下说明，可以直接看example下的例子 
 Insert.java Update.java Delete.java Select.java
@@ -37,15 +36,10 @@ Insert.java Update.java Delete.java Select.java
 
 请先创建测试用的数据库，example/sql/dbinit.sql是数据库脚本
 
-#如何编写数据库表的分析器:
-####1, 编写代码实现 halo.dal.partition.DALPartitionParser 接口
-####2, 实现 public DALPartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo)方法
-####3，在解析器工厂中配置写好的解析器，或自定义解析器工厂并配置解析器
-##举例
 
+#如何使用
+##1:数据库表的分析器
 ````java
-
-package dal;
 
 import halo.dal.partition.DALPartitionParser;
 import halo.dal.partition.DALPartitionTableInfo;
@@ -64,7 +58,7 @@ public class UserParser implements DALPartitionParser {
         DALPartitionTableInfo info = new DALPartitionTableInfo();
         // 从sqlInfo获得条件表达式,由于定义的分区条件为sex字段，那么就需要获取sex字段的表达式
         // /由于获取的表达式会存在多个，例如进行范围判断的情况下，就会出现2个表达式，因此会返回一个数组
-        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("user.sex");
+        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("user.sex");//必须是logicName.columnName
         for (SQLExpression e : sqlExpressions) {
             // sex表达式我们只需要获得sex=?的等号表达式
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
@@ -86,25 +80,21 @@ public class UserParser implements DALPartitionParser {
 }
 
 ````
-#如何创建或自定义解析器工厂
+##2:将解析器加入解析器工厂
 ````java
         // 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类
-        // dalFactory=new DALFactory();
+        // DALFactory dalFactory=new DALFactory();
         // 初始化解析器缓存
         Map<String, DALPartitionParser> parserMap = new HashMap<String, DALPartitionParser>();
         // 缓存user的分析器
         parserMap.put("user", new UserParser());
         // 初始化解析器工厂,可以使用spring进行管理
-        DALDefPartitionParserFactory dalDefPartitionParserFactory = new DALDefPartitionParserFactory();
+        DefPartitionParserFactory dalDefPartitionParserFactory = new DefPartitionParserFactory();
         dalDefPartitionParserFactory.setParserMap(parserMap);
-        this.dalFactory = DALFactory.getInstance();
-        this.dalFactory
-                .setDalPartitionParserFactory(dalDefPartitionParserFactory);
+        dalFactory.setPartitionParserFactory(dalDefPartitionParserFactory);
 ````
-
-#如何使用DALDataDource
-##举例
-###普通jdbc使用
+##3:配置数据库连接池
+### jdbc 举例
 ````java
     public void op() throws Exception {
         Map<String, DataSource> dataSourceMap = new HashMap<String, DataSource>();
@@ -130,11 +120,12 @@ public class UserParser implements DALPartitionParser {
         ds1.setMinPoolSize(10);
         // 设置数据源key的对应关系
         dataSourceMap.put("ds1", ds1);
+        //这就是我们使用的DataSource
         DALDataSource dataSource = new DALDataSource();
         dataSource.setDataSourceMap(dataSourceMap);
     }
 ````
-###在spring中使用
+### spring 举例
 ````xml
 <bean id="dataSource" class="halo.dal.sql.DALDataSource">
         <property name="dataSourceMap">
@@ -168,4 +159,61 @@ public class UserParser implements DALPartitionParser {
             </map>
         </property>
     </bean>
+    <bean class="halo.dal.DALFactory">
+        <!-- 解析器工厂可以自定义实现，详情见README -->
+        <property name="partitionParserFactory">
+            <!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
+            <!-- 原理就是把所有的解析器类放到一个目录中 -->
+            <bean class="halo.dal.partition.PackagePartitionParserFactory">
+                <!-- 解析器所在目录 -->
+                <property name="packageName" value="parser" />
+            </bean>
+        </property>
+    </bean>
+````
+##4:从DataSource中获得Connection进行使用
+````java
+Connection con = dalDataSource.getConnection();
+PreparedStatement ps = con.prepareStatement(sql);
+//其他处理过程
+````
+
+#如何开启sql解析器缓存
+## 编程开启
+````java
+DALFactory dalFactory = DALFactory.getDefault();
+dalFactory.setSqlAnalyzer(new CachedSQLAnalyzer(new DefSQLAnalyzer()));
+````
+
+## spring 开启
+````xml
+<bean class="halo.dal.DALFactory">
+    <property name="sqlAnalyzer">
+        <bean class="halo.dal.analysis.def.CachedSQLAnalyzer">
+            <constructor-arg index="0">
+                <bean class="halo.dal.analysis.def.DefSQLAnalyzer" />
+            </constructor-arg>
+        </bean>
+    </property>
+</bean>
+````
+
+#如何自定义sql解析器SQLAnalyzer
+##1:编写解析器
+````java
+implements SQLAnalyzer
+````
+##2:设置解析器
+### 代码设置
+````java
+DALFactory dalFactory = DALFactory.getDefault();
+dalFactory.setSqlAnalyzer(new CustomSQLAnalyzer());
+````
+### spring配置
+````xml
+<bean class="halo.dal.DALFactory">
+    <property name="sqlAnalyzer">
+        <bean class="CustomSQLAnalyzer"/>
+    </property>
+</bean>
 ````

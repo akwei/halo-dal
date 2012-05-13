@@ -137,7 +137,7 @@ public class DALPreparedStatement implements PreparedStatement {
      * @throws SQLException
      */
     private void prepare() throws SQLException {
-        DALFactory dalFactory = DALFactory.getInstance();
+        DALFactory dalFactory = DALFactory.getDefault();
         List<Object> values = dalParameters.getValues();
         Map<String, Object> context = new HashMap<String, Object>();
         SQLStruct sqlStruct = dalFactory.getSqlAnalyzer().parse(sql, context);
@@ -193,7 +193,7 @@ public class DALPreparedStatement implements PreparedStatement {
             throws SQLException {
         PartitionTableInfo[] infos = new PartitionTableInfo[sqlStruct
                 .getTableNames().size()];
-        DALFactory dalFactory = DALFactory.getInstance();
+        DALFactory dalFactory = DALFactory.getDefault();
         int i = 0;
         ConnectionStatus connectionStatus = new ConnectionStatus();
         connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());

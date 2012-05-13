@@ -102,7 +102,7 @@ public class OpBase {
         // 初始化解析器工厂,可以使用spring进行管理
         DefPartitionParserFactory dalDefPartitionParserFactory = new DefPartitionParserFactory();
         dalDefPartitionParserFactory.setParserMap(parserMap);
-        this.dalFactory = DALFactory.getInstance();
+        this.dalFactory = DALFactory.getDefault();
         this.dalFactory.setPartitionParserFactory(dalDefPartitionParserFactory);
     }
 }

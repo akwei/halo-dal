@@ -17,7 +17,7 @@ import org.junit.Test;
 
 public class SQLAnalyzerTest {
 
-    SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
 
     Map<String, Object> context;
 

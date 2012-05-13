@@ -1,8 +1,10 @@
 package unittest;
 
 import halo.dal.DALCustomInfo;
+import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLStruct;
 import halo.dal.analysis.def.BasicSQLInfo;
+import halo.dal.analysis.def.CachedSQLAnalyzer;
 import halo.dal.analysis.def.DefSQLAnalyzer;
 
 import java.util.HashMap;
@@ -15,7 +17,7 @@ import org.junit.Test;
 
 public class SQLAnalyzerForUpperTest {
 
-    DefSQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
 
     Map<String, Object> context;
 

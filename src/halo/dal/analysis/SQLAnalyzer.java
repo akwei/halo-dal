@@ -15,7 +15,9 @@ public interface SQLAnalyzer {
      * 解析sql,获取 SQLInfo对象。如果sql语句是执行数据库函数时，不会进行解析。返回null
      * 
      * @param sql
+     *            sql语句
      * @param sqlStruct
+     *            通过parse解析后的结果,参考{@link SQLStruct}
      * @param values
      *            sql中的参数值
      * @param context
@@ -36,13 +38,13 @@ public interface SQLAnalyzer {
     SQLStruct parse(String sql, Map<String, Object> context);
 
     /**
-     * 输出sql
+     * 输出最终sql。此结果将执行真正的数据库操作。sql中包含真正的表名称
      * 
      * @param sql
      * @param sqlInfo
      *            参考 {@link SQLInfo}
      * @param sqlStruct
-     *            参考 {@link SQLStruct}
+     *            通过parse解析后的结果,参考{@link SQLStruct}
      * @param customInfo
      *            如果用户没有指定，此参数会赋值null
      * @return 新的sql语句

@@ -8,6 +8,7 @@
 #####项目依赖jar:commons-lang3-3.1.jar, commons-logging.jar,junit-4.10.jar(单元测试使用)
 #####examplelib目录下的jar为例子中使用的jar
 #####springexamplelib目录下的jar为spring例子中使用的jar
+#####使用hibernate时，请设置 hibernate.temp.use_jdbc_metadata_defaults=false
 
 #支持功能:
 #####1, jdbc PreparedStatement

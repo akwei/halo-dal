@@ -1,55 +1,58 @@
 package halo.dal.analysis.def;
 
-import halo.dal.analysis.BasicSQLInfo;
+import halo.dal.DALRunTimeException;
+import halo.dal.analysis.ColumnExper;
 import halo.dal.analysis.SQLExpression;
-import halo.dal.analysis.SQLInfo;
+import halo.dal.analysis.SQLStruct;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
 
-    public SQLInfo analyse(BasicSQLInfo sqlInfo, String lowerSQL,
-            Object[] values) {
-        this.parseSQLSegment(sqlInfo, lowerSQL);
-        this.parseSelectTable(sqlInfo);
-        this.parseSQLExpressions(sqlInfo, values);
-        return sqlInfo;
-    }
-
-    private void parseSQLSegment(BasicSQLInfo sqlInfo, String sql) {
+    public SQLStruct parse(String sql) {
+        SQLStruct sqlStruct = new SQLStruct();
+        String selectSQL = null;
+        String joinSQL = null;
+        String whereSQL = null;
+        List<String> fromSQLs = new ArrayList<String>();
         List<String> list = formatSQL(sql);
         for (String s : list) {
             if (s.startsWith(SQL_KEY_SELECT)) {
-                sqlInfo.setSelectSQL(s);
+                selectSQL = s;
             }
             else if (s.startsWith(SQL_KEY_LEFT_JOIN) || //
                     s.startsWith(SQL_KEY_RIGHT_JOIN) || //
                     s.startsWith(SQL_KEY_INNER_JOIN) || //
                     s.startsWith(SQL_KEY_FULL_JOIN) //
             ) {
-                sqlInfo.setJoinSQL(s);
-            }
-            else if (s.startsWith(SQL_KEY_ON)) {
-                sqlInfo.setJoinOnSQL(s);
+                joinSQL = s;
             }
             else if (s.startsWith(SQL_KEY_WHERE)) {
-                sqlInfo.setWhereSQL(s);
+                whereSQL = s;
             }
             else if (s.startsWith(SQL_KEY_FROM)) {
-                sqlInfo.addFromSQL(s);
+                fromSQLs.add(s);
             }
         }
+        if (selectSQL == null) {
+            throw new DALRunTimeException("no select sql");
+        }
+        this.parseSelectTable(sqlStruct, fromSQLs, joinSQL);
+        this.parseColumnExper(sqlStruct, whereSQL);
+        return sqlStruct;
     }
 
-    private void parseSelectTable(BasicSQLInfo sqlInfo) {
+    private void parseSelectTable(SQLStruct sqlStruct, List<String> fromSQLs,
+            String joinSQL) {
         String tableNameSeg;
-        for (String fromSQL : sqlInfo.getFromSQLs()) {
+        for (String fromSQL : fromSQLs) {
             tableNameSeg = fromSQL.substring(SQL_KEY_FROM.length());
             String[] tables = tableNameSeg.split(",");
             for (String table : tables) {
-                sqlInfo.addTable(table.trim());
+                sqlStruct.addTable(table.trim());
             }
-            tableNameSeg = sqlInfo.getJoinSQL();
+            tableNameSeg = joinSQL;
             int len = 0;
             if (tableNameSeg != null) {
                 int idx = tableNameSeg.indexOf(SQL_KEY_FULL_JOIN);
@@ -67,21 +70,17 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
                     len = SQL_KEY_RIGHT_JOIN.length();
                 }
                 String table = tableNameSeg.substring(idx + len).trim();
-                sqlInfo.addTable(table);
+                sqlStruct.addTable(table);
             }
         }
     }
 
-    private void parseSQLExpressions(BasicSQLInfo sqlInfo, Object[] values) {
-        int beginIdx = 0;
-        // where sql
-        if (sqlInfo.getWhereSQL() != null) {
-            String whereSQL = sqlInfo.getWhereSQL().replaceAll("\\(|\\)", "");
-            String seg = whereSQL.substring(SQL_KEY_WHERE.length()).trim();
+    private void parseColumnExper(SQLStruct sqlStruct, String whereSQL) {
+        if (whereSQL != null) {
+            String _whereSQL = whereSQL.replaceAll("\\(|\\)", "");
+            String seg = _whereSQL.substring(SQL_KEY_WHERE.length()).trim();
             String[] kv = seg.split("and|or");
-            SQLExpression sqlExpression;
-            int valueIdx = beginIdx;
-            String logicTableName;
+            ColumnExper columnExper;
             String kvSeg;
             for (int i = 0; i < kv.length; i++) {
                 if (kv[i].indexOf("?") == -1) {
@@ -91,10 +90,9 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
                     continue;
                 }
                 kvSeg = kv[i].trim();
-                logicTableName = this.parseLogicTableName(sqlInfo, kvSeg);
-                sqlExpression = new SQLExpression(kvSeg, values[valueIdx]);
-                sqlInfo.addSQLExpression(logicTableName, sqlExpression);
-                valueIdx++;
+                columnExper = new ColumnExper(this.parseLogicTableName(
+                        sqlStruct, kvSeg), kvSeg);
+                sqlStruct.addColumnExper(columnExper);
             }
         }
     }

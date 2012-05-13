@@ -1,32 +1,12 @@
 package halo.dal.analysis;
 
-public class SQLExpression {
+public class ColumnExper {
 
     private String column;
 
-    private Object value;
+    private String logicTableName;
 
     private SQLExpressionSymbol sqlExpressionSymbol;
-
-    public static final String[] symbols = new String[] {//
-    ">=",//
-            "<=", //
-            "<>",//
-            "!=",//
-            ">",//
-            "<",//
-            "=" //
-    };
-
-    public static final SQLExpressionSymbol[] symbolsEnum = new SQLExpressionSymbol[] {//
-    SQLExpressionSymbol.BIGGER_EQUAL,//
-            SQLExpressionSymbol.SMALLER_EQUAL, //
-            SQLExpressionSymbol.NOT_EQUAL,//
-            SQLExpressionSymbol.NOT_EQUAL2, //
-            SQLExpressionSymbol.BIGGER,//
-            SQLExpressionSymbol.SMALLER, //
-            SQLExpressionSymbol.EQUAL //
-    };
 
     /**
      * 根据key=?的sql片段获取column，赋值相应的value
@@ -34,18 +14,25 @@ public class SQLExpression {
      * @param sqlSeg
      * @param value
      */
-    public SQLExpression(String sqlSeg, Object value) {
-        super();
-        this.value = value;
+    public ColumnExper(String logicTableName, String sqlSeg) {
+        this.logicTableName = logicTableName;
         this.initWithSeg(sqlSeg);
     }
 
-    public SQLExpression() {
+    public ColumnExper() {
+    }
+
+    public String getLogicTableName() {
+        return logicTableName;
+    }
+
+    public void setLogicTableName(String logicTableName) {
+        this.logicTableName = logicTableName;
     }
 
     public static boolean isKeyValue(String sqlSeg) {
-        for (int i = 0; i < symbols.length; i++) {
-            if (sqlSeg.indexOf(symbols[i]) != -1) {
+        for (int i = 0; i < SQLExpression.symbols.length; i++) {
+            if (sqlSeg.indexOf(SQLExpression.symbols[i]) != -1) {
                 return true;
             }
         }
@@ -54,10 +41,10 @@ public class SQLExpression {
 
     private void initWithSeg(String sqlSeg) throws SQLExceptionErrException {
         int idx = -1;
-        for (int i = 0; i < symbols.length; i++) {
-            idx = sqlSeg.indexOf(symbols[i]);
+        for (int i = 0; i < SQLExpression.symbols.length; i++) {
+            idx = sqlSeg.indexOf(SQLExpression.symbols[i]);
             if (idx != -1) {
-                this.sqlExpressionSymbol = symbolsEnum[i];
+                this.sqlExpressionSymbol = SQLExpression.symbolsEnum[i];
                 String tmpName = sqlSeg.substring(0, idx);
                 int dotIdx = tmpName.indexOf(".");
                 if (dotIdx == -1) {
@@ -86,10 +73,6 @@ public class SQLExpression {
         return column;
     }
 
-    public Object getValue() {
-        return value;
-    }
-
     public void setColumn(String column) {
         if (column != null) {
             this.column = column.toLowerCase();
@@ -97,9 +80,5 @@ public class SQLExpression {
         else {
             this.column = null;
         }
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
     }
 }

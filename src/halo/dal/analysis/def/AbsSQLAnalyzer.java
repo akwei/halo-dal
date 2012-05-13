@@ -1,13 +1,20 @@
 package halo.dal.analysis.def;
 
-import halo.dal.analysis.BasicSQLInfo;
+import halo.dal.DALCustomInfo;
+import halo.dal.analysis.ColumnExper;
+import halo.dal.analysis.SQLAnalyzer;
+import halo.dal.analysis.SQLExpression;
+import halo.dal.analysis.SQLInfo;
+import halo.dal.analysis.SQLStruct;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class AbsSQLAnalyzer {
+import org.apache.commons.lang3.StringUtils;
+
+public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
 
     protected final static String SQL_KEY_LEFT_PARENTHESIS = "(";
 
@@ -181,16 +188,80 @@ public abstract class AbsSQLAnalyzer {
         return keySet2.contains(key);
     }
 
-    protected String parseLogicTableName(BasicSQLInfo sqlInfo, String columnSeg) {
+    protected String parseLogicTableName(SQLStruct sqlStruct, String columnSeg) {
         int idx = columnSeg.indexOf(".");
         if (idx == -1) {
             return null;
         }
         String alias = columnSeg.substring(0, idx);
-        String logicTableName = sqlInfo.getTableNameByAalias(alias);
+        String logicTableName = sqlStruct.getTableNameByAalias(alias);
         if (logicTableName == null) {
             return alias;
         }
         return logicTableName;
+    }
+
+    public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values) {
+        BasicSQLInfo info = new BasicSQLInfo();
+        SQLExpression sqlExpression;
+        int i = 0;
+        for (ColumnExper o : sqlStruct.getColumnExpers()) {
+            sqlExpression = new SQLExpression();
+            sqlExpression.setColumn(o.getColumn());
+            sqlExpression.setSqlExpressionSymbol(o.getSqlExpressionSymbol());
+            sqlExpression.setValue(values[i]);
+            info.addSQLExpression(o.getLogicTableName(), sqlExpression);
+            i++;
+        }
+        return info;
+    }
+
+    public String outPutSQL(String sql, SQLInfo sqlInfo, SQLStruct sqlStruct,
+            DALCustomInfo customInfo) {
+        if (customInfo != null) {
+            for (String tableName : sqlStruct.getTableNames()) {
+                sqlInfo.setRealTable(tableName,
+                        customInfo.getRealTable(tableName));
+            }
+        }
+        List<String> list = new ArrayList<String>();
+        List<String> newList = new ArrayList<String>();
+        String realTableName;
+        for (String tableName : sqlStruct.getTableNames()) {
+            realTableName = sqlInfo.getRealTable(tableName);
+            if (realTableName != null) {
+                String alias = sqlStruct.getAliasByTableName(tableName);
+                boolean isSame = alias != null && alias.endsWith(tableName);
+                if (!isSame) {
+                    list.add(SQL_BLANK + tableName + ".");
+                    newList.add(SQL_BLANK + realTableName + ".");
+                }
+                list.add(SQL_BLANK + tableName + SQL_BLANK);
+                newList.add(SQL_BLANK + realTableName + SQL_BLANK);
+                list.add(SQL_BLANK + tableName + "(");
+                newList.add(" " + realTableName + "(");
+                list.add("," + tableName + SQL_BLANK);
+                newList.add("," + realTableName + SQL_BLANK);
+            }
+        }
+        String _sql = StringUtils.replaceEach(sql,
+                list.toArray(new String[list.size()]),
+                newList.toArray(new String[newList.size()]));
+        // 解决sql结束字符串为表名，无法解析的问题例如 delete form user
+        String str;
+        for (String tableName : sqlStruct.getTableNames()) {
+            realTableName = sqlInfo.getRealTable(tableName);
+            if (realTableName != null) {
+                str = SQL_BLANK + tableName;
+                int idx = _sql.lastIndexOf(str);
+                if (idx == -1) {
+                    continue;
+                }
+                if (_sql.substring(idx).equals(str)) {
+                    _sql = _sql.substring(0, idx) + SQL_BLANK + realTableName;
+                }
+            }
+        }
+        return _sql;
     }
 }

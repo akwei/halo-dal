@@ -48,7 +48,7 @@ public class DALCustomInfo {
      * @param logicTableName
      * @return
      */
-    public String getRealTableName(String logicTableName) {
+    public String getRealTable(String logicTableName) {
         return tableMap.get(logicTableName);
     }
 }

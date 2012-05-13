@@ -1,53 +1,60 @@
 package halo.dal.analysis.def;
 
-import halo.dal.analysis.BasicSQLInfo;
+import halo.dal.DALRunTimeException;
+import halo.dal.analysis.ColumnExper;
 import halo.dal.analysis.SQLExpression;
-import halo.dal.analysis.SQLInfo;
+import halo.dal.analysis.SQLStruct;
 
 import java.util.List;
 
 public class DefUpdateSQLAnalyzer extends AbsSQLAnalyzer {
 
-    public SQLInfo analyse(BasicSQLInfo sqlInfo, String lowerSQL,
-            Object[] values) {
-        this.parseSQLSegment(sqlInfo, lowerSQL);
-        this.parseUpdateTable(sqlInfo);
-        this.parseSQLExpressions(sqlInfo, values);
-        return sqlInfo;
+    public SQLStruct parse(String sql) {
+        SQLStruct sqlStruct = new SQLStruct();
+        String whereSQL = null;
+        String updateSQL = null;
+        String updateSetSQL = null;
+        List<String> list = formatSQL(sql);
+        for (String s : list) {
+            if (s.startsWith(SQL_KEY_WHERE)) {
+                whereSQL = s;
+            }
+            else if (s.startsWith(SQL_KEY_UPDATE)) {
+                updateSQL = s;
+            }
+            else if (s.startsWith(SQL_KEY_SET)) {
+                updateSetSQL = s;
+            }
+        }
+        if (updateSQL == null || updateSetSQL == null) {
+            throw new DALRunTimeException("no delete sql");
+        }
+        sqlStruct.addTable(updateSQL.substring(SQL_KEY_UPDATE.length()));
+        this.parseColumnExpers(sqlStruct, updateSQL, updateSetSQL, whereSQL);
+        return sqlStruct;
     }
 
-    private void parseUpdateTable(BasicSQLInfo sqlInfo) {
-        String table = sqlInfo.getUpdateSQL()
-                .substring(SQL_KEY_UPDATE.length());
-        sqlInfo.addTable(table);
-    }
-
-    private void parseSQLExpressions(BasicSQLInfo sqlInfo, Object[] values) {
-        int beginIdx = 0;
+    private void parseColumnExpers(SQLStruct sqlStruct, String updateSQL,
+            String updateSetSQL, String whereSQL) {
         // update sql
-        if (sqlInfo.getUpdateSetSQL() != null) {
-            String exSeg = sqlInfo.getUpdateSetSQL().substring(
-                    SQL_KEY_SET.length());
+        if (updateSQL != null) {
+            String exSeg = updateSetSQL.substring(SQL_KEY_SET.length());
             String[] expressionSegs = exSeg.split(",");
-            SQLExpression sqlExpression;
-            String logicTableName;
+            ColumnExper columnExper;
             String seg;
             for (int i = 0; i < expressionSegs.length; i++) {
-                beginIdx++;
                 seg = expressionSegs[i].trim();
-                logicTableName = this.parseLogicTableName(sqlInfo, seg);
-                sqlExpression = new SQLExpression(seg, values[i]);
-                sqlInfo.addSQLExpression(logicTableName, sqlExpression);
+                columnExper = new ColumnExper(this.parseLogicTableName(
+                        sqlStruct, seg), seg);
+                sqlStruct.addColumnExper(columnExper);
             }
         }
         // where sql
-        if (sqlInfo.getWhereSQL() != null) {
-            String whereSQL = sqlInfo.getWhereSQL().replaceAll("\\(|\\)", "");
-            String seg = whereSQL.substring(SQL_KEY_WHERE.length()).trim();
+        if (whereSQL != null) {
+            String _whereSQL = whereSQL.replaceAll("\\(|\\)", "");
+            String seg = _whereSQL.substring(SQL_KEY_WHERE.length()).trim();
             String[] kv = seg.split("and|or");
-            SQLExpression sqlExpression;
-            int valueIdx = beginIdx;
-            String logicTableName;
+            ColumnExper columnExper;
             String kvSeg;
             for (int i = 0; i < kv.length; i++) {
                 if (kv[i].indexOf("?") == -1) {
@@ -57,25 +64,9 @@ public class DefUpdateSQLAnalyzer extends AbsSQLAnalyzer {
                     continue;
                 }
                 kvSeg = kv[i].trim();
-                logicTableName = this.parseLogicTableName(sqlInfo, kvSeg);
-                sqlExpression = new SQLExpression(kvSeg, values[valueIdx]);
-                sqlInfo.addSQLExpression(logicTableName, sqlExpression);
-                valueIdx++;
-            }
-        }
-    }
-
-    private void parseSQLSegment(BasicSQLInfo sqlInfo, String sql) {
-        List<String> list = formatSQL(sql);
-        for (String s : list) {
-            if (s.startsWith(SQL_KEY_WHERE)) {
-                sqlInfo.setWhereSQL(s);
-            }
-            else if (s.startsWith(SQL_KEY_UPDATE)) {
-                sqlInfo.setUpdateSQL(s);
-            }
-            else if (s.startsWith(SQL_KEY_SET)) {
-                sqlInfo.setUpdateSetSQL(s);
+                columnExper = new ColumnExper(this.parseLogicTableName(
+                        sqlStruct, kvSeg), kvSeg);
+                sqlStruct.addColumnExper(columnExper);
             }
         }
     }

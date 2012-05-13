@@ -25,6 +25,7 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
             else if (s.startsWith(SQL_KEY_LEFT_JOIN) || //
                     s.startsWith(SQL_KEY_RIGHT_JOIN) || //
                     s.startsWith(SQL_KEY_INNER_JOIN) || //
+                    s.startsWith(SQL_KEY_CROSS_JOIN) || //
                     s.startsWith(SQL_KEY_FULL_JOIN) //
             ) {
                 joinSQL = s;
@@ -69,6 +70,10 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
                 if (idx == -1) {
                     idx = tableNameSeg.indexOf(SQL_KEY_RIGHT_JOIN);
                     len = SQL_KEY_RIGHT_JOIN.length();
+                }
+                if (idx == -1) {
+                    idx = tableNameSeg.indexOf(SQL_KEY_CROSS_JOIN);
+                    len = SQL_KEY_CROSS_JOIN.length();
                 }
                 String table = tableNameSeg.substring(idx + len).trim();
                 sqlStruct.addTable(table);

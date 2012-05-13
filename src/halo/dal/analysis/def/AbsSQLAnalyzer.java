@@ -29,6 +29,8 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
 
     protected final static String SQL_KEY_RIGHT_JOIN = "rihgt join ";
 
+    protected final static String SQL_KEY_CROSS_JOIN = "cross join ";
+
     protected final static String SQL_KEY_FULL_JOIN = "full join ";
 
     protected final static String SQL_KEY_INNER_JOIN = "inner join ";
@@ -62,6 +64,8 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
     protected final static String KEY_FULL = "full";
 
     protected final static String KEY_JOIN = "join";
+
+    protected final static String KEY_CROSS = "cross";
 
     protected final static String KEY_LEFT = "left";
 
@@ -108,6 +112,7 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
         keySet.add(KEY_INTO);
         keySet.add(KEY_VALUES);
         keySet.add(KEY_SET);
+        keySet.add(KEY_CROSS);
         //
         keySet2.add(KEY_SELECT);
         keySet2.add(KEY_FROM);
@@ -127,6 +132,7 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
         keySet2.add(KEY_AS);
         keySet2.add(KEY_AND);
         keySet2.add(KEY_OR);
+        keySet2.add(KEY_CROSS);
     }
 
     /**

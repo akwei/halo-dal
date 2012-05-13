@@ -43,6 +43,9 @@ public class HibernateTest {
         @SuppressWarnings("unchecked")
         List<Person> list = this.hibernateTemplate.find(
                 "from Person where level=?", level);
+        this.hibernateTemplate.find(
+                "from Person p0,Person p1 where p0.level=? and p0.pid=p1.pid",
+                level);
         Assert.assertEquals(1, list.size());
         Person dbp = list.get(0);
         Assert.assertEquals(p.getPid(), dbp.getPid());

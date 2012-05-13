@@ -7,10 +7,11 @@ import halo.dal.analysis.SQLStruct;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
 
-    public SQLStruct parse(String sql) {
+    public SQLStruct parse(String sql, Map<String, Object> context) {
         SQLStruct sqlStruct = new SQLStruct();
         String selectSQL = null;
         String joinSQL = null;

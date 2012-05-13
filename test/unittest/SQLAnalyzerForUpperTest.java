@@ -4,29 +4,42 @@ import halo.dal.DALCustomInfo;
 import halo.dal.analysis.SQLStruct;
 import halo.dal.analysis.def.BasicSQLInfo;
 import halo.dal.analysis.def.DefSQLAnalyzer;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class SQLAnalyzerForUpperTest {
 
     DefSQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
 
+    Map<String, Object> context;
+
+    @Before
+    public void before() {
+        context = new HashMap<String, Object>();
+    }
+
     @Test
     public void delete() {
         String sql = "DELETE FROM USER WHERE UID=? AND (AGE>=? OR AGE<=?) AND (SEX=? OR SEX=?) AND TIME<=SYSDATE()";
         Object[] values = new Object[] { 1, 50, 10, 1, 2 };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
         Assert.assertEquals(sql, sql2);
         // no where
         sql = "DELETE FROM USER";
-        sqlStruct = sqlAnalyzer.parse(sql);
-        sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, sqlStruct, null);
+        sqlStruct = sqlAnalyzer.parse(sql, context);
+        sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, sqlStruct, null,
+                context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
         sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
@@ -37,9 +50,9 @@ public class SQLAnalyzerForUpperTest {
     public void delete2() {
         String sql = "DELETE FROM USER WHERE UID=? AND (AGE>=? OR AGE<=?) AND (SEX=? OR SEX=?) AND TIME<=SYSDATE()";
         Object[] values = new Object[] { 1, 50, 10, 1, 2 };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         sqlInfo.setRealTable("USER", "user1");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user1", sqlInfo.getRealTable("USER"));
@@ -49,8 +62,9 @@ public class SQLAnalyzerForUpperTest {
                 sql2);
         // no where
         sql = "DELETE FROM USER";
-        sqlStruct = sqlAnalyzer.parse(sql);
-        sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, sqlStruct, null);
+        sqlStruct = sqlAnalyzer.parse(sql, context);
+        sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, sqlStruct, null,
+                context);
         sqlInfo.setRealTable("USER", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
@@ -63,9 +77,9 @@ public class SQLAnalyzerForUpperTest {
     public void insert() {
         String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VLAUES(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         Assert.assertEquals(sqlStruct.getTableNames().size(), 1);
         Assert.assertEquals(sqlStruct.getTableNames().get(0), "USER");
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
@@ -87,9 +101,9 @@ public class SQLAnalyzerForUpperTest {
     public void insert2() {
         String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VLAUES(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         sqlInfo.setRealTable("USER", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
@@ -115,9 +129,9 @@ public class SQLAnalyzerForUpperTest {
     public void update() {
         String sql = "UPDATE USER SET UID=? , O=? WHERE NAME=?";
         Object[] values = new Object[] { 1, 3, "43" };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         Assert.assertEquals(sqlStruct.getTableNames().size(), 1);
         Assert.assertEquals(sqlStruct.getTableNames().get(0), "USER");
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
@@ -134,9 +148,9 @@ public class SQLAnalyzerForUpperTest {
     public void update2() {
         String sql = "UPDATE USER SET UID=? , O=? WHERE NAME=?";
         Object[] values = new Object[] { 1, 3, "43" };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         sqlInfo.setRealTable("USER", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
@@ -157,9 +171,9 @@ public class SQLAnalyzerForUpperTest {
                 + "WHERE U.UID=M.UID AND U.SEX=? OR M.AGE>? " + "GROUP BY SEX "
                 + "ORDER BY SEX " + "HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
         Assert.assertEquals("MEMBER", sqlStruct.getTableNames().get(1));
         Assert.assertEquals(1,
@@ -174,9 +188,9 @@ public class SQLAnalyzerForUpperTest {
                 + "WHERE U.UID=M.UID AND U.SEX=? OR M.AGE>? ID IN(1,2,3)"
                 + "GROUP BY SEX " + "ORDER BY SEX " + "HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
         Assert.assertEquals(sql, sql2);
     }
@@ -184,9 +198,9 @@ public class SQLAnalyzerForUpperTest {
     @Test
     public void selectNoWhere() {
         String sql = "SELECT * FROM USER";
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, null);
+                sqlStruct, null, context);
         DALCustomInfo dalCustomInfo = new DALCustomInfo();
         dalCustomInfo.setRealTable("USER", "user2");
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct,
@@ -200,9 +214,9 @@ public class SQLAnalyzerForUpperTest {
                 + "WHERE U.UID=M.UID AND U.SEX=? OR M.AGE>? " + "GROUP BY SEX "
                 + "ORDER BY SEX " + "HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         sqlInfo.setRealTable("USER", "user2");
         sqlInfo.setRealTable("MEMBER", "member5");
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
@@ -232,9 +246,9 @@ public class SQLAnalyzerForUpperTest {
                 + "FROM GATEWAY_EVENT GATEWAYEVE0_ "
                 + "WHERE 1=1 AND GATEWAYEVE0_.EVENT_STATUS=?";
         Object[] values = new Object[] { 5 };
-        SQLStruct sqlStruct = sqlAnalyzer.parse(sql);
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values);
+                sqlStruct, values, context);
         DALCustomInfo dalCustomInfo = new DALCustomInfo();
         dalCustomInfo.setRealTable("GATEWAY_EVENT", "gateway_event1");
         Assert.assertEquals("GATEWAY_EVENT", sqlStruct.getTableNames().get(0));

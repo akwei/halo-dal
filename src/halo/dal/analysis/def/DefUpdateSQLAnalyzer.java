@@ -6,10 +6,11 @@ import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLStruct;
 
 import java.util.List;
+import java.util.Map;
 
 public class DefUpdateSQLAnalyzer extends AbsSQLAnalyzer {
 
-    public SQLStruct parse(String sql) {
+    public SQLStruct parse(String sql, Map<String, Object> context) {
         SQLStruct sqlStruct = new SQLStruct();
         String whereSQL = null;
         String updateSQL = null;

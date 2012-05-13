@@ -35,7 +35,9 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 代理PreparedStatement,负责对预处理方式进行sql分析，对于Statement的直接处理方式，不进行sql分析
@@ -137,15 +139,16 @@ public class DALPreparedStatement implements PreparedStatement {
     private void prepare() throws SQLException {
         DALFactory dalFactory = DALFactory.getInstance();
         List<Object> values = dalParameters.getValues();
-        SQLStruct sqlStruct = dalFactory.getSqlAnalyzer().parse(sql);
+        Map<String, Object> context = new HashMap<String, Object>();
+        SQLStruct sqlStruct = dalFactory.getSqlAnalyzer().parse(sql, context);
         SQLInfo sqlInfo = null;
         if (sqlStruct != null) {
             sqlInfo = dalFactory.getSqlAnalyzer().analyse(sql, sqlStruct,
-                    values.toArray(new Object[values.size()]));
+                    values.toArray(new Object[values.size()]), context);
         }
         DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
         if (dalCustomInfo == null && sqlInfo != null) {
-            DALCurrentStatus.setDsKey(this.parsePartition(sqlStruct, sqlInfo));
+            this.parsePartition(sqlStruct, sqlInfo);
         }
         if (sqlInfo != null) {
             this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sql, sqlInfo,
@@ -179,7 +182,14 @@ public class DALPreparedStatement implements PreparedStatement {
         this.dalParameters.initRealPreparedStatement(ps);
     }
 
-    private String parsePartition(SQLStruct sqlStruct, SQLInfo sqlInfo)
+    /**
+     * 根据解析结果设置数据源与真实表名称
+     * 
+     * @param sqlStruct
+     * @param sqlInfo
+     * @throws SQLException
+     */
+    private void parsePartition(SQLStruct sqlStruct, SQLInfo sqlInfo)
             throws SQLException {
         PartitionTableInfo[] infos = new PartitionTableInfo[sqlStruct
                 .getTableNames().size()];
@@ -218,7 +228,7 @@ public class DALPreparedStatement implements PreparedStatement {
                 }
             }
         }
-        return dsKey;
+        DALCurrentStatus.setDsKey(dsKey);
     }
 
     private void prepare(String sql) throws SQLException {

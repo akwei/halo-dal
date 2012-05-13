@@ -18,14 +18,15 @@ public class CachedSQLAnalyzer implements SQLAnalyzer {
         this.sqlAnalyzer = sqlAnalyzer;
     }
 
-    public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values) {
-        return sqlAnalyzer.analyse(sql, sqlStruct, values);
+    public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values,
+            Map<String, Object> context) {
+        return sqlAnalyzer.analyse(sql, sqlStruct, values, context);
     }
 
-    public synchronized SQLStruct parse(String sql) {
+    public synchronized SQLStruct parse(String sql, Map<String, Object> context) {
         SQLStruct sqlStruct = this.getSQLStructFromCache(sql);
         if (sqlStruct == null) {
-            sqlStruct = sqlAnalyzer.parse(sql);
+            sqlStruct = sqlAnalyzer.parse(sql, context);
             if (sqlStruct != null) {
                 this.addSQLStructInCache(sql, sqlStruct);
             }
@@ -45,5 +46,4 @@ public class CachedSQLAnalyzer implements SQLAnalyzer {
     private void addSQLStructInCache(String sql, SQLStruct sqlStruct) {
         structMap.put(sql, sqlStruct);
     }
-
 }

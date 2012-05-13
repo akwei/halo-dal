@@ -10,6 +10,7 @@ import halo.dal.analysis.SQLStruct;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -201,7 +202,8 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
         return logicTableName;
     }
 
-    public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values) {
+    public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values,
+            Map<String, Object> context) {
         BasicSQLInfo info = new BasicSQLInfo();
         SQLExpression sqlExpression;
         int i = 0;

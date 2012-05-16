@@ -5,12 +5,21 @@ import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 缓存模式的sql解析器<br>
+ * <p>
+ * 修改sql解析器缓存，改用ConcurrentHashMap，谢谢邓桥提出的修改建议
+ * <p>
+ * 
+ * @author akwei
+ * @author 邓桥
+ */
 public class CachedSQLAnalyzer implements SQLAnalyzer {
 
-    private Map<String, SQLStruct> structMap = new HashMap<String, SQLStruct>();
+    private Map<String, SQLStruct> structMap = new ConcurrentHashMap<String, SQLStruct>();
 
     private SQLAnalyzer sqlAnalyzer;
 
@@ -23,7 +32,7 @@ public class CachedSQLAnalyzer implements SQLAnalyzer {
         return sqlAnalyzer.analyse(sql, sqlStruct, values, context);
     }
 
-    public synchronized SQLStruct parse(String sql, Map<String, Object> context) {
+    public SQLStruct parse(String sql, Map<String, Object> context) {
         SQLStruct sqlStruct = this.getSQLStructFromCache(sql);
         if (sqlStruct == null) {
             sqlStruct = sqlAnalyzer.parse(sql, context);

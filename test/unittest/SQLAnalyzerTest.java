@@ -7,8 +7,14 @@ import halo.dal.analysis.def.BasicSQLInfo;
 import halo.dal.analysis.def.CachedSQLAnalyzer;
 import halo.dal.analysis.def.DefSQLAnalyzer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 import junit.framework.Assert;
 
@@ -19,6 +25,7 @@ public class SQLAnalyzerTest {
 
     SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
 
+    // SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
     Map<String, Object> context;
 
     @Before
@@ -275,23 +282,73 @@ public class SQLAnalyzerTest {
     @Test
     public void performance() {
         long begin = System.currentTimeMillis();
-        SQLAnalyzer cachedSqlAnalyzer = new CachedSQLAnalyzer(sqlAnalyzer);
-        for (int i = 0; i < 1000; i++) {
-            String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
-                    + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
-                    + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
-                    + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
-                    + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
-                    + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
-                    + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
-                    + "gatewayeve0_.START_DATE as START15_1_ "
-                    + "from gateway_event gatewayeve0_ "
-                    + "where 1=1 and gatewayeve0_.EVENT_STATUS=?";
-            Object[] values = new Object[] { 5 };
-            SQLStruct sqlStruct = cachedSqlAnalyzer.parse(sql, context);
-            sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
+                + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
+                + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
+                + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
+                + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
+                + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
+                + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
+                + "gatewayeve0_.START_DATE as START15_1_ "
+                + "from gateway_event gatewayeve0_ "
+                + "where 1=1 and gatewayeve0_.EVENT_STATUS=? or gatewayeve0_.NAME =? and "
+                + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
+                + "order by gatewayeve0_.EVENT_TYPE desc";
+        for (int i = 0; i < 1000 * 1000; i++) {
+            this.parse(sql, null);
         }
         long end = System.currentTimeMillis();
         System.out.println(end - begin);
+    }
+
+    @Test
+    public void multperformance() {
+        ExecutorService executorService = Executors.newFixedThreadPool(600,
+                new ThreadFactory() {
+
+                    public Thread newThread(Runnable r) {
+                        Thread t = new Thread(r);
+                        t.setName("thread " + t.getId());
+                        t.setDaemon(false);
+                        return t;
+                    }
+                });
+        final String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
+                + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
+                + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
+                + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
+                + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
+                + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
+                + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
+                + "gatewayeve0_.START_DATE as START15_1_ "
+                + "from gateway_event gatewayeve0_ "
+                + "where 1=1 and gatewayeve0_.EVENT_STATUS=? or gatewayeve0_.NAME =? and "
+                + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
+                + "order by gatewayeve0_.EVENT_TYPE desc";
+        List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
+        for (int i = 0; i < 1000 * 1000; i++) {
+            Callable<Boolean> task = new Callable<Boolean>() {
+
+                public Boolean call() throws Exception {
+                    parse(sql, null);
+                    return true;
+                }
+            };
+            tasks.add(task);
+        }
+        try {
+            long begin = System.currentTimeMillis();
+            executorService.invokeAll(tasks);
+            long end = System.currentTimeMillis();
+            System.out.println(end - begin);
+        }
+        catch (InterruptedException e) {
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    private void parse(String sql, Object[] values) {
+        SQLAnalyzer analyzer = sqlAnalyzer;
+        analyzer.parse(sql, context);
     }
 }

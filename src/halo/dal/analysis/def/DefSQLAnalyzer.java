@@ -29,7 +29,9 @@ public class DefSQLAnalyzer extends AbsSQLAnalyzer {
         context.put("lowerSQL", _sql);
         // 对于只运行数据库函数时，不需要解析
         if (_sql.startsWith(SQL_KEY_SELECT) && _sql.indexOf(" from ") == -1) {
-            return null;
+            SQLStruct sqlStruct = new SQLStruct();
+            sqlStruct.setCanParse(true);
+            return sqlStruct;
         }
         if (_sql.startsWith(SQL_KEY_SELECT)) {
             return this.selectSQLAnalyzer.parse(_sql, context);

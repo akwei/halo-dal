@@ -1,4 +1,4 @@
-package halo.dal.partition;
+package halo.dal.analysis;
 
 /**
  * 表分区分析器工厂接口,可自定义获取表分区分析器的方法

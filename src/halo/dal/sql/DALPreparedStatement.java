@@ -4,13 +4,11 @@ import halo.dal.DALCurrentStatus;
 import halo.dal.DALCustomInfo;
 import halo.dal.DALFactory;
 import halo.dal.DALRunTimeException;
-import halo.dal.MultDataSourceOnOperateException;
-import halo.dal.ResultErrException;
+import halo.dal.analysis.PartitionParser;
+import halo.dal.analysis.PartitionParserNotFoundException;
+import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.partition.PartitionParser;
-import halo.dal.partition.PartitionParserNotFoundException;
-import halo.dal.partition.PartitionTableInfo;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -142,18 +140,19 @@ public class DALPreparedStatement implements PreparedStatement {
         Map<String, Object> context = new HashMap<String, Object>();
         SQLStruct sqlStruct = dalFactory.getSqlAnalyzer().parse(sql, context);
         SQLInfo sqlInfo = null;
-        if (sqlStruct != null) {
+        if (sqlStruct.isCanParse()) {
             sqlInfo = dalFactory.getSqlAnalyzer().analyse(sql, sqlStruct,
                     values.toArray(new Object[values.size()]), context);
         }
-        DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
-        if (dalCustomInfo == null && sqlInfo != null) {
-            this.parsePartition(sqlStruct, sqlInfo);
-        }
-        if (sqlInfo != null) {
-            this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sql, sqlInfo,
-                    sqlStruct, dalCustomInfo);
-        }
+        this.parsePartition(sqlStruct, sqlInfo);
+        // DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
+        // if (dalCustomInfo == null && sqlInfo != null) {
+        // this.parsePartition(sqlStruct, sqlInfo);
+        // }
+        // if (sqlInfo != null) {
+        // this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sql, sqlInfo,
+        // sqlStruct, dalCustomInfo);
+        // }
         this.initRealPreparedStatement();
         if (this.maxFieldSize != 0) {
             ps.setMaxFieldSize(maxFieldSize);
@@ -191,44 +190,42 @@ public class DALPreparedStatement implements PreparedStatement {
      */
     private void parsePartition(SQLStruct sqlStruct, SQLInfo sqlInfo)
             throws SQLException {
-        PartitionTableInfo[] infos = new PartitionTableInfo[sqlStruct
-                .getTableNames().size()];
+        DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
         DALFactory dalFactory = DALFactory.getDefault();
-        int i = 0;
-        ConnectionStatus connectionStatus = new ConnectionStatus();
-        connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());
-        connectionStatus.setReadOnly(this.dalConnection.isReadOnly());
-        PartitionParser parser;
-        for (String table : sqlStruct.getTableNames()) {
-            parser = dalFactory.getPartitionParserFactory().getParser(table);
-            if (parser == null) {
-                throw new PartitionParserNotFoundException(
-                        "PartitionParser for table [" + table
-                                + "] was not found");
+        if (dalCustomInfo == null && sqlStruct.isCanParse()) {
+            ConnectionStatus connectionStatus = new ConnectionStatus();
+            connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());
+            connectionStatus.setReadOnly(this.dalConnection.isReadOnly());
+            PartitionParser parser;
+            for (String table : sqlStruct.getTableNames()) {
+                parser = dalFactory.getPartitionParserFactory()
+                        .getParser(table);
+                if (parser == null) {
+                    throw new PartitionParserNotFoundException(
+                            "PartitionParser for table [" + table
+                                    + "] was not found");
+                }
+                parser.parse(table, sqlInfo, connectionStatus,
+                        partitionTableInfo);
             }
-            infos[i] = parser.parse(table, sqlInfo, connectionStatus);
-            if (infos[i] == null) {
-                throw new ResultErrException(
-                        "parser.parse can not return null value");
+            String dsKey = partitionTableInfo.getDsName();
+            if (dsKey != null) {
+                DALCurrentStatus.setDsKey(dsKey);
             }
-            sqlInfo.setRealTable(table, infos[i].getRealTableName());
-            i++;
         }
-        String dsKey = null;
-        // build partition dsKey
-        for (PartitionTableInfo info : infos) {
-            if (dsKey == null) {
-                dsKey = info.getDsName();
-            }
-            else {
-                if (!dsKey.equals(info.getDsName())) {
-                    throw new MultDataSourceOnOperateException(
-                            "mult datasource is not supported [" + dsKey
-                                    + " , " + info.getDsName() + "]");
+        else {
+            if (dalCustomInfo != null) {
+                for (String table : sqlStruct.getTableNames()) {
+                    partitionTableInfo.setRealTable(table,
+                            dalCustomInfo.getRealTable(table));
                 }
             }
         }
-        DALCurrentStatus.setDsKey(dsKey);
+        if (sqlStruct.isCanParse()) {
+            this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sql, sqlStruct,
+                    sqlInfo, partitionTableInfo);
+        }
     }
 
     private void prepare(String sql) throws SQLException {

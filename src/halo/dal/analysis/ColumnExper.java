@@ -8,8 +8,28 @@ public class ColumnExper {
 
     private SQLExpressionSymbol sqlExpressionSymbol;
 
+    public static final String[] symbols = new String[] {//
+    ">=",//
+            "<=", //
+            "<>",//
+            "!=",//
+            ">",//
+            "<",//
+            "=" //
+    };
+
+    public static final SQLExpressionSymbol[] symbolsEnum = new SQLExpressionSymbol[] {//
+    SQLExpressionSymbol.BIGGER_EQUAL,//
+            SQLExpressionSymbol.SMALLER_EQUAL, //
+            SQLExpressionSymbol.NOT_EQUAL,//
+            SQLExpressionSymbol.NOT_EQUAL2, //
+            SQLExpressionSymbol.BIGGER,//
+            SQLExpressionSymbol.SMALLER, //
+            SQLExpressionSymbol.EQUAL //
+    };
+
     /**
-     * 根据key=?的sql片段获取column，赋值相应的value
+     * 根据key=?的sql片段获取column，赋值相应的value.
      * 
      * @param sqlSeg
      * @param value
@@ -31,8 +51,8 @@ public class ColumnExper {
     }
 
     public static boolean isKeyValue(String sqlSeg) {
-        for (int i = 0; i < SQLExpression.symbols.length; i++) {
-            if (sqlSeg.indexOf(SQLExpression.symbols[i]) != -1) {
+        for (int i = 0; i < symbols.length; i++) {
+            if (sqlSeg.indexOf(symbols[i]) != -1) {
                 return true;
             }
         }
@@ -41,17 +61,17 @@ public class ColumnExper {
 
     private void initWithSeg(String sqlSeg) throws SQLExceptionErrException {
         int idx = -1;
-        for (int i = 0; i < SQLExpression.symbols.length; i++) {
-            idx = sqlSeg.indexOf(SQLExpression.symbols[i]);
+        for (int i = 0; i < symbols.length; i++) {
+            idx = sqlSeg.indexOf(symbols[i]);
             if (idx != -1) {
-                this.sqlExpressionSymbol = SQLExpression.symbolsEnum[i];
+                this.sqlExpressionSymbol = symbolsEnum[i];
                 String tmpName = sqlSeg.substring(0, idx);
                 int dotIdx = tmpName.indexOf(".");
                 if (dotIdx == -1) {
-                    this.column = tmpName.toLowerCase();
+                    this.setColumn(tmpName);
                 }
                 else {
-                    this.column = tmpName.substring(dotIdx + 1).toLowerCase();
+                    this.setColumn(tmpName.substring(dotIdx + 1));
                 }
                 break;
             }
@@ -65,6 +85,17 @@ public class ColumnExper {
         return sqlExpressionSymbol;
     }
 
+    public void setSqlExpressionSymbol(String symbol) {
+        for (int i = 0; i < symbols.length; i++) {
+            if (symbols[i].equals(symbol)) {
+                this.sqlExpressionSymbol = symbolsEnum[i];
+                return;
+            }
+        }
+        throw new SQLExceptionErrException("not value expression [ " + symbol
+                + " ]");
+    }
+
     public void setSqlExpressionSymbol(SQLExpressionSymbol sqlExpressionSymbol) {
         this.sqlExpressionSymbol = sqlExpressionSymbol;
     }
@@ -73,6 +104,11 @@ public class ColumnExper {
         return column;
     }
 
+    /**
+     * column只支持短名称，不支持tablename.column
+     * 
+     * @param column
+     */
     public void setColumn(String column) {
         if (column != null) {
             this.column = column.toLowerCase();

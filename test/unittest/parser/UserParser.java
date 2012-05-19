@@ -1,10 +1,10 @@
 package unittest.parser;
 
+import halo.dal.analysis.PartitionParser;
+import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLExpressionSymbol;
 import halo.dal.analysis.SQLInfo;
-import halo.dal.partition.PartitionParser;
-import halo.dal.partition.PartitionTableInfo;
 import halo.dal.sql.ConnectionStatus;
 
 /**
@@ -14,23 +14,22 @@ import halo.dal.sql.ConnectionStatus;
  */
 public class UserParser implements PartitionParser {
 
-    public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
-            ConnectionStatus connectionStatus) {
-        PartitionTableInfo info = new PartitionTableInfo();
+    public void parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus,
+            PartitionTableInfo partitionTableInfo) {
         SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("sex");
         for (SQLExpression e : sqlExpressions) {
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
                 Integer l = (Integer) e.getValue();
                 if (l.intValue() % 2 == 0) {
-                    info.setRealTableName("user0");
-                    info.setDsName("ds0");
+                    partitionTableInfo.setRealTable(tableLogicName, "user0");
+                    partitionTableInfo.setDsName("ds0");
                 }
                 else {
-                    info.setRealTableName("user1");
-                    info.setDsName("ds1");
+                    partitionTableInfo.setRealTable(tableLogicName, "user1");
+                    partitionTableInfo.setDsName("ds1");
                 }
             }
         }
-        return info;
     }
 }

@@ -1,4 +1,51 @@
-#如何进行扩展:
-##自定义sql解析
-##自定义分区分析器
-##自定义分析器工厂
+    INSERT='insert';
+    SELECT='select';
+    DELETE='delete';
+    UPDATE='update';
+    FROM='from';
+    SET='set';
+    ON='on';
+    AS='as';
+    WHERE='where';
+    AND='and';
+    OR='or';
+    LEFT='left';
+    RIGHT='right';
+    CROSS='cross';
+    JOIN='join';
+    INNER='inner';
+    FULL='full';
+    VALUES='values';
+    INTO='into';
+    LEFT_CLOSE='(';
+    RIGHT_CLOSE=')';
+    PRE_SET='?';
+    IN='in';
+    NOT='not';
+    
+    INSERT_='INSERT';
+    SELECT_='SELECT';
+    DELETE_='DELETE';
+    UPDATE_='UPDATE';
+    FROM_='FROM';
+    SET_='SET';
+    ON_='ON';
+    AS_='AS';
+    WHERE_='WHERE';
+    AND_='AND';
+    OR_='OR';
+    LEFT_='LEFT';
+    RIGHT_='RIGHT';
+    CROSS_='CROSS';
+    JOIN_='JOIN';
+    INNER_='INNER';
+    FULL_='FULL';
+    VALUES_='VALUES';
+    INTO_='INTO';
+    LEFT_CLOSE_='(';
+    RIGHT_CLOSE_=')';
+    PRE_SET_='?';
+    IN_='IN';
+    NOT_='NOT';
+    
+    

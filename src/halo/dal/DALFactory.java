@@ -1,9 +1,9 @@
 package halo.dal;
 
+import halo.dal.analysis.DefPartitionParserFactory;
+import halo.dal.analysis.PartitionParserFactory;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.def.DefSQLAnalyzer;
-import halo.dal.partition.DefPartitionParserFactory;
-import halo.dal.partition.PartitionParserFactory;
 
 /**
  * DAL各种服务的赋值

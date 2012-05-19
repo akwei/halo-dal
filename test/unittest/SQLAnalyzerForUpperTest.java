@@ -1,9 +1,9 @@
 package unittest;
 
-import halo.dal.DALCustomInfo;
+import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
+import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.def.BasicSQLInfo;
 import halo.dal.analysis.def.CachedSQLAnalyzer;
 import halo.dal.analysis.def.DefSQLAnalyzer;
 
@@ -31,20 +31,21 @@ public class SQLAnalyzerForUpperTest {
         String sql = "DELETE FROM USER WHERE UID=? AND (AGE>=? OR AGE<=?) AND (SEX=? OR SEX=?) AND TIME<=SYSDATE()";
         Object[] values = new Object[] { 1, 50, 10, 1, 2 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(sql, sql2);
         // no where
         sql = "DELETE FROM USER";
         sqlStruct = sqlAnalyzer.parse(sql, context);
-        sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, sqlStruct, null,
-                context);
+        sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(sql, sql2);
     }
 
@@ -53,25 +54,26 @@ public class SQLAnalyzerForUpperTest {
         String sql = "DELETE FROM USER WHERE UID=? AND (AGE>=? OR AGE<=?) AND (SEX=? OR SEX=?) AND TIME<=SYSDATE()";
         Object[] values = new Object[] { 1, 50, 10, 1, 2 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
-        sqlInfo.setRealTable("USER", "user1");
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        partitionTableInfo.setRealTable("USER", "user1");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
-        Assert.assertEquals("user1", sqlInfo.getRealTable("USER"));
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        Assert.assertEquals("user1", partitionTableInfo.getRealTable("USER"));
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(
                 "DELETE FROM user1 WHERE UID=? AND (AGE>=? OR AGE<=?) AND (SEX=? OR SEX=?) AND TIME<=SYSDATE()",
                 sql2);
         // no where
         sql = "DELETE FROM USER";
         sqlStruct = sqlAnalyzer.parse(sql, context);
-        sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql, sqlStruct, null,
-                context);
-        sqlInfo.setRealTable("USER", "user2");
+        sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
+        partitionTableInfo.setRealTable("USER", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", sqlInfo.getRealTable("USER"));
-        sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        Assert.assertEquals("user2", partitionTableInfo.getRealTable("USER"));
+        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals("DELETE FROM user2", sql2);
     }
 
@@ -80,11 +82,12 @@ public class SQLAnalyzerForUpperTest {
         String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VLAUES(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals(sqlStruct.getTableNames().size(), 1);
         Assert.assertEquals(sqlStruct.getTableNames().get(0), "USER");
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(sql, sql2);
         Assert.assertEquals("userid",
                 sqlInfo.getSQLExpressions("user.userid")[0].getColumn());
@@ -104,13 +107,14 @@ public class SQLAnalyzerForUpperTest {
         String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VLAUES(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
-        sqlInfo.setRealTable("USER", "user2");
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        partitionTableInfo.setRealTable("USER", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", sqlInfo.getRealTable("USER"));
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        Assert.assertEquals("user2", partitionTableInfo.getRealTable("USER"));
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(
                 "INSERT INTO user2(USERID,NICKNAME,SEX) VLAUES(?,?,?)", sql2);
         Assert.assertEquals("userid",
@@ -132,11 +136,12 @@ public class SQLAnalyzerForUpperTest {
         String sql = "UPDATE USER SET UID=? , O=? WHERE NAME=?";
         Object[] values = new Object[] { 1, 3, "43" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals(sqlStruct.getTableNames().size(), 1);
         Assert.assertEquals(sqlStruct.getTableNames().get(0), "USER");
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(sql, sql2);
         Assert.assertEquals(
                 sqlInfo.getSQLExpressions("user.uid")[0].getValue(), 1);
@@ -151,13 +156,14 @@ public class SQLAnalyzerForUpperTest {
         String sql = "UPDATE USER SET UID=? , O=? WHERE NAME=?";
         Object[] values = new Object[] { 1, 3, "43" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
-        sqlInfo.setRealTable("USER", "user2");
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        partitionTableInfo.setRealTable("USER", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", sqlInfo.getRealTable("USER"));
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        Assert.assertEquals("user2", partitionTableInfo.getRealTable("USER"));
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals("UPDATE user2 SET UID=? , O=? WHERE NAME=?", sql2);
         Assert.assertEquals(
                 sqlInfo.getSQLExpressions("user.uid")[0].getValue(), 1);
@@ -174,8 +180,7 @@ public class SQLAnalyzerForUpperTest {
                 + "ORDER BY SEX " + "HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
         Assert.assertEquals("MEMBER", sqlStruct.getTableNames().get(1));
         Assert.assertEquals(1,
@@ -191,9 +196,10 @@ public class SQLAnalyzerForUpperTest {
                 + "GROUP BY SEX " + "ORDER BY SEX " + "HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(sql, sql2);
     }
 
@@ -201,12 +207,11 @@ public class SQLAnalyzerForUpperTest {
     public void selectNoWhere() {
         String sql = "SELECT * FROM USER";
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, null, context);
-        DALCustomInfo dalCustomInfo = new DALCustomInfo();
-        dalCustomInfo.setRealTable("USER", "user2");
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct,
-                dalCustomInfo);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        partitionTableInfo.setRealTable("USER", "user2");
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals("SELECT * FROM user2", sql2);
     }
 
@@ -217,19 +222,21 @@ public class SQLAnalyzerForUpperTest {
                 + "ORDER BY SEX " + "HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
-        sqlInfo.setRealTable("USER", "user2");
-        sqlInfo.setRealTable("MEMBER", "member5");
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        partitionTableInfo.setRealTable("USER", "user2");
+        partitionTableInfo.setRealTable("MEMBER", "member5");
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", sqlInfo.getRealTable("USER"));
+        Assert.assertEquals("user2", partitionTableInfo.getRealTable("USER"));
         Assert.assertEquals("MEMBER", sqlStruct.getTableNames().get(1));
-        Assert.assertEquals("member5", sqlInfo.getRealTable("MEMBER"));
+        Assert.assertEquals("member5",
+                partitionTableInfo.getRealTable("MEMBER"));
         Assert.assertEquals(1,
                 sqlInfo.getSQLExpressions("user.sex")[0].getValue());
         Assert.assertEquals(5,
                 sqlInfo.getSQLExpressions("member.age")[0].getValue());
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, null);
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals("SELECT * FROM user2 U,member5 AS M "
                 + "WHERE U.UID=M.UID AND U.SEX=? OR M.AGE>? " + "GROUP BY SEX "
                 + "ORDER BY SEX " + "HAVING NAME=?", sql2);
@@ -249,15 +256,14 @@ public class SQLAnalyzerForUpperTest {
                 + "WHERE 1=1 AND GATEWAYEVE0_.EVENT_STATUS=?";
         Object[] values = new Object[] { 5 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
-        BasicSQLInfo sqlInfo = (BasicSQLInfo) sqlAnalyzer.analyse(sql,
-                sqlStruct, values, context);
-        DALCustomInfo dalCustomInfo = new DALCustomInfo();
-        dalCustomInfo.setRealTable("GATEWAY_EVENT", "gateway_event1");
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        partitionTableInfo.setRealTable("GATEWAY_EVENT", "gateway_event1");
         Assert.assertEquals("GATEWAY_EVENT", sqlStruct.getTableNames().get(0));
         Assert.assertEquals(5, sqlInfo
                 .getSQLExpressions("gateway_event.EVENT_STATUS")[0].getValue());
-        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct,
-                dalCustomInfo);
+        String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
         Assert.assertEquals(
                 "SELECT GATEWAYEVE0_.ID AS ID1_, GATEWAYEVE0_.ADAPTER_ID AS ADAPTER2_1_, "
                         + "GATEWAYEVE0_.ADAPTER_MEMO AS ADAPTER3_1_, GATEWAYEVE0_.ADAPTER_NAME AS ADAPTER4_1_, "

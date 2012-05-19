@@ -83,7 +83,7 @@
 		<property name="partitionParserFactory">
 			<!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
 			<!-- 原理就是把所有的解析器类放到一个目录中 -->
-			<bean class="halo.dal.partition.PackagePartitionParserFactory">
+			<bean class="halo.dal.analysis.PackagePartitionParserFactory">
 				<!-- 解析器所在目录 -->
 				<property name="packageName" value="unittest.parser" />
 			</bean>

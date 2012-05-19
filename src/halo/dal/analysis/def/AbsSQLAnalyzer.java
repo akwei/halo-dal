@@ -1,7 +1,7 @@
 package halo.dal.analysis.def;
 
-import halo.dal.DALCustomInfo;
 import halo.dal.analysis.ColumnExper;
+import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLInfo;
@@ -224,19 +224,13 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
         return info;
     }
 
-    public String outPutSQL(String sql, SQLInfo sqlInfo, SQLStruct sqlStruct,
-            DALCustomInfo customInfo) {
-        if (customInfo != null) {
-            for (String tableName : sqlStruct.getTableNames()) {
-                sqlInfo.setRealTable(tableName,
-                        customInfo.getRealTable(tableName));
-            }
-        }
+    public String outPutSQL(String sql, SQLStruct sqlStruct, SQLInfo sqlInfo,
+            PartitionTableInfo partitionTableInfo) {
         List<String> list = new ArrayList<String>();
         List<String> newList = new ArrayList<String>();
         String realTableName;
         for (String tableName : sqlStruct.getTableNames()) {
-            realTableName = sqlInfo.getRealTable(tableName);
+            realTableName = partitionTableInfo.getRealTable(tableName);
             if (realTableName != null) {
                 String alias = sqlStruct.getAliasByTableName(tableName);
                 boolean isSame = alias != null && alias.endsWith(tableName);
@@ -258,7 +252,7 @@ public abstract class AbsSQLAnalyzer implements SQLAnalyzer {
         // 解决sql结束字符串为表名，无法解析的问题例如 delete form user
         String str;
         for (String tableName : sqlStruct.getTableNames()) {
-            realTableName = sqlInfo.getRealTable(tableName);
+            realTableName = partitionTableInfo.getRealTable(tableName);
             if (realTableName != null) {
                 str = SQL_BLANK + tableName;
                 int idx = _sql.lastIndexOf(str);

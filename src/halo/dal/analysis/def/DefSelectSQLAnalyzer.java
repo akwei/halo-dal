@@ -2,7 +2,6 @@ package halo.dal.analysis.def;
 
 import halo.dal.DALRunTimeException;
 import halo.dal.analysis.ColumnExper;
-import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLStruct;
 
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
 
     public SQLStruct parse(String sql, Map<String, Object> context) {
         SQLStruct sqlStruct = new SQLStruct();
+        sqlStruct.setCanParse(true);
         String selectSQL = null;
         String joinSQL = null;
         String whereSQL = null;
@@ -92,7 +92,7 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
                 if (kv[i].indexOf("?") == -1) {
                     continue;
                 }
-                if (!SQLExpression.isKeyValue(kv[i])) {
+                if (!ColumnExper.isKeyValue(kv[i])) {
                     continue;
                 }
                 kvSeg = kv[i].trim();

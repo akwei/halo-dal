@@ -1,6 +1,6 @@
 package halo.dal.analysis.def;
 
-import halo.dal.DALCustomInfo;
+import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
@@ -43,9 +43,10 @@ public class CachedSQLAnalyzer implements SQLAnalyzer {
         return sqlStruct;
     }
 
-    public String outPutSQL(String sql, SQLInfo sqlInfo, SQLStruct sqlStruct,
-            DALCustomInfo customInfo) {
-        return sqlAnalyzer.outPutSQL(sql, sqlInfo, sqlStruct, customInfo);
+    public String outPutSQL(String sql, SQLStruct sqlStruct, SQLInfo sqlInfo,
+            PartitionTableInfo partitionTableInfo) {
+        return sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
+                partitionTableInfo);
     }
 
     private SQLStruct getSQLStructFromCache(String sql) {

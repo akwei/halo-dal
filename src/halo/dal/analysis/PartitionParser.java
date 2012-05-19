@@ -1,6 +1,5 @@
-package halo.dal.partition;
+package halo.dal.analysis;
 
-import halo.dal.analysis.SQLInfo;
 import halo.dal.sql.ConnectionStatus;
 
 /**
@@ -20,8 +19,11 @@ public interface PartitionParser {
      *            参考 {@link SQLInfo}
      * @param connectionStatus
      *            参考 {@link ConnectionStatus}
+     * @param partitionTableInfo
+     *            参考 {@link PartitionTableInfo}
      * @return
      */
-    PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
-            ConnectionStatus connectionStatus);
+    void parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus,
+            PartitionTableInfo partitionTableInfo);
 }

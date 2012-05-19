@@ -1,8 +1,8 @@
 package dal;
 
 import halo.dal.DALFactory;
-import halo.dal.partition.DefPartitionParserFactory;
-import halo.dal.partition.PartitionParser;
+import halo.dal.analysis.DefPartitionParserFactory;
+import halo.dal.analysis.PartitionParser;
 import halo.dal.sql.DALDataSource;
 
 import java.util.HashMap;

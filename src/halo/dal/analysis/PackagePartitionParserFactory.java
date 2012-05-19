@@ -1,4 +1,4 @@
-package halo.dal.partition;
+package halo.dal.analysis;
 
 import halo.dal.DALRunTimeException;
 

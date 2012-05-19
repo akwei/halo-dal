@@ -1,18 +1,10 @@
 package halo.dal.analysis;
 
 /**
- * just declare interface
- * 
  * @author akwei
  */
 public interface SQLInfo {
 
-    // /**
-    // * 获得解析后的表名称
-    // *
-    // * @return
-    // */
-    // List<String> getTables();
     /**
      * 根据列名称获取列对应的表达式值
      * 
@@ -30,8 +22,4 @@ public interface SQLInfo {
      * @param sqlExpression
      */
     void addSQLExpression(String logicTableName, SQLExpression sqlExpression);
-
-    void setRealTable(String logic, String real);
-
-    String getRealTable(String logic);
 }

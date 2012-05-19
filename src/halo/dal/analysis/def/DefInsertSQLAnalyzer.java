@@ -12,6 +12,7 @@ public class DefInsertSQLAnalyzer extends AbsSQLAnalyzer {
 
     public SQLStruct parse(String sql, Map<String, Object> context) {
         SQLStruct sqlStruct = new SQLStruct();
+        sqlStruct.setCanParse(true);
         String insertIntoSeg = null;
         List<String> list = formatSQL(sql);
         for (String s : list) {

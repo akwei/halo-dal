@@ -1,4 +1,4 @@
-package halo.dal.analysis.def;
+package halo.dal.analysis.antlr;
 
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLInfo;
@@ -8,9 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class BasicSQLInfo implements SQLInfo {
+public class SQLInfoImpl implements SQLInfo {
 
     private final Map<String, SQLExpression[]> sqlExpressionMap = new HashMap<String, SQLExpression[]>();
+
+    private final Map<String, String> logic_realMap = new HashMap<String, String>();
 
     public SQLExpression[] getSQLExpressions(String columnName) {
         String lowerColumnName = columnName.toLowerCase();
@@ -67,5 +69,13 @@ class BasicSQLInfo implements SQLInfo {
             sqlExpressionMap.put(logicTableName.toLowerCase() + "."
                     + sqlExpression.getColumn(), sqlExpressions);
         }
+    }
+
+    public String getRealTable(String logic) {
+        return logic_realMap.get(logic);
+    }
+
+    public void setRealTable(String logic, String real) {
+        logic_realMap.put(logic, real);
     }
 }

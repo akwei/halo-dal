@@ -145,14 +145,6 @@ public class DALPreparedStatement implements PreparedStatement {
                     values.toArray(new Object[values.size()]), context);
         }
         this.parsePartition(sqlStruct, sqlInfo);
-        // DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
-        // if (dalCustomInfo == null && sqlInfo != null) {
-        // this.parsePartition(sqlStruct, sqlInfo);
-        // }
-        // if (sqlInfo != null) {
-        // this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sql, sqlInfo,
-        // sqlStruct, dalCustomInfo);
-        // }
         this.initRealPreparedStatement();
         if (this.maxFieldSize != 0) {
             ps.setMaxFieldSize(maxFieldSize);
@@ -209,10 +201,7 @@ public class DALPreparedStatement implements PreparedStatement {
                 parser.parse(table, sqlInfo, connectionStatus,
                         partitionTableInfo);
             }
-            String dsKey = partitionTableInfo.getDsName();
-            if (dsKey != null) {
-                DALCurrentStatus.setDsKey(dsKey);
-            }
+            DALCurrentStatus.setDsKey(partitionTableInfo.getDsName());
         }
         else {
             if (dalCustomInfo != null) {

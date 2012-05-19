@@ -331,6 +331,9 @@ public class SQLAnalyzerTest {
                 + "where 1=1 and gatewayeve0_.EVENT_STATUS=? or gatewayeve0_.NAME =? and "
                 + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
                 + "order by gatewayeve0_.EVENT_TYPE desc";
+        for (int i = 0; i < 100; i++) {
+            this.parse(sql, null);
+        }
         List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
         for (int i = 0; i < 1000 * 1000; i++) {
             Callable<Boolean> task = new Callable<Boolean>() {

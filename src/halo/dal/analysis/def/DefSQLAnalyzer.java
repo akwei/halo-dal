@@ -30,7 +30,7 @@ public class DefSQLAnalyzer extends AbsSQLAnalyzer {
         // 对于只运行数据库函数时，不需要解析
         if (_sql.startsWith(SQL_KEY_SELECT) && _sql.indexOf(" from ") == -1) {
             SQLStruct sqlStruct = new SQLStruct();
-            sqlStruct.setCanParse(true);
+            sqlStruct.setCanParse(false);
             return sqlStruct;
         }
         if (_sql.startsWith(SQL_KEY_SELECT)) {

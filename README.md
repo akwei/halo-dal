@@ -41,24 +41,28 @@ Insert.java Update.java Delete.java Select.java
 ##1:数据库表的分析器
 ````java
 
-import halo.dal.partition.DALPartitionParser;
-import halo.dal.partition.DALPartitionTableInfo;
+package parser;
+
+import halo.dal.analysis.PartitionParser;
+import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLExpressionSymbol;
 import halo.dal.analysis.SQLInfo;
+import halo.dal.sql.ConnectionStatus;
 
 /**
  * 对user表进行分区，根据奇偶方式，将偶数sex放入daltest0.user0, 奇数sex放入daltest1.user1
  * 
  * @author akwei
  */
-public class UserParser implements DALPartitionParser {
+public class UserParser implements PartitionParser {
 
-    public DALPartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo) {
-        DALPartitionTableInfo info = new DALPartitionTableInfo();
+    public void parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus,
+            PartitionTableInfo partitionTableInfo) {
         // 从sqlInfo获得条件表达式,由于定义的分区条件为sex字段，那么就需要获取sex字段的表达式
         // /由于获取的表达式会存在多个，例如进行范围判断的情况下，就会出现2个表达式，因此会返回一个数组
-        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("user.sex");//必须是logicName.columnName
+        SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("sex");
         for (SQLExpression e : sqlExpressions) {
             // sex表达式我们只需要获得sex=?的等号表达式
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
@@ -66,18 +70,18 @@ public class UserParser implements DALPartitionParser {
                 // 获得表达式的值之后，进行奇偶判断，判断的结果就是我们获得的真实数据源key与表名称
                 // 数据源key就是在创建DALDataSource的时候，写入map的key，这个key与真实的DataSource一一对应
                 if (l.intValue() % 2 == 0) {
-                    info.setRealTableName("user0");// 真实数据表名称
-                    info.setDsName("ds0");// 真实数源key
+                    partitionTableInfo.setRealTable(tableLogicName, "user0");// 真实数据表名称
+                    partitionTableInfo.setDsName("ds00");// 真实数源key
                 }
                 else {
-                    info.setRealTableName("user1");// 真实数据表名称
-                    info.setDsName("ds1");// 真实数源key
+                    partitionTableInfo.setRealTable(tableLogicName, "user1");// 真实数据表名称
+                    partitionTableInfo.setDsName("ds10");// 真实数源key
                 }
             }
         }
-        return info;
     }
 }
+
 
 ````
 ##2:将解析器加入解析器工厂
@@ -164,7 +168,7 @@ public class UserParser implements DALPartitionParser {
         <property name="partitionParserFactory">
             <!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
             <!-- 原理就是把所有的解析器类放到一个目录中 -->
-            <bean class="halo.dal.partition.PackagePartitionParserFactory">
+            <bean class="halo.dal.analysis.PackagePartitionParserFactory">
                 <!-- 解析器所在目录 -->
                 <property name="packageName" value="parser" />
             </bean>

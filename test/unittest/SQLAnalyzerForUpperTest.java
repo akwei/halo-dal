@@ -4,8 +4,8 @@ import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
+import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 import halo.dal.analysis.def.CachedSQLAnalyzer;
-import halo.dal.analysis.def.DefSQLAnalyzer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import org.junit.Test;
 
 public class SQLAnalyzerForUpperTest {
 
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
 
     Map<String, Object> context;
 
@@ -79,7 +79,7 @@ public class SQLAnalyzerForUpperTest {
 
     @Test
     public void insert() {
-        String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VLAUES(?,?,?)";
+        String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VALUES(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
@@ -104,7 +104,7 @@ public class SQLAnalyzerForUpperTest {
 
     @Test
     public void insert2() {
-        String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VLAUES(?,?,?)";
+        String sql = "INSERT INTO USER(USERID,NICKNAME,SEX) VALUES(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
@@ -116,7 +116,7 @@ public class SQLAnalyzerForUpperTest {
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
                 partitionTableInfo);
         Assert.assertEquals(
-                "INSERT INTO user2(USERID,NICKNAME,SEX) VLAUES(?,?,?)", sql2);
+                "INSERT INTO user2(USERID,NICKNAME,SEX) VALUES(?,?,?)", sql2);
         Assert.assertEquals("userid",
                 sqlInfo.getSQLExpressions("user.userid")[0].getColumn());
         Assert.assertEquals(4,
@@ -175,9 +175,7 @@ public class SQLAnalyzerForUpperTest {
 
     @Test
     public void select() {
-        String sql = "SELECT * FROM USER U,MEMBER AS M "
-                + "WHERE U.UID=M.UID AND U.SEX=? OR M.AGE>? " + "GROUP BY SEX "
-                + "ORDER BY SEX " + "HAVING NAME=?";
+        String sql = "SELECT * FROM USER U,MEMBER AS M WHERE U.UID=M.UID AND U.SEX=? OR M.AGE>? GROUP BY SEX ORDER BY SEX HAVING NAME=?";
         Object[] values = new Object[] { 1, 5, "akwei" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);

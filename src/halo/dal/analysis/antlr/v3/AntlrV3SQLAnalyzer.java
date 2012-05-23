@@ -22,7 +22,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.apache.commons.lang3.StringUtils;
 
-public class AntlrV34SQLAnalyzer implements SQLAnalyzer {
+public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
 
     protected final static String SQL_BLANK = " ";
 
@@ -54,16 +54,15 @@ public class AntlrV34SQLAnalyzer implements SQLAnalyzer {
         // 对于只运行数据库函数时，不需要解析
         SQLStruct sqlStruct = new SQLStruct();
         if (_sql.startsWith(SQL_KEY_SELECT) || _sql.startsWith(SQL_KEY_SELECT_)) {
-            if (_sql.indexOf(" from ") == -1 || _sql.indexOf(" FROM ") == -1) {
+            if (_sql.indexOf(" from ") == -1 && _sql.indexOf(" FROM ") == -1) {
                 sqlStruct.setCanParse(false);
                 return sqlStruct;
             }
         }
         sqlStruct.setCanParse(true);
-        AntlrV34SQLLexer lexer = new AntlrV34SQLLexer(new ANTLRStringStream(
-                _sql));
+        AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(_sql));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        Antlrv34SQLParser parser = new Antlrv34SQLParser(tokens);
+        AntlrV3SQLParser parser = new AntlrV3SQLParser(tokens);
         AntlrParserDelegate delegate = new DefAntlrParserDelegate();
         parser.setAntlrParserDelegate(delegate);
         try {

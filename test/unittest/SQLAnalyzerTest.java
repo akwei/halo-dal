@@ -4,8 +4,8 @@ import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
+import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 import halo.dal.analysis.def.CachedSQLAnalyzer;
-import halo.dal.analysis.def.DefSQLAnalyzer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import org.junit.Test;
 
 public class SQLAnalyzerTest {
 
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
 
     // SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
     Map<String, Object> context;
@@ -86,7 +86,7 @@ public class SQLAnalyzerTest {
 
     @Test
     public void insert() {
-        String sql = "insert into user(userid,nickname,sex) vlaues(?,?,?)";
+        String sql = "insert into user(userid,nickname,sex) values(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
@@ -112,7 +112,7 @@ public class SQLAnalyzerTest {
 
     @Test
     public void insert2() {
-        String sql = "insert into user(userid,nickname,sex) vlaues(?,?,?)";
+        String sql = "insert into user(userid,nickname,sex) values(?,?,?)";
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
@@ -124,7 +124,7 @@ public class SQLAnalyzerTest {
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
                 partitionTableInfo);
         Assert.assertEquals(
-                "insert into user2(userid,nickname,sex) vlaues(?,?,?)", sql2);
+                "insert into user2(userid,nickname,sex) values(?,?,?)", sql2);
         Assert.assertEquals("userid",
                 sqlInfo.getSQLExpressions("user.userid")[0].getColumn());
         Assert.assertEquals(4,

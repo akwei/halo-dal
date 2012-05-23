@@ -9,17 +9,32 @@ public class ColExpr {
     public ColExpr() {
     }
 
+    /**
+     * @param column
+     *            columnName不能含有"."
+     * @param op
+     */
     public ColExpr(String column, String op) {
-        this.column = column;
-        this.op = op;
+        this.setColumn(column);
+        this.setOp(op);
     }
 
     public String getColumn() {
         return column;
     }
 
+    /**
+     * @param column
+     *            columnName不能含有"."
+     */
     public void setColumn(String column) {
-        this.column = column;
+        int idx = column.indexOf(".");
+        if (idx == -1) {
+            this.column = column;
+        }
+        else {
+            this.column = column.substring(idx + 1);
+        }
     }
 
     public String getOp() {

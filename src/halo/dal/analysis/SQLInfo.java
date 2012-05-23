@@ -9,7 +9,8 @@ public interface SQLInfo {
      * 根据列名称获取列对应的表达式值
      * 
      * @param columnName
-     *            列名格式为 logicTableName.columnName, 如果没有字段重合，可以直接使用columnName
+     *            列名格式为 logicTableName.columnName,不能是表的别名，必须是固定的logicTableName。
+     *            如果没有字段重合，可以直接使用columnName
      * @return
      */
     SQLExpression[] getSQLExpressions(String columnName);

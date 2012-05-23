@@ -4,8 +4,7 @@ import halo.dal.analysis.PartitionTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
-import halo.dal.analysis.def.CachedSQLAnalyzer;
+import halo.dal.analysis.def.DefSQLAnalyzer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +22,11 @@ import org.junit.Test;
 
 public class SQLAnalyzerTest {
 
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
+    // SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new
+    // AntlrV3SQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
 
-    // SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
+    // SQLAnalyzer sqlAnalyzer = new AntlrV3SQLAnalyzer();
     Map<String, Object> context;
 
     @Before
@@ -287,7 +288,6 @@ public class SQLAnalyzerTest {
 
     @Test
     public void performance() {
-        long begin = System.currentTimeMillis();
         String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
                 + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
                 + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
@@ -300,6 +300,10 @@ public class SQLAnalyzerTest {
                 + "where 1=1 and gatewayeve0_.EVENT_STATUS=? or gatewayeve0_.NAME =? and "
                 + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
                 + "order by gatewayeve0_.EVENT_TYPE desc";
+        for (int i = 0; i < 100; i++) {
+            this.parse(sql, null);
+        }
+        long begin = System.currentTimeMillis();
         for (int i = 0; i < 1000 * 1000; i++) {
             this.parse(sql, null);
         }

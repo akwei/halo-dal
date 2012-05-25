@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -122,25 +121,6 @@ public class QueryTest {
         });
         if (res != 1) {
             Assert.fail("can not update user");
-        }
-    }
-
-    @Test
-    public void insertAccount() {
-        String sql = "insert into account (uid,city,descr) values(?,?,?)";
-        for (int i = 0; i < 5; i++) {
-            final Object[] values = new Object[] {
-                    "a" + new Random().nextInt(), "cityabc", null };
-            jdbcTemplate.update(sql, new PreparedStatementSetter() {
-
-                public void setValues(PreparedStatement ps) throws SQLException {
-                    int i = 1;
-                    for (Object obj : values) {
-                        ps.setObject(i, obj);
-                        i++;
-                    }
-                }
-            });
         }
     }
 }

@@ -6,6 +6,16 @@ public class Account {
 
     private String city;
 
+    private String descr;
+
+    public void setDescr(String descr) {
+        this.descr = descr;
+    }
+
+    public String getDescr() {
+        return descr;
+    }
+
     public String getUid() {
         return uid;
     }

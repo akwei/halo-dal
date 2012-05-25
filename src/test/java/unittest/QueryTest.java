@@ -127,10 +127,10 @@ public class QueryTest {
 
     @Test
     public void insertAccount() {
-        String sql = "insert into account (uid,city) values(?,?)";
+        String sql = "insert into account (uid,city,descr) values(?,?,?)";
         for (int i = 0; i < 5; i++) {
             final Object[] values = new Object[] {
-                    "a" + new Random().nextInt(), "cityabc" };
+                    "a" + new Random().nextInt(), "cityabc", null };
             jdbcTemplate.update(sql, new PreparedStatementSetter() {
 
                 public void setValues(PreparedStatement ps) throws SQLException {

@@ -132,7 +132,21 @@ public class DALParameters {
                 }
             });
 
+    /**
+     * 字段值
+     */
     public TreeMap<Integer, Object> valuesMap = new TreeMap<Integer, Object>(
+            new Comparator<Integer>() {
+
+                public int compare(Integer o1, Integer o2) {
+                    return o1.intValue() - o2.intValue();
+                }
+            });
+
+    /**
+     * 设置的参数(不一定与字段值相同)
+     */
+    public TreeMap<Integer, Object> parameterMap = new TreeMap<Integer, Object>(
             new Comparator<Integer>() {
 
                 public int compare(Integer o1, Integer o2) {
@@ -155,9 +169,15 @@ public class DALParameters {
      *            参数信息，包括参数，以及参数长度等其他参数信息
      */
     public void set(int methodEncode, int parameterIndex, Object[] argInfo) {
-        valuesMap.put(parameterIndex, argInfo[0]);
+        parameterMap.put(parameterIndex, argInfo[0]);
         methodArgMap.put(parameterIndex, argInfo);
         methodEncodeMap.put(parameterIndex, methodEncode);
+        if (methodEncode == MN_SETNULL_I_I || methodEncode == MN_SETNULL_I_I_S) {
+            valuesMap.put(parameterIndex, null);
+        }
+        else {
+            valuesMap.put(parameterIndex, argInfo[0]);
+        }
     }
 
     public void clear() {
@@ -186,150 +206,150 @@ public class DALParameters {
             throws SQLException {
         int methodEncode = methodEncodeMap.get(i);
         switch (methodEncode) {
-        case MN_SETNULL_I_I:
-            ps.setNull(i, (Integer) objs[0]);
-            break;
-        case MN_SETBOOLEAN_I_BOOL:
-            ps.setBoolean(i, (Boolean) objs[0]);
-            break;
-        case MN_SETBYTE_I_BYTE:
-            ps.setByte(i, (Byte) objs[0]);
-            break;
-        case MN_SETSHORT_I_SHORT:
-            ps.setShort(i, (Short) objs[0]);
-            break;
-        case MN_SETINT_I_I:
-            ps.setInt(i, (Integer) objs[0]);
-            break;
-        case MN_SETLONG_I_L:
-            ps.setLong(i, (Long) objs[0]);
-            break;
-        case MN_SETFLOAT_I_F:
-            ps.setFloat(i, (Float) objs[0]);
-            break;
-        case MN_SETDOUBLE_I_D:
-            ps.setDouble(i, (Double) objs[0]);
-            break;
-        case MN_SETBIGDECIMAL_I_BIG:
-            ps.setBigDecimal(i, (BigDecimal) objs[0]);
-            break;
-        case MN_SETSTRING_I_S:
-            ps.setString(i, (String) objs[0]);
-            break;
-        case MN_SETBYTES_I_$BYTE:
-            ps.setBytes(i, (byte[]) objs[0]);
-            break;
-        case MN_SETDATE_I_DATE:
-            ps.setDate(i, (Date) objs[0]);
-            break;
-        case MN_SETTIME_I_TIME:
-            ps.setTime(i, (Time) objs[0]);
-            break;
-        case MN_SETTIMESTAMP_I_TIMESTAMP:
-            ps.setTimestamp(i, (Timestamp) objs[0]);
-            break;
-        case MN_SETASCIISTREAM_I_IN_I:
-            ps.setAsciiStream(i, (InputStream) objs[0]);
-            break;
-        case MN_SETUNICODESTREAM_I_IN_I:
-            ps.setUnicodeStream(i, (InputStream) objs[0], (Integer) objs[1]);
-            break;
-        case MN_SETBINARYSTREAM_I_IN_I:
-            ps.setBinaryStream(i, (InputStream) objs[0], (Integer) objs[1]);
-            break;
-        case MN_SETOBJECTI_O_I:
-            ps.setObject(i, objs[0], (Integer) objs[1]);
-            break;
-        case MN_SETOBJECT_I_O:
-            ps.setObject(i, objs[0]);
-            break;
-        case MN_SETCHARACTERSTREAM_I_READER_I:
-            ps.setCharacterStream(i, (Reader) objs[0], (Integer) objs[1]);
-            break;
-        case MN_SETREF_I_REF:
-            ps.setRef(i, (Ref) objs[0]);
-            break;
-        case MN_SETBLOB_I_BLOB:
-            ps.setBlob(i, (Blob) objs[0]);
-            break;
-        case MN_SETCLOB_I_CLOB:
-            ps.setClob(i, (Clob) objs[0]);
-            break;
-        case MN_SETARRAY_I_ARRAY:
-            ps.setArray(i, (Array) objs[0]);
-            break;
-        case MN_SETDATE_I_DATE_CAL:
-            ps.setDate(i, (Date) objs[0], (Calendar) objs[1]);
-            break;
-        case MN_SETTIME_I_TIME_CAL:
-            ps.setTime(i, (Time) objs[0], (Calendar) objs[1]);
-            break;
-        case MN_SETTIMESTAMP_I_TIMESTAMP_CAL:
-            ps.setTimestamp(i, (Timestamp) objs[0], (Calendar) objs[1]);
-            break;
-        case MN_SETNULL_I_I_S:
-            ps.setNull(i, (Integer) objs[0], (String) objs[1]);
-            break;
-        case MN_SETURL_I_URL:
-            ps.setURL(i, (URL) objs[0]);
-            break;
-        case MN_SETROWID_I_ROWID:
-            ps.setRowId(i, (RowId) objs[0]);
-            break;
-        case MN_SETNSTRING_I_S:
-            ps.setString(i, (String) objs[0]);
-            break;
-        case MN_SETNCHARACTERSTREAM_I_READER_L:
-            ps.setCharacterStream(i, (Reader) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETNCLOB_I_NCLOB:
-            ps.setNClob(i, (NClob) objs[0]);
-            break;
-        case MN_SETCLOB_I_READER_L:
-            ps.setClob(i, (Reader) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETBLOB_I_IN_L:
-            ps.setBlob(i, (InputStream) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETNCLOB_I_READER_L:
-            ps.setNClob(i, (Reader) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETSQLXML_I_SQLXML:
-            ps.setSQLXML(i, (SQLXML) objs[0]);
-            break;
-        case MN_SETOBJECT_I_O_I_I:
-            ps.setObject(i, objs[0], (Integer) objs[1], (Integer) objs[2]);
-            break;
-        case MN_SETASCIISTREAM_I_IN_L:
-            ps.setAsciiStream(i, (InputStream) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETBINARYSTREAM_I_IN_L:
-            ps.setBinaryStream(i, (InputStream) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETCHARACTERSTREAM_I_READER_L:
-            ps.setCharacterStream(i, (Reader) objs[0], (Long) objs[1]);
-            break;
-        case MN_SETASCIISTREAM_I_IN:
-            ps.setAsciiStream(i, (InputStream) objs[0]);
-            break;
-        case MN_SETBINARYSTREAM_I_IN:
-            ps.setBinaryStream(i, (InputStream) objs[0]);
-            break;
-        case MN_SETCHARACTERSTREAM_I_READER:
-            ps.setCharacterStream(i, (Reader) objs[0]);
-            break;
-        case MN_SETNCHARACTERSTREAM_I_READER:
-            ps.setNCharacterStream(i, (Reader) objs[0]);
-            break;
-        case MN_SETCLOB_I_READER:
-            ps.setClob(i, (Reader) objs[0]);
-            break;
-        case MN_SETBLOB_I_IN:
-            ps.setBlob(i, (InputStream) objs[0]);
-            break;
-        case MN_SETNCLOB_I_READER:
-            ps.setNClob(i, (Reader) objs[0]);
-            break;
+            case MN_SETNULL_I_I:
+                ps.setNull(i, (Integer) objs[0]);
+                break;
+            case MN_SETBOOLEAN_I_BOOL:
+                ps.setBoolean(i, (Boolean) objs[0]);
+                break;
+            case MN_SETBYTE_I_BYTE:
+                ps.setByte(i, (Byte) objs[0]);
+                break;
+            case MN_SETSHORT_I_SHORT:
+                ps.setShort(i, (Short) objs[0]);
+                break;
+            case MN_SETINT_I_I:
+                ps.setInt(i, (Integer) objs[0]);
+                break;
+            case MN_SETLONG_I_L:
+                ps.setLong(i, (Long) objs[0]);
+                break;
+            case MN_SETFLOAT_I_F:
+                ps.setFloat(i, (Float) objs[0]);
+                break;
+            case MN_SETDOUBLE_I_D:
+                ps.setDouble(i, (Double) objs[0]);
+                break;
+            case MN_SETBIGDECIMAL_I_BIG:
+                ps.setBigDecimal(i, (BigDecimal) objs[0]);
+                break;
+            case MN_SETSTRING_I_S:
+                ps.setString(i, (String) objs[0]);
+                break;
+            case MN_SETBYTES_I_$BYTE:
+                ps.setBytes(i, (byte[]) objs[0]);
+                break;
+            case MN_SETDATE_I_DATE:
+                ps.setDate(i, (Date) objs[0]);
+                break;
+            case MN_SETTIME_I_TIME:
+                ps.setTime(i, (Time) objs[0]);
+                break;
+            case MN_SETTIMESTAMP_I_TIMESTAMP:
+                ps.setTimestamp(i, (Timestamp) objs[0]);
+                break;
+            case MN_SETASCIISTREAM_I_IN_I:
+                ps.setAsciiStream(i, (InputStream) objs[0]);
+                break;
+            case MN_SETUNICODESTREAM_I_IN_I:
+                ps.setUnicodeStream(i, (InputStream) objs[0], (Integer) objs[1]);
+                break;
+            case MN_SETBINARYSTREAM_I_IN_I:
+                ps.setBinaryStream(i, (InputStream) objs[0], (Integer) objs[1]);
+                break;
+            case MN_SETOBJECTI_O_I:
+                ps.setObject(i, objs[0], (Integer) objs[1]);
+                break;
+            case MN_SETOBJECT_I_O:
+                ps.setObject(i, objs[0]);
+                break;
+            case MN_SETCHARACTERSTREAM_I_READER_I:
+                ps.setCharacterStream(i, (Reader) objs[0], (Integer) objs[1]);
+                break;
+            case MN_SETREF_I_REF:
+                ps.setRef(i, (Ref) objs[0]);
+                break;
+            case MN_SETBLOB_I_BLOB:
+                ps.setBlob(i, (Blob) objs[0]);
+                break;
+            case MN_SETCLOB_I_CLOB:
+                ps.setClob(i, (Clob) objs[0]);
+                break;
+            case MN_SETARRAY_I_ARRAY:
+                ps.setArray(i, (Array) objs[0]);
+                break;
+            case MN_SETDATE_I_DATE_CAL:
+                ps.setDate(i, (Date) objs[0], (Calendar) objs[1]);
+                break;
+            case MN_SETTIME_I_TIME_CAL:
+                ps.setTime(i, (Time) objs[0], (Calendar) objs[1]);
+                break;
+            case MN_SETTIMESTAMP_I_TIMESTAMP_CAL:
+                ps.setTimestamp(i, (Timestamp) objs[0], (Calendar) objs[1]);
+                break;
+            case MN_SETNULL_I_I_S:
+                ps.setNull(i, (Integer) objs[0], (String) objs[1]);
+                break;
+            case MN_SETURL_I_URL:
+                ps.setURL(i, (URL) objs[0]);
+                break;
+            case MN_SETROWID_I_ROWID:
+                ps.setRowId(i, (RowId) objs[0]);
+                break;
+            case MN_SETNSTRING_I_S:
+                ps.setString(i, (String) objs[0]);
+                break;
+            case MN_SETNCHARACTERSTREAM_I_READER_L:
+                ps.setCharacterStream(i, (Reader) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETNCLOB_I_NCLOB:
+                ps.setNClob(i, (NClob) objs[0]);
+                break;
+            case MN_SETCLOB_I_READER_L:
+                ps.setClob(i, (Reader) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETBLOB_I_IN_L:
+                ps.setBlob(i, (InputStream) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETNCLOB_I_READER_L:
+                ps.setNClob(i, (Reader) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETSQLXML_I_SQLXML:
+                ps.setSQLXML(i, (SQLXML) objs[0]);
+                break;
+            case MN_SETOBJECT_I_O_I_I:
+                ps.setObject(i, objs[0], (Integer) objs[1], (Integer) objs[2]);
+                break;
+            case MN_SETASCIISTREAM_I_IN_L:
+                ps.setAsciiStream(i, (InputStream) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETBINARYSTREAM_I_IN_L:
+                ps.setBinaryStream(i, (InputStream) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETCHARACTERSTREAM_I_READER_L:
+                ps.setCharacterStream(i, (Reader) objs[0], (Long) objs[1]);
+                break;
+            case MN_SETASCIISTREAM_I_IN:
+                ps.setAsciiStream(i, (InputStream) objs[0]);
+                break;
+            case MN_SETBINARYSTREAM_I_IN:
+                ps.setBinaryStream(i, (InputStream) objs[0]);
+                break;
+            case MN_SETCHARACTERSTREAM_I_READER:
+                ps.setCharacterStream(i, (Reader) objs[0]);
+                break;
+            case MN_SETNCHARACTERSTREAM_I_READER:
+                ps.setNCharacterStream(i, (Reader) objs[0]);
+                break;
+            case MN_SETCLOB_I_READER:
+                ps.setClob(i, (Reader) objs[0]);
+                break;
+            case MN_SETBLOB_I_IN:
+                ps.setBlob(i, (InputStream) objs[0]);
+                break;
+            case MN_SETNCLOB_I_READER:
+                ps.setNClob(i, (Reader) objs[0]);
+                break;
         }
     }
 }

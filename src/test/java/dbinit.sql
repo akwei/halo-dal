@@ -110,18 +110,35 @@ CREATE TABLE daltest11.user1 (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-
-
 CREATE TABLE daltest00.account (
-  uid varchar(20) NOT NULL,
-  city varchar(45) NOT NULL,
-  descr varchar(45) default NULL,
-  PRIMARY KEY  (uid)
+  userid varchar(80) NOT NULL,
+  email varchar(80) default NULL,
+  firstname varchar(80) default NULL,
+  lastname varchar(80) default NULL,
+  status varchar(2) default NULL,
+  addr1 varchar(80) default NULL,
+  addr2 varchar(40) default NULL,
+  city varchar(80) default NULL,
+  state varchar(80) default NULL,
+  zip varchar(20) default NULL,
+  country varchar(20) default NULL,
+  phone varchar(80) default NULL,
+  PRIMARY KEY  (userid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE daltest00.account (
-  uid varchar(20) NOT NULL,
-  city varchar(45) NOT NULL,
-  descr varchar(45) default NULL,
-  PRIMARY KEY  (uid)
+CREATE TABLE daltest01.account (
+  userid varchar(80) NOT NULL,
+  email varchar(80) default NULL,
+  firstname varchar(80) default NULL,
+  lastname varchar(80) default NULL,
+  status varchar(2) default NULL,
+  addr1 varchar(80) default NULL,
+  addr2 varchar(40) default NULL,
+  city varchar(80) default NULL,
+  state varchar(80) default NULL,
+  zip varchar(20) default NULL,
+  country varchar(20) default NULL,
+  phone varchar(80) default NULL,
+  PRIMARY KEY  (userid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

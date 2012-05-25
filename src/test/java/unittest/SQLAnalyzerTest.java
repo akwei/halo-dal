@@ -299,6 +299,19 @@ public class SQLAnalyzerTest {
     }
 
     @Test
+    public void account() {
+        String sql = "insert into account (uid,city) values(?,?)";
+        Object[] values = new Object[] { "abc", "cityabc" };
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        Assert.assertEquals("account", sqlStruct.getTableNames().get(0));
+        Assert.assertEquals("abc",
+                sqlInfo.getSQLExpressions("account.uid")[0].getValue());
+        Assert.assertEquals("cityabc",
+                sqlInfo.getSQLExpressions("account.city")[0].getValue());
+    }
+
+    @Test
     public void performance() {
         String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
                 + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "

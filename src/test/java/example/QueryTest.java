@@ -1,4 +1,4 @@
-package unittest;
+package example;
 
 import halo.dal.DALCurrentStatus;
 import halo.dal.DALCustomInfo;

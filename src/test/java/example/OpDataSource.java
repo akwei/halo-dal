@@ -1,4 +1,4 @@
-package dal;
+package example;
 
 import halo.dal.sql.DALDataSource;
 

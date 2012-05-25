@@ -1,4 +1,4 @@
-package dal;
+package example;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

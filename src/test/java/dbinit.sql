@@ -109,3 +109,19 @@ CREATE TABLE daltest11.user1 (
   PRIMARY KEY  (userid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+
+CREATE TABLE daltest00.account (
+  uid varchar(20) NOT NULL,
+  city varchar(45) NOT NULL,
+  PRIMARY KEY  (uid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE daltest01.account (
+  uid varchar(20) NOT NULL,
+  city varchar(45) NOT NULL,
+  PRIMARY KEY  (uid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+

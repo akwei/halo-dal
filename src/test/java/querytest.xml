@@ -93,7 +93,7 @@
 			<!-- 原理就是把所有的解析器类放到一个目录中 -->
 			<bean class="halo.dal.analysis.PackagePartitionParserFactory">
 				<!-- 解析器所在目录 -->
-				<property name="packageName" value="parser" />
+				<property name="packageName" value="unittest.parser" />
 			</bean>
 		</property>
 	</bean>

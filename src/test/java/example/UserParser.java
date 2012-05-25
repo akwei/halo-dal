@@ -1,4 +1,4 @@
-package parser;
+package example;
 
 import halo.dal.analysis.PartitionParser;
 import halo.dal.analysis.PartitionTableInfo;

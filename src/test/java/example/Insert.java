@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.sql.Types;
 
+import org.junit.Test;
+
 /**
  * 举例使用insert<br>
  * 根据sex进行分区，sex字段必须在insert sql中赋值
@@ -14,6 +16,7 @@ import java.sql.Types;
  */
 public class Insert extends OpBase {
 
+    @Test
     public void insert_into_daltest0_user0() throws Exception {
         final long time = System.currentTimeMillis() / 1000;
         String sql = "insert into user" + "(userid," + "nick," + "sex,"
@@ -72,6 +75,7 @@ public class Insert extends OpBase {
         }
     }
 
+    @Test
     public void insert_into_daltest1_user1() throws Exception {
         final long time = System.currentTimeMillis() / 1000;
         String sql = "insert into user" + "(userid," + "nick," + "sex,"
@@ -128,14 +132,5 @@ public class Insert extends OpBase {
             if (con != null)
                 con.close();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        Insert insert = new Insert();
-        insert.setUser("root");
-        insert.setPassword("asdasd");
-        insert.init();
-        insert.insert_into_daltest0_user0();
-        insert.insert_into_daltest1_user1();
     }
 }

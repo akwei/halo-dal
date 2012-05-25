@@ -3,8 +3,11 @@ package example;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.junit.Test;
+
 public class Update extends OpBase {
 
+    @Test
     public void update() throws Exception {
         // 根据sex进行分区，那么 sex字段必须在sql查询条件中 分区方式为奇偶分表分库
         this.update(0);// 从daltest0.user0表中更新数据
@@ -36,13 +39,5 @@ public class Update extends OpBase {
             if (con != null)
                 con.close();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        Update update = new Update();
-        update.setUser("root");
-        update.setPassword("asdasd");
-        update.init();
-        update.update();
     }
 }

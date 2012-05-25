@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.junit.Before;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -28,6 +29,13 @@ public class OpBase {
      * 数据库密码
      */
     protected String password;
+
+    @Before
+    public void before() throws Exception {
+        this.setUser("root");
+        this.setPassword("asdasd");
+        this.init();
+    }
 
     public void setUser(String user) {
         this.user = user;

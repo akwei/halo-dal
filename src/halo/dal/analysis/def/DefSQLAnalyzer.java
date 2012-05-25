@@ -24,7 +24,8 @@ public class DefSQLAnalyzer extends AbsSQLAnalyzer {
         if (sql.indexOf(" between ") != -1 || sql.indexOf(" BETWEEN ") != -1) {
             throw new SQLKeyErrException("not supported sql key: between ");
         }
-        String _sql = sql.replaceAll("\\. {1,}", "\\.").trim();
+        String _sql = sql.replaceAll("\n", " ").replaceAll("\r\n", " ")
+                .replaceAll("\\. {1,}", "\\.").trim();
         _sql = this.getLowerSQL(_sql);
         context.put("lowerSQL", _sql);
         // 对于只运行数据库函数时，不需要解析

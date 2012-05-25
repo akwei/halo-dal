@@ -35,7 +35,7 @@ public class ColumnExper {
      * @param value
      */
     public ColumnExper(String logicTableName, String sqlSeg) {
-        this.logicTableName = logicTableName;
+        this.setLogicTableName(logicTableName);
         this.initWithSeg(sqlSeg);
     }
 
@@ -111,7 +111,7 @@ public class ColumnExper {
      */
     public void setColumn(String column) {
         if (column != null) {
-            this.column = column.toLowerCase();
+            this.column = column.toLowerCase().trim();
         }
         else {
             this.column = null;

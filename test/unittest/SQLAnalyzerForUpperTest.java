@@ -19,6 +19,8 @@ public class SQLAnalyzerForUpperTest {
 
     SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
 
+    // SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new
+    // AntlrV3SQLAnalyzer());
     Map<String, Object> context;
 
     @Before
@@ -44,8 +46,7 @@ public class SQLAnalyzerForUpperTest {
         sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
-        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                parsedTableInfo);
+        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo, parsedTableInfo);
         Assert.assertEquals(sql, sql2);
     }
 
@@ -72,8 +73,7 @@ public class SQLAnalyzerForUpperTest {
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
         Assert.assertEquals("user2", parsedTableInfo.getRealTable("USER"));
-        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                parsedTableInfo);
+        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo, parsedTableInfo);
         Assert.assertEquals("DELETE FROM user2", sql2);
     }
 
@@ -227,8 +227,7 @@ public class SQLAnalyzerForUpperTest {
         Assert.assertEquals("USER", sqlStruct.getTableNames().get(0));
         Assert.assertEquals("user2", parsedTableInfo.getRealTable("USER"));
         Assert.assertEquals("MEMBER", sqlStruct.getTableNames().get(1));
-        Assert.assertEquals("member5",
-                parsedTableInfo.getRealTable("MEMBER"));
+        Assert.assertEquals("member5", parsedTableInfo.getRealTable("MEMBER"));
         Assert.assertEquals(1,
                 sqlInfo.getSQLExpressions("user.sex")[0].getValue());
         Assert.assertEquals(5,

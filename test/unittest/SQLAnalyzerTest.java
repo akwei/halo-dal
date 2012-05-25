@@ -52,8 +52,7 @@ public class SQLAnalyzerTest {
         sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
-        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                parsedTableInfo);
+        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo, parsedTableInfo);
         Assert.assertEquals(sql, sql2);
     }
 
@@ -80,8 +79,7 @@ public class SQLAnalyzerTest {
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
         Assert.assertEquals("user2", parsedTableInfo.getRealTable("user"));
-        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                parsedTableInfo);
+        sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo, parsedTableInfo);
         Assert.assertEquals("delete from user2", sql2);
     }
 
@@ -238,8 +236,7 @@ public class SQLAnalyzerTest {
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
         Assert.assertEquals("user2", parsedTableInfo.getRealTable("user"));
         Assert.assertEquals("member", sqlStruct.getTableNames().get(1));
-        Assert.assertEquals("member5",
-                parsedTableInfo.getRealTable("member"));
+        Assert.assertEquals("member5", parsedTableInfo.getRealTable("member"));
         Assert.assertEquals(1,
                 sqlInfo.getSQLExpressions("user.sex")[0].getValue());
         Assert.assertEquals(5,
@@ -284,6 +281,21 @@ public class SQLAnalyzerTest {
                         + "gatewayeve0_.START_DATE as START15_1_ "
                         + "from gateway_event1 gatewayeve0_ "
                         + "where 1=1 and gatewayeve0_.EVENT_STATUS=?", sql2);
+    }
+
+    @Test
+    public void ibatis0() {
+        String sql = "select\n" + "email,\n" + "firstname,\n" + "lastname,\n"
+                + "status,\n" + "addr1 as address1,\n" + "addr2 as address2,\n"
+                + "city,\n" + "state,\n" + "zip,\n" + "country,\n" + "phone,\n"
+                + "userid as username\n" + "from account\n"
+                + "where userid = ?";
+        Object[] values = new Object[] { 5 };
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        Assert.assertEquals("account", sqlStruct.getTableNames().get(0));
+        Assert.assertEquals(5,
+                sqlInfo.getSQLExpressions("account.userid")[0].getValue());
     }
 
     @Test

@@ -183,6 +183,7 @@ public class DALParameters {
     public void clear() {
         methodArgMap.clear();
         methodEncodeMap.clear();
+        parameterMap.clear();
         values.clear();
     }
 

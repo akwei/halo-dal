@@ -43,10 +43,10 @@ public interface SQLAnalyzer {
      *            通过parse解析后的结果,参考{@link SQLStruct}
      * @param sqlInfo
      *            参考 {@link SQLInfo}
-     * @param partitionTableInfo
-     *            参考 {@link PartitionTableInfo}
+     * @param parsedTableInfo
+     *            参考 {@link ParsedTableInfo}
      * @return 新的sql语句
      */
     String outPutSQL(String sql, SQLStruct sqlStruct, SQLInfo sqlInfo,
-            PartitionTableInfo partitionTableInfo);
+            ParsedTableInfo parsedTableInfo);
 }

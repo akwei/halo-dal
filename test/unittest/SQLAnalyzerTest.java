@@ -1,6 +1,6 @@
 package unittest;
 
-import halo.dal.analysis.PartitionTableInfo;
+import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
@@ -42,9 +42,9 @@ public class SQLAnalyzerTest {
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(sql, sql2);
         // no where
         sql = "delete from user";
@@ -53,7 +53,7 @@ public class SQLAnalyzerTest {
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
         sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(sql, sql2);
     }
 
@@ -63,12 +63,12 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 1, 50, 10, 1, 2 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
-        partitionTableInfo.setRealTable("user", "user1");
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
+        parsedTableInfo.setRealTable("user", "user1");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
-        Assert.assertEquals("user1", partitionTableInfo.getRealTable("user"));
+        Assert.assertEquals("user1", parsedTableInfo.getRealTable("user"));
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(
                 "delete from user1 where uid=? and (age>=? or age<=?) and (sex=? or sex=?) and time<=sysdate()",
                 sql2);
@@ -76,12 +76,12 @@ public class SQLAnalyzerTest {
         sql = "delete from user";
         sqlStruct = sqlAnalyzer.parse(sql, context);
         sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
-        partitionTableInfo.setRealTable("user", "user2");
+        parsedTableInfo.setRealTable("user", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", partitionTableInfo.getRealTable("user"));
+        Assert.assertEquals("user2", parsedTableInfo.getRealTable("user"));
         sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals("delete from user2", sql2);
     }
 
@@ -93,9 +93,9 @@ public class SQLAnalyzerTest {
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals(sqlStruct.getTableNames().size(), 1);
         Assert.assertEquals(sqlStruct.getTableNames().get(0), "user");
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(sql, sql2);
         Assert.assertEquals("userid",
                 sqlInfo.getSQLExpressions("user.userid")[0].getColumn());
@@ -117,13 +117,13 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 4, "jack", 22 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
-        partitionTableInfo.setRealTable("user", "user2");
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
+        parsedTableInfo.setRealTable("user", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", partitionTableInfo.getRealTable("user"));
+        Assert.assertEquals("user2", parsedTableInfo.getRealTable("user"));
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(
                 "insert into user2(userid,nickname,sex) values(?,?,?)", sql2);
         Assert.assertEquals("userid",
@@ -148,9 +148,9 @@ public class SQLAnalyzerTest {
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
         Assert.assertEquals(sqlStruct.getTableNames().size(), 1);
         Assert.assertEquals(sqlStruct.getTableNames().get(0), "user");
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(sql, sql2);
         Assert.assertEquals(
                 sqlInfo.getSQLExpressions("user.uid")[0].getValue(), 1);
@@ -166,13 +166,13 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 1, 3, "43" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
-        partitionTableInfo.setRealTable("user", "user2");
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
+        parsedTableInfo.setRealTable("user", "user2");
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", partitionTableInfo.getRealTable("user"));
+        Assert.assertEquals("user2", parsedTableInfo.getRealTable("user"));
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals("update user2 set uid=? , o=? where name=?", sql2);
         Assert.assertEquals(
                 sqlInfo.getSQLExpressions("user.uid")[0].getValue(), 1);
@@ -206,9 +206,9 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 1, 5, "akwei" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(sql, sql2);
     }
 
@@ -217,10 +217,10 @@ public class SQLAnalyzerTest {
         String sql = "select * from user";
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
-        partitionTableInfo.setRealTable("user", "user2");
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
+        parsedTableInfo.setRealTable("user", "user2");
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals("select * from user2", sql2);
     }
 
@@ -232,20 +232,20 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 1, 5, "akwei" };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
-        partitionTableInfo.setRealTable("user", "user2");
-        partitionTableInfo.setRealTable("member", "member5");
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
+        parsedTableInfo.setRealTable("user", "user2");
+        parsedTableInfo.setRealTable("member", "member5");
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
-        Assert.assertEquals("user2", partitionTableInfo.getRealTable("user"));
+        Assert.assertEquals("user2", parsedTableInfo.getRealTable("user"));
         Assert.assertEquals("member", sqlStruct.getTableNames().get(1));
         Assert.assertEquals("member5",
-                partitionTableInfo.getRealTable("member"));
+                parsedTableInfo.getRealTable("member"));
         Assert.assertEquals(1,
                 sqlInfo.getSQLExpressions("user.sex")[0].getValue());
         Assert.assertEquals(5,
                 sqlInfo.getSQLExpressions("member.age")[0].getValue());
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals("select * from user2 u,member5 as m "
                 + "where u.uid=m.uid and u.sex=? or m.age>? " + "group by sex "
                 + "order by sex " + "having name=?", sql2);
@@ -266,13 +266,13 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 5 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
-        partitionTableInfo.setRealTable("gateway_event", "gateway_event1");
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
+        parsedTableInfo.setRealTable("gateway_event", "gateway_event1");
         Assert.assertEquals("gateway_event", sqlStruct.getTableNames().get(0));
         Assert.assertEquals(5, sqlInfo
                 .getSQLExpressions("gateway_event.EVENT_STATUS")[0].getValue());
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
-                partitionTableInfo);
+                parsedTableInfo);
         Assert.assertEquals(
                 "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
                         + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "

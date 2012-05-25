@@ -14,22 +14,23 @@ import halo.dal.sql.ConnectionStatus;
  */
 public class UserParser implements PartitionParser {
 
-    public void parse(String tableLogicName, SQLInfo sqlInfo,
-            ConnectionStatus connectionStatus,
-            PartitionTableInfo partitionTableInfo) {
+    public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus) {
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
         SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("sex");
         for (SQLExpression e : sqlExpressions) {
             if (e.getSqlExpressionSymbol() == SQLExpressionSymbol.EQUAL) {
                 Integer l = (Integer) e.getValue();
                 if (l.intValue() % 2 == 0) {
-                    partitionTableInfo.setRealTable(tableLogicName, "user0");
+                    partitionTableInfo.setRealTable("user0");
                     partitionTableInfo.setDsName("ds0");
                 }
                 else {
-                    partitionTableInfo.setRealTable(tableLogicName, "user1");
+                    partitionTableInfo.setRealTable("user1");
                     partitionTableInfo.setDsName("ds1");
                 }
             }
         }
+        return partitionTableInfo;
     }
 }

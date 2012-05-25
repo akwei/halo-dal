@@ -1,8 +1,5 @@
 package halo.dal.analysis;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 解析器返回的解析结果
  * 
@@ -10,12 +7,23 @@ import java.util.Map;
  */
 public class PartitionTableInfo {
 
-    private final Map<String, String> logic_realMap = new HashMap<String, String>();
+    /**
+     * 真实表名称
+     */
+    private String realTable;
 
     /**
      * 数据源key.
      */
     private String dsName;
+
+    public void setRealTable(String realTable) {
+        this.realTable = realTable;
+    }
+
+    public String getRealTable() {
+        return realTable;
+    }
 
     public String getDsName() {
         return dsName;
@@ -29,28 +37,5 @@ public class PartitionTableInfo {
      */
     public void setDsName(String dsName) {
         this.dsName = dsName;
-    }
-
-    /**
-     * 设置逻辑表与真实表的对应
-     * 
-     * @param logic
-     *            逻辑表
-     * @param real
-     *            真实表
-     */
-    public void setRealTable(String logic, String real) {
-        logic_realMap.put(logic, real);
-    }
-
-    /**
-     * 通过逻辑表获得真实表
-     * 
-     * @param logic
-     *            逻辑表
-     * @return
-     */
-    public String getRealTable(String logic) {
-        return logic_realMap.get(logic);
     }
 }

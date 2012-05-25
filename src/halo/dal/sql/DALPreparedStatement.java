@@ -4,6 +4,7 @@ import halo.dal.DALCurrentStatus;
 import halo.dal.DALCustomInfo;
 import halo.dal.DALFactory;
 import halo.dal.DALRunTimeException;
+import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.PartitionParser;
 import halo.dal.analysis.PartitionParserNotFoundException;
 import halo.dal.analysis.PartitionTableInfo;
@@ -183,13 +184,14 @@ public class DALPreparedStatement implements PreparedStatement {
     private void parsePartition(SQLStruct sqlStruct, SQLInfo sqlInfo)
             throws SQLException {
         DALCustomInfo dalCustomInfo = DALCurrentStatus.getCustomInfo();
-        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
         DALFactory dalFactory = DALFactory.getDefault();
+        ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
         if (dalCustomInfo == null && sqlStruct.isCanParse()) {
             ConnectionStatus connectionStatus = new ConnectionStatus();
             connectionStatus.setAutoCommit(this.dalConnection.getAutoCommit());
             connectionStatus.setReadOnly(this.dalConnection.isReadOnly());
             PartitionParser parser;
+            PartitionTableInfo partitionTableInfo = null;
             for (String table : sqlStruct.getTableNames()) {
                 parser = dalFactory.getPartitionParserFactory()
                         .getParser(table);
@@ -198,22 +200,31 @@ public class DALPreparedStatement implements PreparedStatement {
                             "PartitionParser for table [" + table
                                     + "] was not found");
                 }
-                parser.parse(table, sqlInfo, connectionStatus,
-                        partitionTableInfo);
+                partitionTableInfo = parser.parse(table, sqlInfo,
+                        connectionStatus);
+                if (partitionTableInfo == null) {
+                    throw new DALRunTimeException(
+                            "partitionTableInfo can not be null loginTable : "
+                                    + table);
+                }
+                parsedTableInfo.setRealTable(table,
+                        partitionTableInfo.getRealTable());
             }
-            DALCurrentStatus.setDsKey(partitionTableInfo.getDsName());
+            if (partitionTableInfo != null) {
+                DALCurrentStatus.setDsKey(partitionTableInfo.getDsName());
+            }
         }
         else {
             if (dalCustomInfo != null) {
                 for (String table : sqlStruct.getTableNames()) {
-                    partitionTableInfo.setRealTable(table,
+                    parsedTableInfo.setRealTable(table,
                             dalCustomInfo.getRealTable(table));
                 }
             }
         }
         if (sqlStruct.isCanParse()) {
             this.sql = dalFactory.getSqlAnalyzer().outPutSQL(sql, sqlStruct,
-                    sqlInfo, partitionTableInfo);
+                    sqlInfo, parsedTableInfo);
         }
     }
 

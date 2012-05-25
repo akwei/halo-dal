@@ -14,9 +14,9 @@ import halo.dal.sql.ConnectionStatus;
  */
 public class UserParser implements PartitionParser {
 
-    public void parse(String tableLogicName, SQLInfo sqlInfo,
-            ConnectionStatus connectionStatus,
-            PartitionTableInfo partitionTableInfo) {
+    public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus) {
+        PartitionTableInfo partitionTableInfo = new PartitionTableInfo();
         // 从sqlInfo获得条件表达式,由于定义的分区条件为sex字段，那么就需要获取sex字段的表达式
         // /由于获取的表达式会存在多个，例如进行范围判断的情况下，就会出现2个表达式，因此会返回一个数组
         SQLExpression[] sqlExpressions = sqlInfo.getSQLExpressions("sex");
@@ -27,14 +27,15 @@ public class UserParser implements PartitionParser {
                 // 获得表达式的值之后，进行奇偶判断，判断的结果就是我们获得的真实数据源key与表名称
                 // 数据源key就是在创建DALDataSource的时候，写入map的key，这个key与真实的DataSource一一对应
                 if (l.intValue() % 2 == 0) {
-                    partitionTableInfo.setRealTable(tableLogicName, "user0");// 真实数据表名称
+                    partitionTableInfo.setRealTable("user0");// 真实数据表名称
                     partitionTableInfo.setDsName("ds00");// 真实数源key
                 }
                 else {
-                    partitionTableInfo.setRealTable(tableLogicName, "user1");// 真实数据表名称
+                    partitionTableInfo.setRealTable("user1");// 真实数据表名称
                     partitionTableInfo.setDsName("ds10");// 真实数源key
                 }
             }
         }
+        return partitionTableInfo;
     }
 }

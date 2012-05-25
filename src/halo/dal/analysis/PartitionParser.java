@@ -19,11 +19,8 @@ public interface PartitionParser {
      *            参考 {@link SQLInfo}
      * @param connectionStatus
      *            参考 {@link ConnectionStatus}
-     * @param partitionTableInfo
-     *            参考 {@link PartitionTableInfo}
-     * @return
+     * @return 参考 {@link PartitionTableInfo}
      */
-    void parse(String tableLogicName, SQLInfo sqlInfo,
-            ConnectionStatus connectionStatus,
-            PartitionTableInfo partitionTableInfo);
+    PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
+            ConnectionStatus connectionStatus);
 }

@@ -54,6 +54,9 @@ public class DALCurrentStatus {
     }
 
     private static void setValue(String key, Object value) {
+        if (value == null) {
+            throw new DALRunTimeException("value can not null");
+        }
         Map<String, Object> map = getMap();
         map.put(key, value);
     }

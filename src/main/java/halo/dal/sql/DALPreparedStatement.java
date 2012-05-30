@@ -100,7 +100,14 @@ public class DALPreparedStatement implements PreparedStatement {
     }
 
     private void initRealPreparedStatement() throws SQLException {
-        Connection con = this.dalConnection.getCurrentConnection();
+        Connection con = null;
+        try {
+            con = this.dalConnection.getCurrentConnection();
+        }
+        catch (DALRunTimeException e) {
+            throw new DALRunTimeException(e.getMessage() + " for sql: "
+                    + this.sql);
+        }
         switch (this.createMethodByCon) {
             case CREATE_METHOD_BY_CON_S:
                 ps = con.prepareStatement(sql);

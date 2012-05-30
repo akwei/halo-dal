@@ -60,6 +60,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>persion.hbm.xml</value>
+				<value>nodebody.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

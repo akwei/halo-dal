@@ -142,3 +142,9 @@ CREATE TABLE daltest01.account (
   PRIMARY KEY  (userid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE daltest00.node_body_1 (
+  nodeid int(11) NOT NULL auto_increment,
+  nodename varchar(45) NOT NULL,
+  PRIMARY KEY  (nodeid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

@@ -65,4 +65,17 @@ public class HibernateTest {
         Person dbp = this.hibernateTemplate.get(Person.class, p.getPid());
         Assert.assertNull(dbp);
     }
+
+    @Test
+    public void nodeBodyTest() {
+        NodeBody o = new NodeBody();
+        o.setNodeName("akwei");
+        this.hibernateTemplate.save(o);
+        // NodeBody o1 = (NodeBody) this.hibernateTemplate.find(
+        // "from NodeBody where nodeId=", o.getNodeId()).get(0);
+        NodeBody o1 = (NodeBody) this.hibernateTemplate.find(
+                "from NodeBody where nodeId=" + o.getNodeId()).get(0);
+        Assert.assertEquals(o.getNodeId(), o1.getNodeId());
+        Assert.assertEquals(o.getNodeName(), o1.getNodeName());
+    }
 }

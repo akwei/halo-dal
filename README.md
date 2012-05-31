@@ -36,6 +36,11 @@ Insert.java Update.java Delete.java Select.java
 
 请先创建测试用的数据库，example/sql/dbinit.sql是数据库脚本
 
+#重要说明
+在测试hibernate的时候，发现一些小问题，在mysql中使用自增id，没有任何问题。
+但是使用mssql oracle db2这些带有sequece的场景时会发现一些不合适的情况。
+当调用hibernate save()方法时，hibernate会现去请求一个sequece，但是这个时候，获取sequece的sql是没有任何可解析的信息，因此会出现无法获得dsKey的异常。
+建议大家在使用的时候，先通过合适的方法来获得唯一id，然后再使用save方法
 
 #如何使用
 ##1:数据库表的分析器

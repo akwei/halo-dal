@@ -2,10 +2,11 @@ package unittest;
 
 import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
+import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 import halo.dal.analysis.def.CachedSQLAnalyzer;
+import halo.dal.analysis.def.DefSQLAnalyzer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import org.junit.Test;
 
 public class SQLAnalyzerTest {
 
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
 
     // SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
     // SQLAnalyzer sqlAnalyzer = new AntlrV3SQLAnalyzer();
@@ -388,5 +389,18 @@ public class SQLAnalyzerTest {
     private void parse(String sql, Object[] values) {
         SQLAnalyzer analyzer = sqlAnalyzer;
         analyzer.parse(sql, context);
+    }
+
+    @Test
+    public void test0() {
+        String sql = "select orgs0_.orgId as orgId1_0_, orgs0_.club_id as club2_1_0_, orgs0_.create_time as create3_1_0_, orgs0_.create_user as create4_1_0_, orgs0_.liushuihao as liushuihao1_0_, orgs0_.orgName as orgName1_0_, orgs0_.parentId as parentId1_0_, orgs0_.status as status1_0_, orgs0_.update_time as update9_1_0_, orgs0_.update_user as update10_1_0_ "
+                + "from video_orgs orgs0_ where orgs0_.orgId=?";
+        Object[] values = new Object[] { 10 };
+        SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
+        SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        SQLExpression[] es = sqlInfo.getSQLExpressions("video_orgs.orgid");
+        Assert.assertNotNull(es);
+        Assert.assertEquals(1, es.length);
+        Assert.assertEquals(values[0], es[0].getValue());
     }
 }

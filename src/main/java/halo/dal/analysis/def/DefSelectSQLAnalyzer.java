@@ -85,7 +85,7 @@ public class DefSelectSQLAnalyzer extends AbsSQLAnalyzer {
         if (whereSQL != null) {
             String _whereSQL = whereSQL.replaceAll("\\(|\\)", "");
             String seg = _whereSQL.substring(SQL_KEY_WHERE.length()).trim();
-            String[] kv = seg.split("and|or");
+            String[] kv = seg.split(" and | or ");
             ColumnExper columnExper;
             String kvSeg;
             for (int i = 0; i < kv.length; i++) {

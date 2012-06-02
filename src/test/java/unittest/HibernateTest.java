@@ -1,5 +1,8 @@
 package unittest;
 
+import halo.dal.DALCurrentStatus;
+import halo.dal.DALCustomInfo;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -70,6 +73,10 @@ public class HibernateTest {
     public void nodeBodyTest() {
         NodeBody o = new NodeBody();
         o.setNodeName("akwei");
+        DALCustomInfo dalCustomInfo = new DALCustomInfo();
+        dalCustomInfo.setDsKey("ds00");
+        dalCustomInfo.setRealTable("node_body", "node_body_1");
+        DALCurrentStatus.setCustomInfo(dalCustomInfo);
         this.hibernateTemplate.save(o);
         // NodeBody o1 = (NodeBody) this.hibernateTemplate.find(
         // "from NodeBody where nodeId=", o.getNodeId()).get(0);

@@ -1,10 +1,14 @@
 package halo.dal.analysis.antlr.v3;
 
-// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-05-23 12:03:35
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-06-02 18:49:21
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.Lexer;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
 
 @SuppressWarnings({ "all", "warnings", "unchecked" })
 public class AntlrV3SQLLexer extends Lexer {
@@ -1301,12 +1305,12 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:151:6: ( ( 'a' .. 'z' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:6: ( ( 'a' .. 'z' |
             // 'A' .. 'Z' | '0' .. '9' | '_' | '.' )+ )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:152:2: ( 'a' .. 'z' | 'A'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:156:2: ( 'a' .. 'z' | 'A'
             // .. 'Z' | '0' .. '9' | '_' | '.' )+
             {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:152:2: ( 'a' .. 'z' |
+                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:156:2: ( 'a' .. 'z' |
                 // 'A' .. 'Z' | '0' .. '9' | '_' | '.' )+
                 int cnt1 = 0;
                 loop1: do {
@@ -1360,9 +1364,9 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:5: ( ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:159:5: ( ( ' ' | '\\t' |
             // '\\r' | '\\n' ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:9: ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:159:9: ( ' ' | '\\t' |
             // '\\r' | '\\n' )
             {
                 if ((input.LA(1) >= '\t' && input.LA(1) <= '\n')

@@ -105,6 +105,19 @@ public class DALConnection implements Connection {
         return con;
     }
 
+    /**
+     * 获得正在使用的Connection
+     * 
+     * @return
+     */
+    private Connection getConnectionInUsing() {
+        String name = DALCurrentStatus.getDsKey();
+        if (name == null) {
+            return null;
+        }
+        return this.conMap.get(name);
+    }
+
     private void initCurrentConnection(Connection con) throws SQLException {
         if (this.transactionIsolation != 0) {
             con.setTransactionIsolation(this.transactionIsolation);
@@ -162,7 +175,11 @@ public class DALConnection implements Connection {
     }
 
     public boolean isClosed() throws SQLException {
-        return this.getCurrentConnection().isClosed();
+        Connection con = this.getConnectionInUsing();
+        if (con == null) {
+            return false;
+        }
+        return con.isClosed();
     }
 
     public boolean isReadOnly() throws SQLException {
@@ -281,19 +298,19 @@ public class DALConnection implements Connection {
     }
 
     public void releaseSavepoint(Savepoint savepoint) throws SQLException {
-        throw new SQLException("do not support savepoint");
+        throw new SQLException("dal do not support savepoint");
     }
 
     public void rollback(Savepoint savepoint) throws SQLException {
-        throw new SQLException("do not support savepoint");
+        throw new SQLException("dal do not support savepoint");
     }
 
     public Savepoint setSavepoint() throws SQLException {
-        throw new SQLException("do not support savepoint");
+        throw new SQLException("dal do not support savepoint");
     }
 
     public Savepoint setSavepoint(String name) throws SQLException {
-        throw new SQLException("do not support savepoint");
+        throw new SQLException("dal do not support savepoint");
     }
 
     public Array createArrayOf(String typeName, Object[] elements)

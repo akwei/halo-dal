@@ -4,8 +4,8 @@ import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 import halo.dal.analysis.def.CachedSQLAnalyzer;
+import halo.dal.analysis.def.DefSQLAnalyzer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +17,9 @@ import org.junit.Test;
 
 public class SQLAnalyzerForUpperTest {
 
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
+//    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
 
-    // SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new
-    // AntlrV3SQLAnalyzer());
     Map<String, Object> context;
 
     @Before

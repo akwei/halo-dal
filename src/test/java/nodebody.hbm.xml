@@ -6,7 +6,6 @@
 
 	<class name="NodeBody" table="node_body">
 		<id name="nodeId" column="nodeid">
-			<generator class="native" />
 		</id>
 		<property name="nodeName" column="nodename" />
 	</class>

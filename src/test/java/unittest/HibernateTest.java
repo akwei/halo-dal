@@ -72,6 +72,7 @@ public class HibernateTest {
     @Test
     public void nodeBodyTest() {
         NodeBody o = new NodeBody();
+        o.setNodeId(119);
         o.setNodeName("akwei");
         DALCustomInfo dalCustomInfo = new DALCustomInfo();
         dalCustomInfo.setDsKey("ds00");

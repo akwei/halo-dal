@@ -327,11 +327,11 @@ public class SQLAnalyzerTest {
                 + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
                 + "order by gatewayeve0_.EVENT_TYPE desc";
         for (int i = 0; i < 100; i++) {
-            this.parse(sql, null);
+            this.parse(sql);
         }
         long begin = System.currentTimeMillis();
         for (int i = 0; i < 1000 * 1000; i++) {
-            this.parse(sql, null);
+            this.parse(sql);
         }
         long end = System.currentTimeMillis();
         System.out.println(end - begin);
@@ -362,14 +362,14 @@ public class SQLAnalyzerTest {
                 + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
                 + "order by gatewayeve0_.EVENT_TYPE desc";
         for (int i = 0; i < 100; i++) {
-            this.parse(sql, null);
+            this.parse(sql);
         }
         List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
         for (int i = 0; i < 1000 * 1000; i++) {
             Callable<Boolean> task = new Callable<Boolean>() {
 
                 public Boolean call() throws Exception {
-                    parse(sql, null);
+                    parse(sql);
                     return true;
                 }
             };
@@ -386,7 +386,7 @@ public class SQLAnalyzerTest {
         }
     }
 
-    private void parse(String sql, Object[] values) {
+    private void parse(String sql) {
         SQLAnalyzer analyzer = sqlAnalyzer;
         analyzer.parse(sql, context);
     }

@@ -1,11 +1,11 @@
 package unittest;
 
+import halo.dal.analysis.CachedSQLAnalyzer;
 import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.def.CachedSQLAnalyzer;
-import halo.dal.analysis.def.DefSQLAnalyzer;
+import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +17,7 @@ import org.junit.Test;
 
 public class SQLAnalyzerForUpperTest {
 
-//    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
 
     Map<String, Object> context;
 
@@ -260,16 +259,17 @@ public class SQLAnalyzerForUpperTest {
                 .getSQLExpressions("gateway_event.EVENT_STATUS")[0].getValue());
         String sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo,
                 parsedTableInfo);
-        Assert.assertEquals(
-                "SELECT GATEWAYEVE0_.ID AS ID1_, GATEWAYEVE0_.ADAPTER_ID AS ADAPTER2_1_, "
-                        + "GATEWAYEVE0_.ADAPTER_MEMO AS ADAPTER3_1_, GATEWAYEVE0_.ADAPTER_NAME AS ADAPTER4_1_, "
-                        + "GATEWAYEVE0_.CREATETIME AS CREATETIME1_, GATEWAYEVE0_.END_DATE AS END6_1_, "
-                        + "GATEWAYEVE0_.EVENT_ID AS EVENT7_1_, GATEWAYEVE0_.EVENT_STATUS AS EVENT8_1_, "
-                        + "GATEWAYEVE0_.EVENT_TYPE AS EVENT9_1_, GATEWAYEVE0_.LASTUPDTIME AS LASTUPD10_1_, "
-                        + "GATEWAYEVE0_.MERCHANT_ID AS MERCHANT11_1_, GATEWAYEVE0_.MERCHANT_NAME AS MERCHANT12_1_, "
-                        + "GATEWAYEVE0_.NAME AS NAME1_, GATEWAYEVE0_.OPRID AS OPRID1_, "
-                        + "GATEWAYEVE0_.START_DATE AS START15_1_ "
-                        + "FROM gateway_event1 GATEWAYEVE0_ "
-                        + "WHERE 1=1 AND GATEWAYEVE0_.EVENT_STATUS=?", sql2);
+        String osql = "SELECT GATEWAYEVE0_.ID AS ID1_, GATEWAYEVE0_.ADAPTER_ID AS ADAPTER2_1_, "
+                + "GATEWAYEVE0_.ADAPTER_MEMO AS ADAPTER3_1_, GATEWAYEVE0_.ADAPTER_NAME AS ADAPTER4_1_, "
+                + "GATEWAYEVE0_.CREATETIME AS CREATETIME1_, GATEWAYEVE0_.END_DATE AS END6_1_, "
+                + "GATEWAYEVE0_.EVENT_ID AS EVENT7_1_, GATEWAYEVE0_.EVENT_STATUS AS EVENT8_1_, "
+                + "GATEWAYEVE0_.EVENT_TYPE AS EVENT9_1_, GATEWAYEVE0_.LASTUPDTIME AS LASTUPD10_1_, "
+                + "GATEWAYEVE0_.MERCHANT_ID AS MERCHANT11_1_, GATEWAYEVE0_.MERCHANT_NAME AS MERCHANT12_1_, "
+                + "GATEWAYEVE0_.NAME AS NAME1_, GATEWAYEVE0_.OPRID AS OPRID1_, "
+                + "GATEWAYEVE0_.START_DATE AS START15_1_ "
+                + "FROM gateway_event1 GATEWAYEVE0_ "
+                + "WHERE 1=1 AND GATEWAYEVE0_.EVENT_STATUS=?";
+        System.out.println(osql);
+        Assert.assertEquals(osql, sql2);
     }
 }

@@ -1,12 +1,12 @@
 package unittest;
 
+import halo.dal.analysis.CachedSQLAnalyzer;
 import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.def.CachedSQLAnalyzer;
-import halo.dal.analysis.def.DefSQLAnalyzer;
+import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,10 +24,8 @@ import org.junit.Test;
 
 public class SQLAnalyzerTest {
 
-    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new DefSQLAnalyzer());
+    SQLAnalyzer sqlAnalyzer = new CachedSQLAnalyzer(new AntlrV3SQLAnalyzer());
 
-    // SQLAnalyzer sqlAnalyzer = new DefSQLAnalyzer();
-    // SQLAnalyzer sqlAnalyzer = new AntlrV3SQLAnalyzer();
     Map<String, Object> context;
 
     @Before

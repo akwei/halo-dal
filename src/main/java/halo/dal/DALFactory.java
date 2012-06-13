@@ -3,7 +3,7 @@ package halo.dal;
 import halo.dal.analysis.DefPartitionParserFactory;
 import halo.dal.analysis.PartitionParserFactory;
 import halo.dal.analysis.SQLAnalyzer;
-import halo.dal.analysis.def.DefSQLAnalyzer;
+import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 
 /**
  * DAL各种服务的赋值
@@ -24,7 +24,7 @@ public class DALFactory {
 
     public DALFactory() {
         ins = this;
-        this.setSqlAnalyzer(new DefSQLAnalyzer());
+        this.setSqlAnalyzer(new AntlrV3SQLAnalyzer());
         this.setPartitionParserFactory(new DefPartitionParserFactory());
     }
 

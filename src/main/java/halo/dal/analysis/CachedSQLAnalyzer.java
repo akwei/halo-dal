@@ -1,9 +1,5 @@
-package halo.dal.analysis.def;
+package halo.dal.analysis;
 
-import halo.dal.analysis.ParsedTableInfo;
-import halo.dal.analysis.SQLAnalyzer;
-import halo.dal.analysis.SQLInfo;
-import halo.dal.analysis.SQLStruct;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

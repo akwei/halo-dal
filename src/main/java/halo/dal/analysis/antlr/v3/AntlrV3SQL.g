@@ -23,9 +23,6 @@ tokens{
 	LEFT_CLOSE='(';
 	RIGHT_CLOSE=')';
 	PRE_SET='?';
-	IN='in';
-	NOT='not';
-	
 	INSERT_='INSERT';
 	SELECT_='SELECT';
 	DELETE_='DELETE';
@@ -45,8 +42,6 @@ tokens{
 	FULL_='FULL';
 	VALUES_='VALUES';
 	INTO_='INTO';
-	IN_='IN';
-	NOT_='NOT';
 }
 
 @header {
@@ -92,7 +87,11 @@ deleteSQL
 	
 selectSQL
 	:	
-	(SELECT|SELECT_) selectColums (FROM|FROM_) tables ((FULL|FULL_|CROSS|CROSS_|INNER|INNER_|LEFT|LEFT_|RIGHT|RIGHT_) (JOIN|JOIN_) table ((ON|ON_) WORD '=' WORD)? )? whereSQL;
+	(SELECT|SELECT_) selectColums (FROM|FROM_) tables ((FULL|FULL_|CROSS|CROSS_|INNER|INNER_|LEFT|LEFT_|RIGHT|RIGHT_) (JOIN|JOIN_) table ((ON|ON_) WORD '=' WORD)? )? selectWhereSQL;
+	
+selectWhereSQL
+	:	
+	((WHERE|WHERE_) (k_v|k_v2) (and_or (k_v|k_v2))* (and_or (WORD op '(' selectSQL ')'))* )? (other)*;
 
 updateSQL
 	:	
@@ -114,6 +113,9 @@ table	:
 tables	:
 	(table (',' table)*);
 
+k_v2	:	
+	WORD op WORD;
+
 k_v	:	
 	WORD op PRE_SET {
 	colExprs.add(new String[]{$WORD.text,$op.text});
@@ -127,26 +129,35 @@ k_v	:
 
 column	:	
 	name ((AS|AS_)? alias)?;
+	
+sel_column	:	
+	sel_name ((AS|AS_)? sel_alias)?;
 
 selectColums
 	:
-	('*'|column (',' column)*) ;
+	('*'|sel_column (',' sel_column)*) ;
 
 whereSQL:		
-	((WHERE|WHERE_) (k_v) (and_or k_v)*)? other;
+	((WHERE|WHERE_) (k_v|k_v2) (and_or (k_v|k_v2))*)? (other)*;
 		
 and_or	:	
 	(AND|AND_|OR|OR_);
 
 op
 	:	
-	('='|'>'|'>='|'<'|'<='|'!='|'<>');
+	('='|'>'|'>='|'<'|'<='|'!='|'<>'|'in'|'IN'|'exists'|'EXISTS');
 	
 other	:	
 	'group'|'GROUP'|'order'|'ORDER'|'having'|'HAVING';
 
 name	:	
 	WORD;
+	
+sel_name:	
+	WORD (LEFT_CLOSE (WORD|'*')? RIGHT_CLOSE)?;
+	
+sel_alias:	
+	WORD (LEFT_CLOSE (WORD|'*')? RIGHT_CLOSE)?;
 
 alias	:	
 	WORD;

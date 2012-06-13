@@ -1,19 +1,23 @@
 package halo.dal.analysis.antlr.v3;
 
-// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-06-02 18:49:21
-import org.antlr.runtime.BaseRecognizer;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.DFA;
-import org.antlr.runtime.EarlyExitException;
-import org.antlr.runtime.Lexer;
-import org.antlr.runtime.MismatchedSetException;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.RecognizerSharedState;
+// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-06-13 14:10:02
+import org.antlr.runtime.*;
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
 
 @SuppressWarnings({ "all", "warnings", "unchecked" })
 public class AntlrV3SQLLexer extends Lexer {
 
     public static final int EOF = -1;
+
+    public static final int T__47 = 47;
+
+    public static final int T__48 = 48;
+
+    public static final int T__49 = 49;
+
+    public static final int T__50 = 50;
 
     public static final int T__51 = 51;
 
@@ -45,6 +49,16 @@ public class AntlrV3SQLLexer extends Lexer {
 
     public static final int T__65 = 65;
 
+    public static final int T__66 = 66;
+
+    public static final int T__67 = 67;
+
+    public static final int T__68 = 68;
+
+    public static final int T__69 = 69;
+
+    public static final int T__70 = 70;
+
     public static final int AND = 4;
 
     public static final int AND_ = 5;
@@ -69,75 +83,67 @@ public class AntlrV3SQLLexer extends Lexer {
 
     public static final int FULL_ = 15;
 
-    public static final int IN = 16;
+    public static final int INNER = 16;
 
-    public static final int INNER = 17;
+    public static final int INNER_ = 17;
 
-    public static final int INNER_ = 18;
+    public static final int INSERT = 18;
 
-    public static final int INSERT = 19;
+    public static final int INSERT_ = 19;
 
-    public static final int INSERT_ = 20;
+    public static final int INTO = 20;
 
-    public static final int INTO = 21;
+    public static final int INTO_ = 21;
 
-    public static final int INTO_ = 22;
+    public static final int JOIN = 22;
 
-    public static final int IN_ = 23;
+    public static final int JOIN_ = 23;
 
-    public static final int JOIN = 24;
+    public static final int LEFT = 24;
 
-    public static final int JOIN_ = 25;
+    public static final int LEFT_ = 25;
 
-    public static final int LEFT = 26;
+    public static final int LEFT_CLOSE = 26;
 
-    public static final int LEFT_ = 27;
+    public static final int ON = 27;
 
-    public static final int LEFT_CLOSE = 28;
+    public static final int ON_ = 28;
 
-    public static final int NOT = 29;
+    public static final int OR = 29;
 
-    public static final int NOT_ = 30;
+    public static final int OR_ = 30;
 
-    public static final int ON = 31;
+    public static final int PRE_SET = 31;
 
-    public static final int ON_ = 32;
+    public static final int RIGHT = 32;
 
-    public static final int OR = 33;
+    public static final int RIGHT_ = 33;
 
-    public static final int OR_ = 34;
+    public static final int RIGHT_CLOSE = 34;
 
-    public static final int PRE_SET = 35;
+    public static final int SELECT = 35;
 
-    public static final int RIGHT = 36;
+    public static final int SELECT_ = 36;
 
-    public static final int RIGHT_ = 37;
+    public static final int SET = 37;
 
-    public static final int RIGHT_CLOSE = 38;
+    public static final int SET_ = 38;
 
-    public static final int SELECT = 39;
+    public static final int UPDATE = 39;
 
-    public static final int SELECT_ = 40;
+    public static final int UPDATE_ = 40;
 
-    public static final int SET = 41;
+    public static final int VALUES = 41;
 
-    public static final int SET_ = 42;
+    public static final int VALUES_ = 42;
 
-    public static final int UPDATE = 43;
+    public static final int WHERE = 43;
 
-    public static final int UPDATE_ = 44;
+    public static final int WHERE_ = 44;
 
-    public static final int VALUES = 45;
+    public static final int WORD = 45;
 
-    public static final int VALUES_ = 46;
-
-    public static final int WHERE = 47;
-
-    public static final int WHERE_ = 48;
-
-    public static final int WORD = 49;
-
-    public static final int WS = 50;
+    public static final int WS = 46;
 
     // delegates
     // delegators
@@ -388,32 +394,13 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     // $ANTLR end "FULL_"
-    // $ANTLR start "IN"
-    public final void mIN() throws RecognitionException {
-        try {
-            int _type = IN;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:14:4: ( 'in' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:14:6: 'in'
-            {
-                match("in");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "IN"
     // $ANTLR start "INNER"
     public final void mINNER() throws RecognitionException {
         try {
             int _type = INNER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:15:7: ( 'inner' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:15:9: 'inner'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:14:7: ( 'inner' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:14:9: 'inner'
             {
                 match("inner");
             }
@@ -431,8 +418,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INNER_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:16:8: ( 'INNER' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:16:10: 'INNER'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:15:8: ( 'INNER' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:15:10: 'INNER'
             {
                 match("INNER");
             }
@@ -450,8 +437,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INSERT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:17:8: ( 'insert' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:17:10: 'insert'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:16:8: ( 'insert' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:16:10: 'insert'
             {
                 match("insert");
             }
@@ -469,8 +456,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INSERT_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:18:9: ( 'INSERT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:18:11: 'INSERT'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:17:9: ( 'INSERT' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:17:11: 'INSERT'
             {
                 match("INSERT");
             }
@@ -488,8 +475,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INTO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:19:6: ( 'into' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:19:8: 'into'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:18:6: ( 'into' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:18:8: 'into'
             {
                 match("into");
             }
@@ -507,8 +494,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INTO_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:20:7: ( 'INTO' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:20:9: 'INTO'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:19:7: ( 'INTO' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:19:9: 'INTO'
             {
                 match("INTO");
             }
@@ -521,32 +508,13 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     // $ANTLR end "INTO_"
-    // $ANTLR start "IN_"
-    public final void mIN_() throws RecognitionException {
-        try {
-            int _type = IN_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:21:5: ( 'IN' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:21:7: 'IN'
-            {
-                match("IN");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "IN_"
     // $ANTLR start "JOIN"
     public final void mJOIN() throws RecognitionException {
         try {
             int _type = JOIN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:22:6: ( 'join' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:22:8: 'join'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:20:6: ( 'join' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:20:8: 'join'
             {
                 match("join");
             }
@@ -564,8 +532,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = JOIN_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:23:7: ( 'JOIN' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:23:9: 'JOIN'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:21:7: ( 'JOIN' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:21:9: 'JOIN'
             {
                 match("JOIN");
             }
@@ -583,8 +551,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = LEFT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:24:6: ( 'left' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:24:8: 'left'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:22:6: ( 'left' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:22:8: 'left'
             {
                 match("left");
             }
@@ -602,8 +570,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = LEFT_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:25:7: ( 'LEFT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:25:9: 'LEFT'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:23:7: ( 'LEFT' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:23:9: 'LEFT'
             {
                 match("LEFT");
             }
@@ -621,8 +589,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = LEFT_CLOSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:26:12: ( '(' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:26:14: '('
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:24:12: ( '(' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:24:14: '('
             {
                 match('(');
             }
@@ -635,51 +603,13 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     // $ANTLR end "LEFT_CLOSE"
-    // $ANTLR start "NOT"
-    public final void mNOT() throws RecognitionException {
-        try {
-            int _type = NOT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:27:5: ( 'not' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:27:7: 'not'
-            {
-                match("not");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "NOT"
-    // $ANTLR start "NOT_"
-    public final void mNOT_() throws RecognitionException {
-        try {
-            int _type = NOT_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:28:6: ( 'NOT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:28:8: 'NOT'
-            {
-                match("NOT");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "NOT_"
     // $ANTLR start "ON"
     public final void mON() throws RecognitionException {
         try {
             int _type = ON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:29:4: ( 'on' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:29:6: 'on'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:25:4: ( 'on' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:25:6: 'on'
             {
                 match("on");
             }
@@ -697,8 +627,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = ON_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:30:5: ( 'ON' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:30:7: 'ON'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:26:5: ( 'ON' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:26:7: 'ON'
             {
                 match("ON");
             }
@@ -716,8 +646,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:31:4: ( 'or' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:31:6: 'or'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:27:4: ( 'or' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:27:6: 'or'
             {
                 match("or");
             }
@@ -735,8 +665,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = OR_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:32:5: ( 'OR' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:32:7: 'OR'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:28:5: ( 'OR' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:28:7: 'OR'
             {
                 match("OR");
             }
@@ -754,8 +684,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = PRE_SET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:33:9: ( '?' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:33:11: '?'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:29:9: ( '?' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:29:11: '?'
             {
                 match('?');
             }
@@ -773,8 +703,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = RIGHT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:34:7: ( 'right' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:34:9: 'right'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:30:7: ( 'right' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:30:9: 'right'
             {
                 match("right");
             }
@@ -792,8 +722,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = RIGHT_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:35:8: ( 'RIGHT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:35:10: 'RIGHT'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:31:8: ( 'RIGHT' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:31:10: 'RIGHT'
             {
                 match("RIGHT");
             }
@@ -811,8 +741,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = RIGHT_CLOSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:36:13: ( ')' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:36:15: ')'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:32:13: ( ')' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:32:15: ')'
             {
                 match(')');
             }
@@ -830,8 +760,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = SELECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:37:8: ( 'select' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:37:10: 'select'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:33:8: ( 'select' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:33:10: 'select'
             {
                 match("select");
             }
@@ -849,8 +779,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = SELECT_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:38:9: ( 'SELECT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:38:11: 'SELECT'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:34:9: ( 'SELECT' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:34:11: 'SELECT'
             {
                 match("SELECT");
             }
@@ -868,8 +798,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = SET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:39:5: ( 'set' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:39:7: 'set'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:35:5: ( 'set' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:35:7: 'set'
             {
                 match("set");
             }
@@ -887,8 +817,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = SET_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:40:6: ( 'SET' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:40:8: 'SET'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:36:6: ( 'SET' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:36:8: 'SET'
             {
                 match("SET");
             }
@@ -906,8 +836,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = UPDATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:41:8: ( 'update' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:41:10: 'update'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:37:8: ( 'update' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:37:10: 'update'
             {
                 match("update");
             }
@@ -925,8 +855,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = UPDATE_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:42:9: ( 'UPDATE' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:42:11: 'UPDATE'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:38:9: ( 'UPDATE' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:38:11: 'UPDATE'
             {
                 match("UPDATE");
             }
@@ -944,8 +874,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = VALUES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:43:8: ( 'values' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:43:10: 'values'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:39:8: ( 'values' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:39:10: 'values'
             {
                 match("values");
             }
@@ -963,8 +893,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = VALUES_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:44:9: ( 'VALUES' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:44:11: 'VALUES'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:40:9: ( 'VALUES' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:40:11: 'VALUES'
             {
                 match("VALUES");
             }
@@ -982,8 +912,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WHERE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:45:7: ( 'where' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:45:9: 'where'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:41:7: ( 'where' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:41:9: 'where'
             {
                 match("where");
             }
@@ -1001,8 +931,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WHERE_;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:46:8: ( 'WHERE' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:46:10: 'WHERE'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:42:8: ( 'WHERE' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:42:10: 'WHERE'
             {
                 match("WHERE");
             }
@@ -1015,15 +945,91 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     // $ANTLR end "WHERE_"
+    // $ANTLR start "T__47"
+    public final void mT__47() throws RecognitionException {
+        try {
+            int _type = T__47;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:43:7: ( '!=' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:43:9: '!='
+            {
+                match("!=");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__47"
+    // $ANTLR start "T__48"
+    public final void mT__48() throws RecognitionException {
+        try {
+            int _type = T__48;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:44:7: ( ',' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:44:9: ','
+            {
+                match(',');
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__48"
+    // $ANTLR start "T__49"
+    public final void mT__49() throws RecognitionException {
+        try {
+            int _type = T__49;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:45:7: ( '<' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:45:9: '<'
+            {
+                match('<');
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__49"
+    // $ANTLR start "T__50"
+    public final void mT__50() throws RecognitionException {
+        try {
+            int _type = T__50;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:46:7: ( '<=' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:46:9: '<='
+            {
+                match("<=");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__50"
     // $ANTLR start "T__51"
     public final void mT__51() throws RecognitionException {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:47:7: ( '!=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:47:9: '!='
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:47:7: ( '<>' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:47:9: '<>'
             {
-                match("!=");
+                match("<>");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1039,10 +1045,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:48:7: ( '*' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:48:9: '*'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:48:7: ( '=' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:48:9: '='
             {
-                match('*');
+                match('=');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1058,10 +1064,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:49:7: ( ',' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:49:9: ','
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:49:7: ( '>' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:49:9: '>'
             {
-                match(',');
+                match('>');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1077,10 +1083,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:50:7: ( '<' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:50:9: '<'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:50:7: ( '>=' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:50:9: '>='
             {
-                match('<');
+                match(">=");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1096,10 +1102,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:51:7: ( '<=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:51:9: '<='
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:51:7: ( 'ASC' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:51:9: 'ASC'
             {
-                match("<=");
+                match("ASC");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1115,10 +1121,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:52:7: ( '<>' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:52:9: '<>'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:52:7: ( 'BY' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:52:9: 'BY'
             {
-                match("<>");
+                match("BY");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1134,10 +1140,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:53:7: ( '=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:53:9: '='
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:53:7: ( 'DESC' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:53:9: 'DESC'
             {
-                match('=');
+                match("DESC");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1153,10 +1159,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:54:7: ( '>' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:54:9: '>'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:54:7: ( 'EXISTS' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:54:9: 'EXISTS'
             {
-                match('>');
+                match("EXISTS");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1172,10 +1178,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:55:7: ( '>=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:55:9: '>='
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:55:7: ( 'GROUP' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:55:9: 'GROUP'
             {
-                match(">=");
+                match("GROUP");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1191,10 +1197,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:56:7: ( 'GROUP' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:56:9: 'GROUP'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:56:7: ( 'HAVING' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:56:9: 'HAVING'
             {
-                match("GROUP");
+                match("HAVING");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1210,10 +1216,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:57:7: ( 'HAVING' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:57:9: 'HAVING'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:57:7: ( 'IN' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:57:9: 'IN'
             {
-                match("HAVING");
+                match("IN");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1248,10 +1254,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:59:7: ( 'group' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:59:9: 'group'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:59:7: ( 'asc' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:59:9: 'asc'
             {
-                match("group");
+                match("asc");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1267,10 +1273,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:60:7: ( 'having' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:60:9: 'having'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:60:7: ( 'by' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:60:9: 'by'
             {
-                match("having");
+                match("by");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1286,8 +1292,103 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:61:7: ( 'order' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:61:9: 'order'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:61:7: ( 'desc' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:61:9: 'desc'
+            {
+                match("desc");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__65"
+    // $ANTLR start "T__66"
+    public final void mT__66() throws RecognitionException {
+        try {
+            int _type = T__66;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:62:7: ( 'exists' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:62:9: 'exists'
+            {
+                match("exists");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__66"
+    // $ANTLR start "T__67"
+    public final void mT__67() throws RecognitionException {
+        try {
+            int _type = T__67;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:63:7: ( 'group' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:63:9: 'group'
+            {
+                match("group");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__67"
+    // $ANTLR start "T__68"
+    public final void mT__68() throws RecognitionException {
+        try {
+            int _type = T__68;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:64:7: ( 'having' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:64:9: 'having'
+            {
+                match("having");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__68"
+    // $ANTLR start "T__69"
+    public final void mT__69() throws RecognitionException {
+        try {
+            int _type = T__69;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:65:7: ( 'in' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:65:9: 'in'
+            {
+                match("in");
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__69"
+    // $ANTLR start "T__70"
+    public final void mT__70() throws RecognitionException {
+        try {
+            int _type = T__70;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:66:7: ( 'order' )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:66:9: 'order'
             {
                 match("order");
             }
@@ -1299,24 +1400,25 @@ public class AntlrV3SQLLexer extends Lexer {
         }
     }
 
-    // $ANTLR end "T__65"
+    // $ANTLR end "T__70"
     // $ANTLR start "WORD"
     public final void mWORD() throws RecognitionException {
         try {
             int _type = WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:6: ( ( 'a' .. 'z' |
-            // 'A' .. 'Z' | '0' .. '9' | '_' | '.' )+ )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:156:2: ( 'a' .. 'z' | 'A'
-            // .. 'Z' | '0' .. '9' | '_' | '.' )+
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:165:6: ( ( 'a' .. 'z' |
+            // 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+ )
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:166:2: ( 'a' .. 'z' | 'A'
+            // .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+
             {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:156:2: ( 'a' .. 'z' |
-                // 'A' .. 'Z' | '0' .. '9' | '_' | '.' )+
+                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:166:2: ( 'a' .. 'z' |
+                // 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+
                 int cnt1 = 0;
                 loop1: do {
                     int alt1 = 2;
                     int LA1_0 = input.LA(1);
-                    if ((LA1_0 == '.' || (LA1_0 >= '0' && LA1_0 <= '9')
+                    if ((LA1_0 == '*' || LA1_0 == '.'
+                            || (LA1_0 >= '0' && LA1_0 <= '9')
                             || (LA1_0 >= 'A' && LA1_0 <= 'Z') || LA1_0 == '_' || (LA1_0 >= 'a' && LA1_0 <= 'z'))) {
                         alt1 = 1;
                     }
@@ -1324,7 +1426,8 @@ public class AntlrV3SQLLexer extends Lexer {
                         case 1:
                         // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
                         {
-                            if (input.LA(1) == '.'
+                            if (input.LA(1) == '*'
+                                    || input.LA(1) == '.'
                                     || (input.LA(1) >= '0' && input.LA(1) <= '9')
                                     || (input.LA(1) >= 'A' && input.LA(1) <= 'Z')
                                     || input.LA(1) == '_'
@@ -1364,9 +1467,9 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:159:5: ( ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:168:5: ( ( ' ' | '\\t' |
             // '\\r' | '\\n' ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:159:9: ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:168:9: ( ' ' | '\\t' |
             // '\\r' | '\\n' )
             {
                 if ((input.LA(1) >= '\t' && input.LA(1) <= '\n')
@@ -1392,14 +1495,15 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR end "WS"
     public void mTokens() throws RecognitionException {
         // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:8: ( AND | AND_ | AS | AS_ |
-        // CROSS | CROSS_ | DELETE | DELETE_ | FROM | FROM_ | FULL | FULL_ | IN
-        // | INNER | INNER_ | INSERT | INSERT_ | INTO | INTO_ | IN_ | JOIN |
-        // JOIN_ | LEFT | LEFT_ | LEFT_CLOSE | NOT | NOT_ | ON | ON_ | OR | OR_
-        // | PRE_SET | RIGHT | RIGHT_ | RIGHT_CLOSE | SELECT | SELECT_ | SET |
-        // SET_ | UPDATE | UPDATE_ | VALUES | VALUES_ | WHERE | WHERE_ | T__51 |
-        // T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60
-        // | T__61 | T__62 | T__63 | T__64 | T__65 | WORD | WS )
-        int alt2 = 62;
+        // CROSS | CROSS_ | DELETE | DELETE_ | FROM | FROM_ | FULL | FULL_ |
+        // INNER | INNER_ | INSERT | INSERT_ | INTO | INTO_ | JOIN | JOIN_ |
+        // LEFT | LEFT_ | LEFT_CLOSE | ON | ON_ | OR | OR_ | PRE_SET | RIGHT |
+        // RIGHT_ | RIGHT_CLOSE | SELECT | SELECT_ | SET | SET_ | UPDATE |
+        // UPDATE_ | VALUES | VALUES_ | WHERE | WHERE_ | T__47 | T__48 | T__49 |
+        // T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58
+        // | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 |
+        // T__67 | T__68 | T__69 | T__70 | WORD | WS )
+        int alt2 = 67;
         alt2 = dfa2.predict(input);
         switch (alt2) {
             case 1:
@@ -1475,301 +1579,331 @@ public class AntlrV3SQLLexer extends Lexer {
             }
                 break;
             case 13:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:76: IN
-            {
-                mIN();
-            }
-                break;
-            case 14:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:79: INNER
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:76: INNER
             {
                 mINNER();
             }
                 break;
-            case 15:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:85: INNER_
+            case 14:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:82: INNER_
             {
                 mINNER_();
             }
                 break;
-            case 16:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:92: INSERT
+            case 15:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:89: INSERT
             {
                 mINSERT();
             }
                 break;
-            case 17:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:99: INSERT_
+            case 16:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:96: INSERT_
             {
                 mINSERT_();
             }
                 break;
-            case 18:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:107: INTO
+            case 17:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:104: INTO
             {
                 mINTO();
             }
                 break;
-            case 19:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:112: INTO_
+            case 18:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:109: INTO_
             {
                 mINTO_();
             }
                 break;
-            case 20:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:118: IN_
-            {
-                mIN_();
-            }
-                break;
-            case 21:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:122: JOIN
+            case 19:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:115: JOIN
             {
                 mJOIN();
             }
                 break;
-            case 22:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:127: JOIN_
+            case 20:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:120: JOIN_
             {
                 mJOIN_();
             }
                 break;
-            case 23:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:133: LEFT
+            case 21:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:126: LEFT
             {
                 mLEFT();
             }
                 break;
-            case 24:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:138: LEFT_
+            case 22:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:131: LEFT_
             {
                 mLEFT_();
             }
                 break;
-            case 25:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:144: LEFT_CLOSE
+            case 23:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:137: LEFT_CLOSE
             {
                 mLEFT_CLOSE();
             }
                 break;
-            case 26:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:155: NOT
-            {
-                mNOT();
-            }
-                break;
-            case 27:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:159: NOT_
-            {
-                mNOT_();
-            }
-                break;
-            case 28:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:164: ON
+            case 24:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:148: ON
             {
                 mON();
             }
                 break;
-            case 29:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:167: ON_
+            case 25:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:151: ON_
             {
                 mON_();
             }
                 break;
-            case 30:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:171: OR
+            case 26:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:155: OR
             {
                 mOR();
             }
                 break;
-            case 31:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:174: OR_
+            case 27:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:158: OR_
             {
                 mOR_();
             }
                 break;
-            case 32:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:178: PRE_SET
+            case 28:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:162: PRE_SET
             {
                 mPRE_SET();
             }
                 break;
-            case 33:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:186: RIGHT
+            case 29:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:170: RIGHT
             {
                 mRIGHT();
             }
                 break;
-            case 34:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:192: RIGHT_
+            case 30:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:176: RIGHT_
             {
                 mRIGHT_();
             }
                 break;
-            case 35:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:199: RIGHT_CLOSE
+            case 31:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:183: RIGHT_CLOSE
             {
                 mRIGHT_CLOSE();
             }
                 break;
-            case 36:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:211: SELECT
+            case 32:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:195: SELECT
             {
                 mSELECT();
             }
                 break;
-            case 37:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:218: SELECT_
+            case 33:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:202: SELECT_
             {
                 mSELECT_();
             }
                 break;
-            case 38:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:226: SET
+            case 34:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:210: SET
             {
                 mSET();
             }
                 break;
-            case 39:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:230: SET_
+            case 35:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:214: SET_
             {
                 mSET_();
             }
                 break;
-            case 40:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:235: UPDATE
+            case 36:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:219: UPDATE
             {
                 mUPDATE();
             }
                 break;
-            case 41:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:242: UPDATE_
+            case 37:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:226: UPDATE_
             {
                 mUPDATE_();
             }
                 break;
-            case 42:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:250: VALUES
+            case 38:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:234: VALUES
             {
                 mVALUES();
             }
                 break;
-            case 43:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:257: VALUES_
+            case 39:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:241: VALUES_
             {
                 mVALUES_();
             }
                 break;
-            case 44:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:265: WHERE
+            case 40:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:249: WHERE
             {
                 mWHERE();
             }
                 break;
-            case 45:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:271: WHERE_
+            case 41:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:255: WHERE_
             {
                 mWHERE_();
             }
                 break;
+            case 42:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:262: T__47
+            {
+                mT__47();
+            }
+                break;
+            case 43:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:268: T__48
+            {
+                mT__48();
+            }
+                break;
+            case 44:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:274: T__49
+            {
+                mT__49();
+            }
+                break;
+            case 45:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:280: T__50
+            {
+                mT__50();
+            }
+                break;
             case 46:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:278: T__51
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:286: T__51
             {
                 mT__51();
             }
                 break;
             case 47:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:284: T__52
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:292: T__52
             {
                 mT__52();
             }
                 break;
             case 48:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:290: T__53
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:298: T__53
             {
                 mT__53();
             }
                 break;
             case 49:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:296: T__54
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:304: T__54
             {
                 mT__54();
             }
                 break;
             case 50:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:302: T__55
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:310: T__55
             {
                 mT__55();
             }
                 break;
             case 51:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:308: T__56
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:316: T__56
             {
                 mT__56();
             }
                 break;
             case 52:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:314: T__57
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:322: T__57
             {
                 mT__57();
             }
                 break;
             case 53:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:320: T__58
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:328: T__58
             {
                 mT__58();
             }
                 break;
             case 54:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:326: T__59
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:334: T__59
             {
                 mT__59();
             }
                 break;
             case 55:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:332: T__60
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:340: T__60
             {
                 mT__60();
             }
                 break;
             case 56:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:338: T__61
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:346: T__61
             {
                 mT__61();
             }
                 break;
             case 57:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:344: T__62
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:352: T__62
             {
                 mT__62();
             }
                 break;
             case 58:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:350: T__63
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:358: T__63
             {
                 mT__63();
             }
                 break;
             case 59:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:356: T__64
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:364: T__64
             {
                 mT__64();
             }
                 break;
             case 60:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:362: T__65
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:370: T__65
             {
                 mT__65();
             }
                 break;
             case 61:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:368: WORD
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:376: T__66
+            {
+                mT__66();
+            }
+                break;
+            case 62:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:382: T__67
+            {
+                mT__67();
+            }
+                break;
+            case 63:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:388: T__68
+            {
+                mT__68();
+            }
+                break;
+            case 64:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:394: T__69
+            {
+                mT__69();
+            }
+                break;
+            case 65:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:400: T__70
+            {
+                mT__70();
+            }
+                break;
+            case 66:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:406: WORD
             {
                 mWORD();
             }
                 break;
-            case 62:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:373: WS
+            case 67:
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:411: WS
             {
                 mWS();
             }
@@ -1779,102 +1913,107 @@ public class AntlrV3SQLLexer extends Lexer {
 
     protected DFA2 dfa2 = new DFA2(this);
 
-    static final String DFA2_eotS = "\1\uffff\16\52\1\uffff\4\52\1\uffff\2\52\1\uffff\10\52\3\uffff\1"
-            + "\120\1\uffff\1\122\4\52\2\uffff\1\52\1\130\1\52\1\132\10\52\1\146"
-            + "\1\152\6\52\1\161\1\163\1\164\1\166\12\52\5\uffff\4\52\1\u0087\1"
-            + "\uffff\1\u0088\1\uffff\13\52\1\uffff\3\52\1\uffff\4\52\1\u009b\1"
-            + "\u009c\1\uffff\1\52\2\uffff\1\52\1\uffff\3\52\1\u00a2\1\52\1\u00a4"
-            + "\12\52\2\uffff\4\52\1\u00b3\1\u00b4\1\u00b5\1\u00b6\2\52\1\u00b9"
-            + "\2\52\1\u00bc\1\u00bd\1\u00be\1\u00bf\1\u00c0\2\uffff\5\52\1\uffff"
-            + "\1\52\1\uffff\12\52\1\u00d1\1\u00d2\2\52\4\uffff\1\u00d5\1\52\1"
-            + "\uffff\1\u00d7\1\52\5\uffff\1\u00d9\1\u00da\1\u00db\1\u00dc\6\52"
-            + "\1\u00e3\1\u00e4\1\u00e5\1\52\1\u00e7\1\52\2\uffff\1\u00e9\1\u00ea"
-            + "\1\uffff\1\u00eb\1\uffff\1\u00ec\4\uffff\1\u00ed\1\u00ee\1\u00ef"
-            + "\1\u00f0\1\u00f1\1\u00f2\3\uffff\1\u00f3\1\uffff\1\u00f4\14\uffff";
+    static final String DFA2_eotS = "\1\uffff\16\53\1\uffff\2\53\1\uffff\2\53\1\uffff\10\53\2\uffff\1"
+            + "\117\1\uffff\1\121\10\53\2\uffff\1\53\1\134\1\53\1\137\10\53\1\155"
+            + "\1\161\4\53\1\166\1\170\1\171\1\173\12\53\5\uffff\1\u0088\3\53\1"
+            + "\u008c\3\53\1\u0090\1\u0091\1\uffff\1\u0092\1\u0093\1\uffff\15\53"
+            + "\1\uffff\3\53\1\uffff\4\53\1\uffff\1\53\2\uffff\1\53\1\uffff\3\53"
+            + "\1\u00ad\1\53\1\u00af\6\53\1\uffff\3\53\1\uffff\3\53\4\uffff\3\53"
+            + "\1\u00bf\1\53\1\u00c1\1\u00c2\1\u00c3\1\u00c4\1\u00c5\2\53\1\u00c8"
+            + "\2\53\1\u00cb\1\u00cc\1\u00cd\1\u00ce\1\u00cf\5\53\1\uffff\1\53"
+            + "\1\uffff\14\53\1\u00e2\1\u00e3\1\53\1\uffff\1\53\5\uffff\1\u00e6"
+            + "\1\53\1\uffff\1\u00e8\1\53\5\uffff\1\u00ea\1\u00eb\1\u00ec\1\u00ed"
+            + "\6\53\1\u00f4\1\u00f5\1\53\1\u00f7\2\53\1\u00fa\1\53\2\uffff\1\u00fc"
+            + "\1\u00fd\1\uffff\1\u00fe\1\uffff\1\u00ff\4\uffff\1\u0100\1\u0101"
+            + "\1\u0102\1\u0103\1\u0104\1\u0105\2\uffff\1\u0106\1\uffff\1\u0107"
+            + "\1\u0108\1\uffff\1\u0109\16\uffff";
 
-    static final String DFA2_eofS = "\u00f5\uffff";
+    static final String DFA2_eofS = "\u010a\uffff";
 
     static final String DFA2_minS = "\1\11\1\156\1\116\1\162\1\122\1\145\1\105\1\162\1\122\1\156\1\116"
-            + "\1\157\1\117\1\145\1\105\1\uffff\1\157\1\117\1\156\1\116\1\uffff"
-            + "\1\151\1\111\1\uffff\1\145\1\105\1\160\1\120\1\141\1\101\1\150\1"
-            + "\110\3\uffff\1\75\1\uffff\1\75\1\122\1\101\1\162\1\141\2\uffff\1"
-            + "\144\1\56\1\104\1\56\1\157\1\117\1\154\1\114\1\157\1\154\1\117\1"
-            + "\114\2\56\1\151\1\111\1\146\1\106\1\164\1\124\4\56\1\147\1\107\1"
-            + "\154\1\114\1\144\1\104\1\154\1\114\1\145\1\105\5\uffff\1\117\1\126"
-            + "\1\157\1\166\1\56\1\uffff\1\56\1\uffff\1\163\1\123\1\145\1\105\1"
-            + "\155\1\154\1\115\1\114\2\145\1\157\1\uffff\2\105\1\117\1\uffff\1"
-            + "\156\1\116\1\164\1\124\2\56\1\uffff\1\145\2\uffff\1\105\1\uffff"
-            + "\1\150\1\110\1\145\1\56\1\105\1\56\1\141\1\101\1\165\1\125\1\162"
-            + "\1\122\1\125\1\111\1\165\1\151\2\uffff\1\163\1\123\1\164\1\124\4"
-            + "\56\2\162\1\56\2\122\5\56\2\uffff\1\162\1\122\1\164\1\124\1\143"
-            + "\1\uffff\1\103\1\uffff\1\164\1\124\1\145\1\105\1\145\1\105\1\120"
-            + "\1\116\1\160\1\156\2\56\1\145\1\105\4\uffff\1\56\1\164\1\uffff\1"
-            + "\56\1\124\5\uffff\4\56\1\164\1\124\1\145\1\105\1\163\1\123\3\56"
-            + "\1\107\1\56\1\147\2\uffff\2\56\1\uffff\1\56\1\uffff\1\56\4\uffff"
-            + "\6\56\3\uffff\1\56\1\uffff\1\56\14\uffff";
+            + "\1\157\1\117\1\145\1\105\1\uffff\1\156\1\116\1\uffff\1\151\1\111"
+            + "\1\uffff\1\145\1\105\1\160\1\120\1\141\1\101\1\150\1\110\2\uffff"
+            + "\1\75\1\uffff\1\75\1\131\1\130\1\122\1\101\1\171\1\170\1\162\1\141"
+            + "\2\uffff\1\144\1\52\1\104\1\52\1\157\1\117\1\154\1\114\1\157\1\154"
+            + "\1\117\1\114\2\52\1\151\1\111\1\146\1\106\4\52\1\147\1\107\1\154"
+            + "\1\114\1\144\1\104\1\154\1\114\1\145\1\105\5\uffff\1\52\1\111\1"
+            + "\117\1\126\1\52\1\151\1\157\1\166\2\52\1\uffff\2\52\1\uffff\1\163"
+            + "\1\123\1\145\1\143\1\105\1\103\1\155\1\154\1\115\1\114\2\145\1\157"
+            + "\1\uffff\2\105\1\117\1\uffff\1\156\1\116\1\164\1\124\1\uffff\1\145"
+            + "\2\uffff\1\105\1\uffff\1\150\1\110\1\145\1\52\1\105\1\52\1\141\1"
+            + "\101\1\165\1\125\1\162\1\122\1\uffff\1\123\1\125\1\111\1\uffff\1"
+            + "\163\1\165\1\151\4\uffff\1\163\1\123\1\164\1\52\1\124\5\52\2\162"
+            + "\1\52\2\122\5\52\1\162\1\122\1\164\1\124\1\143\1\uffff\1\103\1\uffff"
+            + "\1\164\1\124\1\145\1\105\1\145\1\105\1\124\1\120\1\116\1\164\1\160"
+            + "\1\156\2\52\1\145\1\uffff\1\105\5\uffff\1\52\1\164\1\uffff\1\52"
+            + "\1\124\5\uffff\4\52\1\164\1\124\1\145\1\105\1\163\1\123\2\52\1\123"
+            + "\1\52\1\107\1\163\1\52\1\147\2\uffff\2\52\1\uffff\1\52\1\uffff\1"
+            + "\52\4\uffff\6\52\2\uffff\1\52\1\uffff\2\52\1\uffff\1\52\16\uffff";
 
     static final String DFA2_maxS = "\1\172\1\163\1\123\1\162\1\122\1\145\1\105\1\165\1\125\1\156\1\116"
-            + "\1\157\1\117\1\145\1\105\1\uffff\1\157\1\117\1\162\1\122\1\uffff"
-            + "\1\151\1\111\1\uffff\1\145\1\105\1\160\1\120\1\141\1\101\1\150\1"
-            + "\110\3\uffff\1\76\1\uffff\1\75\1\122\1\101\1\162\1\141\2\uffff\1"
-            + "\144\1\172\1\104\1\172\1\157\1\117\1\154\1\114\1\157\1\154\1\117"
-            + "\1\114\2\172\1\151\1\111\1\146\1\106\1\164\1\124\4\172\1\147\1\107"
-            + "\1\164\1\124\1\144\1\104\1\154\1\114\1\145\1\105\5\uffff\1\117\1"
-            + "\126\1\157\1\166\1\172\1\uffff\1\172\1\uffff\1\163\1\123\1\145\1"
-            + "\105\1\155\1\154\1\115\1\114\2\145\1\157\1\uffff\2\105\1\117\1\uffff"
-            + "\1\156\1\116\1\164\1\124\2\172\1\uffff\1\145\2\uffff\1\105\1\uffff"
-            + "\1\150\1\110\1\145\1\172\1\105\1\172\1\141\1\101\1\165\1\125\1\162"
-            + "\1\122\1\125\1\111\1\165\1\151\2\uffff\1\163\1\123\1\164\1\124\4"
-            + "\172\2\162\1\172\2\122\5\172\2\uffff\1\162\1\122\1\164\1\124\1\143"
-            + "\1\uffff\1\103\1\uffff\1\164\1\124\1\145\1\105\1\145\1\105\1\120"
-            + "\1\116\1\160\1\156\2\172\1\145\1\105\4\uffff\1\172\1\164\1\uffff"
-            + "\1\172\1\124\5\uffff\4\172\1\164\1\124\1\145\1\105\1\163\1\123\3"
-            + "\172\1\107\1\172\1\147\2\uffff\2\172\1\uffff\1\172\1\uffff\1\172"
-            + "\4\uffff\6\172\3\uffff\1\172\1\uffff\1\172\14\uffff";
+            + "\1\157\1\117\1\145\1\105\1\uffff\1\162\1\122\1\uffff\1\151\1\111"
+            + "\1\uffff\1\145\1\105\1\160\1\120\1\141\1\101\1\150\1\110\2\uffff"
+            + "\1\76\1\uffff\1\75\1\131\1\130\1\122\1\101\1\171\1\170\1\162\1\141"
+            + "\2\uffff\1\144\1\172\1\104\1\172\1\157\1\117\1\163\1\123\1\157\1"
+            + "\154\1\117\1\114\2\172\1\151\1\111\1\146\1\106\4\172\1\147\1\107"
+            + "\1\164\1\124\1\144\1\104\1\154\1\114\1\145\1\105\5\uffff\1\172\1"
+            + "\111\1\117\1\126\1\172\1\151\1\157\1\166\2\172\1\uffff\2\172\1\uffff"
+            + "\1\163\1\123\1\145\1\143\1\105\1\103\1\155\1\154\1\115\1\114\2\145"
+            + "\1\157\1\uffff\2\105\1\117\1\uffff\1\156\1\116\1\164\1\124\1\uffff"
+            + "\1\145\2\uffff\1\105\1\uffff\1\150\1\110\1\145\1\172\1\105\1\172"
+            + "\1\141\1\101\1\165\1\125\1\162\1\122\1\uffff\1\123\1\125\1\111\1"
+            + "\uffff\1\163\1\165\1\151\4\uffff\1\163\1\123\1\164\1\172\1\124\5"
+            + "\172\2\162\1\172\2\122\5\172\1\162\1\122\1\164\1\124\1\143\1\uffff"
+            + "\1\103\1\uffff\1\164\1\124\1\145\1\105\1\145\1\105\1\124\1\120\1"
+            + "\116\1\164\1\160\1\156\2\172\1\145\1\uffff\1\105\5\uffff\1\172\1"
+            + "\164\1\uffff\1\172\1\124\5\uffff\4\172\1\164\1\124\1\145\1\105\1"
+            + "\163\1\123\2\172\1\123\1\172\1\107\1\163\1\172\1\147\2\uffff\2\172"
+            + "\1\uffff\1\172\1\uffff\1\172\4\uffff\6\172\2\uffff\1\172\1\uffff"
+            + "\2\172\1\uffff\1\172\16\uffff";
 
-    static final String DFA2_acceptS = "\17\uffff\1\31\4\uffff\1\40\2\uffff\1\43\10\uffff\1\56\1\57\1\60"
-            + "\1\uffff\1\64\5\uffff\1\75\1\76\42\uffff\1\62\1\63\1\61\1\66\1\65"
-            + "\5\uffff\1\3\1\uffff\1\4\13\uffff\1\15\3\uffff\1\24\6\uffff\1\34"
-            + "\1\uffff\1\36\1\35\1\uffff\1\37\20\uffff\1\1\1\2\22\uffff\1\32\1"
-            + "\33\5\uffff\1\46\1\uffff\1\47\16\uffff\1\11\1\13\1\12\1\14\2\uffff"
-            + "\1\22\2\uffff\1\23\1\25\1\26\1\27\1\30\20\uffff\1\5\1\6\2\uffff"
-            + "\1\16\1\uffff\1\17\1\uffff\1\74\1\71\1\41\1\42\6\uffff\1\54\1\55"
-            + "\1\67\1\uffff\1\72\1\uffff\1\7\1\10\1\20\1\21\1\44\1\45\1\50\1\51"
-            + "\1\52\1\53\1\70\1\73";
+    static final String DFA2_acceptS = "\17\uffff\1\27\2\uffff\1\34\2\uffff\1\37\10\uffff\1\52\1\53\1\uffff"
+            + "\1\57\11\uffff\1\102\1\103\40\uffff\1\55\1\56\1\54\1\61\1\60\12"
+            + "\uffff\1\3\2\uffff\1\4\15\uffff\1\100\3\uffff\1\70\4\uffff\1\30"
+            + "\1\uffff\1\32\1\31\1\uffff\1\33\14\uffff\1\63\3\uffff\1\73\3\uffff"
+            + "\1\1\1\72\1\2\1\62\31\uffff\1\42\1\uffff\1\43\17\uffff\1\74\1\uffff"
+            + "\1\64\1\11\1\13\1\12\1\14\2\uffff\1\21\2\uffff\1\22\1\23\1\24\1"
+            + "\25\1\26\22\uffff\1\5\1\6\2\uffff\1\15\1\uffff\1\16\1\uffff\1\101"
+            + "\1\71\1\35\1\36\6\uffff\1\50\1\51\1\uffff\1\66\2\uffff\1\76\1\uffff"
+            + "\1\7\1\10\1\17\1\20\1\40\1\41\1\44\1\45\1\46\1\47\1\65\1\67\1\75"
+            + "\1\77";
 
-    static final String DFA2_specialS = "\u00f5\uffff}>";
+    static final String DFA2_specialS = "\u010a\uffff}>";
 
     static final String[] DFA2_transitionS = {
-            "\2\53\2\uffff\1\53\22\uffff\1\53\1\40\6\uffff\1\17\1\27\1\41"
-                    + "\1\uffff\1\42\1\uffff\1\52\1\uffff\12\52\2\uffff\1\43\1\44\1"
-                    + "\45\1\24\1\uffff\1\2\1\52\1\4\1\6\1\52\1\10\1\46\1\47\1\12\1"
-                    + "\14\1\52\1\16\1\52\1\21\1\23\2\52\1\26\1\31\1\52\1\33\1\35\1"
-                    + "\37\3\52\4\uffff\1\52\1\uffff\1\1\1\52\1\3\1\5\1\52\1\7\1\50"
-                    + "\1\51\1\11\1\13\1\52\1\15\1\52\1\20\1\22\2\52\1\25\1\30\1\52"
-                    + "\1\32\1\34\1\36\3\52",
-            "\1\54\4\uffff\1\55",
-            "\1\56\4\uffff\1\57",
-            "\1\60",
+            "\2\54\2\uffff\1\54\22\uffff\1\54\1\36\6\uffff\1\17\1\25\1\53"
+                    + "\1\uffff\1\37\1\uffff\1\53\1\uffff\12\53\2\uffff\1\40\1\41\1"
+                    + "\42\1\22\1\uffff\1\2\1\43\1\4\1\6\1\44\1\10\1\45\1\46\1\12\1"
+                    + "\14\1\53\1\16\2\53\1\21\2\53\1\24\1\27\1\53\1\31\1\33\1\35\3"
+                    + "\53\4\uffff\1\53\1\uffff\1\1\1\47\1\3\1\5\1\50\1\7\1\51\1\52"
+                    + "\1\11\1\13\1\53\1\15\2\53\1\20\2\53\1\23\1\26\1\53\1\30\1\32"
+                    + "\1\34\3\53",
+            "\1\55\4\uffff\1\56",
+            "\1\57\4\uffff\1\60",
             "\1\61",
             "\1\62",
             "\1\63",
-            "\1\64\2\uffff\1\65",
-            "\1\66\2\uffff\1\67",
-            "\1\70",
+            "\1\64",
+            "\1\65\2\uffff\1\66",
+            "\1\67\2\uffff\1\70",
             "\1\71",
             "\1\72",
             "\1\73",
             "\1\74",
             "\1\75",
-            "",
             "\1\76",
-            "\1\77",
-            "\1\100\3\uffff\1\101",
-            "\1\102\3\uffff\1\103",
             "",
+            "\1\77\3\uffff\1\100",
+            "\1\101\3\uffff\1\102",
+            "",
+            "\1\103",
             "\1\104",
-            "\1\105",
             "",
+            "\1\105",
             "\1\106",
             "\1\107",
             "\1\110",
@@ -1882,116 +2021,283 @@ public class AntlrV3SQLLexer extends Lexer {
             "\1\112",
             "\1\113",
             "\1\114",
-            "\1\115",
             "",
             "",
+            "\1\115\1\116",
             "",
-            "\1\116\1\117",
-            "",
-            "\1\121",
+            "\1\120",
+            "\1\122",
             "\1\123",
             "\1\124",
             "\1\125",
             "\1\126",
-            "",
-            "",
             "\1\127",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\130",
             "\1\131",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\133",
-            "\1\134",
+            "",
+            "",
+            "\1\132",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\2\53\1\133\27\53",
             "\1\135",
-            "\1\136",
-            "\1\137",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\2\53\1\136\27\53\4"
+                    + "\uffff\1\53\1\uffff\32\53",
             "\1\140",
             "\1\141",
-            "\1\142",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\15\52"
-                    + "\1\143\4\52\1\144\1\145\6\52",
-            "\1\52\1\uffff\12\52\7\uffff\15\52\1\147\4\52\1\150\1\151\6"
-                    + "\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\153",
-            "\1\154",
-            "\1\155",
-            "\1\156",
-            "\1\157",
-            "\1\160",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\3\52"
-                    + "\1\162\26\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\3\52\1\165\26\52\4\uffff\1\52\1"
-                    + "\uffff\32\52", "\1\167", "\1\170",
-            "\1\171\7\uffff\1\172", "\1\173\7\uffff\1\174", "\1\175", "\1\176",
-            "\1\177", "\1\u0080", "\1\u0081", "\1\u0082", "", "", "", "", "",
-            "\1\u0083", "\1\u0084", "\1\u0085", "\1\u0086",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "\1\u0089", "\1\u008a", "\1\u008b", "\1\u008c", "\1\u008d",
-            "\1\u008e", "\1\u008f", "\1\u0090", "\1\u0091", "\1\u0092",
-            "\1\u0093", "", "\1\u0094", "\1\u0095", "\1\u0096", "", "\1\u0097",
-            "\1\u0098", "\1\u0099", "\1\u009a",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "\1\u009d", "", "", "\1\u009e", "", "\1\u009f", "\1\u00a0",
+            "\1\142\6\uffff\1\143",
+            "\1\144\6\uffff\1\145",
+            "\1\146",
+            "\1\147",
+            "\1\150",
+            "\1\151",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\15\53\1\152\4\53\1\153\1\154\6\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\15\53\1\156\4\53\1"
+                    + "\157\1\160\6\53\4\uffff\1\53\1\uffff\32\53",
+            "\1\162",
+            "\1\163",
+            "\1\164",
+            "\1\165",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\3\53\1\167\26\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\3\53\1\172\26\53\4"
+                    + "\uffff\1\53\1\uffff\32\53",
+            "\1\174",
+            "\1\175",
+            "\1\176\7\uffff\1\177",
+            "\1\u0080\7\uffff\1\u0081",
+            "\1\u0082",
+            "\1\u0083",
+            "\1\u0084",
+            "\1\u0085",
+            "\1\u0086",
+            "\1\u0087",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u0089",
+            "\1\u008a",
+            "\1\u008b",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u008d",
+            "\1\u008e",
+            "\1\u008f",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "\1\u0094",
+            "\1\u0095",
+            "\1\u0096",
+            "\1\u0097",
+            "\1\u0098",
+            "\1\u0099",
+            "\1\u009a",
+            "\1\u009b",
+            "\1\u009c",
+            "\1\u009d",
+            "\1\u009e",
+            "\1\u009f",
+            "\1\u00a0",
+            "",
             "\1\u00a1",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u00a2",
             "\1\u00a3",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00a5", "\1\u00a6", "\1\u00a7", "\1\u00a8", "\1\u00a9",
-            "\1\u00aa", "\1\u00ab", "\1\u00ac", "\1\u00ad", "\1\u00ae", "", "",
-            "\1\u00af", "\1\u00b0", "\1\u00b1", "\1\u00b2",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00b7", "\1\u00b8",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00ba", "\1\u00bb",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "", "\1\u00c1", "\1\u00c2", "\1\u00c3", "\1\u00c4", "\1\u00c5", "",
-            "\1\u00c6", "", "\1\u00c7", "\1\u00c8", "\1\u00c9", "\1\u00ca",
-            "\1\u00cb", "\1\u00cc", "\1\u00cd", "\1\u00ce", "\1\u00cf",
+            "",
+            "\1\u00a4",
+            "\1\u00a5",
+            "\1\u00a6",
+            "\1\u00a7",
+            "",
+            "\1\u00a8",
+            "",
+            "",
+            "\1\u00a9",
+            "",
+            "\1\u00aa",
+            "\1\u00ab",
+            "\1\u00ac",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00ae",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00b0",
+            "\1\u00b1",
+            "\1\u00b2",
+            "\1\u00b3",
+            "\1\u00b4",
+            "\1\u00b5",
+            "",
+            "\1\u00b6",
+            "\1\u00b7",
+            "\1\u00b8",
+            "",
+            "\1\u00b9",
+            "\1\u00ba",
+            "\1\u00bb",
+            "",
+            "",
+            "",
+            "",
+            "\1\u00bc",
+            "\1\u00bd",
+            "\1\u00be",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00c0",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00c6",
+            "\1\u00c7",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00c9",
+            "\1\u00ca",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
             "\1\u00d0",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00d3", "\1\u00d4", "", "", "", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00d6", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00d8", "", "", "", "", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00dd", "\1\u00de", "\1\u00df", "\1\u00e0", "\1\u00e1",
-            "\1\u00e2",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00e6",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00e8", "", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "", "", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "\1\52\1\uffff\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52", "",
-            "", "", "", "", "", "", "", "", "", "", "" };
+            "\1\u00d1",
+            "\1\u00d2",
+            "\1\u00d3",
+            "\1\u00d4",
+            "",
+            "\1\u00d5",
+            "",
+            "\1\u00d6",
+            "\1\u00d7",
+            "\1\u00d8",
+            "\1\u00d9",
+            "\1\u00da",
+            "\1\u00db",
+            "\1\u00dc",
+            "\1\u00dd",
+            "\1\u00de",
+            "\1\u00df",
+            "\1\u00e0",
+            "\1\u00e1",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00e4",
+            "",
+            "\1\u00e5",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00e7",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00e9",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00ee",
+            "\1\u00ef",
+            "\1\u00f0",
+            "\1\u00f1",
+            "\1\u00f2",
+            "\1\u00f3",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00f6",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00f8",
+            "\1\u00f9",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\u00fb",
+            "",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "",
+            "",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53",
+            "",
+            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
+                    + "\1\uffff\32\53", "", "", "", "", "", "", "", "", "", "",
+            "", "", "", "" };
 
     static final short[] DFA2_eot = DFA.unpackEncodedString(DFA2_eotS);
 
@@ -2031,7 +2337,7 @@ public class AntlrV3SQLLexer extends Lexer {
         }
 
         public String getDescription() {
-            return "1:1: Tokens : ( AND | AND_ | AS | AS_ | CROSS | CROSS_ | DELETE | DELETE_ | FROM | FROM_ | FULL | FULL_ | IN | INNER | INNER_ | INSERT | INSERT_ | INTO | INTO_ | IN_ | JOIN | JOIN_ | LEFT | LEFT_ | LEFT_CLOSE | NOT | NOT_ | ON | ON_ | OR | OR_ | PRE_SET | RIGHT | RIGHT_ | RIGHT_CLOSE | SELECT | SELECT_ | SET | SET_ | UPDATE | UPDATE_ | VALUES | VALUES_ | WHERE | WHERE_ | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | WORD | WS );";
+            return "1:1: Tokens : ( AND | AND_ | AS | AS_ | CROSS | CROSS_ | DELETE | DELETE_ | FROM | FROM_ | FULL | FULL_ | INNER | INNER_ | INSERT | INSERT_ | INTO | INTO_ | JOIN | JOIN_ | LEFT | LEFT_ | LEFT_CLOSE | ON | ON_ | OR | OR_ | PRE_SET | RIGHT | RIGHT_ | RIGHT_CLOSE | SELECT | SELECT_ | SET | SET_ | UPDATE | UPDATE_ | VALUES | VALUES_ | WHERE | WHERE_ | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | WORD | WS );";
         }
     }
 }

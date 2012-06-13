@@ -83,19 +83,19 @@ insertColumn
 	
 deleteSQL
 	:	
-	(DELETE|DELETE_) (FROM|FROM_) table whereSQL;
+	(DELETE|DELETE_) (FROM|FROM_) table whereSQL?;
 	
 selectSQL
 	:	
-	(SELECT|SELECT_) selectColums (FROM|FROM_) tables ((FULL|FULL_|CROSS|CROSS_|INNER|INNER_|LEFT|LEFT_|RIGHT|RIGHT_) (JOIN|JOIN_) table ((ON|ON_) WORD '=' WORD)? )? selectWhereSQL;
+	(SELECT|SELECT_) selectColums (FROM|FROM_) tables ((FULL|FULL_|CROSS|CROSS_|INNER|INNER_|LEFT|LEFT_|RIGHT|RIGHT_) (JOIN|JOIN_) table ((ON|ON_) WORD '=' WORD)?)? selectWhereSQL? other*;
 	
 selectWhereSQL
 	:	
-	((WHERE|WHERE_) (k_v|k_v2) (and_or (k_v|k_v2))* (and_or (WORD op '(' selectSQL ')'))* )? (other)*;
+	(WHERE|WHERE_) (k_v|k_v2) (  and_or (k_v|k_v2) | and_or WORD op '(' selectSQL ')'  )*;
 
 updateSQL
 	:	
-	(UPDATE|UPDATE_) table (SET|SET_) (k_v (',' k_v)*) whereSQL;
+	(UPDATE|UPDATE_) table (SET|SET_) (k_v (',' k_v)*) whereSQL?;
 
 
 table	:	
@@ -135,10 +135,10 @@ sel_column	:
 
 selectColums
 	:
-	('*'|sel_column (',' sel_column)*) ;
+	(sel_column (',' sel_column)*) ;
 
 whereSQL:		
-	((WHERE|WHERE_) (k_v|k_v2) (and_or (k_v|k_v2))*)? (other)*;
+	(WHERE|WHERE_) (k_v|k_v2) (and_or (k_v|k_v2))*;
 		
 and_or	:	
 	(AND|AND_|OR|OR_);
@@ -148,24 +148,22 @@ op
 	('='|'>'|'>='|'<'|'<='|'!='|'<>'|'in'|'IN'|'exists'|'EXISTS');
 	
 other	:	
-	'group'|'GROUP'|'order'|'ORDER'|'having'|'HAVING';
+	('group'|'GROUP'|'order'|'ORDER'|'having'|'HAVING'|'by'|'BY')+ WORD ('desc'|'DESC'|'asc'|'ASC');
+
+sel_name:	
+	WORD (LEFT_CLOSE WORD RIGHT_CLOSE)*;
+	
+sel_alias:	
+	WORD (LEFT_CLOSE WORD RIGHT_CLOSE)*;
 
 name	:	
 	WORD;
-	
-sel_name:	
-	WORD (LEFT_CLOSE (WORD|'*')? RIGHT_CLOSE)?;
-	
-sel_alias:	
-	WORD (LEFT_CLOSE (WORD|'*')? RIGHT_CLOSE)?;
 
 alias	:	
 	WORD;
-
 	
 WORD	:	
-	('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.')+;
-	
+	('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.'|'*')+;
 
 WS  :   ( ' '
         | '\t'

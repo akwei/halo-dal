@@ -114,7 +114,7 @@ tables	:
 	(table (',' table)*);
 
 k_v2	:	
-	WORD op WORD;
+	WORD op ( WORD|('\'' WORD '\''));
 
 k_v	:	
 	WORD op PRE_SET {
@@ -163,7 +163,9 @@ alias	:
 	WORD;
 	
 WORD	:	
-	('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.'|'*')+;
+	('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.'|'*'|'\\'|'\"')+;
+
+
 
 WS  :   ( ' '
         | '\t'

@@ -119,6 +119,7 @@ public class UserParser implements PartitionParser {
         ds0.setMinPoolSize(10);
         // 设置数据源key的对应关系
         dataSourceMap.put("ds0", ds0);
+        //dataSourceMap.put("default_ds", ds0); 当key=default_ds 时，为默认数据源，所有不分表分库的sql都会连接到此数据源执行
         // datasource 1
         ComboPooledDataSource ds1 = new ComboPooledDataSource();
         ds1.setDriverClass("com.mysql.jdbc.Driver");
@@ -140,6 +141,7 @@ public class UserParser implements PartitionParser {
 <bean id="dataSource" class="halo.dal.sql.DALDataSource">
         <property name="dataSourceMap">
             <map>
+            <!-- 当key=default_ds 时，为默认数据源，所有不分表分库的sql都会连接到此数据源执行 -->
                 <entry key="ds0">
                     <bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
                         <property name="driverClass" value="com.mysql.jdbc.Driver" />

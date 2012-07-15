@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -22,6 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,59 @@ public class QueryTest {
 
     @Resource
     private JdbcTemplate jdbcTemplate;
+
+    /**
+     * 使用默认数据源
+     */
+    @Test
+    public void insertDefault() {
+        final String sql = "insert into robot(name,stat) values(?,?)";
+        final int rid = jdbcTemplate.execute(new PreparedStatementCreator() {
+
+            public PreparedStatement createPreparedStatement(Connection con)
+                    throws SQLException {
+                PreparedStatement ps = con.prepareStatement(sql,
+                        Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, "akwei");
+                ps.setInt(2, 1);
+                return ps;
+            }
+        }, new PreparedStatementCallback<Integer>() {
+
+            public Integer doInPreparedStatement(PreparedStatement ps)
+                    throws SQLException, DataAccessException {
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0;
+            }
+        });
+        Assert.assertNotSame(0, rid);
+        final String sql2 = "update robot set name='weiwei',stat=5 where rid="
+                + rid;
+        int res = jdbcTemplate.update(sql2);
+        Assert.assertEquals(1, res);
+        List<Robot> list = jdbcTemplate.query(
+                "select rid,name,stat from robot where rid=?",
+                new Object[] { rid }, new RowMapper<Robot>() {
+
+                    public Robot mapRow(ResultSet rs, int arg1)
+                            throws SQLException {
+                        Robot o = new Robot();
+                        o.setRid(rs.getInt("rid"));
+                        o.setName(rs.getString("name"));
+                        o.setStat(rs.getInt("stat"));
+                        return o;
+                    }
+                });
+        Robot robot = list.get(0);
+        Assert.assertNotNull(robot);
+        Assert.assertEquals(rid, robot.getRid());
+        Assert.assertEquals("weiwei", robot.getName());
+        Assert.assertEquals(5, robot.getStat());
+    }
 
     @Test
     public void insert() {

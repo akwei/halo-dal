@@ -1,6 +1,6 @@
 package halo.dal.analysis.antlr.v3;
 
-// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-06-13 14:10:02
+// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-07-15 15:47:36
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
@@ -1406,12 +1406,12 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:165:6: ( ( 'a' .. 'z' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:163:6: ( ( 'a' .. 'z' |
             // 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+ )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:166:2: ( 'a' .. 'z' | 'A'
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:164:2: ( 'a' .. 'z' | 'A'
             // .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+
             {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:166:2: ( 'a' .. 'z' |
+                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:164:2: ( 'a' .. 'z' |
                 // 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+
                 int cnt1 = 0;
                 loop1: do {
@@ -1467,9 +1467,9 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:168:5: ( ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:167:5: ( ( ' ' | '\\t' |
             // '\\r' | '\\n' ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:168:9: ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:167:9: ( ' ' | '\\t' |
             // '\\r' | '\\n' )
             {
                 if ((input.LA(1) >= '\t' && input.LA(1) <= '\n')

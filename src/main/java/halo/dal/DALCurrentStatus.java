@@ -14,6 +14,8 @@ public class DALCurrentStatus {
 
     private static final String STATUS_CUSTOM = "STATUS_CUSTOM";
 
+    private static final String DSKEY_DEFAULT = "default_ds";
+
     private static final ThreadLocal<Map<String, Object>> statusTL = new ThreadLocal<Map<String, Object>>();
 
     public DALCurrentStatus() {
@@ -21,6 +23,13 @@ public class DALCurrentStatus {
 
     public static void setDsKey(String dsKey) {
         setValue(STATUS_DSKEY, dsKey);
+    }
+
+    /**
+     * 设置默认数据源
+     */
+    public static void setDefaultDsKey() {
+        setValue(STATUS_DSKEY, DSKEY_DEFAULT);
     }
 
     public static String getDsKey() {

@@ -3,6 +3,63 @@ CREATE SCHEMA daltest01 DEFAULT CHARACTER SET utf8 ;
 CREATE SCHEMA daltest10 DEFAULT CHARACTER SET utf8 ;
 CREATE SCHEMA daltest11 DEFAULT CHARACTER SET utf8 ;
 
+CREATE TABLE daltest00.account (
+  userid varchar(80) NOT NULL,
+  email varchar(80) default NULL,
+  firstname varchar(80) default NULL,
+  lastname varchar(80) default NULL,
+  status varchar(2) default NULL,
+  addr1 varchar(80) default NULL,
+  addr2 varchar(40) default NULL,
+  city varchar(80) default NULL,
+  state varchar(80) default NULL,
+  zip varchar(20) default NULL,
+  country varchar(20) default NULL,
+  phone varchar(80) default NULL,
+  PRIMARY KEY  (userid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE daltest00.node_body_1 (
+  nodeid int(11) NOT NULL auto_increment,
+  nodename varchar(45) NOT NULL,
+  PRIMARY KEY  (nodeid)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE daltest00.person0 (
+  pid int(11) NOT NULL auto_increment,
+  name varchar(45) NOT NULL,
+  level int(11) NOT NULL,
+  PRIMARY KEY  (pid)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE daltest00.robot (
+  rid int(11) NOT NULL auto_increment,
+  name varchar(45) NOT NULL,
+  stat tinyint(1) NOT NULL,
+  PRIMARY KEY  (rid)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE daltest00.t_orgs (
+  orgid int(11) NOT NULL auto_increment,
+  orgname varchar(45) NOT NULL,
+  PRIMARY KEY  (orgid)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+
+
 CREATE TABLE daltest00.user0 (
   userid bigint(20) unsigned NOT NULL auto_increment,
   nick varchar(10) NOT NULL,
@@ -23,23 +80,32 @@ CREATE TABLE daltest00.user0 (
   uuid11 int(11) NOT NULL,
   uuid12 int(11) default NULL,
   PRIMARY KEY  (userid)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
-
-CREATE TABLE daltest00.person0 (
-  pid int(11) NOT NULL auto_increment,
-  name varchar(45) NOT NULL,
-  level int(11) NOT NULL,
-  PRIMARY KEY  (pid)
+CREATE TABLE daltest01.account (
+  userid varchar(80) NOT NULL,
+  email varchar(80) default NULL,
+  firstname varchar(80) default NULL,
+  lastname varchar(80) default NULL,
+  status varchar(2) default NULL,
+  addr1 varchar(80) default NULL,
+  addr2 varchar(40) default NULL,
+  city varchar(80) default NULL,
+  state varchar(80) default NULL,
+  zip varchar(20) default NULL,
+  country varchar(20) default NULL,
+  phone varchar(80) default NULL,
+  PRIMARY KEY  (userid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE daltest01.person0 (
   pid int(11) NOT NULL auto_increment,
   name varchar(45) NOT NULL,
   level int(11) NOT NULL,
   PRIMARY KEY  (pid)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE daltest01.user0 (
@@ -62,7 +128,7 @@ CREATE TABLE daltest01.user0 (
   uuid11 int(11) NOT NULL,
   uuid12 int(11) default NULL,
   PRIMARY KEY  (userid)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE daltest10.user1 (
@@ -85,7 +151,8 @@ CREATE TABLE daltest10.user1 (
   uuid11 int(11) NOT NULL,
   uuid12 int(11) default NULL,
   PRIMARY KEY  (userid)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE daltest11.user1 (
   userid bigint(20) unsigned NOT NULL auto_increment,
@@ -107,44 +174,4 @@ CREATE TABLE daltest11.user1 (
   uuid11 int(11) NOT NULL,
   uuid12 int(11) default NULL,
   PRIMARY KEY  (userid)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE daltest00.account (
-  userid varchar(80) NOT NULL,
-  email varchar(80) default NULL,
-  firstname varchar(80) default NULL,
-  lastname varchar(80) default NULL,
-  status varchar(2) default NULL,
-  addr1 varchar(80) default NULL,
-  addr2 varchar(40) default NULL,
-  city varchar(80) default NULL,
-  state varchar(80) default NULL,
-  zip varchar(20) default NULL,
-  country varchar(20) default NULL,
-  phone varchar(80) default NULL,
-  PRIMARY KEY  (userid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE daltest01.account (
-  userid varchar(80) NOT NULL,
-  email varchar(80) default NULL,
-  firstname varchar(80) default NULL,
-  lastname varchar(80) default NULL,
-  status varchar(2) default NULL,
-  addr1 varchar(80) default NULL,
-  addr2 varchar(40) default NULL,
-  city varchar(80) default NULL,
-  state varchar(80) default NULL,
-  zip varchar(20) default NULL,
-  country varchar(20) default NULL,
-  phone varchar(80) default NULL,
-  PRIMARY KEY  (userid)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE daltest00.node_body_1 (
-  nodeid int(11) NOT NULL auto_increment,
-  nodename varchar(45) NOT NULL,
-  PRIMARY KEY  (nodeid)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-

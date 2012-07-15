@@ -46,7 +46,9 @@ public class PackagePartitionParserFactory implements PartitionParserFactory {
                 parserMap.put(key, parser);
             }
             catch (ClassNotFoundException e) {
-                throw new DALRunTimeException("can not found " + fullClassName);
+                // throw new DALRunTimeException("can not found " +
+                // fullClassName);
+                return null;
             }
             catch (Exception e) {
                 throw new DALRunTimeException(e);

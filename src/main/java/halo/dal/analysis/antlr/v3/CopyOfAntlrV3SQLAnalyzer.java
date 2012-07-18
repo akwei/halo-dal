@@ -5,6 +5,7 @@ import halo.dal.analysis.ParsedTableInfo;
 import halo.dal.analysis.SQLAnalyzer;
 import halo.dal.analysis.SQLExpression;
 import halo.dal.analysis.SQLInfo;
+import halo.dal.analysis.SQLKeyErrException;
 import halo.dal.analysis.SQLStruct;
 import halo.dal.analysis.antlr.AntlrParserDelegate;
 import halo.dal.analysis.antlr.ColExpr;
@@ -21,9 +22,13 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.apache.commons.lang3.StringUtils;
 
-public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
+public class CopyOfAntlrV3SQLAnalyzer implements SQLAnalyzer {
 
     protected final static String SQL_BLANK = " ";
+
+    protected final static String SQL_KEY_SELECT = "select ";
+
+    protected final static String SQL_KEY_SELECT_ = "SELECT ";
 
     public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values,
             Map<String, Object> context) {
@@ -42,7 +47,20 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
     }
 
     public SQLStruct parse(String sql, Map<String, Object> context) {
-        AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(sql));
+        if (sql.indexOf(" between ") != -1 || sql.indexOf(" BETWEEN ") != -1) {
+            throw new SQLKeyErrException("not supported sql key: between ");
+        }
+        String _sql = sql.replaceAll("\\. {1,}", "\\.").trim();
+        // 对于只运行数据库函数时，不需要解析
+        SQLStruct sqlStruct = new SQLStruct();
+        if (_sql.startsWith(SQL_KEY_SELECT) || _sql.startsWith(SQL_KEY_SELECT_)) {
+            if (_sql.indexOf(" from ") == -1 && _sql.indexOf(" FROM ") == -1) {
+                sqlStruct.setCanParse(false);
+                return sqlStruct;
+            }
+        }
+        sqlStruct.setCanParse(true);
+        AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(_sql));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         AntlrV3SQLParser parser = new AntlrV3SQLParser(tokens);
         AntlrParserDelegate delegate = new DefAntlrParserDelegate();
@@ -53,16 +71,6 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
         catch (RecognitionException e) {
             throw new RuntimeException(e);
         }
-        // if (delegate.isHasBetweenAnd()) {
-        // throw new SQLKeyErrException("not supported sql key: between ");
-        // }
-        SQLStruct sqlStruct = new SQLStruct();
-        if (delegate.getSqlOp() == AntlrParserDelegate.SQLOP_SELECT
-                && !delegate.isHasSelectFrom()) {
-            sqlStruct.setCanParse(false);
-            return sqlStruct;
-        }
-        sqlStruct.setCanParse(true);
         Table table;
         for (int i = 0; i < delegate.getTables().size(); i++) {
             table = delegate.getTables().get(i);

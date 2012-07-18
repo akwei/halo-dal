@@ -8,14 +8,8 @@ import halo.dal.analysis.SQLInfo;
 import halo.dal.analysis.SQLStruct;
 import halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 import junit.framework.Assert;
 
@@ -308,114 +302,6 @@ public class SQLAnalyzerTest {
                 sqlInfo.getSQLExpressions("account.uid")[0].getValue());
         Assert.assertEquals("cityabc",
                 sqlInfo.getSQLExpressions("account.city")[0].getValue());
-    }
-
-    @Test
-    public void performance() {
-        // String sql = "SELECT count(*), "
-        // + "count(*) as kk,"
-        // + "count(*) kk0,"
-        // // +
-        // "gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
-        // // +
-        // "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
-        // // +
-        // "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
-        // // +
-        // "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
-        // // +
-        // "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
-        // // +
-        // "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
-        // // + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
-        // // + "GATEWAYEVE0_.ID AS ID1_,"
-        // // + "GATEWAYEVE0_.NAME  NAME1_,"
-        // + "GATEWAYEVE0_.START_DATE AS START15_1_"
-        // + "FROM gateway_event1 GATEWAYEVE0_ , table2 as t2"
-        // + "WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() or "
-        // + "name=substring(a.b,'c',b,b.c,'') and kk=substring('') and uid in "
-        // +
-        // "(select * from user where sex=? order by gid desc group by ss having a=b.c) "
-        // + "AND GATEWAYEVE0_.EVENT_STATUS=?";
-        //
-        // String sql = "SELECT nodeId, nodeName, taskflowName, taskflowVersion"
-        // + "FROM"
-        // + "("
-        // +
-        // "SELECT n.ID AS nodeId, n.name AS nodeName , f.name AS taskflowName,"
-        // + "f.version AS taskflowVersion"
-        // + "FROM HT_TASK_FLOW_NODE_WA_2 n, HT_TASK_FLOW_WA_2 f"
-        // + "WHERE n.owner = ? AND "
-        // + "("
-        // +
-        // "n.STATUS IN (?) AND n.GMT_MODIFIED < ? AND n.IS_AUTO = 'Y' AND n.task_flow_id = f.id"
-        // + ")" + "ORDER BY f.priority DESC, f.gmt_create ASC" + ")"
-        // + "WHERE rownum < ?;";
-        String sql = "SELECT * FROM T";
-        for (int i = 0; i < 10; i++) {
-            this.parse(sql);
-        }
-        long begin = System.currentTimeMillis();
-        System.out.println("begin parse");
-        for (int i = 0; i < 10000 * 1000; i++) {
-            this.parse(sql);
-        }
-        long end = System.currentTimeMillis();
-        System.out.println("paste time : " + (end - begin));
-    }
-
-    public void multiperformance() {
-        ExecutorService executorService = Executors.newFixedThreadPool(600,
-                new ThreadFactory() {
-
-                    public Thread newThread(Runnable r) {
-                        Thread t = new Thread(r);
-                        t.setName("thread " + t.getId());
-                        t.setDaemon(false);
-                        return t;
-                    }
-                });
-        final String sql = "select "
-                + "gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
-                + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
-                + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
-                + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
-                + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
-                + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
-                + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
-                + "gatewayeve0_.START_DATE as START15_1_ "
-                + "from gateway_event gatewayeve0_ "
-                + "where 1=1 and gatewayeve0_.EVENT_STATUS=? or gatewayeve0_.NAME =? and "
-                + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
-                + "order by gatewayeve0_.EVENT_TYPE desc";
-        for (int i = 0; i < 100; i++) {
-            this.parse(sql);
-        }
-        List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
-        for (int i = 0; i < 1000 * 1000; i++) {
-            Callable<Boolean> task = new Callable<Boolean>() {
-
-                public Boolean call() throws Exception {
-                    parse(sql);
-                    return true;
-                }
-            };
-            tasks.add(task);
-        }
-        try {
-            long begin = System.currentTimeMillis();
-            executorService.invokeAll(tasks);
-            long end = System.currentTimeMillis();
-            System.out.println(end - begin);
-        }
-        catch (InterruptedException e) {
-            Assert.fail(e.getMessage());
-        }
-    }
-
-    private void parse(String sql) {
-//        SQLAnalyzer sqlAnalyzer = new AntlrV3SQLAnalyzer();
-        sqlAnalyzer.parse(sql, context);
     }
 
     @Test

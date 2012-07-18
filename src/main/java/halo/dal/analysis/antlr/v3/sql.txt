@@ -7,8 +7,9 @@ GATEWAYEVE0_.NAME  NAME1_,
 GATEWAYEVE0_.START_DATE AS START15_1_ 
 FROM gateway_event1 GATEWAYEVE0_ , table2 as t2
 WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() 
-or name=substring(a.b,'c',b,b.c,'') and kk=substring('') and 
-uid in (select * from user where sex=? order by gid desc group by ss having a=b.c) 
+or name=substring(a.b,'c',b,b.c,'') and kk=substring('') 
+and name between ? and ?
+and uid in (select * from user where sex=? order by gid desc group by ss having a=b.c) 
 AND GATEWAYEVE0_.EVENT_STATUS=?
 
 SELECT nodeId, nodeName, taskflowName, taskflowVersion
@@ -17,13 +18,15 @@ FROM
 	SELECT n.ID AS nodeId, n.name AS nodeName , f.name AS taskflowName, 
 	f.version AS taskflowVersion
 	FROM HT_TASK_FLOW_NODE_WA_2 n, HT_TASK_FLOW_WA_2 f
-	WHERE n.owner = ? AND 
+	WHERE n.owner = ? AND name between ? and ? and
 	(
 		n.STATUS IN (?) AND n.GMT_MODIFIED < ? AND n.IS_AUTO = 'Y' AND n.task_flow_id = f.id
 	)
 	ORDER BY f.priority DESC, f.gmt_create ASC
 )
 WHERE rownum < ?;
+
+select last_insertedid()
 
 insert into table (id,name,f0,f1) values(?,?,?,?)
 

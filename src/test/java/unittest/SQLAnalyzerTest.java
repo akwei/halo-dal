@@ -312,34 +312,56 @@ public class SQLAnalyzerTest {
 
     @Test
     public void performance() {
-        String sql = "SELECT count(*), "
-                + "count(*) as kk,"
-                + "count(*) kk0,"
-//                + "gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
-//                + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
-//                + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
-//                + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
-//                + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
-//                + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
-//                + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
-//                + "GATEWAYEVE0_.ID AS ID1_,"
-//                + "GATEWAYEVE0_.NAME  NAME1_,"
-                + "GATEWAYEVE0_.START_DATE AS START15_1_"
-                + "FROM gateway_event1 GATEWAYEVE0_ , table2 as t2"
-                + "WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() or "
-                + "name=substring(a.b,'c',b,b.c,'') and kk=substring('') and uid in "
-                + "(select * from user where sex=? order by gid desc group by ss having a=b.c) "
-                + "AND GATEWAYEVE0_.EVENT_STATUS=?";
-        for (int i = 0; i < 100; i++) {
+        // String sql = "SELECT count(*), "
+        // + "count(*) as kk,"
+        // + "count(*) kk0,"
+        // // +
+        // "gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
+        // // +
+        // "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
+        // // +
+        // "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
+        // // +
+        // "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
+        // // +
+        // "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
+        // // +
+        // "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
+        // // + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
+        // // + "GATEWAYEVE0_.ID AS ID1_,"
+        // // + "GATEWAYEVE0_.NAME  NAME1_,"
+        // + "GATEWAYEVE0_.START_DATE AS START15_1_"
+        // + "FROM gateway_event1 GATEWAYEVE0_ , table2 as t2"
+        // + "WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() or "
+        // + "name=substring(a.b,'c',b,b.c,'') and kk=substring('') and uid in "
+        // +
+        // "(select * from user where sex=? order by gid desc group by ss having a=b.c) "
+        // + "AND GATEWAYEVE0_.EVENT_STATUS=?";
+        //
+        // String sql = "SELECT nodeId, nodeName, taskflowName, taskflowVersion"
+        // + "FROM"
+        // + "("
+        // +
+        // "SELECT n.ID AS nodeId, n.name AS nodeName , f.name AS taskflowName,"
+        // + "f.version AS taskflowVersion"
+        // + "FROM HT_TASK_FLOW_NODE_WA_2 n, HT_TASK_FLOW_WA_2 f"
+        // + "WHERE n.owner = ? AND "
+        // + "("
+        // +
+        // "n.STATUS IN (?) AND n.GMT_MODIFIED < ? AND n.IS_AUTO = 'Y' AND n.task_flow_id = f.id"
+        // + ")" + "ORDER BY f.priority DESC, f.gmt_create ASC" + ")"
+        // + "WHERE rownum < ?;";
+        String sql = "SELECT * FROM T";
+        for (int i = 0; i < 10; i++) {
             this.parse(sql);
         }
         long begin = System.currentTimeMillis();
         System.out.println("begin parse");
-        for (int i = 0; i < 1000 * 1000; i++) {
+        for (int i = 0; i < 10000 * 1000; i++) {
             this.parse(sql);
         }
         long end = System.currentTimeMillis();
-        System.out.println(end - begin);
+        System.out.println("paste time : " + (end - begin));
     }
 
     public void multiperformance() {
@@ -392,8 +414,8 @@ public class SQLAnalyzerTest {
     }
 
     private void parse(String sql) {
-        SQLAnalyzer analyzer = new AntlrV3SQLAnalyzer();
-        analyzer.parse(sql, context);
+//        SQLAnalyzer sqlAnalyzer = new AntlrV3SQLAnalyzer();
+        sqlAnalyzer.parse(sql, context);
     }
 
     @Test

@@ -215,7 +215,9 @@ public class DALPreparedStatement implements PreparedStatement {
                             connectionStatus);
                     if (partitionTableInfo == null) {
                         throw new DALRunTimeException(
-                                "partitionTableInfo can not be null : " + table);
+                                "partitionTableInfo return from "
+                                        + parser.getClass().getName()
+                                        + " can not be null : " + table);
                     }
                     parsedTableInfo.setRealTable(table,
                             partitionTableInfo.getRealTable());

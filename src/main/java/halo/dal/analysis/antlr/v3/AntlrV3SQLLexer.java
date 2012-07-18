@@ -1,6 +1,6 @@
 package halo.dal.analysis.antlr.v3;
 
-// $ANTLR 3.4 /Users/akwei/antlrpro/sql2/AntlrV3SQL.g 2012-07-18 01:04:24
+// $ANTLR 3.4 /Users/akwei/antlrpro/sql2/AntlrV3SQL.g 2012-07-18 15:54:41
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
@@ -403,8 +403,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = SELECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:169:8: ( S E L E C T )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:169:9: S E L E C T
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:206:8: ( S E L E C T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:206:9: S E L E C T
             {
                 mS();
                 mE();
@@ -427,8 +427,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INSERT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:170:9: ( I N S E R T )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:170:10: I N S E R T
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:207:9: ( I N S E R T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:207:10: I N S E R T
             {
                 mI();
                 mN();
@@ -451,8 +451,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = UPDATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:171:8: ( U P D A T E )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:171:9: U P D A T E
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:208:8: ( U P D A T E )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:208:9: U P D A T E
             {
                 mU();
                 mP();
@@ -475,8 +475,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = DELETE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:172:8: ( D E L E T E )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:172:9: D E L E T E
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:209:8: ( D E L E T E )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:209:9: D E L E T E
             {
                 mD();
                 mE();
@@ -499,8 +499,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:173:5: ( A N D )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:173:6: A N D
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:210:5: ( A N D )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:210:6: A N D
             {
                 mA();
                 mN();
@@ -520,8 +520,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:174:4: ( O R )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:174:5: O R
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:211:4: ( O R )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:211:5: O R
             {
                 mO();
                 mR();
@@ -540,8 +540,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WHERE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:175:7: ( W H E R E )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:175:8: W H E R E
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:212:7: ( W H E R E )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:212:8: W H E R E
             {
                 mW();
                 mH();
@@ -563,8 +563,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = GROUP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:176:7: ( G R O U P )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:176:8: G R O U P
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:213:7: ( G R O U P )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:213:8: G R O U P
             {
                 mG();
                 mR();
@@ -586,8 +586,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = HAVING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:177:8: ( H A V I N G )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:177:9: H A V I N G
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:214:8: ( H A V I N G )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:214:9: H A V I N G
             {
                 mH();
                 mA();
@@ -610,8 +610,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = BY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:178:4: ( B Y )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:178:5: B Y
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:215:4: ( B Y )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:215:5: B Y
             {
                 mB();
                 mY();
@@ -630,8 +630,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = ORDER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:179:7: ( O R D E R )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:179:8: O R D E R
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:216:7: ( O R D E R )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:216:8: O R D E R
             {
                 mO();
                 mR();
@@ -653,8 +653,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = DESC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:180:6: ( D E S C )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:180:7: D E S C
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:217:6: ( D E S C )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:217:7: D E S C
             {
                 mD();
                 mE();
@@ -675,8 +675,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = ASC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:181:5: ( A S C )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:181:6: A S C
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:218:5: ( A S C )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:218:6: A S C
             {
                 mA();
                 mS();
@@ -696,8 +696,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = SET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:182:5: ( S E T )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:182:6: S E T
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:219:5: ( S E T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:219:6: S E T
             {
                 mS();
                 mE();
@@ -717,8 +717,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = ON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:183:4: ( O N )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:183:5: O N
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:220:4: ( O N )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:220:5: O N
             {
                 mO();
                 mN();
@@ -737,8 +737,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = FULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:184:6: ( F U L L )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:184:7: F U L L
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:221:6: ( F U L L )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:221:7: F U L L
             {
                 mF();
                 mU();
@@ -759,8 +759,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INNER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:185:7: ( I N N E R )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:185:8: I N N E R
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:222:7: ( I N N E R )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:222:8: I N N E R
             {
                 mI();
                 mN();
@@ -782,8 +782,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = AS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:186:4: ( A S )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:186:5: A S
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:223:4: ( A S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:223:5: A S
             {
                 mA();
                 mS();
@@ -802,8 +802,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = FROM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:187:6: ( F R O M )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:187:7: F R O M
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:224:6: ( F R O M )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:224:7: F R O M
             {
                 mF();
                 mR();
@@ -824,8 +824,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = LEFT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:188:6: ( L E F T )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:188:7: L E F T
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:225:6: ( L E F T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:225:7: L E F T
             {
                 mL();
                 mE();
@@ -846,8 +846,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = RIGHT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:189:7: ( R I G H T )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:189:8: R I G H T
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:226:7: ( R I G H T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:226:8: R I G H T
             {
                 mR();
                 mI();
@@ -869,8 +869,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = CROSS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:190:7: ( C R O S S )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:190:8: C R O S S
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:227:7: ( C R O S S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:227:8: C R O S S
             {
                 mC();
                 mR();
@@ -892,8 +892,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = JOIN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:191:6: ( J O I N )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:191:7: J O I N
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:228:6: ( J O I N )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:228:7: J O I N
             {
                 mJ();
                 mO();
@@ -914,8 +914,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = VALUES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:192:8: ( V A L U E S )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:192:9: V A L U E S
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:229:8: ( V A L U E S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:229:9: V A L U E S
             {
                 mV();
                 mA();
@@ -938,8 +938,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = INTO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:193:6: ( I N T O )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:193:7: I N T O
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:230:6: ( I N T O )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:230:7: I N T O
             {
                 mI();
                 mN();
@@ -960,8 +960,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = IN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:194:4: ( I N )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:194:5: I N
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:231:4: ( I N )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:231:5: I N
             {
                 mI();
                 mN();
@@ -980,8 +980,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = EXISTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:195:8: ( E X I S T S )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:195:9: E X I S T S
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:232:8: ( E X I S T S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:232:9: E X I S T S
             {
                 mE();
                 mX();
@@ -1004,8 +1004,8 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = PRE_SET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:196:9: ( '?' )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:196:10: '?'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:233:9: ( '?' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:233:10: '?'
             {
                 match('?');
             }
@@ -1023,12 +1023,12 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = BASIC_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:199:2: ( ( 'a' .. 'z' |
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:236:2: ( ( 'a' .. 'z' |
             // 'A' .. 'Z' | '0' .. '9' | '_' )+ )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:200:2: ( 'a' .. 'z' | 'A'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:237:2: ( 'a' .. 'z' | 'A'
             // .. 'Z' | '0' .. '9' | '_' )+
             {
-                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:200:2: ( 'a' .. 'z' |
+                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:237:2: ( 'a' .. 'z' |
                 // 'A' .. 'Z' | '0' .. '9' | '_' )+
                 int cnt1 = 0;
                 loop1: do {
@@ -1081,22 +1081,22 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = TEXT_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:202:12: ( ( '\\'' (
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:239:12: ( ( '\\'' (
             // options {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
             // '\\'' '\\'' )* '\\'' ) )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:203:4: ( '\\'' ( options
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:240:4: ( '\\'' ( options
             // {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) | '\\'' '\\'' )*
             // '\\'' )
             {
-                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:203:4: ( '\\'' (
+                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:240:4: ( '\\'' (
                 // options {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
                 // '\\'' '\\'' )* '\\'' )
-                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:203:5: '\\'' (
+                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:241:4: '\\'' (
                 // options {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
                 // '\\'' '\\'' )* '\\''
                 {
                     match('\'');
-                    // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:204:5: ( options
+                    // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:242:5: ( options
                     // {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
                     // '\\'' '\\'' )*
                     loop2: do {
@@ -1115,7 +1115,7 @@ public class AntlrV3SQLLexer extends Lexer {
                         }
                         switch (alt2) {
                             case 1:
-                            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:205:31: ~
+                            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:242:30: ~
                             // ( '\\'' | '\\r' | '\\n' )
                             {
                                 if ((input.LA(1) >= '\u0000' && input.LA(1) <= '\t')
@@ -1135,7 +1135,7 @@ public class AntlrV3SQLLexer extends Lexer {
                             }
                                 break;
                             case 2:
-                            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:205:56:
+                            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:242:55:
                             // '\\'' '\\''
                             {
                                 match('\'');
@@ -1164,9 +1164,9 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:211:5: ( ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:247:5: ( ( ' ' | '\\t' |
             // '\\r' | '\\n' ) )
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:211:9: ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:247:9: ( ' ' | '\\t' |
             // '\\r' | '\\n' )
             {
                 if ((input.LA(1) >= '\t' && input.LA(1) <= '\n')
@@ -1193,7 +1193,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "A"
     public final void mA() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:219:11: ( ( 'a' | 'A' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:255:11: ( ( 'a' | 'A' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'A' || input.LA(1) == 'a') {
@@ -1216,7 +1216,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "B"
     public final void mB() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:220:11: ( ( 'b' | 'B' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:256:11: ( ( 'b' | 'B' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'B' || input.LA(1) == 'b') {
@@ -1239,7 +1239,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "C"
     public final void mC() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:221:11: ( ( 'c' | 'C' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:257:11: ( ( 'c' | 'C' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'C' || input.LA(1) == 'c') {
@@ -1262,7 +1262,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "D"
     public final void mD() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:222:11: ( ( 'd' | 'D' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:258:11: ( ( 'd' | 'D' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'D' || input.LA(1) == 'd') {
@@ -1285,7 +1285,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "E"
     public final void mE() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:223:11: ( ( 'e' | 'E' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:259:11: ( ( 'e' | 'E' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'E' || input.LA(1) == 'e') {
@@ -1308,7 +1308,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "F"
     public final void mF() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:224:11: ( ( 'f' | 'F' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:260:11: ( ( 'f' | 'F' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'F' || input.LA(1) == 'f') {
@@ -1331,7 +1331,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "G"
     public final void mG() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:225:11: ( ( 'g' | 'G' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:261:11: ( ( 'g' | 'G' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'G' || input.LA(1) == 'g') {
@@ -1354,7 +1354,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "H"
     public final void mH() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:226:11: ( ( 'h' | 'H' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:262:11: ( ( 'h' | 'H' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'H' || input.LA(1) == 'h') {
@@ -1377,7 +1377,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "I"
     public final void mI() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:227:11: ( ( 'i' | 'I' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:263:11: ( ( 'i' | 'I' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'I' || input.LA(1) == 'i') {
@@ -1400,7 +1400,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "J"
     public final void mJ() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:228:11: ( ( 'j' | 'J' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:264:11: ( ( 'j' | 'J' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'J' || input.LA(1) == 'j') {
@@ -1423,7 +1423,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "K"
     public final void mK() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:229:11: ( ( 'k' | 'K' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:265:11: ( ( 'k' | 'K' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'K' || input.LA(1) == 'k') {
@@ -1446,7 +1446,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "L"
     public final void mL() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:230:11: ( ( 'l' | 'L' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:266:11: ( ( 'l' | 'L' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'L' || input.LA(1) == 'l') {
@@ -1469,7 +1469,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "M"
     public final void mM() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:231:11: ( ( 'm' | 'M' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:267:11: ( ( 'm' | 'M' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'M' || input.LA(1) == 'm') {
@@ -1492,7 +1492,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "N"
     public final void mN() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:232:11: ( ( 'n' | 'N' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:268:11: ( ( 'n' | 'N' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'N' || input.LA(1) == 'n') {
@@ -1515,7 +1515,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "O"
     public final void mO() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:233:11: ( ( 'o' | 'O' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:269:11: ( ( 'o' | 'O' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'O' || input.LA(1) == 'o') {
@@ -1538,7 +1538,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "P"
     public final void mP() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:234:11: ( ( 'p' | 'P' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:270:11: ( ( 'p' | 'P' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'P' || input.LA(1) == 'p') {
@@ -1561,7 +1561,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "Q"
     public final void mQ() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:235:11: ( ( 'q' | 'Q' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:271:11: ( ( 'q' | 'Q' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'Q' || input.LA(1) == 'q') {
@@ -1584,7 +1584,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "R"
     public final void mR() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:236:11: ( ( 'r' | 'R' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:272:11: ( ( 'r' | 'R' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'R' || input.LA(1) == 'r') {
@@ -1607,7 +1607,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "S"
     public final void mS() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:237:11: ( ( 's' | 'S' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:273:11: ( ( 's' | 'S' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'S' || input.LA(1) == 's') {
@@ -1630,7 +1630,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "T"
     public final void mT() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:238:11: ( ( 't' | 'T' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:274:11: ( ( 't' | 'T' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'T' || input.LA(1) == 't') {
@@ -1653,7 +1653,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "U"
     public final void mU() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:239:11: ( ( 'u' | 'U' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:275:11: ( ( 'u' | 'U' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'U' || input.LA(1) == 'u') {
@@ -1676,7 +1676,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "V"
     public final void mV() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:240:11: ( ( 'v' | 'V' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:276:11: ( ( 'v' | 'V' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'V' || input.LA(1) == 'v') {
@@ -1699,7 +1699,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "W"
     public final void mW() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:241:11: ( ( 'w' | 'W' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:277:11: ( ( 'w' | 'W' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'W' || input.LA(1) == 'w') {
@@ -1722,7 +1722,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "X"
     public final void mX() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:242:11: ( ( 'x' | 'X' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:278:11: ( ( 'x' | 'X' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'X' || input.LA(1) == 'x') {
@@ -1745,7 +1745,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "Y"
     public final void mY() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:243:11: ( ( 'y' | 'Y' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:279:11: ( ( 'y' | 'Y' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'Y' || input.LA(1) == 'y') {
@@ -1768,7 +1768,7 @@ public class AntlrV3SQLLexer extends Lexer {
     // $ANTLR start "Z"
     public final void mZ() throws RecognitionException {
         try {
-            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:244:11: ( ( 'z' | 'Z' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:280:11: ( ( 'z' | 'Z' ) )
             // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
             {
                 if (input.LA(1) == 'Z' || input.LA(1) == 'z') {

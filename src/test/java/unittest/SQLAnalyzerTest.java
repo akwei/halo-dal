@@ -312,22 +312,29 @@ public class SQLAnalyzerTest {
 
     @Test
     public void performance() {
-        String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
-                + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
-                + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
-                + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
-                + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
-                + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
-                + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
-                + "gatewayeve0_.START_DATE as START15_1_ "
-                + "from gateway_event gatewayeve0_ "
-                + "where 1=1 and gatewayeve0_.EVENT_STATUS=? or gatewayeve0_.NAME =? and "
-                + "(gatewayeve0_.EVENT_ID>=? and gatewayeve0_.EVENT_ID<=?) "
-                + "order by gatewayeve0_.EVENT_TYPE desc";
+        String sql = "SELECT count(*), "
+                + "count(*) as kk,"
+                + "count(*) kk0,"
+//                + "gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
+//                + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
+//                + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
+//                + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
+//                + "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
+//                + "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
+//                + "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
+//                + "GATEWAYEVE0_.ID AS ID1_,"
+//                + "GATEWAYEVE0_.NAME  NAME1_,"
+                + "GATEWAYEVE0_.START_DATE AS START15_1_"
+                + "FROM gateway_event1 GATEWAYEVE0_ , table2 as t2"
+                + "WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() or "
+                + "name=substring(a.b,'c',b,b.c,'') and kk=substring('') and uid in "
+                + "(select * from user where sex=? order by gid desc group by ss having a=b.c) "
+                + "AND GATEWAYEVE0_.EVENT_STATUS=?";
         for (int i = 0; i < 100; i++) {
             this.parse(sql);
         }
         long begin = System.currentTimeMillis();
+        System.out.println("begin parse");
         for (int i = 0; i < 1000 * 1000; i++) {
             this.parse(sql);
         }
@@ -335,8 +342,7 @@ public class SQLAnalyzerTest {
         System.out.println(end - begin);
     }
 
-    @Test
-    public void multperformance() {
+    public void multiperformance() {
         ExecutorService executorService = Executors.newFixedThreadPool(600,
                 new ThreadFactory() {
 
@@ -347,7 +353,8 @@ public class SQLAnalyzerTest {
                         return t;
                     }
                 });
-        final String sql = "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
+        final String sql = "select "
+                + "gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
                 + "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
                 + "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
                 + "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
@@ -385,7 +392,7 @@ public class SQLAnalyzerTest {
     }
 
     private void parse(String sql) {
-        SQLAnalyzer analyzer = sqlAnalyzer;
+        SQLAnalyzer analyzer = new AntlrV3SQLAnalyzer();
         analyzer.parse(sql, context);
     }
 

@@ -1,0 +1,24 @@
+用来测试antlr解析的sql
+SELECT count(*), 
+count(*) as kk,
+count(*) kk0,
+GATEWAYEVE0_.ID AS ID1_, 
+GATEWAYEVE0_.NAME  NAME1_, 
+GATEWAYEVE0_.START_DATE AS START15_1_ 
+FROM gateway_event1 GATEWAYEVE0_ , table2 as t2
+WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() or name=substring(a.b,'c',b,b.c,'') and kk=substring('') and uid in (select * from user where sex=? order by gid desc group by ss having a=b.c) AND GATEWAYEVE0_.EVENT_STATUS=?
+
+
+insert into table (id,name,f0,f1) values(?,?,?,?)
+
+delete from table;
+
+delete from table where f0='a' and f1=? or f2=?
+
+update table set f0=?,f1='a',f2=? where f0='a' and f1=? or f2=?
+
+sysdate()
+
+substring(a.b,'c',b,b.c,'')
+
+substring('')

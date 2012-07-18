@@ -1,1863 +1,2583 @@
 package halo.dal.analysis.antlr.v3;
 
-// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-07-15 15:47:36
+//$ANTLR 3.4 /Users/akwei/antlrpro/sql2/AntlrV3SQL.g 2012-07-18 01:04:24
+
 import halo.dal.analysis.antlr.AntlrParserDelegate;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.antlr.runtime.BitSet;
-import org.antlr.runtime.EarlyExitException;
 import org.antlr.runtime.MismatchedSetException;
 import org.antlr.runtime.NoViableAltException;
 import org.antlr.runtime.Parser;
 import org.antlr.runtime.ParserRuleReturnScope;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.RecognizerSharedState;
-import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-@SuppressWarnings({ "all", "warnings", "unchecked" })
+@SuppressWarnings({"all", "warnings", "unchecked"})
 public class AntlrV3SQLParser extends Parser {
+ public static final String[] tokenNames = new String[] {
+     "<invalid>", "<EOR>", "<DOWN>", "<UP>", "A", "AND", "AS", "ASC", "B", "BASIC_NAME", "BY", "C", "CROSS", "D", "DELETE", "DESC", "E", "EXISTS", "F", "FROM", "FULL", "G", "GROUP", "H", "HAVING", "I", "IN", "INNER", "INSERT", "INTO", "J", "JOIN", "K", "L", "LEFT", "M", "N", "O", "ON", "OR", "ORDER", "P", "PRE_SET", "Q", "R", "RIGHT", "S", "SELECT", "SET", "T", "TEXT_STRING", "U", "UPDATE", "V", "VALUES", "W", "WHERE", "WS", "X", "Y", "Z", "'!='", "'*'", "','", "'.'", "'<'", "'<='", "'<>'", "'='", "'>'", "'>='", "'\\('", "'\\)'"
+ };
+
+ public static final int EOF=-1;
+ public static final int T__61=61;
+ public static final int T__62=62;
+ public static final int T__63=63;
+ public static final int T__64=64;
+ public static final int T__65=65;
+ public static final int T__66=66;
+ public static final int T__67=67;
+ public static final int T__68=68;
+ public static final int T__69=69;
+ public static final int T__70=70;
+ public static final int T__71=71;
+ public static final int T__72=72;
+ public static final int A=4;
+ public static final int AND=5;
+ public static final int AS=6;
+ public static final int ASC=7;
+ public static final int B=8;
+ public static final int BASIC_NAME=9;
+ public static final int BY=10;
+ public static final int C=11;
+ public static final int CROSS=12;
+ public static final int D=13;
+ public static final int DELETE=14;
+ public static final int DESC=15;
+ public static final int E=16;
+ public static final int EXISTS=17;
+ public static final int F=18;
+ public static final int FROM=19;
+ public static final int FULL=20;
+ public static final int G=21;
+ public static final int GROUP=22;
+ public static final int H=23;
+ public static final int HAVING=24;
+ public static final int I=25;
+ public static final int IN=26;
+ public static final int INNER=27;
+ public static final int INSERT=28;
+ public static final int INTO=29;
+ public static final int J=30;
+ public static final int JOIN=31;
+ public static final int K=32;
+ public static final int L=33;
+ public static final int LEFT=34;
+ public static final int M=35;
+ public static final int N=36;
+ public static final int O=37;
+ public static final int ON=38;
+ public static final int OR=39;
+ public static final int ORDER=40;
+ public static final int P=41;
+ public static final int PRE_SET=42;
+ public static final int Q=43;
+ public static final int R=44;
+ public static final int RIGHT=45;
+ public static final int S=46;
+ public static final int SELECT=47;
+ public static final int SET=48;
+ public static final int T=49;
+ public static final int TEXT_STRING=50;
+ public static final int U=51;
+ public static final int UPDATE=52;
+ public static final int V=53;
+ public static final int VALUES=54;
+ public static final int W=55;
+ public static final int WHERE=56;
+ public static final int WS=57;
+ public static final int X=58;
+ public static final int Y=59;
+ public static final int Z=60;
+
+ // delegates
+ public Parser[] getDelegates() {
+     return new Parser[] {};
+ }
+
+ // delegators
+
+
+ public AntlrV3SQLParser(TokenStream input) {
+     this(input, new RecognizerSharedState());
+ }
+ public AntlrV3SQLParser(TokenStream input, RecognizerSharedState state) {
+     super(input, state);
+ }
+
+ public String[] getTokenNames() { return AntlrV3SQLParser.tokenNames; }
+ public String getGrammarFileName() { return "/Users/akwei/antlrpro/sql2/AntlrV3SQL.g"; }
+
+
+// List<String[]> tables = new ArrayList<String[]>();
+// List<String[]> colExprs=new ArrayList<String[]>();
+     private AntlrParserDelegate antlrParserDelegate;
+ 
+     public void setAntlrParserDelegate(AntlrParserDelegate antlrParserDelegate) {
+         this.antlrParserDelegate = antlrParserDelegate;
+     }
+
+ @Override
+     public void reportError(RecognitionException e) {
+     }
+
+
+
+
+ // $ANTLR start "start"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:23:1: start : ( sql_insert | sql_delete | sql_update | sql_select );
+ public final void start() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:23:7: ( sql_insert | sql_delete | sql_update | sql_select )
+         int alt1=4;
+         switch ( input.LA(1) ) {
+         case INSERT:
+             {
+             alt1=1;
+             }
+             break;
+         case DELETE:
+             {
+             alt1=2;
+             }
+             break;
+         case UPDATE:
+             {
+             alt1=3;
+             }
+             break;
+         case SELECT:
+             {
+             alt1=4;
+             }
+             break;
+         default:
+             NoViableAltException nvae =
+                 new NoViableAltException("", 1, 0, input);
 
-    public static final String[] tokenNames = new String[] { "<invalid>",
-            "<EOR>", "<DOWN>", "<UP>", "AND", "AND_", "AS", "AS_", "CROSS",
-            "CROSS_", "DELETE", "DELETE_", "FROM", "FROM_", "FULL", "FULL_",
-            "INNER", "INNER_", "INSERT", "INSERT_", "INTO", "INTO_", "JOIN",
-            "JOIN_", "LEFT", "LEFT_", "LEFT_CLOSE", "ON", "ON_", "OR", "OR_",
-            "PRE_SET", "RIGHT", "RIGHT_", "RIGHT_CLOSE", "SELECT", "SELECT_",
-            "SET", "SET_", "UPDATE", "UPDATE_", "VALUES", "VALUES_", "WHERE",
-            "WHERE_", "WORD", "WS", "'!='", "','", "'<'", "'<='", "'<>'",
-            "'='", "'>'", "'>='", "'ASC'", "'BY'", "'DESC'", "'EXISTS'",
-            "'GROUP'", "'HAVING'", "'IN'", "'ORDER'", "'asc'", "'by'",
-            "'desc'", "'exists'", "'group'", "'having'", "'in'", "'order'" };
+             throw nvae;
 
-    public static final int EOF = -1;
+         }
 
-    public static final int T__47 = 47;
+         switch (alt1) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:24:2: sql_insert
+                 {
+                 pushFollow(FOLLOW_sql_insert_in_start23);
+                 sql_insert();
 
-    public static final int T__48 = 48;
+                 state._fsp--;
 
-    public static final int T__49 = 49;
 
-    public static final int T__50 = 50;
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:24:13: sql_delete
+                 {
+                 pushFollow(FOLLOW_sql_delete_in_start25);
+                 sql_delete();
 
-    public static final int T__51 = 51;
+                 state._fsp--;
 
-    public static final int T__52 = 52;
 
-    public static final int T__53 = 53;
+                 }
+                 break;
+             case 3 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:24:24: sql_update
+                 {
+                 pushFollow(FOLLOW_sql_update_in_start27);
+                 sql_update();
 
-    public static final int T__54 = 54;
+                 state._fsp--;
 
-    public static final int T__55 = 55;
 
-    public static final int T__56 = 56;
+                 }
+                 break;
+             case 4 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:24:35: sql_select
+                 {
+                 pushFollow(FOLLOW_sql_select_in_start29);
+                 sql_select();
 
-    public static final int T__57 = 57;
+                 state._fsp--;
 
-    public static final int T__58 = 58;
 
-    public static final int T__59 = 59;
+                 }
+                 break;
 
-    public static final int T__60 = 60;
+         }
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
 
-    public static final int T__61 = 61;
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "start"
 
-    public static final int T__62 = 62;
 
-    public static final int T__63 = 63;
 
-    public static final int T__64 = 64;
+ // $ANTLR start "sql_insert"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:26:1: sql_insert : INSERT INTO table '\\(' insertColumn ( ',' insertColumn )* '\\)' VALUES '\\(' ( PRE_SET | ( ',' PRE_SET ) )* '\\)' ;
+ public final void sql_insert() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:27:2: ( INSERT INTO table '\\(' insertColumn ( ',' insertColumn )* '\\)' VALUES '\\(' ( PRE_SET | ( ',' PRE_SET ) )* '\\)' )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:2: INSERT INTO table '\\(' insertColumn ( ',' insertColumn )* '\\)' VALUES '\\(' ( PRE_SET | ( ',' PRE_SET ) )* '\\)'
+         {
+         match(input,INSERT,FOLLOW_INSERT_in_sql_insert40); 
 
-    public static final int T__65 = 65;
+         match(input,INTO,FOLLOW_INTO_in_sql_insert42); 
 
-    public static final int T__66 = 66;
+         pushFollow(FOLLOW_table_in_sql_insert44);
+         table();
 
-    public static final int T__67 = 67;
+         state._fsp--;
 
-    public static final int T__68 = 68;
 
-    public static final int T__69 = 69;
+         match(input,71,FOLLOW_71_in_sql_insert46); 
 
-    public static final int T__70 = 70;
+         pushFollow(FOLLOW_insertColumn_in_sql_insert48);
+         insertColumn();
 
-    public static final int AND = 4;
+         state._fsp--;
 
-    public static final int AND_ = 5;
 
-    public static final int AS = 6;
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:38: ( ',' insertColumn )*
+         loop2:
+         do {
+             int alt2=2;
+             int LA2_0 = input.LA(1);
 
-    public static final int AS_ = 7;
+             if ( (LA2_0==63) ) {
+                 alt2=1;
+             }
 
-    public static final int CROSS = 8;
 
-    public static final int CROSS_ = 9;
+             switch (alt2) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:39: ',' insertColumn
+                 {
+                 match(input,63,FOLLOW_63_in_sql_insert51); 
 
-    public static final int DELETE = 10;
+                 pushFollow(FOLLOW_insertColumn_in_sql_insert53);
+                 insertColumn();
 
-    public static final int DELETE_ = 11;
+                 state._fsp--;
 
-    public static final int FROM = 12;
 
-    public static final int FROM_ = 13;
+                 }
+                 break;
 
-    public static final int FULL = 14;
+             default :
+                 break loop2;
+             }
+         } while (true);
 
-    public static final int FULL_ = 15;
 
-    public static final int INNER = 16;
+         match(input,72,FOLLOW_72_in_sql_insert57); 
 
-    public static final int INNER_ = 17;
+         match(input,VALUES,FOLLOW_VALUES_in_sql_insert59); 
 
-    public static final int INSERT = 18;
+         match(input,71,FOLLOW_71_in_sql_insert61); 
 
-    public static final int INSERT_ = 19;
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:75: ( PRE_SET | ( ',' PRE_SET ) )*
+         loop3:
+         do {
+             int alt3=3;
+             int LA3_0 = input.LA(1);
 
-    public static final int INTO = 20;
+             if ( (LA3_0==PRE_SET) ) {
+                 alt3=1;
+             }
+             else if ( (LA3_0==63) ) {
+                 alt3=2;
+             }
 
-    public static final int INTO_ = 21;
 
-    public static final int JOIN = 22;
+             switch (alt3) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:76: PRE_SET
+                 {
+                 match(input,PRE_SET,FOLLOW_PRE_SET_in_sql_insert64); 
 
-    public static final int JOIN_ = 23;
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:84: ( ',' PRE_SET )
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:84: ( ',' PRE_SET )
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:28:85: ',' PRE_SET
+                 {
+                 match(input,63,FOLLOW_63_in_sql_insert67); 
 
-    public static final int LEFT = 24;
+                 match(input,PRE_SET,FOLLOW_PRE_SET_in_sql_insert69); 
 
-    public static final int LEFT_ = 25;
+                 }
 
-    public static final int LEFT_CLOSE = 26;
 
-    public static final int ON = 27;
+                 }
+                 break;
 
-    public static final int ON_ = 28;
+             default :
+                 break loop3;
+             }
+         } while (true);
 
-    public static final int OR = 29;
 
-    public static final int OR_ = 30;
+         match(input,72,FOLLOW_72_in_sql_insert74); 
 
-    public static final int PRE_SET = 31;
+         }
 
-    public static final int RIGHT = 32;
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
 
-    public static final int RIGHT_ = 33;
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "sql_insert"
 
-    public static final int RIGHT_CLOSE = 34;
 
-    public static final int SELECT = 35;
 
-    public static final int SELECT_ = 36;
+ // $ANTLR start "sql_delete"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:30:1: sql_delete : DELETE FROM table ( WHERE kv ( and_or kv )* )? ;
+ public final void sql_delete() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:31:2: ( DELETE FROM table ( WHERE kv ( and_or kv )* )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:32:2: DELETE FROM table ( WHERE kv ( and_or kv )* )?
+         {
+         match(input,DELETE,FOLLOW_DELETE_in_sql_delete86); 
 
-    public static final int SET = 37;
+         match(input,FROM,FOLLOW_FROM_in_sql_delete88); 
 
-    public static final int SET_ = 38;
+         pushFollow(FOLLOW_table_in_sql_delete90);
+         table();
 
-    public static final int UPDATE = 39;
-
-    public static final int UPDATE_ = 40;
-
-    public static final int VALUES = 41;
-
-    public static final int VALUES_ = 42;
-
-    public static final int WHERE = 43;
-
-    public static final int WHERE_ = 44;
-
-    public static final int WORD = 45;
-
-    public static final int WS = 46;
-
-    // delegates
-    public Parser[] getDelegates() {
-        return new Parser[] {};
-    }
-
-    // delegators
-    public AntlrV3SQLParser(TokenStream input) {
-        this(input, new RecognizerSharedState());
-    }
-
-    public AntlrV3SQLParser(TokenStream input, RecognizerSharedState state) {
-        super(input, state);
-    }
-
-    public String[] getTokenNames() {
-        return AntlrV3SQLParser.tokenNames;
-    }
-
-    public String getGrammarFileName() {
-        return "/Users/akwei/antlrpro/sql/AntlrV3SQL.g";
-    }
-
-    // List<String[]> tables = new ArrayList<String[]>();
-    //
-    // List<String[]> colExprs = new ArrayList<String[]>();
-    private AntlrParserDelegate antlrParserDelegate;
-
-    public void setAntlrParserDelegate(AntlrParserDelegate antlrParserDelegate) {
-        this.antlrParserDelegate = antlrParserDelegate;
-    }
-
-    @Override
-    public void reportError(RecognitionException e) {
-    }
-
-    // $ANTLR start "proc"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:67:1: proc : ( insertSQL |
-    // selectSQL | deleteSQL | updateSQL );
-    public final void proc() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:67:6: ( insertSQL |
-            // selectSQL | deleteSQL | updateSQL )
-            int alt1 = 4;
-            switch (input.LA(1)) {
-                case INSERT:
-                case INSERT_: {
-                    alt1 = 1;
-                }
-                    break;
-                case SELECT:
-                case SELECT_: {
-                    alt1 = 2;
-                }
-                    break;
-                case DELETE:
-                case DELETE_: {
-                    alt1 = 3;
-                }
-                    break;
-                case UPDATE:
-                case UPDATE_: {
-                    alt1 = 4;
-                }
-                    break;
-                default:
-                    NoViableAltException nvae = new NoViableAltException("", 1,
-                            0, input);
-                    throw nvae;
-            }
-            switch (alt1) {
-                case 1:
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:68:2: insertSQL
-                {
-                    pushFollow(FOLLOW_insertSQL_in_proc275);
-                    insertSQL();
-                    state._fsp--;
-                }
-                    break;
-                case 2:
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:68:12: selectSQL
-                {
-                    pushFollow(FOLLOW_selectSQL_in_proc277);
-                    selectSQL();
-                    state._fsp--;
-                }
-                    break;
-                case 3:
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:68:22: deleteSQL
-                {
-                    pushFollow(FOLLOW_deleteSQL_in_proc279);
-                    deleteSQL();
-                    state._fsp--;
-                }
-                    break;
-                case 4:
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:68:32: updateSQL
-                {
-                    pushFollow(FOLLOW_updateSQL_in_proc281);
-                    updateSQL();
-                    state._fsp--;
-                }
-                    break;
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "proc"
-    // $ANTLR start "insertSQL"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:70:1: insertSQL : ( INSERT |
-    // INSERT_ ) ( INTO | INTO_ ) table LEFT_CLOSE insertColumn ( ','
-    // insertColumn )* RIGHT_CLOSE ( VALUES | VALUES_ ) LEFT_CLOSE ( PRE_SET | (
-    // ',' PRE_SET ) )* RIGHT_CLOSE ;
-    public final void insertSQL() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:71:2: ( ( INSERT | INSERT_
-            // ) ( INTO | INTO_ ) table LEFT_CLOSE insertColumn ( ','
-            // insertColumn )* RIGHT_CLOSE ( VALUES | VALUES_ ) LEFT_CLOSE (
-            // PRE_SET | ( ',' PRE_SET ) )* RIGHT_CLOSE )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:2: ( INSERT | INSERT_ )
-            // ( INTO | INTO_ ) table LEFT_CLOSE insertColumn ( ',' insertColumn
-            // )* RIGHT_CLOSE ( VALUES | VALUES_ ) LEFT_CLOSE ( PRE_SET | ( ','
-            // PRE_SET ) )* RIGHT_CLOSE
-            {
-                if ((input.LA(1) >= INSERT && input.LA(1) <= INSERT_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                if ((input.LA(1) >= INTO && input.LA(1) <= INTO_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                pushFollow(FOLLOW_table_in_insertSQL303);
-                table();
-                state._fsp--;
-                match(input, LEFT_CLOSE, FOLLOW_LEFT_CLOSE_in_insertSQL305);
-                pushFollow(FOLLOW_insertColumn_in_insertSQL307);
-                insertColumn();
-                state._fsp--;
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:62: ( ','
-                // insertColumn )*
-                loop2: do {
-                    int alt2 = 2;
-                    int LA2_0 = input.LA(1);
-                    if ((LA2_0 == 48)) {
-                        alt2 = 1;
-                    }
-                    switch (alt2) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:63: ','
-                        // insertColumn
-                        {
-                            match(input, 48, FOLLOW_48_in_insertSQL310);
-                            pushFollow(FOLLOW_insertColumn_in_insertSQL312);
-                            insertColumn();
-                            state._fsp--;
-                        }
-                            break;
-                        default:
-                            break loop2;
-                    }
-                }
-                while (true);
-                match(input, RIGHT_CLOSE, FOLLOW_RIGHT_CLOSE_in_insertSQL316);
-                if ((input.LA(1) >= VALUES && input.LA(1) <= VALUES_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                match(input, LEFT_CLOSE, FOLLOW_LEFT_CLOSE_in_insertSQL324);
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:122: ( PRE_SET | (
-                // ',' PRE_SET ) )*
-                loop3: do {
-                    int alt3 = 3;
-                    int LA3_0 = input.LA(1);
-                    if ((LA3_0 == PRE_SET)) {
-                        alt3 = 1;
-                    }
-                    else if ((LA3_0 == 48)) {
-                        alt3 = 2;
-                    }
-                    switch (alt3) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:123:
-                        // PRE_SET
-                        {
-                            match(input, PRE_SET,
-                                    FOLLOW_PRE_SET_in_insertSQL327);
-                        }
-                            break;
-                        case 2:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:131: ( ','
-                        // PRE_SET )
-                        {
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:131: (
-                            // ',' PRE_SET )
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:72:132:
-                            // ',' PRE_SET
-                            {
-                                match(input, 48, FOLLOW_48_in_insertSQL330);
-                                match(input, PRE_SET,
-                                        FOLLOW_PRE_SET_in_insertSQL332);
-                            }
-                        }
-                            break;
-                        default:
-                            break loop3;
-                    }
-                }
-                while (true);
-                match(input, RIGHT_CLOSE, FOLLOW_RIGHT_CLOSE_in_insertSQL337);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "insertSQL"
-    // $ANTLR start "insertColumn"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:74:1: insertColumn : WORD ;
-    public final void insertColumn() throws RecognitionException {
-        Token WORD1 = null;
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:75:2: ( WORD )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:76:2: WORD
-            {
-                WORD1 = (Token) match(input, WORD,
-                        FOLLOW_WORD_in_insertColumn350);
-                // colExprs.add(new String[] {
-                // (WORD1 != null ? WORD1.getText() : null), "=" });
-                if (this.antlrParserDelegate != null) {
-                    this.antlrParserDelegate.onFindColExper(
-                            (WORD1 != null ? WORD1.getText() : null), "=");
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "insertColumn"
-    // $ANTLR start "deleteSQL"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:84:1: deleteSQL : ( DELETE |
-    // DELETE_ ) ( FROM | FROM_ ) table ( whereSQL )? ;
-    public final void deleteSQL() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:85:2: ( ( DELETE | DELETE_
-            // ) ( FROM | FROM_ ) table ( whereSQL )? )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:86:2: ( DELETE | DELETE_ )
-            // ( FROM | FROM_ ) table ( whereSQL )?
-            {
-                if ((input.LA(1) >= DELETE && input.LA(1) <= DELETE_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                if ((input.LA(1) >= FROM && input.LA(1) <= FROM_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                pushFollow(FOLLOW_table_in_deleteSQL376);
-                table();
-                state._fsp--;
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:86:38: ( whereSQL )?
-                int alt4 = 2;
-                int LA4_0 = input.LA(1);
-                if (((LA4_0 >= WHERE && LA4_0 <= WHERE_))) {
-                    alt4 = 1;
-                }
-                switch (alt4) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:86:38: whereSQL
-                    {
-                        pushFollow(FOLLOW_whereSQL_in_deleteSQL378);
-                        whereSQL();
-                        state._fsp--;
-                    }
-                        break;
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "deleteSQL"
-    // $ANTLR start "selectSQL"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:88:1: selectSQL : ( SELECT |
-    // SELECT_ ) selectColums ( FROM | FROM_ ) tables ( ( FULL | FULL_ | CROSS |
-    // CROSS_ | INNER | INNER_ | LEFT | LEFT_ | RIGHT | RIGHT_ ) ( JOIN | JOIN_
-    // ) table ( ( ON | ON_ ) WORD '=' WORD )? )? ( selectWhereSQL )? ( other )*
-    // ;
-    public final void selectSQL() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:89:2: ( ( SELECT | SELECT_
-            // ) selectColums ( FROM | FROM_ ) tables ( ( FULL | FULL_ | CROSS |
-            // CROSS_ | INNER | INNER_ | LEFT | LEFT_ | RIGHT | RIGHT_ ) ( JOIN
-            // | JOIN_ ) table ( ( ON | ON_ ) WORD '=' WORD )? )? (
-            // selectWhereSQL )? ( other )* )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:2: ( SELECT | SELECT_ )
-            // selectColums ( FROM | FROM_ ) tables ( ( FULL | FULL_ | CROSS |
-            // CROSS_ | INNER | INNER_ | LEFT | LEFT_ | RIGHT | RIGHT_ ) ( JOIN
-            // | JOIN_ ) table ( ( ON | ON_ ) WORD '=' WORD )? )? (
-            // selectWhereSQL )? ( other )*
-            {
-                if ((input.LA(1) >= SELECT && input.LA(1) <= SELECT_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                pushFollow(FOLLOW_selectColums_in_selectSQL397);
-                selectColums();
-                state._fsp--;
-                if ((input.LA(1) >= FROM && input.LA(1) <= FROM_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                pushFollow(FOLLOW_tables_in_selectSQL405);
-                tables();
-                state._fsp--;
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:52: ( ( FULL |
-                // FULL_ | CROSS | CROSS_ | INNER | INNER_ | LEFT | LEFT_ |
-                // RIGHT | RIGHT_ ) ( JOIN | JOIN_ ) table ( ( ON | ON_ ) WORD
-                // '=' WORD )? )?
-                int alt6 = 2;
-                int LA6_0 = input.LA(1);
-                if (((LA6_0 >= CROSS && LA6_0 <= CROSS_)
-                        || (LA6_0 >= FULL && LA6_0 <= INNER_)
-                        || (LA6_0 >= LEFT && LA6_0 <= LEFT_) || (LA6_0 >= RIGHT && LA6_0 <= RIGHT_))) {
-                    alt6 = 1;
-                }
-                switch (alt6) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:53: ( FULL |
-                    // FULL_ | CROSS | CROSS_ | INNER | INNER_ | LEFT | LEFT_ |
-                    // RIGHT | RIGHT_ ) ( JOIN | JOIN_ ) table ( ( ON | ON_ )
-                    // WORD '=' WORD )?
-                    {
-                        if ((input.LA(1) >= CROSS && input.LA(1) <= CROSS_)
-                                || (input.LA(1) >= FULL && input.LA(1) <= INNER_)
-                                || (input.LA(1) >= LEFT && input.LA(1) <= LEFT_)
-                                || (input.LA(1) >= RIGHT && input.LA(1) <= RIGHT_)) {
-                            input.consume();
-                            state.errorRecovery = false;
-                        }
-                        else {
-                            MismatchedSetException mse = new MismatchedSetException(
-                                    null, input);
-                            throw mse;
-                        }
-                        if ((input.LA(1) >= JOIN && input.LA(1) <= JOIN_)) {
-                            input.consume();
-                            state.errorRecovery = false;
-                        }
-                        else {
-                            MismatchedSetException mse = new MismatchedSetException(
-                                    null, input);
-                            throw mse;
-                        }
-                        pushFollow(FOLLOW_table_in_selectSQL436);
-                        table();
-                        state._fsp--;
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:135: ( ( ON
-                        // | ON_ ) WORD '=' WORD )?
-                        int alt5 = 2;
-                        int LA5_0 = input.LA(1);
-                        if (((LA5_0 >= ON && LA5_0 <= ON_))) {
-                            alt5 = 1;
-                        }
-                        switch (alt5) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:136: (
-                            // ON | ON_ ) WORD '=' WORD
-                            {
-                                if ((input.LA(1) >= ON && input.LA(1) <= ON_)) {
-                                    input.consume();
-                                    state.errorRecovery = false;
-                                }
-                                else {
-                                    MismatchedSetException mse = new MismatchedSetException(
-                                            null, input);
-                                    throw mse;
-                                }
-                                match(input, WORD, FOLLOW_WORD_in_selectSQL445);
-                                match(input, 52, FOLLOW_52_in_selectSQL447);
-                                match(input, WORD, FOLLOW_WORD_in_selectSQL449);
-                            }
-                                break;
-                        }
-                    }
-                        break;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:163: (
-                // selectWhereSQL )?
-                int alt7 = 2;
-                int LA7_0 = input.LA(1);
-                if (((LA7_0 >= WHERE && LA7_0 <= WHERE_))) {
-                    alt7 = 1;
-                }
-                switch (alt7) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:163:
-                    // selectWhereSQL
-                    {
-                        pushFollow(FOLLOW_selectWhereSQL_in_selectSQL455);
-                        selectWhereSQL();
-                        state._fsp--;
-                    }
-                        break;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:179: ( other )*
-                loop8: do {
-                    int alt8 = 2;
-                    int LA8_0 = input.LA(1);
-                    if ((LA8_0 == 56 || (LA8_0 >= 59 && LA8_0 <= 60)
-                            || LA8_0 == 62 || LA8_0 == 64
-                            || (LA8_0 >= 67 && LA8_0 <= 68) || LA8_0 == 70)) {
-                        alt8 = 1;
-                    }
-                    switch (alt8) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:90:179: other
-                        {
-                            pushFollow(FOLLOW_other_in_selectSQL458);
-                            other();
-                            state._fsp--;
-                        }
-                            break;
-                        default:
-                            break loop8;
-                    }
-                }
-                while (true);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "selectSQL"
-    // $ANTLR start "selectWhereSQL"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:92:1: selectWhereSQL : ( WHERE |
-    // WHERE_ ) ( k_v ) ( and_or ( k_v ) | and_or WORD op '(' selectSQL ')' )* ;
-    public final void selectWhereSQL() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:93:2: ( ( WHERE | WHERE_ )
-            // ( k_v ) ( and_or ( k_v ) | and_or WORD op '(' selectSQL ')' )* )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:2: ( WHERE | WHERE_ ) (
-            // k_v ) ( and_or ( k_v ) | and_or WORD op '(' selectSQL ')' )*
-            {
-                if ((input.LA(1) >= WHERE && input.LA(1) <= WHERE_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:17: ( k_v )
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:18: k_v
-                {
-                    pushFollow(FOLLOW_k_v_in_selectWhereSQL478);
-                    k_v();
-                    state._fsp--;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:23: ( and_or ( k_v
-                // ) | and_or WORD op '(' selectSQL ')' )*
-                loop9: do {
-                    int alt9 = 3;
-                    int LA9_0 = input.LA(1);
-                    if (((LA9_0 >= AND && LA9_0 <= AND_) || (LA9_0 >= OR && LA9_0 <= OR_))) {
-                        int LA9_2 = input.LA(2);
-                        if ((LA9_2 == WORD)) {
-                            int LA9_3 = input.LA(3);
-                            if ((LA9_3 == 47 || (LA9_3 >= 49 && LA9_3 <= 54)
-                                    || LA9_3 == 58 || LA9_3 == 61
-                                    || LA9_3 == 66 || LA9_3 == 69)) {
-                                int LA9_4 = input.LA(4);
-                                if ((LA9_4 == PRE_SET)) {
-                                    alt9 = 1;
-                                }
-                                else if ((LA9_4 == LEFT_CLOSE)) {
-                                    alt9 = 2;
-                                }
-                            }
-                        }
-                    }
-                    switch (alt9) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:26: and_or
-                        // ( k_v )
-                        {
-                            pushFollow(FOLLOW_and_or_in_selectWhereSQL484);
-                            and_or();
-                            state._fsp--;
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:33: (
-                            // k_v )
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:34: k_v
-                            {
-                                pushFollow(FOLLOW_k_v_in_selectWhereSQL487);
-                                k_v();
-                                state._fsp--;
-                            }
-                        }
-                            break;
-                        case 2:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:94:41: and_or
-                        // WORD op '(' selectSQL ')'
-                        {
-                            pushFollow(FOLLOW_and_or_in_selectWhereSQL492);
-                            and_or();
-                            state._fsp--;
-                            match(input, WORD, FOLLOW_WORD_in_selectWhereSQL494);
-                            pushFollow(FOLLOW_op_in_selectWhereSQL496);
-                            op();
-                            state._fsp--;
-                            match(input, LEFT_CLOSE,
-                                    FOLLOW_LEFT_CLOSE_in_selectWhereSQL498);
-                            pushFollow(FOLLOW_selectSQL_in_selectWhereSQL500);
-                            selectSQL();
-                            state._fsp--;
-                            match(input, RIGHT_CLOSE,
-                                    FOLLOW_RIGHT_CLOSE_in_selectWhereSQL502);
-                        }
-                            break;
-                        default:
-                            break loop9;
-                    }
-                }
-                while (true);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "selectWhereSQL"
-    // $ANTLR start "updateSQL"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:96:1: updateSQL : ( UPDATE |
-    // UPDATE_ ) table ( SET | SET_ ) ( k_v ( ',' k_v )* ) ( whereSQL )? ;
-    public final void updateSQL() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:97:2: ( ( UPDATE | UPDATE_
-            // ) table ( SET | SET_ ) ( k_v ( ',' k_v )* ) ( whereSQL )? )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:2: ( UPDATE | UPDATE_ )
-            // table ( SET | SET_ ) ( k_v ( ',' k_v )* ) ( whereSQL )?
-            {
-                if ((input.LA(1) >= UPDATE && input.LA(1) <= UPDATE_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                pushFollow(FOLLOW_table_in_updateSQL523);
-                table();
-                state._fsp--;
-                if ((input.LA(1) >= SET && input.LA(1) <= SET_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:36: ( k_v ( ',' k_v
-                // )* )
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:37: k_v ( ',' k_v
-                // )*
-                {
-                    pushFollow(FOLLOW_k_v_in_updateSQL532);
-                    k_v();
-                    state._fsp--;
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:41: ( ',' k_v
-                    // )*
-                    loop10: do {
-                        int alt10 = 2;
-                        int LA10_0 = input.LA(1);
-                        if ((LA10_0 == 48)) {
-                            alt10 = 1;
-                        }
-                        switch (alt10) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:42: ','
-                            // k_v
-                            {
-                                match(input, 48, FOLLOW_48_in_updateSQL535);
-                                pushFollow(FOLLOW_k_v_in_updateSQL537);
-                                k_v();
-                                state._fsp--;
-                            }
-                                break;
-                            default:
-                                break loop10;
-                        }
-                    }
-                    while (true);
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:53: ( whereSQL )?
-                int alt11 = 2;
-                int LA11_0 = input.LA(1);
-                if (((LA11_0 >= WHERE && LA11_0 <= WHERE_))) {
-                    alt11 = 1;
-                }
-                switch (alt11) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:98:53: whereSQL
-                    {
-                        pushFollow(FOLLOW_whereSQL_in_updateSQL542);
-                        whereSQL();
-                        state._fsp--;
-                    }
-                        break;
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "updateSQL"
-    // $ANTLR start "table"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:101:1: table : name ( ( AS | AS_
-    // )? alias )? ;
-    public final void table() throws RecognitionException {
-        AntlrV3SQLParser.name_return name2 = null;
-        AntlrV3SQLParser.alias_return alias3 = null;
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:101:7: ( name ( ( AS | AS_
-            // )? alias )? )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:102:2: name ( ( AS | AS_
-            // )? alias )?
-            {
-                pushFollow(FOLLOW_name_in_table554);
-                name2 = name();
-                state._fsp--;
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:102:7: ( ( AS | AS_ )?
-                // alias )?
-                int alt13 = 2;
-                int LA13_0 = input.LA(1);
-                if (((LA13_0 >= AS && LA13_0 <= AS_) || LA13_0 == WORD)) {
-                    alt13 = 1;
-                }
-                switch (alt13) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:102:8: ( AS | AS_
-                    // )? alias
-                    {
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:102:8: ( AS |
-                        // AS_ )?
-                        int alt12 = 2;
-                        int LA12_0 = input.LA(1);
-                        if (((LA12_0 >= AS && LA12_0 <= AS_))) {
-                            alt12 = 1;
-                        }
-                        switch (alt12) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
-                            {
-                                if ((input.LA(1) >= AS && input.LA(1) <= AS_)) {
-                                    input.consume();
-                                    state.errorRecovery = false;
-                                }
-                                else {
-                                    MismatchedSetException mse = new MismatchedSetException(
-                                            null, input);
-                                    throw mse;
-                                }
-                            }
-                                break;
-                        }
-                        pushFollow(FOLLOW_alias_in_table564);
-                        alias3 = alias();
-                        state._fsp--;
-                    }
-                        break;
-                }
-                // tables.add(new String[] {
-                // (name2 != null ? input
-                // .toString(name2.start, name2.stop) : null),
-                // (alias3 != null ? input.toString(alias3.start,
-                // alias3.stop) : null) });
-                if (this.antlrParserDelegate != null) {
-                    this.antlrParserDelegate.onFindTable(
-                            (name2 != null ? input.toString(name2.start,
-                                    name2.stop) : null),
-                            (alias3 != null ? input.toString(alias3.start,
-                                    alias3.stop) : null));
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "table"
-    // $ANTLR start "tables"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:113:1: tables : ( table ( ','
-    // table )* ) ;
-    public final void tables() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:113:8: ( ( table ( ','
-            // table )* ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:114:2: ( table ( ',' table
-            // )* )
-            {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:114:2: ( table ( ','
-                // table )* )
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:114:3: table ( ','
-                // table )*
-                {
-                    pushFollow(FOLLOW_table_in_tables579);
-                    table();
-                    state._fsp--;
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:114:9: ( ',' table
-                    // )*
-                    loop14: do {
-                        int alt14 = 2;
-                        int LA14_0 = input.LA(1);
-                        if ((LA14_0 == 48)) {
-                            alt14 = 1;
-                        }
-                        switch (alt14) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:114:10:
-                            // ',' table
-                            {
-                                match(input, 48, FOLLOW_48_in_tables582);
-                                pushFollow(FOLLOW_table_in_tables584);
-                                table();
-                                state._fsp--;
-                            }
-                                break;
-                            default:
-                                break loop14;
-                        }
-                    }
-                    while (true);
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "tables"
-    // $ANTLR start "k_v"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:117:1: k_v : WORD op PRE_SET ;
-    public final void k_v() throws RecognitionException {
-        Token WORD4 = null;
-        AntlrV3SQLParser.op_return op5 = null;
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:117:5: ( WORD op PRE_SET )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:118:2: WORD op PRE_SET
-            {
-                WORD4 = (Token) match(input, WORD, FOLLOW_WORD_in_k_v598);
-                pushFollow(FOLLOW_op_in_k_v600);
-                op5 = op();
-                state._fsp--;
-                match(input, PRE_SET, FOLLOW_PRE_SET_in_k_v602);
-                // colExprs.add(new String[] {
-                // (WORD4 != null ? WORD4.getText() : null),
-                // (op5 != null ? input.toString(op5.start, op5.stop)
-                // : null) });
-                if (this.antlrParserDelegate != null) {
-                    this.antlrParserDelegate.onFindColExper(
-                            (WORD4 != null ? WORD4.getText() : null),
-                            (op5 != null ? input.toString(op5.start, op5.stop)
-                                    : null));
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "k_v"
-    // $ANTLR start "column"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:128:1: column : name ( ( AS | AS_
-    // )? alias )? ;
-    public final void column() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:128:8: ( name ( ( AS | AS_
-            // )? alias )? )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:129:2: name ( ( AS | AS_
-            // )? alias )?
-            {
-                pushFollow(FOLLOW_name_in_column614);
-                name();
-                state._fsp--;
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:129:7: ( ( AS | AS_ )?
-                // alias )?
-                int alt16 = 2;
-                int LA16_0 = input.LA(1);
-                if (((LA16_0 >= AS && LA16_0 <= AS_) || LA16_0 == WORD)) {
-                    alt16 = 1;
-                }
-                switch (alt16) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:129:8: ( AS | AS_
-                    // )? alias
-                    {
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:129:8: ( AS |
-                        // AS_ )?
-                        int alt15 = 2;
-                        int LA15_0 = input.LA(1);
-                        if (((LA15_0 >= AS && LA15_0 <= AS_))) {
-                            alt15 = 1;
-                        }
-                        switch (alt15) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
-                            {
-                                if ((input.LA(1) >= AS && input.LA(1) <= AS_)) {
-                                    input.consume();
-                                    state.errorRecovery = false;
-                                }
-                                else {
-                                    MismatchedSetException mse = new MismatchedSetException(
-                                            null, input);
-                                    throw mse;
-                                }
-                            }
-                                break;
-                        }
-                        pushFollow(FOLLOW_alias_in_column624);
-                        alias();
-                        state._fsp--;
-                    }
-                        break;
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "column"
-    // $ANTLR start "sel_column"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:131:1: sel_column : sel_name ( (
-    // AS | AS_ )? sel_alias )? ;
-    public final void sel_column() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:131:12: ( sel_name ( ( AS
-            // | AS_ )? sel_alias )? )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:132:2: sel_name ( ( AS |
-            // AS_ )? sel_alias )?
-            {
-                pushFollow(FOLLOW_sel_name_in_sel_column637);
-                sel_name();
-                state._fsp--;
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:132:11: ( ( AS | AS_
-                // )? sel_alias )?
-                int alt18 = 2;
-                int LA18_0 = input.LA(1);
-                if (((LA18_0 >= AS && LA18_0 <= AS_) || LA18_0 == WORD)) {
-                    alt18 = 1;
-                }
-                switch (alt18) {
-                    case 1:
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:132:12: ( AS | AS_
-                    // )? sel_alias
-                    {
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:132:12: ( AS |
-                        // AS_ )?
-                        int alt17 = 2;
-                        int LA17_0 = input.LA(1);
-                        if (((LA17_0 >= AS && LA17_0 <= AS_))) {
-                            alt17 = 1;
-                        }
-                        switch (alt17) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
-                            {
-                                if ((input.LA(1) >= AS && input.LA(1) <= AS_)) {
-                                    input.consume();
-                                    state.errorRecovery = false;
-                                }
-                                else {
-                                    MismatchedSetException mse = new MismatchedSetException(
-                                            null, input);
-                                    throw mse;
-                                }
-                            }
-                                break;
-                        }
-                        pushFollow(FOLLOW_sel_alias_in_sel_column647);
-                        sel_alias();
-                        state._fsp--;
-                    }
-                        break;
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "sel_column"
-    // $ANTLR start "selectColums"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:134:1: selectColums : ( sel_column
-    // ( ',' sel_column )* ) ;
-    public final void selectColums() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:135:2: ( ( sel_column (
-            // ',' sel_column )* ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:136:2: ( sel_column ( ','
-            // sel_column )* )
-            {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:136:2: ( sel_column (
-                // ',' sel_column )* )
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:136:3: sel_column (
-                // ',' sel_column )*
-                {
-                    pushFollow(FOLLOW_sel_column_in_selectColums660);
-                    sel_column();
-                    state._fsp--;
-                    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:136:14: ( ','
-                    // sel_column )*
-                    loop19: do {
-                        int alt19 = 2;
-                        int LA19_0 = input.LA(1);
-                        if ((LA19_0 == 48)) {
-                            alt19 = 1;
-                        }
-                        switch (alt19) {
-                            case 1:
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:136:15:
-                            // ',' sel_column
-                            {
-                                match(input, 48, FOLLOW_48_in_selectColums663);
-                                pushFollow(FOLLOW_sel_column_in_selectColums665);
-                                sel_column();
-                                state._fsp--;
-                            }
-                                break;
-                            default:
-                                break loop19;
-                        }
-                    }
-                    while (true);
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "selectColums"
-    // $ANTLR start "whereSQL"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:138:1: whereSQL : ( WHERE | WHERE_
-    // ) ( k_v ) ( and_or ( k_v ) )* ;
-    public final void whereSQL() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:138:9: ( ( WHERE | WHERE_
-            // ) ( k_v ) ( and_or ( k_v ) )* )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:2: ( WHERE | WHERE_ )
-            // ( k_v ) ( and_or ( k_v ) )*
-            {
-                if ((input.LA(1) >= WHERE && input.LA(1) <= WHERE_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:17: ( k_v )
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:18: k_v
-                {
-                    pushFollow(FOLLOW_k_v_in_whereSQL686);
-                    k_v();
-                    state._fsp--;
-                }
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:23: ( and_or ( k_v
-                // ) )*
-                loop20: do {
-                    int alt20 = 2;
-                    int LA20_0 = input.LA(1);
-                    if (((LA20_0 >= AND && LA20_0 <= AND_) || (LA20_0 >= OR && LA20_0 <= OR_))) {
-                        alt20 = 1;
-                    }
-                    switch (alt20) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:24: and_or
-                        // ( k_v )
-                        {
-                            pushFollow(FOLLOW_and_or_in_whereSQL690);
-                            and_or();
-                            state._fsp--;
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:31: (
-                            // k_v )
-                            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:139:32:
-                            // k_v
-                            {
-                                pushFollow(FOLLOW_k_v_in_whereSQL693);
-                                k_v();
-                                state._fsp--;
-                            }
-                        }
-                            break;
-                        default:
-                            break loop20;
-                    }
-                }
-                while (true);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "whereSQL"
-    // $ANTLR start "and_or"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:141:1: and_or : ( AND | AND_ | OR
-    // | OR_ ) ;
-    public final void and_or() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:141:8: ( ( AND | AND_ | OR
-            // | OR_ ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
-            {
-                if ((input.LA(1) >= AND && input.LA(1) <= AND_)
-                        || (input.LA(1) >= OR && input.LA(1) <= OR_)) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "and_or"
-    public static class op_return extends ParserRuleReturnScope {
-    };
-
-    // $ANTLR start "op"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:144:1: op : ( '=' | '>' | '>=' |
-    // '<' | '<=' | '!=' | '<>' | 'in' | 'IN' | 'exists' | 'EXISTS' ) ;
-    public final AntlrV3SQLParser.op_return op() throws RecognitionException {
-        AntlrV3SQLParser.op_return retval = new AntlrV3SQLParser.op_return();
-        retval.start = input.LT(1);
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:145:2: ( ( '=' | '>' |
-            // '>=' | '<' | '<=' | '!=' | '<>' | 'in' | 'IN' | 'exists' |
-            // 'EXISTS' ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
-            {
-                if (input.LA(1) == 47
-                        || (input.LA(1) >= 49 && input.LA(1) <= 54)
-                        || input.LA(1) == 58 || input.LA(1) == 61
-                        || input.LA(1) == 66 || input.LA(1) == 69) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-            }
-            retval.stop = input.LT(-1);
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return retval;
-    }
-
-    // $ANTLR end "op"
-    // $ANTLR start "other"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:148:1: other : ( 'group' | 'GROUP'
-    // | 'order' | 'ORDER' | 'having' | 'HAVING' | 'by' | 'BY' )+ WORD ( 'desc'
-    // | 'DESC' | 'asc' | 'ASC' ) ;
-    public final void other() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:148:7: ( ( 'group' |
-            // 'GROUP' | 'order' | 'ORDER' | 'having' | 'HAVING' | 'by' | 'BY'
-            // )+ WORD ( 'desc' | 'DESC' | 'asc' | 'ASC' ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:149:2: ( 'group' | 'GROUP'
-            // | 'order' | 'ORDER' | 'having' | 'HAVING' | 'by' | 'BY' )+ WORD (
-            // 'desc' | 'DESC' | 'asc' | 'ASC' )
-            {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:149:2: ( 'group' |
-                // 'GROUP' | 'order' | 'ORDER' | 'having' | 'HAVING' | 'by' |
-                // 'BY' )+
-                int cnt21 = 0;
-                loop21: do {
-                    int alt21 = 2;
-                    int LA21_0 = input.LA(1);
-                    if ((LA21_0 == 56 || (LA21_0 >= 59 && LA21_0 <= 60)
-                            || LA21_0 == 62 || LA21_0 == 64
-                            || (LA21_0 >= 67 && LA21_0 <= 68) || LA21_0 == 70)) {
-                        alt21 = 1;
-                    }
-                    switch (alt21) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
-                        {
-                            if (input.LA(1) == 56
-                                    || (input.LA(1) >= 59 && input.LA(1) <= 60)
-                                    || input.LA(1) == 62 || input.LA(1) == 64
-                                    || (input.LA(1) >= 67 && input.LA(1) <= 68)
-                                    || input.LA(1) == 70) {
-                                input.consume();
-                                state.errorRecovery = false;
-                            }
-                            else {
-                                MismatchedSetException mse = new MismatchedSetException(
-                                        null, input);
-                                throw mse;
-                            }
-                        }
-                            break;
-                        default:
-                            if (cnt21 >= 1)
-                                break loop21;
-                            EarlyExitException eee = new EarlyExitException(21,
-                                    input);
-                            throw eee;
-                    }
-                    cnt21++;
-                }
-                while (true);
-                match(input, WORD, FOLLOW_WORD_in_other779);
-                if (input.LA(1) == 55 || input.LA(1) == 57 || input.LA(1) == 63
-                        || input.LA(1) == 65) {
-                    input.consume();
-                    state.errorRecovery = false;
-                }
-                else {
-                    MismatchedSetException mse = new MismatchedSetException(
-                            null, input);
-                    throw mse;
-                }
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "other"
-    // $ANTLR start "sel_name"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:151:1: sel_name : WORD (
-    // LEFT_CLOSE WORD RIGHT_CLOSE )* ;
-    public final void sel_name() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:151:9: ( WORD ( LEFT_CLOSE
-            // WORD RIGHT_CLOSE )* )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:152:2: WORD ( LEFT_CLOSE
-            // WORD RIGHT_CLOSE )*
-            {
-                match(input, WORD, FOLLOW_WORD_in_sel_name798);
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:152:7: ( LEFT_CLOSE
-                // WORD RIGHT_CLOSE )*
-                loop22: do {
-                    int alt22 = 2;
-                    int LA22_0 = input.LA(1);
-                    if ((LA22_0 == LEFT_CLOSE)) {
-                        alt22 = 1;
-                    }
-                    switch (alt22) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:152:8:
-                        // LEFT_CLOSE WORD RIGHT_CLOSE
-                        {
-                            match(input, LEFT_CLOSE,
-                                    FOLLOW_LEFT_CLOSE_in_sel_name801);
-                            match(input, WORD, FOLLOW_WORD_in_sel_name803);
-                            match(input, RIGHT_CLOSE,
-                                    FOLLOW_RIGHT_CLOSE_in_sel_name805);
-                        }
-                            break;
-                        default:
-                            break loop22;
-                    }
-                }
-                while (true);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "sel_name"
-    // $ANTLR start "sel_alias"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:154:1: sel_alias : WORD (
-    // LEFT_CLOSE WORD RIGHT_CLOSE )* ;
-    public final void sel_alias() throws RecognitionException {
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:154:10: ( WORD (
-            // LEFT_CLOSE WORD RIGHT_CLOSE )* )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:2: WORD ( LEFT_CLOSE
-            // WORD RIGHT_CLOSE )*
-            {
-                match(input, WORD, FOLLOW_WORD_in_sel_alias817);
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:7: ( LEFT_CLOSE
-                // WORD RIGHT_CLOSE )*
-                loop23: do {
-                    int alt23 = 2;
-                    int LA23_0 = input.LA(1);
-                    if ((LA23_0 == LEFT_CLOSE)) {
-                        alt23 = 1;
-                    }
-                    switch (alt23) {
-                        case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:155:8:
-                        // LEFT_CLOSE WORD RIGHT_CLOSE
-                        {
-                            match(input, LEFT_CLOSE,
-                                    FOLLOW_LEFT_CLOSE_in_sel_alias820);
-                            match(input, WORD, FOLLOW_WORD_in_sel_alias822);
-                            match(input, RIGHT_CLOSE,
-                                    FOLLOW_RIGHT_CLOSE_in_sel_alias824);
-                        }
-                            break;
-                        default:
-                            break loop23;
-                    }
-                }
-                while (true);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return;
-    }
-
-    // $ANTLR end "sel_alias"
-    public static class name_return extends ParserRuleReturnScope {
-    };
-
-    // $ANTLR start "name"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:157:1: name : WORD ;
-    public final AntlrV3SQLParser.name_return name()
-            throws RecognitionException {
-        AntlrV3SQLParser.name_return retval = new AntlrV3SQLParser.name_return();
-        retval.start = input.LT(1);
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:157:6: ( WORD )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:158:2: WORD
-            {
-                match(input, WORD, FOLLOW_WORD_in_name836);
-            }
-            retval.stop = input.LT(-1);
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return retval;
-    }
-
-    // $ANTLR end "name"
-    public static class alias_return extends ParserRuleReturnScope {
-    };
-
-    // $ANTLR start "alias"
-    // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:160:1: alias : WORD ;
-    public final AntlrV3SQLParser.alias_return alias()
-            throws RecognitionException {
-        AntlrV3SQLParser.alias_return retval = new AntlrV3SQLParser.alias_return();
-        retval.start = input.LT(1);
-        try {
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:160:7: ( WORD )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:161:2: WORD
-            {
-                match(input, WORD, FOLLOW_WORD_in_alias846);
-            }
-            retval.stop = input.LT(-1);
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input, re);
-        }
-        finally {
-            // do for sure before leaving
-        }
-        return retval;
-    }
-
-    // $ANTLR end "alias"
-    // Delegated rules
-    public static final BitSet FOLLOW_insertSQL_in_proc275 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_selectSQL_in_proc277 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_deleteSQL_in_proc279 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_updateSQL_in_proc281 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_set_in_insertSQL291 = new BitSet(
-            new long[] { 0x0000000000300000L });
-
-    public static final BitSet FOLLOW_set_in_insertSQL297 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_table_in_insertSQL303 = new BitSet(
-            new long[] { 0x0000000004000000L });
-
-    public static final BitSet FOLLOW_LEFT_CLOSE_in_insertSQL305 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_insertColumn_in_insertSQL307 = new BitSet(
-            new long[] { 0x0001000400000000L });
-
-    public static final BitSet FOLLOW_48_in_insertSQL310 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_insertColumn_in_insertSQL312 = new BitSet(
-            new long[] { 0x0001000400000000L });
-
-    public static final BitSet FOLLOW_RIGHT_CLOSE_in_insertSQL316 = new BitSet(
-            new long[] { 0x0000060000000000L });
-
-    public static final BitSet FOLLOW_set_in_insertSQL318 = new BitSet(
-            new long[] { 0x0000000004000000L });
-
-    public static final BitSet FOLLOW_LEFT_CLOSE_in_insertSQL324 = new BitSet(
-            new long[] { 0x0001000480000000L });
-
-    public static final BitSet FOLLOW_PRE_SET_in_insertSQL327 = new BitSet(
-            new long[] { 0x0001000480000000L });
-
-    public static final BitSet FOLLOW_48_in_insertSQL330 = new BitSet(
-            new long[] { 0x0000000080000000L });
-
-    public static final BitSet FOLLOW_PRE_SET_in_insertSQL332 = new BitSet(
-            new long[] { 0x0001000480000000L });
-
-    public static final BitSet FOLLOW_RIGHT_CLOSE_in_insertSQL337 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_WORD_in_insertColumn350 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_set_in_deleteSQL364 = new BitSet(
-            new long[] { 0x0000000000003000L });
-
-    public static final BitSet FOLLOW_set_in_deleteSQL370 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_table_in_deleteSQL376 = new BitSet(
-            new long[] { 0x0000180000000002L });
-
-    public static final BitSet FOLLOW_whereSQL_in_deleteSQL378 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_set_in_selectSQL391 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_selectColums_in_selectSQL397 = new BitSet(
-            new long[] { 0x0000000000003000L });
-
-    public static final BitSet FOLLOW_set_in_selectSQL399 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_tables_in_selectSQL405 = new BitSet(
-            new long[] { 0x590018030303C302L, 0x0000000000000059L });
-
-    public static final BitSet FOLLOW_set_in_selectSQL408 = new BitSet(
-            new long[] { 0x0000000000C00000L });
-
-    public static final BitSet FOLLOW_set_in_selectSQL430 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_table_in_selectSQL436 = new BitSet(
-            new long[] { 0x5900180018000002L, 0x0000000000000059L });
-
-    public static final BitSet FOLLOW_set_in_selectSQL439 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_WORD_in_selectSQL445 = new BitSet(
-            new long[] { 0x0010000000000000L });
-
-    public static final BitSet FOLLOW_52_in_selectSQL447 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_WORD_in_selectSQL449 = new BitSet(
-            new long[] { 0x5900180000000002L, 0x0000000000000059L });
-
-    public static final BitSet FOLLOW_selectWhereSQL_in_selectSQL455 = new BitSet(
-            new long[] { 0x5900000000000002L, 0x0000000000000059L });
-
-    public static final BitSet FOLLOW_other_in_selectSQL458 = new BitSet(
-            new long[] { 0x5900000000000002L, 0x0000000000000059L });
-
-    public static final BitSet FOLLOW_set_in_selectWhereSQL471 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_k_v_in_selectWhereSQL478 = new BitSet(
-            new long[] { 0x0000000060000032L });
-
-    public static final BitSet FOLLOW_and_or_in_selectWhereSQL484 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_k_v_in_selectWhereSQL487 = new BitSet(
-            new long[] { 0x0000000060000032L });
-
-    public static final BitSet FOLLOW_and_or_in_selectWhereSQL492 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_WORD_in_selectWhereSQL494 = new BitSet(
-            new long[] { 0x247E800000000000L, 0x0000000000000024L });
-
-    public static final BitSet FOLLOW_op_in_selectWhereSQL496 = new BitSet(
-            new long[] { 0x0000000004000000L });
-
-    public static final BitSet FOLLOW_LEFT_CLOSE_in_selectWhereSQL498 = new BitSet(
-            new long[] { 0x0000001800000000L });
-
-    public static final BitSet FOLLOW_selectSQL_in_selectWhereSQL500 = new BitSet(
-            new long[] { 0x0000000400000000L });
-
-    public static final BitSet FOLLOW_RIGHT_CLOSE_in_selectWhereSQL502 = new BitSet(
-            new long[] { 0x0000000060000032L });
-
-    public static final BitSet FOLLOW_set_in_updateSQL517 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_table_in_updateSQL523 = new BitSet(
-            new long[] { 0x0000006000000000L });
-
-    public static final BitSet FOLLOW_set_in_updateSQL525 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_k_v_in_updateSQL532 = new BitSet(
-            new long[] { 0x0001180000000002L });
-
-    public static final BitSet FOLLOW_48_in_updateSQL535 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_k_v_in_updateSQL537 = new BitSet(
-            new long[] { 0x0001180000000002L });
-
-    public static final BitSet FOLLOW_whereSQL_in_updateSQL542 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_name_in_table554 = new BitSet(
-            new long[] { 0x00002000000000C2L });
-
-    public static final BitSet FOLLOW_alias_in_table564 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_table_in_tables579 = new BitSet(
-            new long[] { 0x0001000000000002L });
-
-    public static final BitSet FOLLOW_48_in_tables582 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_table_in_tables584 = new BitSet(
-            new long[] { 0x0001000000000002L });
-
-    public static final BitSet FOLLOW_WORD_in_k_v598 = new BitSet(new long[] {
-            0x247E800000000000L, 0x0000000000000024L });
-
-    public static final BitSet FOLLOW_op_in_k_v600 = new BitSet(
-            new long[] { 0x0000000080000000L });
-
-    public static final BitSet FOLLOW_PRE_SET_in_k_v602 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_name_in_column614 = new BitSet(
-            new long[] { 0x00002000000000C2L });
-
-    public static final BitSet FOLLOW_alias_in_column624 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_sel_name_in_sel_column637 = new BitSet(
-            new long[] { 0x00002000000000C2L });
-
-    public static final BitSet FOLLOW_sel_alias_in_sel_column647 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_sel_column_in_selectColums660 = new BitSet(
-            new long[] { 0x0001000000000002L });
-
-    public static final BitSet FOLLOW_48_in_selectColums663 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_sel_column_in_selectColums665 = new BitSet(
-            new long[] { 0x0001000000000002L });
-
-    public static final BitSet FOLLOW_set_in_whereSQL679 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_k_v_in_whereSQL686 = new BitSet(
-            new long[] { 0x0000000060000032L });
-
-    public static final BitSet FOLLOW_and_or_in_whereSQL690 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_k_v_in_whereSQL693 = new BitSet(
-            new long[] { 0x0000000060000032L });
-
-    public static final BitSet FOLLOW_WORD_in_other779 = new BitSet(new long[] {
-            0x8280000000000000L, 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_set_in_other781 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_WORD_in_sel_name798 = new BitSet(
-            new long[] { 0x0000000004000002L });
-
-    public static final BitSet FOLLOW_LEFT_CLOSE_in_sel_name801 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_WORD_in_sel_name803 = new BitSet(
-            new long[] { 0x0000000400000000L });
-
-    public static final BitSet FOLLOW_RIGHT_CLOSE_in_sel_name805 = new BitSet(
-            new long[] { 0x0000000004000002L });
-
-    public static final BitSet FOLLOW_WORD_in_sel_alias817 = new BitSet(
-            new long[] { 0x0000000004000002L });
-
-    public static final BitSet FOLLOW_LEFT_CLOSE_in_sel_alias820 = new BitSet(
-            new long[] { 0x0000200000000000L });
-
-    public static final BitSet FOLLOW_WORD_in_sel_alias822 = new BitSet(
-            new long[] { 0x0000000400000000L });
-
-    public static final BitSet FOLLOW_RIGHT_CLOSE_in_sel_alias824 = new BitSet(
-            new long[] { 0x0000000004000002L });
-
-    public static final BitSet FOLLOW_WORD_in_name836 = new BitSet(
-            new long[] { 0x0000000000000002L });
-
-    public static final BitSet FOLLOW_WORD_in_alias846 = new BitSet(
-            new long[] { 0x0000000000000002L });
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:32:20: ( WHERE kv ( and_or kv )* )?
+         int alt5=2;
+         int LA5_0 = input.LA(1);
+
+         if ( (LA5_0==WHERE) ) {
+             alt5=1;
+         }
+         switch (alt5) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:32:21: WHERE kv ( and_or kv )*
+                 {
+                 match(input,WHERE,FOLLOW_WHERE_in_sql_delete93); 
+
+                 pushFollow(FOLLOW_kv_in_sql_delete95);
+                 kv();
+
+                 state._fsp--;
+
+
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:32:30: ( and_or kv )*
+                 loop4:
+                 do {
+                     int alt4=2;
+                     int LA4_0 = input.LA(1);
+
+                     if ( (LA4_0==AND||LA4_0==OR) ) {
+                         alt4=1;
+                     }
+
+
+                     switch (alt4) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:32:31: and_or kv
+                         {
+                         pushFollow(FOLLOW_and_or_in_sql_delete98);
+                         and_or();
+
+                         state._fsp--;
+
+
+                         pushFollow(FOLLOW_kv_in_sql_delete100);
+                         kv();
+
+                         state._fsp--;
+
+
+                         }
+                         break;
+
+                     default :
+                         break loop4;
+                     }
+                 } while (true);
+
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "sql_delete"
+
+
+
+ // $ANTLR start "sql_update"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:34:1: sql_update : UPDATE table SET kv ( ',' kv )* ( WHERE kv ( and_or kv )* )? ;
+ public final void sql_update() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:35:2: ( UPDATE table SET kv ( ',' kv )* ( WHERE kv ( and_or kv )* )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:2: UPDATE table SET kv ( ',' kv )* ( WHERE kv ( and_or kv )* )?
+         {
+         match(input,UPDATE,FOLLOW_UPDATE_in_sql_update116); 
+
+         pushFollow(FOLLOW_table_in_sql_update118);
+         table();
+
+         state._fsp--;
+
+
+         match(input,SET,FOLLOW_SET_in_sql_update120); 
+
+         pushFollow(FOLLOW_kv_in_sql_update122);
+         kv();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:22: ( ',' kv )*
+         loop6:
+         do {
+             int alt6=2;
+             int LA6_0 = input.LA(1);
+
+             if ( (LA6_0==63) ) {
+                 alt6=1;
+             }
+
+
+             switch (alt6) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:23: ',' kv
+                 {
+                 match(input,63,FOLLOW_63_in_sql_update125); 
+
+                 pushFollow(FOLLOW_kv_in_sql_update127);
+                 kv();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+             default :
+                 break loop6;
+             }
+         } while (true);
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:32: ( WHERE kv ( and_or kv )* )?
+         int alt8=2;
+         int LA8_0 = input.LA(1);
+
+         if ( (LA8_0==WHERE) ) {
+             alt8=1;
+         }
+         switch (alt8) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:33: WHERE kv ( and_or kv )*
+                 {
+                 match(input,WHERE,FOLLOW_WHERE_in_sql_update132); 
+
+                 pushFollow(FOLLOW_kv_in_sql_update134);
+                 kv();
+
+                 state._fsp--;
+
+
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:42: ( and_or kv )*
+                 loop7:
+                 do {
+                     int alt7=2;
+                     int LA7_0 = input.LA(1);
+
+                     if ( (LA7_0==AND||LA7_0==OR) ) {
+                         alt7=1;
+                     }
+
+
+                     switch (alt7) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:36:43: and_or kv
+                         {
+                         pushFollow(FOLLOW_and_or_in_sql_update137);
+                         and_or();
+
+                         state._fsp--;
+
+
+                         pushFollow(FOLLOW_kv_in_sql_update139);
+                         kv();
+
+                         state._fsp--;
+
+
+                         }
+                         break;
+
+                     default :
+                         break loop7;
+                     }
+                 } while (true);
+
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "sql_update"
+
+
+
+ // $ANTLR start "sql_select"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:38:1: sql_select : SELECT select_columns FROM tables ( ( FULL | CROSS | INNER | LEFT | RIGHT ) JOIN table ( ON column_name '=' column_name )? )* ( WHERE kv ( and_or ( kv | column_name op '\\(' sql_select '\\)' ) )* )? ( orderby | groupby | having )* ;
+ public final void sql_select() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:39:2: ( SELECT select_columns FROM tables ( ( FULL | CROSS | INNER | LEFT | RIGHT ) JOIN table ( ON column_name '=' column_name )? )* ( WHERE kv ( and_or ( kv | column_name op '\\(' sql_select '\\)' ) )* )? ( orderby | groupby | having )* )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:40:2: SELECT select_columns FROM tables ( ( FULL | CROSS | INNER | LEFT | RIGHT ) JOIN table ( ON column_name '=' column_name )? )* ( WHERE kv ( and_or ( kv | column_name op '\\(' sql_select '\\)' ) )* )? ( orderby | groupby | having )*
+         {
+         match(input,SELECT,FOLLOW_SELECT_in_sql_select155); 
+
+         pushFollow(FOLLOW_select_columns_in_sql_select157);
+         select_columns();
+
+         state._fsp--;
+
+
+         match(input,FROM,FOLLOW_FROM_in_sql_select159); 
+
+         pushFollow(FOLLOW_tables_in_sql_select161);
+         tables();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:41:2: ( ( FULL | CROSS | INNER | LEFT | RIGHT ) JOIN table ( ON column_name '=' column_name )? )*
+         loop10:
+         do {
+             int alt10=2;
+             int LA10_0 = input.LA(1);
+
+             if ( (LA10_0==CROSS||LA10_0==FULL||LA10_0==INNER||LA10_0==LEFT||LA10_0==RIGHT) ) {
+                 alt10=1;
+             }
+
+
+             switch (alt10) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:41:3: ( FULL | CROSS | INNER | LEFT | RIGHT ) JOIN table ( ON column_name '=' column_name )?
+                 {
+                 if ( input.LA(1)==CROSS||input.LA(1)==FULL||input.LA(1)==INNER||input.LA(1)==LEFT||input.LA(1)==RIGHT ) {
+                     input.consume();
+                     state.errorRecovery=false;
+                 }
+                 else {
+                     MismatchedSetException mse = new MismatchedSetException(null,input);
+                     throw mse;
+                 }
+
+
+                 match(input,JOIN,FOLLOW_JOIN_in_sql_select178); 
+
+                 pushFollow(FOLLOW_table_in_sql_select180);
+                 table();
+
+                 state._fsp--;
+
+
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:41:44: ( ON column_name '=' column_name )?
+                 int alt9=2;
+                 int LA9_0 = input.LA(1);
+
+                 if ( (LA9_0==ON) ) {
+                     alt9=1;
+                 }
+                 switch (alt9) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:41:45: ON column_name '=' column_name
+                         {
+                         match(input,ON,FOLLOW_ON_in_sql_select183); 
+
+                         pushFollow(FOLLOW_column_name_in_sql_select185);
+                         column_name();
+
+                         state._fsp--;
+
+
+                         match(input,68,FOLLOW_68_in_sql_select187); 
+
+                         pushFollow(FOLLOW_column_name_in_sql_select189);
+                         column_name();
+
+                         state._fsp--;
+
+
+                         }
+                         break;
+
+                 }
+
+
+                 }
+                 break;
+
+             default :
+                 break loop10;
+             }
+         } while (true);
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:2: ( WHERE kv ( and_or ( kv | column_name op '\\(' sql_select '\\)' ) )* )?
+         int alt13=2;
+         int LA13_0 = input.LA(1);
+
+         if ( (LA13_0==WHERE) ) {
+             alt13=1;
+         }
+         switch (alt13) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:3: WHERE kv ( and_or ( kv | column_name op '\\(' sql_select '\\)' ) )*
+                 {
+                 match(input,WHERE,FOLLOW_WHERE_in_sql_select198); 
+
+                 pushFollow(FOLLOW_kv_in_sql_select200);
+                 kv();
+
+                 state._fsp--;
+
+
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:12: ( and_or ( kv | column_name op '\\(' sql_select '\\)' ) )*
+                 loop12:
+                 do {
+                     int alt12=2;
+                     int LA12_0 = input.LA(1);
+
+                     if ( (LA12_0==AND||LA12_0==OR) ) {
+                         alt12=1;
+                     }
+
+
+                     switch (alt12) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:15: and_or ( kv | column_name op '\\(' sql_select '\\)' )
+                         {
+                         pushFollow(FOLLOW_and_or_in_sql_select205);
+                         and_or();
+
+                         state._fsp--;
+
+
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:23: ( kv | column_name op '\\(' sql_select '\\)' )
+                         int alt11=2;
+                         int LA11_0 = input.LA(1);
+
+                         if ( (LA11_0==BASIC_NAME) ) {
+                             int LA11_1 = input.LA(2);
+
+                             if ( (LA11_1==64) ) {
+                                 int LA11_2 = input.LA(3);
+
+                                 if ( (LA11_2==BASIC_NAME) ) {
+                                     int LA11_4 = input.LA(4);
+
+                                     if ( (LA11_4==EXISTS||LA11_4==IN||LA11_4==61||(LA11_4 >= 65 && LA11_4 <= 70)) ) {
+                                         int LA11_3 = input.LA(5);
+
+                                         if ( (LA11_3==BASIC_NAME||LA11_3==PRE_SET||LA11_3==TEXT_STRING) ) {
+                                             alt11=1;
+                                         }
+                                         else if ( (LA11_3==71) ) {
+                                             alt11=2;
+                                         }
+                                         else {
+                                             NoViableAltException nvae =
+                                                 new NoViableAltException("", 11, 3, input);
+
+                                             throw nvae;
+
+                                         }
+                                     }
+                                     else {
+                                         NoViableAltException nvae =
+                                             new NoViableAltException("", 11, 4, input);
+
+                                         throw nvae;
+
+                                     }
+                                 }
+                                 else {
+                                     NoViableAltException nvae =
+                                         new NoViableAltException("", 11, 2, input);
+
+                                     throw nvae;
+
+                                 }
+                             }
+                             else if ( (LA11_1==EXISTS||LA11_1==IN||LA11_1==61||(LA11_1 >= 65 && LA11_1 <= 70)) ) {
+                                 int LA11_3 = input.LA(3);
+
+                                 if ( (LA11_3==BASIC_NAME||LA11_3==PRE_SET||LA11_3==TEXT_STRING) ) {
+                                     alt11=1;
+                                 }
+                                 else if ( (LA11_3==71) ) {
+                                     alt11=2;
+                                 }
+                                 else {
+                                     NoViableAltException nvae =
+                                         new NoViableAltException("", 11, 3, input);
+
+                                     throw nvae;
+
+                                 }
+                             }
+                             else {
+                                 NoViableAltException nvae =
+                                     new NoViableAltException("", 11, 1, input);
+
+                                 throw nvae;
+
+                             }
+                         }
+                         else {
+                             NoViableAltException nvae =
+                                 new NoViableAltException("", 11, 0, input);
+
+                             throw nvae;
+
+                         }
+                         switch (alt11) {
+                             case 1 :
+                                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:24: kv
+                                 {
+                                 pushFollow(FOLLOW_kv_in_sql_select209);
+                                 kv();
+
+                                 state._fsp--;
+
+
+                                 }
+                                 break;
+                             case 2 :
+                                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:42:29: column_name op '\\(' sql_select '\\)'
+                                 {
+                                 pushFollow(FOLLOW_column_name_in_sql_select213);
+                                 column_name();
+
+                                 state._fsp--;
+
+
+                                 pushFollow(FOLLOW_op_in_sql_select215);
+                                 op();
+
+                                 state._fsp--;
+
+
+                                 match(input,71,FOLLOW_71_in_sql_select217); 
+
+                                 pushFollow(FOLLOW_sql_select_in_sql_select219);
+                                 sql_select();
+
+                                 state._fsp--;
+
+
+                                 match(input,72,FOLLOW_72_in_sql_select221); 
+
+                                 }
+                                 break;
+
+                         }
+
+
+                         }
+                         break;
+
+                     default :
+                         break loop12;
+                     }
+                 } while (true);
+
+
+                 }
+                 break;
+
+         }
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:43:2: ( orderby | groupby | having )*
+         loop14:
+         do {
+             int alt14=4;
+             switch ( input.LA(1) ) {
+             case ORDER:
+                 {
+                 alt14=1;
+                 }
+                 break;
+             case GROUP:
+                 {
+                 alt14=2;
+                 }
+                 break;
+             case HAVING:
+                 {
+                 alt14=3;
+                 }
+                 break;
+
+             }
+
+             switch (alt14) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:43:3: orderby
+                 {
+                 pushFollow(FOLLOW_orderby_in_sql_select233);
+                 orderby();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:43:11: groupby
+                 {
+                 pushFollow(FOLLOW_groupby_in_sql_select235);
+                 groupby();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 3 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:43:19: having
+                 {
+                 pushFollow(FOLLOW_having_in_sql_select237);
+                 having();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+             default :
+                 break loop14;
+             }
+         } while (true);
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "sql_select"
+
+
+
+ // $ANTLR start "func"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:46:1: func : BASIC_NAME '\\(' ( BASIC_NAME | '*' ) '\\)' ;
+ public final void func() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:47:2: ( BASIC_NAME '\\(' ( BASIC_NAME | '*' ) '\\)' )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:48:2: BASIC_NAME '\\(' ( BASIC_NAME | '*' ) '\\)'
+         {
+         match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_func251); 
+
+         match(input,71,FOLLOW_71_in_func253); 
+
+         if ( input.LA(1)==BASIC_NAME||input.LA(1)==62 ) {
+             input.consume();
+             state.errorRecovery=false;
+         }
+         else {
+             MismatchedSetException mse = new MismatchedSetException(null,input);
+             throw mse;
+         }
+
+
+         match(input,72,FOLLOW_72_in_func261); 
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "func"
+
+
+
+ // $ANTLR start "func_and_alias"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:51:1: func_and_alias : func ( ( AS )? BASIC_NAME )? ;
+ public final void func_and_alias() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:52:2: ( func ( ( AS )? BASIC_NAME )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:53:2: func ( ( AS )? BASIC_NAME )?
+         {
+         pushFollow(FOLLOW_func_in_func_and_alias275);
+         func();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:53:7: ( ( AS )? BASIC_NAME )?
+         int alt16=2;
+         int LA16_0 = input.LA(1);
+
+         if ( (LA16_0==AS||LA16_0==BASIC_NAME) ) {
+             alt16=1;
+         }
+         switch (alt16) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:53:8: ( AS )? BASIC_NAME
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:53:8: ( AS )?
+                 int alt15=2;
+                 int LA15_0 = input.LA(1);
+
+                 if ( (LA15_0==AS) ) {
+                     alt15=1;
+                 }
+                 switch (alt15) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:53:8: AS
+                         {
+                         match(input,AS,FOLLOW_AS_in_func_and_alias278); 
+
+                         }
+                         break;
+
+                 }
+
+
+                 match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_func_and_alias281); 
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "func_and_alias"
+
+
+
+ // $ANTLR start "select_column_and_alias"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:56:1: select_column_and_alias : column_name ( ( AS )? BASIC_NAME )? ;
+ public final void select_column_and_alias() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:57:2: ( column_name ( ( AS )? BASIC_NAME )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:58:2: column_name ( ( AS )? BASIC_NAME )?
+         {
+         pushFollow(FOLLOW_column_name_in_select_column_and_alias295);
+         column_name();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:58:14: ( ( AS )? BASIC_NAME )?
+         int alt18=2;
+         int LA18_0 = input.LA(1);
+
+         if ( (LA18_0==AS||LA18_0==BASIC_NAME) ) {
+             alt18=1;
+         }
+         switch (alt18) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:58:15: ( AS )? BASIC_NAME
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:58:15: ( AS )?
+                 int alt17=2;
+                 int LA17_0 = input.LA(1);
+
+                 if ( (LA17_0==AS) ) {
+                     alt17=1;
+                 }
+                 switch (alt17) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:58:15: AS
+                         {
+                         match(input,AS,FOLLOW_AS_in_select_column_and_alias298); 
+
+                         }
+                         break;
+
+                 }
+
+
+                 match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_select_column_and_alias301); 
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "select_column_and_alias"
+
+
+
+ // $ANTLR start "select_column"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:61:1: select_column : ( select_column_and_alias | func_and_alias | '*' );
+ public final void select_column() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:62:2: ( select_column_and_alias | func_and_alias | '*' )
+         int alt19=3;
+         int LA19_0 = input.LA(1);
+
+         if ( (LA19_0==BASIC_NAME) ) {
+             int LA19_1 = input.LA(2);
+
+             if ( (LA19_1==71) ) {
+                 alt19=2;
+             }
+             else if ( (LA19_1==AS||LA19_1==BASIC_NAME||LA19_1==FROM||(LA19_1 >= 63 && LA19_1 <= 64)) ) {
+                 alt19=1;
+             }
+             else {
+                 NoViableAltException nvae =
+                     new NoViableAltException("", 19, 1, input);
+
+                 throw nvae;
+
+             }
+         }
+         else if ( (LA19_0==62) ) {
+             alt19=3;
+         }
+         else {
+             NoViableAltException nvae =
+                 new NoViableAltException("", 19, 0, input);
+
+             throw nvae;
+
+         }
+         switch (alt19) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:63:2: select_column_and_alias
+                 {
+                 pushFollow(FOLLOW_select_column_and_alias_in_select_column315);
+                 select_column_and_alias();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:63:26: func_and_alias
+                 {
+                 pushFollow(FOLLOW_func_and_alias_in_select_column317);
+                 func_and_alias();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 3 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:63:41: '*'
+                 {
+                 match(input,62,FOLLOW_62_in_select_column319); 
+
+                 }
+                 break;
+
+         }
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "select_column"
+
+
+
+ // $ANTLR start "select_columns"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:66:1: select_columns : select_column ( ',' select_column )* ;
+ public final void select_columns() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:67:2: ( select_column ( ',' select_column )* )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:68:2: select_column ( ',' select_column )*
+         {
+         pushFollow(FOLLOW_select_column_in_select_columns332);
+         select_column();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:68:16: ( ',' select_column )*
+         loop20:
+         do {
+             int alt20=2;
+             int LA20_0 = input.LA(1);
+
+             if ( (LA20_0==63) ) {
+                 alt20=1;
+             }
+
+
+             switch (alt20) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:68:17: ',' select_column
+                 {
+                 match(input,63,FOLLOW_63_in_select_columns335); 
+
+                 pushFollow(FOLLOW_select_column_in_select_columns337);
+                 select_column();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+             default :
+                 break loop20;
+             }
+         } while (true);
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "select_columns"
+
+
+
+ // $ANTLR start "and_or"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:71:1: and_or : ( AND | OR );
+ public final void and_or() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:71:8: ( AND | OR )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+         {
+         if ( input.LA(1)==AND||input.LA(1)==OR ) {
+             input.consume();
+             state.errorRecovery=false;
+         }
+         else {
+             MismatchedSetException mse = new MismatchedSetException(null,input);
+             throw mse;
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "and_or"
+
+
+
+ // $ANTLR start "table"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:75:1: table : table_name ( ( AS )? alias )? ;
+ public final void table() throws RecognitionException {
+     AntlrV3SQLParser.table_name_return table_name1 =null;
+
+     AntlrV3SQLParser.alias_return alias2 =null;
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:75:7: ( table_name ( ( AS )? alias )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:76:2: table_name ( ( AS )? alias )?
+         {
+         pushFollow(FOLLOW_table_name_in_table367);
+         table_name1=table_name();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:76:13: ( ( AS )? alias )?
+         int alt22=2;
+         int LA22_0 = input.LA(1);
+
+         if ( (LA22_0==AS||LA22_0==BASIC_NAME) ) {
+             alt22=1;
+         }
+         switch (alt22) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:76:14: ( AS )? alias
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:76:14: ( AS )?
+                 int alt21=2;
+                 int LA21_0 = input.LA(1);
+
+                 if ( (LA21_0==AS) ) {
+                     alt21=1;
+                 }
+                 switch (alt21) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:76:15: AS
+                         {
+                         match(input,AS,FOLLOW_AS_in_table371); 
+
+                         }
+                         break;
+
+                 }
+
+
+                 pushFollow(FOLLOW_alias_in_table375);
+                 alias2=alias();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+         }
+
+
+
+//             tables.add(new String[]{(table_name1!=null?input.toString(table_name1.start,table_name1.stop):null),(alias2!=null?input.toString(alias2.start,alias2.stop):null)}); 
+         if (this.antlrParserDelegate != null) {
+                                         this.antlrParserDelegate.onFindTable(
+                                                 (table_name1 != null ? input.toString(table_name1.start,
+                                                         table_name1.stop) : null),
+                                                 (alias2 != null ? input.toString(alias2.start,
+                                                         alias2.stop) : null));
+                                     }
+             
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "table"
+
+
+
+ // $ANTLR start "tables"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:89:1: tables : ( table ( ',' table )* ) ;
+ public final void tables() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:89:8: ( ( table ( ',' table )* ) )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:90:2: ( table ( ',' table )* )
+         {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:90:2: ( table ( ',' table )* )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:90:3: table ( ',' table )*
+         {
+         pushFollow(FOLLOW_table_in_tables391);
+         table();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:90:9: ( ',' table )*
+         loop23:
+         do {
+             int alt23=2;
+             int LA23_0 = input.LA(1);
+
+             if ( (LA23_0==63) ) {
+                 alt23=1;
+             }
+
+
+             switch (alt23) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:90:10: ',' table
+                 {
+                 match(input,63,FOLLOW_63_in_tables394); 
+
+                 pushFollow(FOLLOW_table_in_tables396);
+                 table();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+             default :
+                 break loop23;
+             }
+         } while (true);
+
+
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "tables"
+
+
+ public static class table_name_return extends ParserRuleReturnScope {
+ };
+
+
+ // $ANTLR start "table_name"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:93:1: table_name : BASIC_NAME ( ( '.' ) BASIC_NAME )? ;
+ public final AntlrV3SQLParser.table_name_return table_name() throws RecognitionException {
+     AntlrV3SQLParser.table_name_return retval = new AntlrV3SQLParser.table_name_return();
+     retval.start = input.LT(1);
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:94:2: ( BASIC_NAME ( ( '.' ) BASIC_NAME )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:95:2: BASIC_NAME ( ( '.' ) BASIC_NAME )?
+         {
+         match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_table_name412); 
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:95:13: ( ( '.' ) BASIC_NAME )?
+         int alt24=2;
+         int LA24_0 = input.LA(1);
+
+         if ( (LA24_0==64) ) {
+             alt24=1;
+         }
+         switch (alt24) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:95:14: ( '.' ) BASIC_NAME
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:95:14: ( '.' )
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:95:15: '.'
+                 {
+                 match(input,64,FOLLOW_64_in_table_name416); 
+
+                 }
+
+
+                 match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_table_name419); 
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+         retval.stop = input.LT(-1);
+
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return retval;
+ }
+ // $ANTLR end "table_name"
+
+
+ public static class alias_return extends ParserRuleReturnScope {
+ };
+
+
+ // $ANTLR start "alias"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:98:1: alias : BASIC_NAME ;
+ public final AntlrV3SQLParser.alias_return alias() throws RecognitionException {
+     AntlrV3SQLParser.alias_return retval = new AntlrV3SQLParser.alias_return();
+     retval.start = input.LT(1);
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:98:7: ( BASIC_NAME )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:99:2: BASIC_NAME
+         {
+         match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_alias432); 
+
+         }
+
+         retval.stop = input.LT(-1);
+
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return retval;
+ }
+ // $ANTLR end "alias"
+
+
+ public static class column_name_return extends ParserRuleReturnScope {
+ };
+
+
+ // $ANTLR start "column_name"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:102:1: column_name : BASIC_NAME ( ( '.' ) BASIC_NAME )? ;
+ public final AntlrV3SQLParser.column_name_return column_name() throws RecognitionException {
+     AntlrV3SQLParser.column_name_return retval = new AntlrV3SQLParser.column_name_return();
+     retval.start = input.LT(1);
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:103:2: ( BASIC_NAME ( ( '.' ) BASIC_NAME )? )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:104:2: BASIC_NAME ( ( '.' ) BASIC_NAME )?
+         {
+         match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_column_name444); 
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:104:13: ( ( '.' ) BASIC_NAME )?
+         int alt25=2;
+         int LA25_0 = input.LA(1);
+
+         if ( (LA25_0==64) ) {
+             alt25=1;
+         }
+         switch (alt25) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:104:14: ( '.' ) BASIC_NAME
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:104:14: ( '.' )
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:104:15: '.'
+                 {
+                 match(input,64,FOLLOW_64_in_column_name448); 
+
+                 }
+
+
+                 match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_column_name451); 
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+         retval.stop = input.LT(-1);
+
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return retval;
+ }
+ // $ANTLR end "column_name"
+
+
+
+ // $ANTLR start "insertColumn"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:107:1: insertColumn : column_name ;
+ public final void insertColumn() throws RecognitionException {
+     AntlrV3SQLParser.column_name_return column_name3 =null;
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:108:2: ( column_name )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:109:2: column_name
+         {
+         pushFollow(FOLLOW_column_name_in_insertColumn465);
+         column_name3=column_name();
+
+         state._fsp--;
+
+
+
+//             colExprs.add(new String[]{(column_name3!=null?input.toString(column_name3.start,column_name3.stop):null),"="});
+             if (this.antlrParserDelegate != null) {
+                                 this.antlrParserDelegate.onFindColExper(
+                                         (column_name3!=null?input.toString(column_name3.start,column_name3.stop):null), "=");
+                             }
+             
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "insertColumn"
+
+
+
+ // $ANTLR start "kv"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:121:1: kv : ( ( column_name op PRE_SET ) | ( column_name op TEXT_STRING ) | column_name op column_name | column_name op func2 );
+ public final void kv() throws RecognitionException {
+     AntlrV3SQLParser.column_name_return column_name4 =null;
+
+     AntlrV3SQLParser.op_return op5 =null;
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:121:4: ( ( column_name op PRE_SET ) | ( column_name op TEXT_STRING ) | column_name op column_name | column_name op func2 )
+         int alt26=4;
+         int LA26_0 = input.LA(1);
+
+         if ( (LA26_0==BASIC_NAME) ) {
+             int LA26_1 = input.LA(2);
+
+             if ( (LA26_1==64) ) {
+                 int LA26_2 = input.LA(3);
+
+                 if ( (LA26_2==BASIC_NAME) ) {
+                     int LA26_4 = input.LA(4);
+
+                     if ( (LA26_4==EXISTS||LA26_4==IN||LA26_4==61||(LA26_4 >= 65 && LA26_4 <= 70)) ) {
+                         switch ( input.LA(5) ) {
+                         case PRE_SET:
+                             {
+                             alt26=1;
+                             }
+                             break;
+                         case TEXT_STRING:
+                             {
+                             alt26=2;
+                             }
+                             break;
+                         case BASIC_NAME:
+                             {
+                             int LA26_7 = input.LA(6);
+
+                             if ( (LA26_7==71) ) {
+                                 alt26=4;
+                             }
+                             else if ( (LA26_7==EOF||LA26_7==AND||LA26_7==GROUP||LA26_7==HAVING||(LA26_7 >= OR && LA26_7 <= ORDER)||LA26_7==WHERE||(LA26_7 >= 63 && LA26_7 <= 64)||LA26_7==72) ) {
+                                 alt26=3;
+                             }
+                             else {
+                                 NoViableAltException nvae =
+                                     new NoViableAltException("", 26, 7, input);
+
+                                 throw nvae;
+
+                             }
+                             }
+                             break;
+                         default:
+                             NoViableAltException nvae =
+                                 new NoViableAltException("", 26, 3, input);
+
+                             throw nvae;
+
+                         }
+
+                     }
+                     else {
+                         NoViableAltException nvae =
+                             new NoViableAltException("", 26, 4, input);
+
+                         throw nvae;
+
+                     }
+                 }
+                 else {
+                     NoViableAltException nvae =
+                         new NoViableAltException("", 26, 2, input);
+
+                     throw nvae;
+
+                 }
+             }
+             else if ( (LA26_1==EXISTS||LA26_1==IN||LA26_1==61||(LA26_1 >= 65 && LA26_1 <= 70)) ) {
+                 switch ( input.LA(3) ) {
+                 case PRE_SET:
+                     {
+                     alt26=1;
+                     }
+                     break;
+                 case TEXT_STRING:
+                     {
+                     alt26=2;
+                     }
+                     break;
+                 case BASIC_NAME:
+                     {
+                     int LA26_7 = input.LA(4);
+
+                     if ( (LA26_7==71) ) {
+                         alt26=4;
+                     }
+                     else if ( (LA26_7==EOF||LA26_7==AND||LA26_7==GROUP||LA26_7==HAVING||(LA26_7 >= OR && LA26_7 <= ORDER)||LA26_7==WHERE||(LA26_7 >= 63 && LA26_7 <= 64)||LA26_7==72) ) {
+                         alt26=3;
+                     }
+                     else {
+                         NoViableAltException nvae =
+                             new NoViableAltException("", 26, 7, input);
+
+                         throw nvae;
+
+                     }
+                     }
+                     break;
+                 default:
+                     NoViableAltException nvae =
+                         new NoViableAltException("", 26, 3, input);
+
+                     throw nvae;
+
+                 }
+
+             }
+             else {
+                 NoViableAltException nvae =
+                     new NoViableAltException("", 26, 1, input);
+
+                 throw nvae;
+
+             }
+         }
+         else {
+             NoViableAltException nvae =
+                 new NoViableAltException("", 26, 0, input);
+
+             throw nvae;
+
+         }
+         switch (alt26) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:122:2: ( column_name op PRE_SET )
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:122:2: ( column_name op PRE_SET )
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:122:3: column_name op PRE_SET
+                 {
+                 pushFollow(FOLLOW_column_name_in_kv480);
+                 column_name4=column_name();
+
+                 state._fsp--;
+
+
+                 pushFollow(FOLLOW_op_in_kv482);
+                 op5=op();
+
+                 state._fsp--;
+
+
+                 match(input,PRE_SET,FOLLOW_PRE_SET_in_kv484); 
+
+                 }
+
+
+
+//                     colExprs.add(new String[]{(column_name4!=null?input.toString(column_name4.start,column_name4.stop):null),(op5!=null?input.toString(op5.start,op5.stop):null)});
+                     if (this.antlrParserDelegate != null) {
+                                                         this.antlrParserDelegate.onFindColExper(
+                                                                 (column_name4!=null?input.toString(column_name4.start,column_name4.stop):null),
+                                                                 (op5!=null?input.toString(op5.start,op5.stop):null));
+                                                     }
+                     
+
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:134:2: ( column_name op TEXT_STRING )
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:134:2: ( column_name op TEXT_STRING )
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:134:3: column_name op TEXT_STRING
+                 {
+                 pushFollow(FOLLOW_column_name_in_kv495);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 pushFollow(FOLLOW_op_in_kv497);
+                 op();
+
+                 state._fsp--;
+
+
+                 match(input,TEXT_STRING,FOLLOW_TEXT_STRING_in_kv499); 
+
+                 }
+
+
+                 }
+                 break;
+             case 3 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:136:2: column_name op column_name
+                 {
+                 pushFollow(FOLLOW_column_name_in_kv506);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 pushFollow(FOLLOW_op_in_kv508);
+                 op();
+
+                 state._fsp--;
+
+
+                 pushFollow(FOLLOW_column_name_in_kv510);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 4 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:138:2: column_name op func2
+                 {
+                 pushFollow(FOLLOW_column_name_in_kv516);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 pushFollow(FOLLOW_op_in_kv518);
+                 op();
+
+                 state._fsp--;
+
+
+                 pushFollow(FOLLOW_func2_in_kv520);
+                 func2();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+         }
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "kv"
+
+
+
+ // $ANTLR start "func2"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:141:1: func2 : BASIC_NAME '\\(' ( ( column_name | TEXT_STRING ) ( ',' ( column_name | TEXT_STRING ) )* )? '\\)' ;
+ public final void func2() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:141:7: ( BASIC_NAME '\\(' ( ( column_name | TEXT_STRING ) ( ',' ( column_name | TEXT_STRING ) )* )? '\\)' )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:142:2: BASIC_NAME '\\(' ( ( column_name | TEXT_STRING ) ( ',' ( column_name | TEXT_STRING ) )* )? '\\)'
+         {
+         match(input,BASIC_NAME,FOLLOW_BASIC_NAME_in_func2531); 
+
+         match(input,71,FOLLOW_71_in_func2535); 
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:144:2: ( ( column_name | TEXT_STRING ) ( ',' ( column_name | TEXT_STRING ) )* )?
+         int alt30=2;
+         int LA30_0 = input.LA(1);
+
+         if ( (LA30_0==BASIC_NAME||LA30_0==TEXT_STRING) ) {
+             alt30=1;
+         }
+         switch (alt30) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:2: ( column_name | TEXT_STRING ) ( ',' ( column_name | TEXT_STRING ) )*
+                 {
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:2: ( column_name | TEXT_STRING )
+                 int alt27=2;
+                 int LA27_0 = input.LA(1);
+
+                 if ( (LA27_0==BASIC_NAME) ) {
+                     alt27=1;
+                 }
+                 else if ( (LA27_0==TEXT_STRING) ) {
+                     alt27=2;
+                 }
+                 else {
+                     NoViableAltException nvae =
+                         new NoViableAltException("", 27, 0, input);
+
+                     throw nvae;
+
+                 }
+                 switch (alt27) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:3: column_name
+                         {
+                         pushFollow(FOLLOW_column_name_in_func2543);
+                         column_name();
+
+                         state._fsp--;
+
+
+                         }
+                         break;
+                     case 2 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:15: TEXT_STRING
+                         {
+                         match(input,TEXT_STRING,FOLLOW_TEXT_STRING_in_func2545); 
+
+                         }
+                         break;
+
+                 }
+
+
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:28: ( ',' ( column_name | TEXT_STRING ) )*
+                 loop29:
+                 do {
+                     int alt29=2;
+                     int LA29_0 = input.LA(1);
+
+                     if ( (LA29_0==63) ) {
+                         alt29=1;
+                     }
+
+
+                     switch (alt29) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:29: ',' ( column_name | TEXT_STRING )
+                         {
+                         match(input,63,FOLLOW_63_in_func2549); 
+
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:33: ( column_name | TEXT_STRING )
+                         int alt28=2;
+                         int LA28_0 = input.LA(1);
+
+                         if ( (LA28_0==BASIC_NAME) ) {
+                             alt28=1;
+                         }
+                         else if ( (LA28_0==TEXT_STRING) ) {
+                             alt28=2;
+                         }
+                         else {
+                             NoViableAltException nvae =
+                                 new NoViableAltException("", 28, 0, input);
+
+                             throw nvae;
+
+                         }
+                         switch (alt28) {
+                             case 1 :
+                                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:34: column_name
+                                 {
+                                 pushFollow(FOLLOW_column_name_in_func2552);
+                                 column_name();
+
+                                 state._fsp--;
+
+
+                                 }
+                                 break;
+                             case 2 :
+                                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:145:46: TEXT_STRING
+                                 {
+                                 match(input,TEXT_STRING,FOLLOW_TEXT_STRING_in_func2554); 
+
+                                 }
+                                 break;
+
+                         }
+
+
+                         }
+                         break;
+
+                     default :
+                         break loop29;
+                     }
+                 } while (true);
+
+
+                 }
+                 break;
+
+         }
+
+
+         match(input,72,FOLLOW_72_in_func2564); 
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "func2"
+
+
+ public static class op_return extends ParserRuleReturnScope {
+ };
+
+
+ // $ANTLR start "op"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:150:1: op : ( '=' | '>' | '>=' | '<' | '<=' | '!=' | '<>' | IN | EXISTS ) ;
+ public final AntlrV3SQLParser.op_return op() throws RecognitionException {
+     AntlrV3SQLParser.op_return retval = new AntlrV3SQLParser.op_return();
+     retval.start = input.LT(1);
+
+
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:151:2: ( ( '=' | '>' | '>=' | '<' | '<=' | '!=' | '<>' | IN | EXISTS ) )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+         {
+         if ( input.LA(1)==EXISTS||input.LA(1)==IN||input.LA(1)==61||(input.LA(1) >= 65 && input.LA(1) <= 70) ) {
+             input.consume();
+             state.errorRecovery=false;
+         }
+         else {
+             MismatchedSetException mse = new MismatchedSetException(null,input);
+             throw mse;
+         }
+
+
+         }
+
+         retval.stop = input.LT(-1);
+
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return retval;
+ }
+ // $ANTLR end "op"
+
+
+
+ // $ANTLR start "orderby"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:155:1: orderby : ORDER BY column_name ( DESC | ASC )? ( ',' column_name ( DESC | ASC )? )* ;
+ public final void orderby() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:155:9: ( ORDER BY column_name ( DESC | ASC )? ( ',' column_name ( DESC | ASC )? )* )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:156:2: ORDER BY column_name ( DESC | ASC )? ( ',' column_name ( DESC | ASC )? )*
+         {
+         match(input,ORDER,FOLLOW_ORDER_in_orderby606); 
+
+         match(input,BY,FOLLOW_BY_in_orderby608); 
+
+         pushFollow(FOLLOW_column_name_in_orderby610);
+         column_name();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:156:23: ( DESC | ASC )?
+         int alt31=2;
+         int LA31_0 = input.LA(1);
+
+         if ( (LA31_0==ASC||LA31_0==DESC) ) {
+             alt31=1;
+         }
+         switch (alt31) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+                 {
+                 if ( input.LA(1)==ASC||input.LA(1)==DESC ) {
+                     input.consume();
+                     state.errorRecovery=false;
+                 }
+                 else {
+                     MismatchedSetException mse = new MismatchedSetException(null,input);
+                     throw mse;
+                 }
+
+
+                 }
+                 break;
+
+         }
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:156:35: ( ',' column_name ( DESC | ASC )? )*
+         loop33:
+         do {
+             int alt33=2;
+             int LA33_0 = input.LA(1);
+
+             if ( (LA33_0==63) ) {
+                 alt33=1;
+             }
+
+
+             switch (alt33) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:156:36: ',' column_name ( DESC | ASC )?
+                 {
+                 match(input,63,FOLLOW_63_in_orderby620); 
+
+                 pushFollow(FOLLOW_column_name_in_orderby622);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:156:52: ( DESC | ASC )?
+                 int alt32=2;
+                 int LA32_0 = input.LA(1);
+
+                 if ( (LA32_0==ASC||LA32_0==DESC) ) {
+                     alt32=1;
+                 }
+                 switch (alt32) {
+                     case 1 :
+                         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+                         {
+                         if ( input.LA(1)==ASC||input.LA(1)==DESC ) {
+                             input.consume();
+                             state.errorRecovery=false;
+                         }
+                         else {
+                             MismatchedSetException mse = new MismatchedSetException(null,input);
+                             throw mse;
+                         }
+
+
+                         }
+                         break;
+
+                 }
+
+
+                 }
+                 break;
+
+             default :
+                 break loop33;
+             }
+         } while (true);
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "orderby"
+
+
+
+ // $ANTLR start "groupby"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:159:1: groupby : GROUP BY column_name ( ',' column_name )* ;
+ public final void groupby() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:159:9: ( GROUP BY column_name ( ',' column_name )* )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:160:2: GROUP BY column_name ( ',' column_name )*
+         {
+         match(input,GROUP,FOLLOW_GROUP_in_groupby643); 
+
+         match(input,BY,FOLLOW_BY_in_groupby645); 
+
+         pushFollow(FOLLOW_column_name_in_groupby647);
+         column_name();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:160:23: ( ',' column_name )*
+         loop34:
+         do {
+             int alt34=2;
+             int LA34_0 = input.LA(1);
+
+             if ( (LA34_0==63) ) {
+                 alt34=1;
+             }
+
+
+             switch (alt34) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:160:24: ',' column_name
+                 {
+                 match(input,63,FOLLOW_63_in_groupby650); 
+
+                 pushFollow(FOLLOW_column_name_in_groupby652);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+             default :
+                 break loop34;
+             }
+         } while (true);
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "groupby"
+
+
+
+ // $ANTLR start "having"
+ // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:163:1: having : HAVING ( column_name | func ) op ( column_name | func | TEXT_STRING | PRE_SET ) ;
+ public final void having() throws RecognitionException {
+     try {
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:163:8: ( HAVING ( column_name | func ) op ( column_name | func | TEXT_STRING | PRE_SET ) )
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:2: HAVING ( column_name | func ) op ( column_name | func | TEXT_STRING | PRE_SET )
+         {
+         match(input,HAVING,FOLLOW_HAVING_in_having665); 
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:9: ( column_name | func )
+         int alt35=2;
+         int LA35_0 = input.LA(1);
+
+         if ( (LA35_0==BASIC_NAME) ) {
+             int LA35_1 = input.LA(2);
+
+             if ( (LA35_1==71) ) {
+                 alt35=2;
+             }
+             else if ( (LA35_1==EXISTS||LA35_1==IN||LA35_1==61||(LA35_1 >= 64 && LA35_1 <= 70)) ) {
+                 alt35=1;
+             }
+             else {
+                 NoViableAltException nvae =
+                     new NoViableAltException("", 35, 1, input);
+
+                 throw nvae;
+
+             }
+         }
+         else {
+             NoViableAltException nvae =
+                 new NoViableAltException("", 35, 0, input);
+
+             throw nvae;
+
+         }
+         switch (alt35) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:10: column_name
+                 {
+                 pushFollow(FOLLOW_column_name_in_having668);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:22: func
+                 {
+                 pushFollow(FOLLOW_func_in_having670);
+                 func();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+
+         }
+
+
+         pushFollow(FOLLOW_op_in_having673);
+         op();
+
+         state._fsp--;
+
+
+         // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:31: ( column_name | func | TEXT_STRING | PRE_SET )
+         int alt36=4;
+         switch ( input.LA(1) ) {
+         case BASIC_NAME:
+             {
+             int LA36_1 = input.LA(2);
+
+             if ( (LA36_1==71) ) {
+                 alt36=2;
+             }
+             else if ( (LA36_1==EOF||LA36_1==GROUP||LA36_1==HAVING||LA36_1==ORDER||LA36_1==64||LA36_1==72) ) {
+                 alt36=1;
+             }
+             else {
+                 NoViableAltException nvae =
+                     new NoViableAltException("", 36, 1, input);
+
+                 throw nvae;
+
+             }
+             }
+             break;
+         case TEXT_STRING:
+             {
+             alt36=3;
+             }
+             break;
+         case PRE_SET:
+             {
+             alt36=4;
+             }
+             break;
+         default:
+             NoViableAltException nvae =
+                 new NoViableAltException("", 36, 0, input);
+
+             throw nvae;
+
+         }
+
+         switch (alt36) {
+             case 1 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:32: column_name
+                 {
+                 pushFollow(FOLLOW_column_name_in_having676);
+                 column_name();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 2 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:44: func
+                 {
+                 pushFollow(FOLLOW_func_in_having678);
+                 func();
+
+                 state._fsp--;
+
+
+                 }
+                 break;
+             case 3 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:49: TEXT_STRING
+                 {
+                 match(input,TEXT_STRING,FOLLOW_TEXT_STRING_in_having680); 
+
+                 }
+                 break;
+             case 4 :
+                 // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:164:61: PRE_SET
+                 {
+                 match(input,PRE_SET,FOLLOW_PRE_SET_in_having682); 
+
+                 }
+                 break;
+
+         }
+
+
+         }
+
+     }
+     catch (RecognitionException re) {
+         reportError(re);
+         recover(input,re);
+     }
+
+     finally {
+         // do for sure before leaving
+     }
+     return ;
+ }
+ // $ANTLR end "having"
+
+ // Delegated rules
+
+
+
+
+ public static final BitSet FOLLOW_sql_insert_in_start23 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_sql_delete_in_start25 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_sql_update_in_start27 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_sql_select_in_start29 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_INSERT_in_sql_insert40 = new BitSet(new long[]{0x0000000020000000L});
+ public static final BitSet FOLLOW_INTO_in_sql_insert42 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_table_in_sql_insert44 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+ public static final BitSet FOLLOW_71_in_sql_insert46 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_insertColumn_in_sql_insert48 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_63_in_sql_insert51 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_insertColumn_in_sql_insert53 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_72_in_sql_insert57 = new BitSet(new long[]{0x0040000000000000L});
+ public static final BitSet FOLLOW_VALUES_in_sql_insert59 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+ public static final BitSet FOLLOW_71_in_sql_insert61 = new BitSet(new long[]{0x8000040000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_PRE_SET_in_sql_insert64 = new BitSet(new long[]{0x8000040000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_63_in_sql_insert67 = new BitSet(new long[]{0x0000040000000000L});
+ public static final BitSet FOLLOW_PRE_SET_in_sql_insert69 = new BitSet(new long[]{0x8000040000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_72_in_sql_insert74 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_DELETE_in_sql_delete86 = new BitSet(new long[]{0x0000000000080000L});
+ public static final BitSet FOLLOW_FROM_in_sql_delete88 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_table_in_sql_delete90 = new BitSet(new long[]{0x0100000000000002L});
+ public static final BitSet FOLLOW_WHERE_in_sql_delete93 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_delete95 = new BitSet(new long[]{0x0000008000000022L});
+ public static final BitSet FOLLOW_and_or_in_sql_delete98 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_delete100 = new BitSet(new long[]{0x0000008000000022L});
+ public static final BitSet FOLLOW_UPDATE_in_sql_update116 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_table_in_sql_update118 = new BitSet(new long[]{0x0001000000000000L});
+ public static final BitSet FOLLOW_SET_in_sql_update120 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_update122 = new BitSet(new long[]{0x8100000000000002L});
+ public static final BitSet FOLLOW_63_in_sql_update125 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_update127 = new BitSet(new long[]{0x8100000000000002L});
+ public static final BitSet FOLLOW_WHERE_in_sql_update132 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_update134 = new BitSet(new long[]{0x0000008000000022L});
+ public static final BitSet FOLLOW_and_or_in_sql_update137 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_update139 = new BitSet(new long[]{0x0000008000000022L});
+ public static final BitSet FOLLOW_SELECT_in_sql_select155 = new BitSet(new long[]{0x4000000000000200L});
+ public static final BitSet FOLLOW_select_columns_in_sql_select157 = new BitSet(new long[]{0x0000000000080000L});
+ public static final BitSet FOLLOW_FROM_in_sql_select159 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_tables_in_sql_select161 = new BitSet(new long[]{0x0100210409501002L});
+ public static final BitSet FOLLOW_set_in_sql_select166 = new BitSet(new long[]{0x0000000080000000L});
+ public static final BitSet FOLLOW_JOIN_in_sql_select178 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_table_in_sql_select180 = new BitSet(new long[]{0x0100214409501002L});
+ public static final BitSet FOLLOW_ON_in_sql_select183 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_sql_select185 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+ public static final BitSet FOLLOW_68_in_sql_select187 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_sql_select189 = new BitSet(new long[]{0x0100210409501002L});
+ public static final BitSet FOLLOW_WHERE_in_sql_select198 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_select200 = new BitSet(new long[]{0x0000018001400022L});
+ public static final BitSet FOLLOW_and_or_in_sql_select205 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_kv_in_sql_select209 = new BitSet(new long[]{0x0000018001400022L});
+ public static final BitSet FOLLOW_column_name_in_sql_select213 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_op_in_sql_select215 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+ public static final BitSet FOLLOW_71_in_sql_select217 = new BitSet(new long[]{0x0000800000000000L});
+ public static final BitSet FOLLOW_sql_select_in_sql_select219 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_72_in_sql_select221 = new BitSet(new long[]{0x0000018001400022L});
+ public static final BitSet FOLLOW_orderby_in_sql_select233 = new BitSet(new long[]{0x0000010001400002L});
+ public static final BitSet FOLLOW_groupby_in_sql_select235 = new BitSet(new long[]{0x0000010001400002L});
+ public static final BitSet FOLLOW_having_in_sql_select237 = new BitSet(new long[]{0x0000010001400002L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_func251 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+ public static final BitSet FOLLOW_71_in_func253 = new BitSet(new long[]{0x4000000000000200L});
+ public static final BitSet FOLLOW_set_in_func255 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_72_in_func261 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_func_in_func_and_alias275 = new BitSet(new long[]{0x0000000000000242L});
+ public static final BitSet FOLLOW_AS_in_func_and_alias278 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_func_and_alias281 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_column_name_in_select_column_and_alias295 = new BitSet(new long[]{0x0000000000000242L});
+ public static final BitSet FOLLOW_AS_in_select_column_and_alias298 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_select_column_and_alias301 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_select_column_and_alias_in_select_column315 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_func_and_alias_in_select_column317 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_62_in_select_column319 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_select_column_in_select_columns332 = new BitSet(new long[]{0x8000000000000002L});
+ public static final BitSet FOLLOW_63_in_select_columns335 = new BitSet(new long[]{0x4000000000000200L});
+ public static final BitSet FOLLOW_select_column_in_select_columns337 = new BitSet(new long[]{0x8000000000000002L});
+ public static final BitSet FOLLOW_table_name_in_table367 = new BitSet(new long[]{0x0000000000000242L});
+ public static final BitSet FOLLOW_AS_in_table371 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_alias_in_table375 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_table_in_tables391 = new BitSet(new long[]{0x8000000000000002L});
+ public static final BitSet FOLLOW_63_in_tables394 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_table_in_tables396 = new BitSet(new long[]{0x8000000000000002L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_table_name412 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+ public static final BitSet FOLLOW_64_in_table_name416 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_table_name419 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_alias432 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_column_name444 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+ public static final BitSet FOLLOW_64_in_column_name448 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_column_name451 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_column_name_in_insertColumn465 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_column_name_in_kv480 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_op_in_kv482 = new BitSet(new long[]{0x0000040000000000L});
+ public static final BitSet FOLLOW_PRE_SET_in_kv484 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_column_name_in_kv495 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_op_in_kv497 = new BitSet(new long[]{0x0004000000000000L});
+ public static final BitSet FOLLOW_TEXT_STRING_in_kv499 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_column_name_in_kv506 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_op_in_kv508 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_kv510 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_column_name_in_kv516 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_op_in_kv518 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_func2_in_kv520 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_BASIC_NAME_in_func2531 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+ public static final BitSet FOLLOW_71_in_func2535 = new BitSet(new long[]{0x0004000000000200L,0x0000000000000100L});
+ public static final BitSet FOLLOW_column_name_in_func2543 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_TEXT_STRING_in_func2545 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_63_in_func2549 = new BitSet(new long[]{0x0004000000000200L});
+ public static final BitSet FOLLOW_column_name_in_func2552 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_TEXT_STRING_in_func2554 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000100L});
+ public static final BitSet FOLLOW_72_in_func2564 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_ORDER_in_orderby606 = new BitSet(new long[]{0x0000000000000400L});
+ public static final BitSet FOLLOW_BY_in_orderby608 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_orderby610 = new BitSet(new long[]{0x8000000000008082L});
+ public static final BitSet FOLLOW_63_in_orderby620 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_orderby622 = new BitSet(new long[]{0x8000000000008082L});
+ public static final BitSet FOLLOW_GROUP_in_groupby643 = new BitSet(new long[]{0x0000000000000400L});
+ public static final BitSet FOLLOW_BY_in_groupby645 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_groupby647 = new BitSet(new long[]{0x8000000000000002L});
+ public static final BitSet FOLLOW_63_in_groupby650 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_groupby652 = new BitSet(new long[]{0x8000000000000002L});
+ public static final BitSet FOLLOW_HAVING_in_having665 = new BitSet(new long[]{0x0000000000000200L});
+ public static final BitSet FOLLOW_column_name_in_having668 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_func_in_having670 = new BitSet(new long[]{0x2000000004020000L,0x000000000000007EL});
+ public static final BitSet FOLLOW_op_in_having673 = new BitSet(new long[]{0x0004040000000200L});
+ public static final BitSet FOLLOW_column_name_in_having676 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_func_in_having678 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_TEXT_STRING_in_having680 = new BitSet(new long[]{0x0000000000000002L});
+ public static final BitSet FOLLOW_PRE_SET_in_having682 = new BitSet(new long[]{0x0000000000000002L});
+
 }

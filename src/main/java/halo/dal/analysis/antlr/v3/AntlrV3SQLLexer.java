@@ -1,6 +1,6 @@
 package halo.dal.analysis.antlr.v3;
 
-// $ANTLR 3.4 /Users/akwei/antlrpro/sql/AntlrV3SQL.g 2012-07-15 15:47:36
+// $ANTLR 3.4 /Users/akwei/antlrpro/sql2/AntlrV3SQL.g 2012-07-18 01:04:24
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
@@ -10,34 +10,6 @@ import java.util.ArrayList;
 public class AntlrV3SQLLexer extends Lexer {
 
     public static final int EOF = -1;
-
-    public static final int T__47 = 47;
-
-    public static final int T__48 = 48;
-
-    public static final int T__49 = 49;
-
-    public static final int T__50 = 50;
-
-    public static final int T__51 = 51;
-
-    public static final int T__52 = 52;
-
-    public static final int T__53 = 53;
-
-    public static final int T__54 = 54;
-
-    public static final int T__55 = 55;
-
-    public static final int T__56 = 56;
-
-    public static final int T__57 = 57;
-
-    public static final int T__58 = 58;
-
-    public static final int T__59 = 59;
-
-    public static final int T__60 = 60;
 
     public static final int T__61 = 61;
 
@@ -59,91 +31,123 @@ public class AntlrV3SQLLexer extends Lexer {
 
     public static final int T__70 = 70;
 
-    public static final int AND = 4;
+    public static final int T__71 = 71;
 
-    public static final int AND_ = 5;
+    public static final int T__72 = 72;
+
+    public static final int A = 4;
+
+    public static final int AND = 5;
 
     public static final int AS = 6;
 
-    public static final int AS_ = 7;
+    public static final int ASC = 7;
 
-    public static final int CROSS = 8;
+    public static final int B = 8;
 
-    public static final int CROSS_ = 9;
+    public static final int BASIC_NAME = 9;
 
-    public static final int DELETE = 10;
+    public static final int BY = 10;
 
-    public static final int DELETE_ = 11;
+    public static final int C = 11;
 
-    public static final int FROM = 12;
+    public static final int CROSS = 12;
 
-    public static final int FROM_ = 13;
+    public static final int D = 13;
 
-    public static final int FULL = 14;
+    public static final int DELETE = 14;
 
-    public static final int FULL_ = 15;
+    public static final int DESC = 15;
 
-    public static final int INNER = 16;
+    public static final int E = 16;
 
-    public static final int INNER_ = 17;
+    public static final int EXISTS = 17;
 
-    public static final int INSERT = 18;
+    public static final int F = 18;
 
-    public static final int INSERT_ = 19;
+    public static final int FROM = 19;
 
-    public static final int INTO = 20;
+    public static final int FULL = 20;
 
-    public static final int INTO_ = 21;
+    public static final int G = 21;
 
-    public static final int JOIN = 22;
+    public static final int GROUP = 22;
 
-    public static final int JOIN_ = 23;
+    public static final int H = 23;
 
-    public static final int LEFT = 24;
+    public static final int HAVING = 24;
 
-    public static final int LEFT_ = 25;
+    public static final int I = 25;
 
-    public static final int LEFT_CLOSE = 26;
+    public static final int IN = 26;
 
-    public static final int ON = 27;
+    public static final int INNER = 27;
 
-    public static final int ON_ = 28;
+    public static final int INSERT = 28;
 
-    public static final int OR = 29;
+    public static final int INTO = 29;
 
-    public static final int OR_ = 30;
+    public static final int J = 30;
 
-    public static final int PRE_SET = 31;
+    public static final int JOIN = 31;
 
-    public static final int RIGHT = 32;
+    public static final int K = 32;
 
-    public static final int RIGHT_ = 33;
+    public static final int L = 33;
 
-    public static final int RIGHT_CLOSE = 34;
+    public static final int LEFT = 34;
 
-    public static final int SELECT = 35;
+    public static final int M = 35;
 
-    public static final int SELECT_ = 36;
+    public static final int N = 36;
 
-    public static final int SET = 37;
+    public static final int O = 37;
 
-    public static final int SET_ = 38;
+    public static final int ON = 38;
 
-    public static final int UPDATE = 39;
+    public static final int OR = 39;
 
-    public static final int UPDATE_ = 40;
+    public static final int ORDER = 40;
 
-    public static final int VALUES = 41;
+    public static final int P = 41;
 
-    public static final int VALUES_ = 42;
+    public static final int PRE_SET = 42;
 
-    public static final int WHERE = 43;
+    public static final int Q = 43;
 
-    public static final int WHERE_ = 44;
+    public static final int R = 44;
 
-    public static final int WORD = 45;
+    public static final int RIGHT = 45;
 
-    public static final int WS = 46;
+    public static final int S = 46;
+
+    public static final int SELECT = 47;
+
+    public static final int SET = 48;
+
+    public static final int T = 49;
+
+    public static final int TEXT_STRING = 50;
+
+    public static final int U = 51;
+
+    public static final int UPDATE = 52;
+
+    public static final int V = 53;
+
+    public static final int VALUES = 54;
+
+    public static final int W = 55;
+
+    public static final int WHERE = 56;
+
+    public static final int WS = 57;
+
+    public static final int X = 58;
+
+    public static final int Y = 59;
+
+    public static final int Z = 60;
 
     // delegates
     // delegators
@@ -163,1063 +167,18 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     public String getGrammarFileName() {
-        return "/Users/akwei/antlrpro/sql/AntlrV3SQL.g";
+        return "/Users/akwei/antlrpro/sql2/AntlrV3SQL.g";
     }
 
-    // $ANTLR start "AND"
-    public final void mAND() throws RecognitionException {
-        try {
-            int _type = AND;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:2:5: ( 'and' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:2:7: 'and'
-            {
-                match("and");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "AND"
-    // $ANTLR start "AND_"
-    public final void mAND_() throws RecognitionException {
-        try {
-            int _type = AND_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:3:6: ( 'AND' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:3:8: 'AND'
-            {
-                match("AND");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "AND_"
-    // $ANTLR start "AS"
-    public final void mAS() throws RecognitionException {
-        try {
-            int _type = AS;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:4:4: ( 'as' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:4:6: 'as'
-            {
-                match("as");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "AS"
-    // $ANTLR start "AS_"
-    public final void mAS_() throws RecognitionException {
-        try {
-            int _type = AS_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:5:5: ( 'AS' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:5:7: 'AS'
-            {
-                match("AS");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "AS_"
-    // $ANTLR start "CROSS"
-    public final void mCROSS() throws RecognitionException {
-        try {
-            int _type = CROSS;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:6:7: ( 'cross' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:6:9: 'cross'
-            {
-                match("cross");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "CROSS"
-    // $ANTLR start "CROSS_"
-    public final void mCROSS_() throws RecognitionException {
-        try {
-            int _type = CROSS_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:7:8: ( 'CROSS' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:7:10: 'CROSS'
-            {
-                match("CROSS");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "CROSS_"
-    // $ANTLR start "DELETE"
-    public final void mDELETE() throws RecognitionException {
-        try {
-            int _type = DELETE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:8:8: ( 'delete' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:8:10: 'delete'
-            {
-                match("delete");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "DELETE"
-    // $ANTLR start "DELETE_"
-    public final void mDELETE_() throws RecognitionException {
-        try {
-            int _type = DELETE_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:9:9: ( 'DELETE' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:9:11: 'DELETE'
-            {
-                match("DELETE");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "DELETE_"
-    // $ANTLR start "FROM"
-    public final void mFROM() throws RecognitionException {
-        try {
-            int _type = FROM;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:10:6: ( 'from' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:10:8: 'from'
-            {
-                match("from");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "FROM"
-    // $ANTLR start "FROM_"
-    public final void mFROM_() throws RecognitionException {
-        try {
-            int _type = FROM_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:11:7: ( 'FROM' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:11:9: 'FROM'
-            {
-                match("FROM");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "FROM_"
-    // $ANTLR start "FULL"
-    public final void mFULL() throws RecognitionException {
-        try {
-            int _type = FULL;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:12:6: ( 'full' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:12:8: 'full'
-            {
-                match("full");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "FULL"
-    // $ANTLR start "FULL_"
-    public final void mFULL_() throws RecognitionException {
-        try {
-            int _type = FULL_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:13:7: ( 'FULL' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:13:9: 'FULL'
-            {
-                match("FULL");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "FULL_"
-    // $ANTLR start "INNER"
-    public final void mINNER() throws RecognitionException {
-        try {
-            int _type = INNER;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:14:7: ( 'inner' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:14:9: 'inner'
-            {
-                match("inner");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "INNER"
-    // $ANTLR start "INNER_"
-    public final void mINNER_() throws RecognitionException {
-        try {
-            int _type = INNER_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:15:8: ( 'INNER' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:15:10: 'INNER'
-            {
-                match("INNER");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "INNER_"
-    // $ANTLR start "INSERT"
-    public final void mINSERT() throws RecognitionException {
-        try {
-            int _type = INSERT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:16:8: ( 'insert' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:16:10: 'insert'
-            {
-                match("insert");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "INSERT"
-    // $ANTLR start "INSERT_"
-    public final void mINSERT_() throws RecognitionException {
-        try {
-            int _type = INSERT_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:17:9: ( 'INSERT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:17:11: 'INSERT'
-            {
-                match("INSERT");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "INSERT_"
-    // $ANTLR start "INTO"
-    public final void mINTO() throws RecognitionException {
-        try {
-            int _type = INTO;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:18:6: ( 'into' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:18:8: 'into'
-            {
-                match("into");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "INTO"
-    // $ANTLR start "INTO_"
-    public final void mINTO_() throws RecognitionException {
-        try {
-            int _type = INTO_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:19:7: ( 'INTO' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:19:9: 'INTO'
-            {
-                match("INTO");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "INTO_"
-    // $ANTLR start "JOIN"
-    public final void mJOIN() throws RecognitionException {
-        try {
-            int _type = JOIN;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:20:6: ( 'join' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:20:8: 'join'
-            {
-                match("join");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "JOIN"
-    // $ANTLR start "JOIN_"
-    public final void mJOIN_() throws RecognitionException {
-        try {
-            int _type = JOIN_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:21:7: ( 'JOIN' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:21:9: 'JOIN'
-            {
-                match("JOIN");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "JOIN_"
-    // $ANTLR start "LEFT"
-    public final void mLEFT() throws RecognitionException {
-        try {
-            int _type = LEFT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:22:6: ( 'left' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:22:8: 'left'
-            {
-                match("left");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "LEFT"
-    // $ANTLR start "LEFT_"
-    public final void mLEFT_() throws RecognitionException {
-        try {
-            int _type = LEFT_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:23:7: ( 'LEFT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:23:9: 'LEFT'
-            {
-                match("LEFT");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "LEFT_"
-    // $ANTLR start "LEFT_CLOSE"
-    public final void mLEFT_CLOSE() throws RecognitionException {
-        try {
-            int _type = LEFT_CLOSE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:24:12: ( '(' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:24:14: '('
-            {
-                match('(');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "LEFT_CLOSE"
-    // $ANTLR start "ON"
-    public final void mON() throws RecognitionException {
-        try {
-            int _type = ON;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:25:4: ( 'on' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:25:6: 'on'
-            {
-                match("on");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "ON"
-    // $ANTLR start "ON_"
-    public final void mON_() throws RecognitionException {
-        try {
-            int _type = ON_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:26:5: ( 'ON' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:26:7: 'ON'
-            {
-                match("ON");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "ON_"
-    // $ANTLR start "OR"
-    public final void mOR() throws RecognitionException {
-        try {
-            int _type = OR;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:27:4: ( 'or' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:27:6: 'or'
-            {
-                match("or");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "OR"
-    // $ANTLR start "OR_"
-    public final void mOR_() throws RecognitionException {
-        try {
-            int _type = OR_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:28:5: ( 'OR' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:28:7: 'OR'
-            {
-                match("OR");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "OR_"
-    // $ANTLR start "PRE_SET"
-    public final void mPRE_SET() throws RecognitionException {
-        try {
-            int _type = PRE_SET;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:29:9: ( '?' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:29:11: '?'
-            {
-                match('?');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "PRE_SET"
-    // $ANTLR start "RIGHT"
-    public final void mRIGHT() throws RecognitionException {
-        try {
-            int _type = RIGHT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:30:7: ( 'right' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:30:9: 'right'
-            {
-                match("right");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "RIGHT"
-    // $ANTLR start "RIGHT_"
-    public final void mRIGHT_() throws RecognitionException {
-        try {
-            int _type = RIGHT_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:31:8: ( 'RIGHT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:31:10: 'RIGHT'
-            {
-                match("RIGHT");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "RIGHT_"
-    // $ANTLR start "RIGHT_CLOSE"
-    public final void mRIGHT_CLOSE() throws RecognitionException {
-        try {
-            int _type = RIGHT_CLOSE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:32:13: ( ')' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:32:15: ')'
-            {
-                match(')');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "RIGHT_CLOSE"
-    // $ANTLR start "SELECT"
-    public final void mSELECT() throws RecognitionException {
-        try {
-            int _type = SELECT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:33:8: ( 'select' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:33:10: 'select'
-            {
-                match("select");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "SELECT"
-    // $ANTLR start "SELECT_"
-    public final void mSELECT_() throws RecognitionException {
-        try {
-            int _type = SELECT_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:34:9: ( 'SELECT' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:34:11: 'SELECT'
-            {
-                match("SELECT");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "SELECT_"
-    // $ANTLR start "SET"
-    public final void mSET() throws RecognitionException {
-        try {
-            int _type = SET;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:35:5: ( 'set' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:35:7: 'set'
-            {
-                match("set");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "SET"
-    // $ANTLR start "SET_"
-    public final void mSET_() throws RecognitionException {
-        try {
-            int _type = SET_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:36:6: ( 'SET' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:36:8: 'SET'
-            {
-                match("SET");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "SET_"
-    // $ANTLR start "UPDATE"
-    public final void mUPDATE() throws RecognitionException {
-        try {
-            int _type = UPDATE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:37:8: ( 'update' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:37:10: 'update'
-            {
-                match("update");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "UPDATE"
-    // $ANTLR start "UPDATE_"
-    public final void mUPDATE_() throws RecognitionException {
-        try {
-            int _type = UPDATE_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:38:9: ( 'UPDATE' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:38:11: 'UPDATE'
-            {
-                match("UPDATE");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "UPDATE_"
-    // $ANTLR start "VALUES"
-    public final void mVALUES() throws RecognitionException {
-        try {
-            int _type = VALUES;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:39:8: ( 'values' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:39:10: 'values'
-            {
-                match("values");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "VALUES"
-    // $ANTLR start "VALUES_"
-    public final void mVALUES_() throws RecognitionException {
-        try {
-            int _type = VALUES_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:40:9: ( 'VALUES' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:40:11: 'VALUES'
-            {
-                match("VALUES");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "VALUES_"
-    // $ANTLR start "WHERE"
-    public final void mWHERE() throws RecognitionException {
-        try {
-            int _type = WHERE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:41:7: ( 'where' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:41:9: 'where'
-            {
-                match("where");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "WHERE"
-    // $ANTLR start "WHERE_"
-    public final void mWHERE_() throws RecognitionException {
-        try {
-            int _type = WHERE_;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:42:8: ( 'WHERE' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:42:10: 'WHERE'
-            {
-                match("WHERE");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "WHERE_"
-    // $ANTLR start "T__47"
-    public final void mT__47() throws RecognitionException {
-        try {
-            int _type = T__47;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:43:7: ( '!=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:43:9: '!='
-            {
-                match("!=");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__47"
-    // $ANTLR start "T__48"
-    public final void mT__48() throws RecognitionException {
-        try {
-            int _type = T__48;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:44:7: ( ',' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:44:9: ','
-            {
-                match(',');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__48"
-    // $ANTLR start "T__49"
-    public final void mT__49() throws RecognitionException {
-        try {
-            int _type = T__49;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:45:7: ( '<' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:45:9: '<'
-            {
-                match('<');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__49"
-    // $ANTLR start "T__50"
-    public final void mT__50() throws RecognitionException {
-        try {
-            int _type = T__50;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:46:7: ( '<=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:46:9: '<='
-            {
-                match("<=");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__50"
-    // $ANTLR start "T__51"
-    public final void mT__51() throws RecognitionException {
-        try {
-            int _type = T__51;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:47:7: ( '<>' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:47:9: '<>'
-            {
-                match("<>");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__51"
-    // $ANTLR start "T__52"
-    public final void mT__52() throws RecognitionException {
-        try {
-            int _type = T__52;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:48:7: ( '=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:48:9: '='
-            {
-                match('=');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__52"
-    // $ANTLR start "T__53"
-    public final void mT__53() throws RecognitionException {
-        try {
-            int _type = T__53;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:49:7: ( '>' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:49:9: '>'
-            {
-                match('>');
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__53"
-    // $ANTLR start "T__54"
-    public final void mT__54() throws RecognitionException {
-        try {
-            int _type = T__54;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:50:7: ( '>=' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:50:9: '>='
-            {
-                match(">=");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__54"
-    // $ANTLR start "T__55"
-    public final void mT__55() throws RecognitionException {
-        try {
-            int _type = T__55;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:51:7: ( 'ASC' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:51:9: 'ASC'
-            {
-                match("ASC");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__55"
-    // $ANTLR start "T__56"
-    public final void mT__56() throws RecognitionException {
-        try {
-            int _type = T__56;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:52:7: ( 'BY' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:52:9: 'BY'
-            {
-                match("BY");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__56"
-    // $ANTLR start "T__57"
-    public final void mT__57() throws RecognitionException {
-        try {
-            int _type = T__57;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:53:7: ( 'DESC' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:53:9: 'DESC'
-            {
-                match("DESC");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__57"
-    // $ANTLR start "T__58"
-    public final void mT__58() throws RecognitionException {
-        try {
-            int _type = T__58;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:54:7: ( 'EXISTS' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:54:9: 'EXISTS'
-            {
-                match("EXISTS");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__58"
-    // $ANTLR start "T__59"
-    public final void mT__59() throws RecognitionException {
-        try {
-            int _type = T__59;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:55:7: ( 'GROUP' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:55:9: 'GROUP'
-            {
-                match("GROUP");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__59"
-    // $ANTLR start "T__60"
-    public final void mT__60() throws RecognitionException {
-        try {
-            int _type = T__60;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:56:7: ( 'HAVING' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:56:9: 'HAVING'
-            {
-                match("HAVING");
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-            // do for sure before leaving
-        }
-    }
-
-    // $ANTLR end "T__60"
     // $ANTLR start "T__61"
     public final void mT__61() throws RecognitionException {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:57:7: ( 'IN' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:57:9: 'IN'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:2:7: ( '!=' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:2:9: '!='
             {
-                match("IN");
+                match("!=");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1235,10 +194,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:58:7: ( 'ORDER' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:58:9: 'ORDER'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:3:7: ( '*' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:3:9: '*'
             {
-                match("ORDER");
+                match('*');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1254,10 +213,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:59:7: ( 'asc' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:59:9: 'asc'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:4:7: ( ',' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:4:9: ','
             {
-                match("asc");
+                match(',');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1273,10 +232,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:60:7: ( 'by' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:60:9: 'by'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:5:7: ( '.' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:5:9: '.'
             {
-                match("by");
+                match('.');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1292,10 +251,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:61:7: ( 'desc' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:61:9: 'desc'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:6:7: ( '<' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:6:9: '<'
             {
-                match("desc");
+                match('<');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1311,10 +270,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:62:7: ( 'exists' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:62:9: 'exists'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:7:7: ( '<=' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:7:9: '<='
             {
-                match("exists");
+                match("<=");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1330,10 +289,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:63:7: ( 'group' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:63:9: 'group'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:8:7: ( '<>' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:8:9: '<>'
             {
-                match("group");
+                match("<>");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1349,10 +308,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:64:7: ( 'having' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:64:9: 'having'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:9:7: ( '=' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:9:9: '='
             {
-                match("having");
+                match('=');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1368,10 +327,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:65:7: ( 'in' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:65:9: 'in'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:10:7: ( '>' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:10:9: '>'
             {
-                match("in");
+                match('>');
             }
             state.type = _type;
             state.channel = _channel;
@@ -1387,10 +346,10 @@ public class AntlrV3SQLLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:66:7: ( 'order' )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:66:9: 'order'
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:11:7: ( '>=' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:11:9: '>='
             {
-                match("order");
+                match(">=");
             }
             state.type = _type;
             state.channel = _channel;
@@ -1401,34 +360,689 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     // $ANTLR end "T__70"
-    // $ANTLR start "WORD"
-    public final void mWORD() throws RecognitionException {
+    // $ANTLR start "T__71"
+    public final void mT__71() throws RecognitionException {
         try {
-            int _type = WORD;
+            int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:163:6: ( ( 'a' .. 'z' |
-            // 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+ )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:164:2: ( 'a' .. 'z' | 'A'
-            // .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:12:7: ( '\\(' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:12:9: '\\('
             {
-                // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:164:2: ( 'a' .. 'z' |
-                // 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '*' )+
+                match('(');
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__71"
+    // $ANTLR start "T__72"
+    public final void mT__72() throws RecognitionException {
+        try {
+            int _type = T__72;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:13:7: ( '\\)' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:13:9: '\\)'
+            {
+                match(')');
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T__72"
+    // $ANTLR start "SELECT"
+    public final void mSELECT() throws RecognitionException {
+        try {
+            int _type = SELECT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:169:8: ( S E L E C T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:169:9: S E L E C T
+            {
+                mS();
+                mE();
+                mL();
+                mE();
+                mC();
+                mT();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "SELECT"
+    // $ANTLR start "INSERT"
+    public final void mINSERT() throws RecognitionException {
+        try {
+            int _type = INSERT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:170:9: ( I N S E R T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:170:10: I N S E R T
+            {
+                mI();
+                mN();
+                mS();
+                mE();
+                mR();
+                mT();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "INSERT"
+    // $ANTLR start "UPDATE"
+    public final void mUPDATE() throws RecognitionException {
+        try {
+            int _type = UPDATE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:171:8: ( U P D A T E )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:171:9: U P D A T E
+            {
+                mU();
+                mP();
+                mD();
+                mA();
+                mT();
+                mE();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "UPDATE"
+    // $ANTLR start "DELETE"
+    public final void mDELETE() throws RecognitionException {
+        try {
+            int _type = DELETE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:172:8: ( D E L E T E )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:172:9: D E L E T E
+            {
+                mD();
+                mE();
+                mL();
+                mE();
+                mT();
+                mE();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "DELETE"
+    // $ANTLR start "AND"
+    public final void mAND() throws RecognitionException {
+        try {
+            int _type = AND;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:173:5: ( A N D )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:173:6: A N D
+            {
+                mA();
+                mN();
+                mD();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "AND"
+    // $ANTLR start "OR"
+    public final void mOR() throws RecognitionException {
+        try {
+            int _type = OR;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:174:4: ( O R )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:174:5: O R
+            {
+                mO();
+                mR();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "OR"
+    // $ANTLR start "WHERE"
+    public final void mWHERE() throws RecognitionException {
+        try {
+            int _type = WHERE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:175:7: ( W H E R E )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:175:8: W H E R E
+            {
+                mW();
+                mH();
+                mE();
+                mR();
+                mE();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "WHERE"
+    // $ANTLR start "GROUP"
+    public final void mGROUP() throws RecognitionException {
+        try {
+            int _type = GROUP;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:176:7: ( G R O U P )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:176:8: G R O U P
+            {
+                mG();
+                mR();
+                mO();
+                mU();
+                mP();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "GROUP"
+    // $ANTLR start "HAVING"
+    public final void mHAVING() throws RecognitionException {
+        try {
+            int _type = HAVING;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:177:8: ( H A V I N G )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:177:9: H A V I N G
+            {
+                mH();
+                mA();
+                mV();
+                mI();
+                mN();
+                mG();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "HAVING"
+    // $ANTLR start "BY"
+    public final void mBY() throws RecognitionException {
+        try {
+            int _type = BY;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:178:4: ( B Y )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:178:5: B Y
+            {
+                mB();
+                mY();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "BY"
+    // $ANTLR start "ORDER"
+    public final void mORDER() throws RecognitionException {
+        try {
+            int _type = ORDER;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:179:7: ( O R D E R )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:179:8: O R D E R
+            {
+                mO();
+                mR();
+                mD();
+                mE();
+                mR();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "ORDER"
+    // $ANTLR start "DESC"
+    public final void mDESC() throws RecognitionException {
+        try {
+            int _type = DESC;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:180:6: ( D E S C )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:180:7: D E S C
+            {
+                mD();
+                mE();
+                mS();
+                mC();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "DESC"
+    // $ANTLR start "ASC"
+    public final void mASC() throws RecognitionException {
+        try {
+            int _type = ASC;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:181:5: ( A S C )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:181:6: A S C
+            {
+                mA();
+                mS();
+                mC();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "ASC"
+    // $ANTLR start "SET"
+    public final void mSET() throws RecognitionException {
+        try {
+            int _type = SET;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:182:5: ( S E T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:182:6: S E T
+            {
+                mS();
+                mE();
+                mT();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "SET"
+    // $ANTLR start "ON"
+    public final void mON() throws RecognitionException {
+        try {
+            int _type = ON;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:183:4: ( O N )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:183:5: O N
+            {
+                mO();
+                mN();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "ON"
+    // $ANTLR start "FULL"
+    public final void mFULL() throws RecognitionException {
+        try {
+            int _type = FULL;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:184:6: ( F U L L )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:184:7: F U L L
+            {
+                mF();
+                mU();
+                mL();
+                mL();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "FULL"
+    // $ANTLR start "INNER"
+    public final void mINNER() throws RecognitionException {
+        try {
+            int _type = INNER;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:185:7: ( I N N E R )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:185:8: I N N E R
+            {
+                mI();
+                mN();
+                mN();
+                mE();
+                mR();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "INNER"
+    // $ANTLR start "AS"
+    public final void mAS() throws RecognitionException {
+        try {
+            int _type = AS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:186:4: ( A S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:186:5: A S
+            {
+                mA();
+                mS();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "AS"
+    // $ANTLR start "FROM"
+    public final void mFROM() throws RecognitionException {
+        try {
+            int _type = FROM;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:187:6: ( F R O M )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:187:7: F R O M
+            {
+                mF();
+                mR();
+                mO();
+                mM();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "FROM"
+    // $ANTLR start "LEFT"
+    public final void mLEFT() throws RecognitionException {
+        try {
+            int _type = LEFT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:188:6: ( L E F T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:188:7: L E F T
+            {
+                mL();
+                mE();
+                mF();
+                mT();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "LEFT"
+    // $ANTLR start "RIGHT"
+    public final void mRIGHT() throws RecognitionException {
+        try {
+            int _type = RIGHT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:189:7: ( R I G H T )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:189:8: R I G H T
+            {
+                mR();
+                mI();
+                mG();
+                mH();
+                mT();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "RIGHT"
+    // $ANTLR start "CROSS"
+    public final void mCROSS() throws RecognitionException {
+        try {
+            int _type = CROSS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:190:7: ( C R O S S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:190:8: C R O S S
+            {
+                mC();
+                mR();
+                mO();
+                mS();
+                mS();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "CROSS"
+    // $ANTLR start "JOIN"
+    public final void mJOIN() throws RecognitionException {
+        try {
+            int _type = JOIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:191:6: ( J O I N )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:191:7: J O I N
+            {
+                mJ();
+                mO();
+                mI();
+                mN();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "JOIN"
+    // $ANTLR start "VALUES"
+    public final void mVALUES() throws RecognitionException {
+        try {
+            int _type = VALUES;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:192:8: ( V A L U E S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:192:9: V A L U E S
+            {
+                mV();
+                mA();
+                mL();
+                mU();
+                mE();
+                mS();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "VALUES"
+    // $ANTLR start "INTO"
+    public final void mINTO() throws RecognitionException {
+        try {
+            int _type = INTO;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:193:6: ( I N T O )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:193:7: I N T O
+            {
+                mI();
+                mN();
+                mT();
+                mO();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "INTO"
+    // $ANTLR start "IN"
+    public final void mIN() throws RecognitionException {
+        try {
+            int _type = IN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:194:4: ( I N )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:194:5: I N
+            {
+                mI();
+                mN();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "IN"
+    // $ANTLR start "EXISTS"
+    public final void mEXISTS() throws RecognitionException {
+        try {
+            int _type = EXISTS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:195:8: ( E X I S T S )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:195:9: E X I S T S
+            {
+                mE();
+                mX();
+                mI();
+                mS();
+                mT();
+                mS();
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "EXISTS"
+    // $ANTLR start "PRE_SET"
+    public final void mPRE_SET() throws RecognitionException {
+        try {
+            int _type = PRE_SET;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:196:9: ( '?' )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:196:10: '?'
+            {
+                match('?');
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "PRE_SET"
+    // $ANTLR start "BASIC_NAME"
+    public final void mBASIC_NAME() throws RecognitionException {
+        try {
+            int _type = BASIC_NAME;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:199:2: ( ( 'a' .. 'z' |
+            // 'A' .. 'Z' | '0' .. '9' | '_' )+ )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:200:2: ( 'a' .. 'z' | 'A'
+            // .. 'Z' | '0' .. '9' | '_' )+
+            {
+                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:200:2: ( 'a' .. 'z' |
+                // 'A' .. 'Z' | '0' .. '9' | '_' )+
                 int cnt1 = 0;
                 loop1: do {
                     int alt1 = 2;
                     int LA1_0 = input.LA(1);
-                    if ((LA1_0 == '*' || LA1_0 == '.'
-                            || (LA1_0 >= '0' && LA1_0 <= '9')
+                    if (((LA1_0 >= '0' && LA1_0 <= '9')
                             || (LA1_0 >= 'A' && LA1_0 <= 'Z') || LA1_0 == '_' || (LA1_0 >= 'a' && LA1_0 <= 'z'))) {
                         alt1 = 1;
                     }
                     switch (alt1) {
                         case 1:
-                        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:
+                        // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
                         {
-                            if (input.LA(1) == '*'
-                                    || input.LA(1) == '.'
-                                    || (input.LA(1) >= '0' && input.LA(1) <= '9')
+                            if ((input.LA(1) >= '0' && input.LA(1) <= '9')
                                     || (input.LA(1) >= 'A' && input.LA(1) <= 'Z')
                                     || input.LA(1) == '_'
                                     || (input.LA(1) >= 'a' && input.LA(1) <= 'z')) {
@@ -1461,15 +1075,98 @@ public class AntlrV3SQLLexer extends Lexer {
         }
     }
 
-    // $ANTLR end "WORD"
+    // $ANTLR end "BASIC_NAME"
+    // $ANTLR start "TEXT_STRING"
+    public final void mTEXT_STRING() throws RecognitionException {
+        try {
+            int _type = TEXT_STRING;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:202:12: ( ( '\\'' (
+            // options {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
+            // '\\'' '\\'' )* '\\'' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:203:4: ( '\\'' ( options
+            // {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) | '\\'' '\\'' )*
+            // '\\'' )
+            {
+                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:203:4: ( '\\'' (
+                // options {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
+                // '\\'' '\\'' )* '\\'' )
+                // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:203:5: '\\'' (
+                // options {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
+                // '\\'' '\\'' )* '\\''
+                {
+                    match('\'');
+                    // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:204:5: ( options
+                    // {greedy=true; } :~ ( '\\'' | '\\r' | '\\n' ) |
+                    // '\\'' '\\'' )*
+                    loop2: do {
+                        int alt2 = 3;
+                        int LA2_0 = input.LA(1);
+                        if ((LA2_0 == '\'')) {
+                            int LA2_1 = input.LA(2);
+                            if ((LA2_1 == '\'')) {
+                                alt2 = 2;
+                            }
+                        }
+                        else if (((LA2_0 >= '\u0000' && LA2_0 <= '\t')
+                                || (LA2_0 >= '\u000B' && LA2_0 <= '\f')
+                                || (LA2_0 >= '\u000E' && LA2_0 <= '&') || (LA2_0 >= '(' && LA2_0 <= '\uFFFF'))) {
+                            alt2 = 1;
+                        }
+                        switch (alt2) {
+                            case 1:
+                            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:205:31: ~
+                            // ( '\\'' | '\\r' | '\\n' )
+                            {
+                                if ((input.LA(1) >= '\u0000' && input.LA(1) <= '\t')
+                                        || (input.LA(1) >= '\u000B' && input
+                                                .LA(1) <= '\f')
+                                        || (input.LA(1) >= '\u000E' && input
+                                                .LA(1) <= '&')
+                                        || (input.LA(1) >= '(' && input.LA(1) <= '\uFFFF')) {
+                                    input.consume();
+                                }
+                                else {
+                                    MismatchedSetException mse = new MismatchedSetException(
+                                            null, input);
+                                    recover(mse);
+                                    throw mse;
+                                }
+                            }
+                                break;
+                            case 2:
+                            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:205:56:
+                            // '\\'' '\\''
+                            {
+                                match('\'');
+                                match('\'');
+                            }
+                                break;
+                            default:
+                                break loop2;
+                        }
+                    }
+                    while (true);
+                    match('\'');
+                }
+            }
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "TEXT_STRING"
     // $ANTLR start "WS"
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:167:5: ( ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:211:5: ( ( ' ' | '\\t' |
             // '\\r' | '\\n' ) )
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:167:9: ( ' ' | '\\t' |
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:211:9: ( ' ' | '\\t' |
             // '\\r' | '\\n' )
             {
                 if ((input.LA(1) >= '\t' && input.LA(1) <= '\n')
@@ -1493,417 +1190,868 @@ public class AntlrV3SQLLexer extends Lexer {
     }
 
     // $ANTLR end "WS"
+    // $ANTLR start "A"
+    public final void mA() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:219:11: ( ( 'a' | 'A' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'A' || input.LA(1) == 'a') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "A"
+    // $ANTLR start "B"
+    public final void mB() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:220:11: ( ( 'b' | 'B' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'B' || input.LA(1) == 'b') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "B"
+    // $ANTLR start "C"
+    public final void mC() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:221:11: ( ( 'c' | 'C' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'C' || input.LA(1) == 'c') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "C"
+    // $ANTLR start "D"
+    public final void mD() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:222:11: ( ( 'd' | 'D' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'D' || input.LA(1) == 'd') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "D"
+    // $ANTLR start "E"
+    public final void mE() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:223:11: ( ( 'e' | 'E' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'E' || input.LA(1) == 'e') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "E"
+    // $ANTLR start "F"
+    public final void mF() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:224:11: ( ( 'f' | 'F' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'F' || input.LA(1) == 'f') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "F"
+    // $ANTLR start "G"
+    public final void mG() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:225:11: ( ( 'g' | 'G' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'G' || input.LA(1) == 'g') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "G"
+    // $ANTLR start "H"
+    public final void mH() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:226:11: ( ( 'h' | 'H' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'H' || input.LA(1) == 'h') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "H"
+    // $ANTLR start "I"
+    public final void mI() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:227:11: ( ( 'i' | 'I' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'I' || input.LA(1) == 'i') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "I"
+    // $ANTLR start "J"
+    public final void mJ() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:228:11: ( ( 'j' | 'J' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'J' || input.LA(1) == 'j') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "J"
+    // $ANTLR start "K"
+    public final void mK() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:229:11: ( ( 'k' | 'K' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'K' || input.LA(1) == 'k') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "K"
+    // $ANTLR start "L"
+    public final void mL() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:230:11: ( ( 'l' | 'L' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'L' || input.LA(1) == 'l') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "L"
+    // $ANTLR start "M"
+    public final void mM() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:231:11: ( ( 'm' | 'M' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'M' || input.LA(1) == 'm') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "M"
+    // $ANTLR start "N"
+    public final void mN() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:232:11: ( ( 'n' | 'N' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'N' || input.LA(1) == 'n') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "N"
+    // $ANTLR start "O"
+    public final void mO() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:233:11: ( ( 'o' | 'O' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'O' || input.LA(1) == 'o') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "O"
+    // $ANTLR start "P"
+    public final void mP() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:234:11: ( ( 'p' | 'P' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'P' || input.LA(1) == 'p') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "P"
+    // $ANTLR start "Q"
+    public final void mQ() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:235:11: ( ( 'q' | 'Q' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'Q' || input.LA(1) == 'q') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "Q"
+    // $ANTLR start "R"
+    public final void mR() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:236:11: ( ( 'r' | 'R' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'R' || input.LA(1) == 'r') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "R"
+    // $ANTLR start "S"
+    public final void mS() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:237:11: ( ( 's' | 'S' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'S' || input.LA(1) == 's') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "S"
+    // $ANTLR start "T"
+    public final void mT() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:238:11: ( ( 't' | 'T' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'T' || input.LA(1) == 't') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "T"
+    // $ANTLR start "U"
+    public final void mU() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:239:11: ( ( 'u' | 'U' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'U' || input.LA(1) == 'u') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "U"
+    // $ANTLR start "V"
+    public final void mV() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:240:11: ( ( 'v' | 'V' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'V' || input.LA(1) == 'v') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "V"
+    // $ANTLR start "W"
+    public final void mW() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:241:11: ( ( 'w' | 'W' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'W' || input.LA(1) == 'w') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "W"
+    // $ANTLR start "X"
+    public final void mX() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:242:11: ( ( 'x' | 'X' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'X' || input.LA(1) == 'x') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "X"
+    // $ANTLR start "Y"
+    public final void mY() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:243:11: ( ( 'y' | 'Y' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'Y' || input.LA(1) == 'y') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "Y"
+    // $ANTLR start "Z"
+    public final void mZ() throws RecognitionException {
+        try {
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:244:11: ( ( 'z' | 'Z' ) )
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:
+            {
+                if (input.LA(1) == 'Z' || input.LA(1) == 'z') {
+                    input.consume();
+                }
+                else {
+                    MismatchedSetException mse = new MismatchedSetException(
+                            null, input);
+                    recover(mse);
+                    throw mse;
+                }
+            }
+        }
+        finally {
+            // do for sure before leaving
+        }
+    }
+
+    // $ANTLR end "Z"
     public void mTokens() throws RecognitionException {
-        // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:8: ( AND | AND_ | AS | AS_ |
-        // CROSS | CROSS_ | DELETE | DELETE_ | FROM | FROM_ | FULL | FULL_ |
-        // INNER | INNER_ | INSERT | INSERT_ | INTO | INTO_ | JOIN | JOIN_ |
-        // LEFT | LEFT_ | LEFT_CLOSE | ON | ON_ | OR | OR_ | PRE_SET | RIGHT |
-        // RIGHT_ | RIGHT_CLOSE | SELECT | SELECT_ | SET | SET_ | UPDATE |
-        // UPDATE_ | VALUES | VALUES_ | WHERE | WHERE_ | T__47 | T__48 | T__49 |
-        // T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58
-        // | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 |
-        // T__67 | T__68 | T__69 | T__70 | WORD | WS )
-        int alt2 = 67;
-        alt2 = dfa2.predict(input);
-        switch (alt2) {
+        // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:8: ( T__61 | T__62 | T__63
+        // | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 |
+        // T__72 | SELECT | INSERT | UPDATE | DELETE | AND | OR | WHERE | GROUP
+        // | HAVING | BY | ORDER | DESC | ASC | SET | ON | FULL | INNER | AS |
+        // FROM | LEFT | RIGHT | CROSS | JOIN | VALUES | INTO | IN | EXISTS |
+        // PRE_SET | BASIC_NAME | TEXT_STRING | WS )
+        int alt3 = 43;
+        alt3 = dfa3.predict(input);
+        switch (alt3) {
             case 1:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:10: AND
-            {
-                mAND();
-            }
-                break;
-            case 2:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:14: AND_
-            {
-                mAND_();
-            }
-                break;
-            case 3:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:19: AS
-            {
-                mAS();
-            }
-                break;
-            case 4:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:22: AS_
-            {
-                mAS_();
-            }
-                break;
-            case 5:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:26: CROSS
-            {
-                mCROSS();
-            }
-                break;
-            case 6:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:32: CROSS_
-            {
-                mCROSS_();
-            }
-                break;
-            case 7:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:39: DELETE
-            {
-                mDELETE();
-            }
-                break;
-            case 8:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:46: DELETE_
-            {
-                mDELETE_();
-            }
-                break;
-            case 9:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:54: FROM
-            {
-                mFROM();
-            }
-                break;
-            case 10:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:59: FROM_
-            {
-                mFROM_();
-            }
-                break;
-            case 11:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:65: FULL
-            {
-                mFULL();
-            }
-                break;
-            case 12:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:70: FULL_
-            {
-                mFULL_();
-            }
-                break;
-            case 13:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:76: INNER
-            {
-                mINNER();
-            }
-                break;
-            case 14:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:82: INNER_
-            {
-                mINNER_();
-            }
-                break;
-            case 15:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:89: INSERT
-            {
-                mINSERT();
-            }
-                break;
-            case 16:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:96: INSERT_
-            {
-                mINSERT_();
-            }
-                break;
-            case 17:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:104: INTO
-            {
-                mINTO();
-            }
-                break;
-            case 18:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:109: INTO_
-            {
-                mINTO_();
-            }
-                break;
-            case 19:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:115: JOIN
-            {
-                mJOIN();
-            }
-                break;
-            case 20:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:120: JOIN_
-            {
-                mJOIN_();
-            }
-                break;
-            case 21:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:126: LEFT
-            {
-                mLEFT();
-            }
-                break;
-            case 22:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:131: LEFT_
-            {
-                mLEFT_();
-            }
-                break;
-            case 23:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:137: LEFT_CLOSE
-            {
-                mLEFT_CLOSE();
-            }
-                break;
-            case 24:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:148: ON
-            {
-                mON();
-            }
-                break;
-            case 25:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:151: ON_
-            {
-                mON_();
-            }
-                break;
-            case 26:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:155: OR
-            {
-                mOR();
-            }
-                break;
-            case 27:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:158: OR_
-            {
-                mOR_();
-            }
-                break;
-            case 28:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:162: PRE_SET
-            {
-                mPRE_SET();
-            }
-                break;
-            case 29:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:170: RIGHT
-            {
-                mRIGHT();
-            }
-                break;
-            case 30:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:176: RIGHT_
-            {
-                mRIGHT_();
-            }
-                break;
-            case 31:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:183: RIGHT_CLOSE
-            {
-                mRIGHT_CLOSE();
-            }
-                break;
-            case 32:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:195: SELECT
-            {
-                mSELECT();
-            }
-                break;
-            case 33:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:202: SELECT_
-            {
-                mSELECT_();
-            }
-                break;
-            case 34:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:210: SET
-            {
-                mSET();
-            }
-                break;
-            case 35:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:214: SET_
-            {
-                mSET_();
-            }
-                break;
-            case 36:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:219: UPDATE
-            {
-                mUPDATE();
-            }
-                break;
-            case 37:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:226: UPDATE_
-            {
-                mUPDATE_();
-            }
-                break;
-            case 38:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:234: VALUES
-            {
-                mVALUES();
-            }
-                break;
-            case 39:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:241: VALUES_
-            {
-                mVALUES_();
-            }
-                break;
-            case 40:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:249: WHERE
-            {
-                mWHERE();
-            }
-                break;
-            case 41:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:255: WHERE_
-            {
-                mWHERE_();
-            }
-                break;
-            case 42:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:262: T__47
-            {
-                mT__47();
-            }
-                break;
-            case 43:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:268: T__48
-            {
-                mT__48();
-            }
-                break;
-            case 44:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:274: T__49
-            {
-                mT__49();
-            }
-                break;
-            case 45:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:280: T__50
-            {
-                mT__50();
-            }
-                break;
-            case 46:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:286: T__51
-            {
-                mT__51();
-            }
-                break;
-            case 47:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:292: T__52
-            {
-                mT__52();
-            }
-                break;
-            case 48:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:298: T__53
-            {
-                mT__53();
-            }
-                break;
-            case 49:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:304: T__54
-            {
-                mT__54();
-            }
-                break;
-            case 50:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:310: T__55
-            {
-                mT__55();
-            }
-                break;
-            case 51:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:316: T__56
-            {
-                mT__56();
-            }
-                break;
-            case 52:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:322: T__57
-            {
-                mT__57();
-            }
-                break;
-            case 53:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:328: T__58
-            {
-                mT__58();
-            }
-                break;
-            case 54:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:334: T__59
-            {
-                mT__59();
-            }
-                break;
-            case 55:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:340: T__60
-            {
-                mT__60();
-            }
-                break;
-            case 56:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:346: T__61
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:10: T__61
             {
                 mT__61();
             }
                 break;
-            case 57:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:352: T__62
+            case 2:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:16: T__62
             {
                 mT__62();
             }
                 break;
-            case 58:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:358: T__63
+            case 3:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:22: T__63
             {
                 mT__63();
             }
                 break;
-            case 59:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:364: T__64
+            case 4:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:28: T__64
             {
                 mT__64();
             }
                 break;
-            case 60:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:370: T__65
+            case 5:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:34: T__65
             {
                 mT__65();
             }
                 break;
-            case 61:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:376: T__66
+            case 6:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:40: T__66
             {
                 mT__66();
             }
                 break;
-            case 62:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:382: T__67
+            case 7:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:46: T__67
             {
                 mT__67();
             }
                 break;
-            case 63:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:388: T__68
+            case 8:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:52: T__68
             {
                 mT__68();
             }
                 break;
-            case 64:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:394: T__69
+            case 9:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:58: T__69
             {
                 mT__69();
             }
                 break;
-            case 65:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:400: T__70
+            case 10:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:64: T__70
             {
                 mT__70();
             }
                 break;
-            case 66:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:406: WORD
+            case 11:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:70: T__71
             {
-                mWORD();
+                mT__71();
             }
                 break;
-            case 67:
-            // /Users/akwei/antlrpro/sql/AntlrV3SQL.g:1:411: WS
+            case 12:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:76: T__72
+            {
+                mT__72();
+            }
+                break;
+            case 13:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:82: SELECT
+            {
+                mSELECT();
+            }
+                break;
+            case 14:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:89: INSERT
+            {
+                mINSERT();
+            }
+                break;
+            case 15:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:96: UPDATE
+            {
+                mUPDATE();
+            }
+                break;
+            case 16:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:103: DELETE
+            {
+                mDELETE();
+            }
+                break;
+            case 17:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:110: AND
+            {
+                mAND();
+            }
+                break;
+            case 18:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:114: OR
+            {
+                mOR();
+            }
+                break;
+            case 19:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:117: WHERE
+            {
+                mWHERE();
+            }
+                break;
+            case 20:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:123: GROUP
+            {
+                mGROUP();
+            }
+                break;
+            case 21:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:129: HAVING
+            {
+                mHAVING();
+            }
+                break;
+            case 22:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:136: BY
+            {
+                mBY();
+            }
+                break;
+            case 23:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:139: ORDER
+            {
+                mORDER();
+            }
+                break;
+            case 24:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:145: DESC
+            {
+                mDESC();
+            }
+                break;
+            case 25:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:150: ASC
+            {
+                mASC();
+            }
+                break;
+            case 26:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:154: SET
+            {
+                mSET();
+            }
+                break;
+            case 27:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:158: ON
+            {
+                mON();
+            }
+                break;
+            case 28:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:161: FULL
+            {
+                mFULL();
+            }
+                break;
+            case 29:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:166: INNER
+            {
+                mINNER();
+            }
+                break;
+            case 30:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:172: AS
+            {
+                mAS();
+            }
+                break;
+            case 31:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:175: FROM
+            {
+                mFROM();
+            }
+                break;
+            case 32:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:180: LEFT
+            {
+                mLEFT();
+            }
+                break;
+            case 33:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:185: RIGHT
+            {
+                mRIGHT();
+            }
+                break;
+            case 34:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:191: CROSS
+            {
+                mCROSS();
+            }
+                break;
+            case 35:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:197: JOIN
+            {
+                mJOIN();
+            }
+                break;
+            case 36:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:202: VALUES
+            {
+                mVALUES();
+            }
+                break;
+            case 37:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:209: INTO
+            {
+                mINTO();
+            }
+                break;
+            case 38:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:214: IN
+            {
+                mIN();
+            }
+                break;
+            case 39:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:217: EXISTS
+            {
+                mEXISTS();
+            }
+                break;
+            case 40:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:224: PRE_SET
+            {
+                mPRE_SET();
+            }
+                break;
+            case 41:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:232: BASIC_NAME
+            {
+                mBASIC_NAME();
+            }
+                break;
+            case 42:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:243: TEXT_STRING
+            {
+                mTEXT_STRING();
+            }
+                break;
+            case 43:
+            // /Users/akwei/antlrpro/sql2/AntlrV3SQL.g:1:255: WS
             {
                 mWS();
             }
@@ -1911,433 +2059,195 @@ public class AntlrV3SQLLexer extends Lexer {
         }
     }
 
-    protected DFA2 dfa2 = new DFA2(this);
+    protected DFA3 dfa3 = new DFA3(this);
 
-    static final String DFA2_eotS = "\1\uffff\16\53\1\uffff\2\53\1\uffff\2\53\1\uffff\10\53\2\uffff\1"
-            + "\117\1\uffff\1\121\10\53\2\uffff\1\53\1\134\1\53\1\137\10\53\1\155"
-            + "\1\161\4\53\1\166\1\170\1\171\1\173\12\53\5\uffff\1\u0088\3\53\1"
-            + "\u008c\3\53\1\u0090\1\u0091\1\uffff\1\u0092\1\u0093\1\uffff\15\53"
-            + "\1\uffff\3\53\1\uffff\4\53\1\uffff\1\53\2\uffff\1\53\1\uffff\3\53"
-            + "\1\u00ad\1\53\1\u00af\6\53\1\uffff\3\53\1\uffff\3\53\4\uffff\3\53"
-            + "\1\u00bf\1\53\1\u00c1\1\u00c2\1\u00c3\1\u00c4\1\u00c5\2\53\1\u00c8"
-            + "\2\53\1\u00cb\1\u00cc\1\u00cd\1\u00ce\1\u00cf\5\53\1\uffff\1\53"
-            + "\1\uffff\14\53\1\u00e2\1\u00e3\1\53\1\uffff\1\53\5\uffff\1\u00e6"
-            + "\1\53\1\uffff\1\u00e8\1\53\5\uffff\1\u00ea\1\u00eb\1\u00ec\1\u00ed"
-            + "\6\53\1\u00f4\1\u00f5\1\53\1\u00f7\2\53\1\u00fa\1\53\2\uffff\1\u00fc"
-            + "\1\u00fd\1\uffff\1\u00fe\1\uffff\1\u00ff\4\uffff\1\u0100\1\u0101"
-            + "\1\u0102\1\u0103\1\u0104\1\u0105\2\uffff\1\u0106\1\uffff\1\u0107"
-            + "\1\u0108\1\uffff\1\u0109\16\uffff";
+    static final String DFA3_eotS = "\5\uffff\1\41\1\uffff\1\43\2\uffff\21\34\11\uffff\1\34\1\72\3\34"
+            + "\1\102\1\104\1\106\3\34\1\112\11\34\1\124\1\uffff\6\34\1\133\1\uffff"
+            + "\1\134\1\uffff\1\34\1\uffff\3\34\1\uffff\11\34\1\uffff\2\34\1\154"
+            + "\2\34\1\157\2\uffff\4\34\1\164\1\165\1\166\2\34\1\171\4\34\1\176"
+            + "\1\uffff\2\34\1\uffff\1\u0081\1\u0082\1\u0083\1\34\3\uffff\1\u0085"
+            + "\1\u0086\1\uffff\2\34\1\u0089\1\u008a\1\uffff\1\u008b\1\u008c\3"
+            + "\uffff\1\u008d\2\uffff\1\u008e\1\u008f\7\uffff";
 
-    static final String DFA2_eofS = "\u010a\uffff";
+    static final String DFA3_eofS = "\u0090\uffff";
 
-    static final String DFA2_minS = "\1\11\1\156\1\116\1\162\1\122\1\145\1\105\1\162\1\122\1\156\1\116"
-            + "\1\157\1\117\1\145\1\105\1\uffff\1\156\1\116\1\uffff\1\151\1\111"
-            + "\1\uffff\1\145\1\105\1\160\1\120\1\141\1\101\1\150\1\110\2\uffff"
-            + "\1\75\1\uffff\1\75\1\131\1\130\1\122\1\101\1\171\1\170\1\162\1\141"
-            + "\2\uffff\1\144\1\52\1\104\1\52\1\157\1\117\1\154\1\114\1\157\1\154"
-            + "\1\117\1\114\2\52\1\151\1\111\1\146\1\106\4\52\1\147\1\107\1\154"
-            + "\1\114\1\144\1\104\1\154\1\114\1\145\1\105\5\uffff\1\52\1\111\1"
-            + "\117\1\126\1\52\1\151\1\157\1\166\2\52\1\uffff\2\52\1\uffff\1\163"
-            + "\1\123\1\145\1\143\1\105\1\103\1\155\1\154\1\115\1\114\2\145\1\157"
-            + "\1\uffff\2\105\1\117\1\uffff\1\156\1\116\1\164\1\124\1\uffff\1\145"
-            + "\2\uffff\1\105\1\uffff\1\150\1\110\1\145\1\52\1\105\1\52\1\141\1"
-            + "\101\1\165\1\125\1\162\1\122\1\uffff\1\123\1\125\1\111\1\uffff\1"
-            + "\163\1\165\1\151\4\uffff\1\163\1\123\1\164\1\52\1\124\5\52\2\162"
-            + "\1\52\2\122\5\52\1\162\1\122\1\164\1\124\1\143\1\uffff\1\103\1\uffff"
-            + "\1\164\1\124\1\145\1\105\1\145\1\105\1\124\1\120\1\116\1\164\1\160"
-            + "\1\156\2\52\1\145\1\uffff\1\105\5\uffff\1\52\1\164\1\uffff\1\52"
-            + "\1\124\5\uffff\4\52\1\164\1\124\1\145\1\105\1\163\1\123\2\52\1\123"
-            + "\1\52\1\107\1\163\1\52\1\147\2\uffff\2\52\1\uffff\1\52\1\uffff\1"
-            + "\52\4\uffff\6\52\2\uffff\1\52\1\uffff\2\52\1\uffff\1\52\16\uffff";
+    static final String DFA3_minS = "\1\11\4\uffff\1\75\1\uffff\1\75\2\uffff\1\105\1\116\1\120\1\105"
+            + "\2\116\1\110\1\122\1\101\1\131\1\122\1\105\1\111\1\122\1\117\1\101"
+            + "\1\130\11\uffff\1\114\1\60\1\104\1\114\1\104\3\60\1\105\1\117\1"
+            + "\126\1\60\1\114\1\117\1\106\1\107\1\117\1\111\1\114\1\111\1\105"
+            + "\1\60\1\uffff\2\105\1\117\1\101\1\105\1\103\1\60\1\uffff\1\60\1"
+            + "\uffff\1\105\1\uffff\1\122\1\125\1\111\1\uffff\1\114\1\115\1\124"
+            + "\1\110\1\123\1\116\1\125\1\123\1\103\1\uffff\2\122\1\60\2\124\1"
+            + "\60\2\uffff\1\122\1\105\1\120\1\116\3\60\1\124\1\123\1\60\1\105"
+            + "\3\124\1\60\1\uffff\2\105\1\uffff\3\60\1\107\3\uffff\2\60\1\uffff"
+            + "\2\123\2\60\1\uffff\2\60\3\uffff\1\60\2\uffff\2\60\7\uffff";
 
-    static final String DFA2_maxS = "\1\172\1\163\1\123\1\162\1\122\1\145\1\105\1\165\1\125\1\156\1\116"
-            + "\1\157\1\117\1\145\1\105\1\uffff\1\162\1\122\1\uffff\1\151\1\111"
-            + "\1\uffff\1\145\1\105\1\160\1\120\1\141\1\101\1\150\1\110\2\uffff"
-            + "\1\76\1\uffff\1\75\1\131\1\130\1\122\1\101\1\171\1\170\1\162\1\141"
-            + "\2\uffff\1\144\1\172\1\104\1\172\1\157\1\117\1\163\1\123\1\157\1"
-            + "\154\1\117\1\114\2\172\1\151\1\111\1\146\1\106\4\172\1\147\1\107"
-            + "\1\164\1\124\1\144\1\104\1\154\1\114\1\145\1\105\5\uffff\1\172\1"
-            + "\111\1\117\1\126\1\172\1\151\1\157\1\166\2\172\1\uffff\2\172\1\uffff"
-            + "\1\163\1\123\1\145\1\143\1\105\1\103\1\155\1\154\1\115\1\114\2\145"
-            + "\1\157\1\uffff\2\105\1\117\1\uffff\1\156\1\116\1\164\1\124\1\uffff"
-            + "\1\145\2\uffff\1\105\1\uffff\1\150\1\110\1\145\1\172\1\105\1\172"
-            + "\1\141\1\101\1\165\1\125\1\162\1\122\1\uffff\1\123\1\125\1\111\1"
-            + "\uffff\1\163\1\165\1\151\4\uffff\1\163\1\123\1\164\1\172\1\124\5"
-            + "\172\2\162\1\172\2\122\5\172\1\162\1\122\1\164\1\124\1\143\1\uffff"
-            + "\1\103\1\uffff\1\164\1\124\1\145\1\105\1\145\1\105\1\124\1\120\1"
-            + "\116\1\164\1\160\1\156\2\172\1\145\1\uffff\1\105\5\uffff\1\172\1"
-            + "\164\1\uffff\1\172\1\124\5\uffff\4\172\1\164\1\124\1\145\1\105\1"
-            + "\163\1\123\2\172\1\123\1\172\1\107\1\163\1\172\1\147\2\uffff\2\172"
-            + "\1\uffff\1\172\1\uffff\1\172\4\uffff\6\172\2\uffff\1\172\1\uffff"
-            + "\2\172\1\uffff\1\172\16\uffff";
+    static final String DFA3_maxS = "\1\172\4\uffff\1\76\1\uffff\1\75\2\uffff\1\145\1\156\1\160\1\145"
+            + "\1\163\1\162\1\150\1\162\1\141\1\171\1\165\1\145\1\151\1\162\1\157"
+            + "\1\141\1\170\11\uffff\1\164\1\172\1\144\1\163\1\144\3\172\1\145"
+            + "\1\157\1\166\1\172\1\154\1\157\1\146\1\147\1\157\1\151\1\154\1\151"
+            + "\1\145\1\172\1\uffff\2\145\1\157\1\141\1\145\1\143\1\172\1\uffff"
+            + "\1\172\1\uffff\1\145\1\uffff\1\162\1\165\1\151\1\uffff\1\154\1\155"
+            + "\1\164\1\150\1\163\1\156\1\165\1\163\1\143\1\uffff\2\162\1\172\2"
+            + "\164\1\172\2\uffff\1\162\1\145\1\160\1\156\3\172\1\164\1\163\1\172"
+            + "\1\145\3\164\1\172\1\uffff\2\145\1\uffff\3\172\1\147\3\uffff\2\172"
+            + "\1\uffff\2\163\2\172\1\uffff\2\172\3\uffff\1\172\2\uffff\2\172\7"
+            + "\uffff";
 
-    static final String DFA2_acceptS = "\17\uffff\1\27\2\uffff\1\34\2\uffff\1\37\10\uffff\1\52\1\53\1\uffff"
-            + "\1\57\11\uffff\1\102\1\103\40\uffff\1\55\1\56\1\54\1\61\1\60\12"
-            + "\uffff\1\3\2\uffff\1\4\15\uffff\1\100\3\uffff\1\70\4\uffff\1\30"
-            + "\1\uffff\1\32\1\31\1\uffff\1\33\14\uffff\1\63\3\uffff\1\73\3\uffff"
-            + "\1\1\1\72\1\2\1\62\31\uffff\1\42\1\uffff\1\43\17\uffff\1\74\1\uffff"
-            + "\1\64\1\11\1\13\1\12\1\14\2\uffff\1\21\2\uffff\1\22\1\23\1\24\1"
-            + "\25\1\26\22\uffff\1\5\1\6\2\uffff\1\15\1\uffff\1\16\1\uffff\1\101"
-            + "\1\71\1\35\1\36\6\uffff\1\50\1\51\1\uffff\1\66\2\uffff\1\76\1\uffff"
-            + "\1\7\1\10\1\17\1\20\1\40\1\41\1\44\1\45\1\46\1\47\1\65\1\67\1\75"
-            + "\1\77";
+    static final String DFA3_acceptS = "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\10\1\uffff\1\13\1\14\21\uffff"
+            + "\1\50\1\51\1\52\1\53\1\6\1\7\1\5\1\12\1\11\26\uffff\1\46\7\uffff"
+            + "\1\36\1\uffff\1\22\1\uffff\1\33\3\uffff\1\26\11\uffff\1\32\6\uffff"
+            + "\1\21\1\31\17\uffff\1\45\2\uffff\1\30\4\uffff\1\34\1\37\1\40\2\uffff"
+            + "\1\43\4\uffff\1\35\2\uffff\1\27\1\23\1\24\1\uffff\1\41\1\42\2\uffff"
+            + "\1\15\1\16\1\17\1\20\1\25\1\44\1\47";
 
-    static final String DFA2_specialS = "\u010a\uffff}>";
+    static final String DFA3_specialS = "\u0090\uffff}>";
 
-    static final String[] DFA2_transitionS = {
-            "\2\54\2\uffff\1\54\22\uffff\1\54\1\36\6\uffff\1\17\1\25\1\53"
-                    + "\1\uffff\1\37\1\uffff\1\53\1\uffff\12\53\2\uffff\1\40\1\41\1"
-                    + "\42\1\22\1\uffff\1\2\1\43\1\4\1\6\1\44\1\10\1\45\1\46\1\12\1"
-                    + "\14\1\53\1\16\2\53\1\21\2\53\1\24\1\27\1\53\1\31\1\33\1\35\3"
-                    + "\53\4\uffff\1\53\1\uffff\1\1\1\47\1\3\1\5\1\50\1\7\1\51\1\52"
-                    + "\1\11\1\13\1\53\1\15\2\53\1\20\2\53\1\23\1\26\1\53\1\30\1\32"
-                    + "\1\34\3\53",
-            "\1\55\4\uffff\1\56",
-            "\1\57\4\uffff\1\60",
-            "\1\61",
-            "\1\62",
-            "\1\63",
-            "\1\64",
-            "\1\65\2\uffff\1\66",
-            "\1\67\2\uffff\1\70",
-            "\1\71",
-            "\1\72",
-            "\1\73",
-            "\1\74",
-            "\1\75",
-            "\1\76",
-            "",
-            "\1\77\3\uffff\1\100",
-            "\1\101\3\uffff\1\102",
-            "",
-            "\1\103",
-            "\1\104",
-            "",
-            "\1\105",
-            "\1\106",
-            "\1\107",
-            "\1\110",
-            "\1\111",
-            "\1\112",
-            "\1\113",
-            "\1\114",
+    static final String[] DFA3_transitionS = {
+            "\2\36\2\uffff\1\36\22\uffff\1\36\1\1\5\uffff\1\35\1\10\1\11"
+                    + "\1\2\1\uffff\1\3\1\uffff\1\4\1\uffff\12\34\2\uffff\1\5\1\6\1"
+                    + "\7\1\33\1\uffff\1\16\1\23\1\27\1\15\1\32\1\24\1\21\1\22\1\13"
+                    + "\1\30\1\34\1\25\2\34\1\17\2\34\1\26\1\12\1\34\1\14\1\31\1\20"
+                    + "\3\34\4\uffff\1\34\1\uffff\1\16\1\23\1\27\1\15\1\32\1\24\1\21"
+                    + "\1\22\1\13\1\30\1\34\1\25\2\34\1\17\2\34\1\26\1\12\1\34\1\14"
+                    + "\1\31\1\20\3\34",
             "",
             "",
-            "\1\115\1\116",
-            "",
-            "\1\120",
-            "\1\122",
-            "\1\123",
-            "\1\124",
-            "\1\125",
-            "\1\126",
-            "\1\127",
-            "\1\130",
-            "\1\131",
             "",
             "",
-            "\1\132",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\2\53\1\133\27\53",
-            "\1\135",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\2\53\1\136\27\53\4"
-                    + "\uffff\1\53\1\uffff\32\53",
-            "\1\140",
-            "\1\141",
-            "\1\142\6\uffff\1\143",
-            "\1\144\6\uffff\1\145",
-            "\1\146",
-            "\1\147",
-            "\1\150",
-            "\1\151",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\15\53\1\152\4\53\1\153\1\154\6\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\15\53\1\156\4\53\1"
-                    + "\157\1\160\6\53\4\uffff\1\53\1\uffff\32\53",
-            "\1\162",
-            "\1\163",
-            "\1\164",
-            "\1\165",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\3\53\1\167\26\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\3\53\1\172\26\53\4"
-                    + "\uffff\1\53\1\uffff\32\53",
-            "\1\174",
-            "\1\175",
-            "\1\176\7\uffff\1\177",
-            "\1\u0080\7\uffff\1\u0081",
-            "\1\u0082",
-            "\1\u0083",
-            "\1\u0084",
-            "\1\u0085",
-            "\1\u0086",
-            "\1\u0087",
+            "\1\37\1\40",
+            "",
+            "\1\42",
+            "",
+            "",
+            "\1\44\37\uffff\1\44",
+            "\1\45\37\uffff\1\45",
+            "\1\46\37\uffff\1\46",
+            "\1\47\37\uffff\1\47",
+            "\1\50\4\uffff\1\51\32\uffff\1\50\4\uffff\1\51",
+            "\1\53\3\uffff\1\52\33\uffff\1\53\3\uffff\1\52",
+            "\1\54\37\uffff\1\54",
+            "\1\55\37\uffff\1\55",
+            "\1\56\37\uffff\1\56",
+            "\1\57\37\uffff\1\57",
+            "\1\61\2\uffff\1\60\34\uffff\1\61\2\uffff\1\60",
+            "\1\62\37\uffff\1\62",
+            "\1\63\37\uffff\1\63",
+            "\1\64\37\uffff\1\64",
+            "\1\65\37\uffff\1\65",
+            "\1\66\37\uffff\1\66",
+            "\1\67\37\uffff\1\67",
             "",
             "",
             "",
             "",
             "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u0089",
-            "\1\u008a",
-            "\1\u008b",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u008d",
-            "\1\u008e",
-            "\1\u008f",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "\1\u0094",
-            "\1\u0095",
-            "\1\u0096",
-            "\1\u0097",
-            "\1\u0098",
-            "\1\u0099",
-            "\1\u009a",
-            "\1\u009b",
-            "\1\u009c",
-            "\1\u009d",
-            "\1\u009e",
-            "\1\u009f",
-            "\1\u00a0",
-            "",
-            "\1\u00a1",
-            "\1\u00a2",
-            "\1\u00a3",
-            "",
-            "\1\u00a4",
-            "\1\u00a5",
-            "\1\u00a6",
-            "\1\u00a7",
-            "",
-            "\1\u00a8",
-            "",
-            "",
-            "\1\u00a9",
-            "",
-            "\1\u00aa",
-            "\1\u00ab",
-            "\1\u00ac",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00ae",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00b0",
-            "\1\u00b1",
-            "\1\u00b2",
-            "\1\u00b3",
-            "\1\u00b4",
-            "\1\u00b5",
-            "",
-            "\1\u00b6",
-            "\1\u00b7",
-            "\1\u00b8",
-            "",
-            "\1\u00b9",
-            "\1\u00ba",
-            "\1\u00bb",
             "",
             "",
             "",
             "",
-            "\1\u00bc",
-            "\1\u00bd",
-            "\1\u00be",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00c0",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00c6",
-            "\1\u00c7",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00c9",
-            "\1\u00ca",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00d0",
-            "\1\u00d1",
-            "\1\u00d2",
-            "\1\u00d3",
-            "\1\u00d4",
-            "",
-            "\1\u00d5",
-            "",
-            "\1\u00d6",
-            "\1\u00d7",
-            "\1\u00d8",
-            "\1\u00d9",
-            "\1\u00da",
-            "\1\u00db",
-            "\1\u00dc",
-            "\1\u00dd",
-            "\1\u00de",
-            "\1\u00df",
-            "\1\u00e0",
-            "\1\u00e1",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00e4",
-            "",
-            "\1\u00e5",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00e7",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00e9",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00ee",
-            "\1\u00ef",
-            "\1\u00f0",
-            "\1\u00f1",
-            "\1\u00f2",
-            "\1\u00f3",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00f6",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00f8",
-            "\1\u00f9",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\u00fb",
-            "",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "",
-            "",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53",
-            "",
-            "\1\53\3\uffff\1\53\1\uffff\12\53\7\uffff\32\53\4\uffff\1\53"
-                    + "\1\uffff\32\53", "", "", "", "", "", "", "", "", "", "",
-            "", "", "", "" };
+            "\1\70\7\uffff\1\71\27\uffff\1\70\7\uffff\1\71",
+            "\12\34\7\uffff\15\34\1\74\4\34\1\73\1\75\6\34\4\uffff\1\34"
+                    + "\1\uffff\15\34\1\74\4\34\1\73\1\75\6\34",
+            "\1\76\37\uffff\1\76",
+            "\1\77\6\uffff\1\100\30\uffff\1\77\6\uffff\1\100",
+            "\1\101\37\uffff\1\101",
+            "\12\34\7\uffff\2\34\1\103\27\34\4\uffff\1\34\1\uffff\2\34\1"
+                    + "\103\27\34",
+            "\12\34\7\uffff\3\34\1\105\26\34\4\uffff\1\34\1\uffff\3\34\1"
+                    + "\105\26\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\107\37\uffff\1\107", "\1\110\37\uffff\1\110",
+            "\1\111\37\uffff\1\111",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\113\37\uffff\1\113", "\1\114\37\uffff\1\114",
+            "\1\115\37\uffff\1\115", "\1\116\37\uffff\1\116",
+            "\1\117\37\uffff\1\117", "\1\120\37\uffff\1\120",
+            "\1\121\37\uffff\1\121", "\1\122\37\uffff\1\122",
+            "\1\123\37\uffff\1\123",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "",
+            "\1\125\37\uffff\1\125", "\1\126\37\uffff\1\126",
+            "\1\127\37\uffff\1\127", "\1\130\37\uffff\1\130",
+            "\1\131\37\uffff\1\131", "\1\132\37\uffff\1\132",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "",
+            "\1\135\37\uffff\1\135", "", "\1\136\37\uffff\1\136",
+            "\1\137\37\uffff\1\137", "\1\140\37\uffff\1\140", "",
+            "\1\141\37\uffff\1\141", "\1\142\37\uffff\1\142",
+            "\1\143\37\uffff\1\143", "\1\144\37\uffff\1\144",
+            "\1\145\37\uffff\1\145", "\1\146\37\uffff\1\146",
+            "\1\147\37\uffff\1\147", "\1\150\37\uffff\1\150",
+            "\1\151\37\uffff\1\151", "", "\1\152\37\uffff\1\152",
+            "\1\153\37\uffff\1\153",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\155\37\uffff\1\155", "\1\156\37\uffff\1\156",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "", "",
+            "\1\160\37\uffff\1\160", "\1\161\37\uffff\1\161",
+            "\1\162\37\uffff\1\162", "\1\163\37\uffff\1\163",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\167\37\uffff\1\167", "\1\170\37\uffff\1\170",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\172\37\uffff\1\172", "\1\173\37\uffff\1\173",
+            "\1\174\37\uffff\1\174", "\1\175\37\uffff\1\175",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "",
+            "\1\177\37\uffff\1\177", "\1\u0080\37\uffff\1\u0080", "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\u0084\37\uffff\1\u0084", "", "", "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "",
+            "\1\u0087\37\uffff\1\u0087", "\1\u0088\37\uffff\1\u0088",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "", "", "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "", "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34", "", "", "", "",
+            "", "", "" };
 
-    static final short[] DFA2_eot = DFA.unpackEncodedString(DFA2_eotS);
+    static final short[] DFA3_eot = DFA.unpackEncodedString(DFA3_eotS);
 
-    static final short[] DFA2_eof = DFA.unpackEncodedString(DFA2_eofS);
+    static final short[] DFA3_eof = DFA.unpackEncodedString(DFA3_eofS);
 
-    static final char[] DFA2_min = DFA
-            .unpackEncodedStringToUnsignedChars(DFA2_minS);
+    static final char[] DFA3_min = DFA
+            .unpackEncodedStringToUnsignedChars(DFA3_minS);
 
-    static final char[] DFA2_max = DFA
-            .unpackEncodedStringToUnsignedChars(DFA2_maxS);
+    static final char[] DFA3_max = DFA
+            .unpackEncodedStringToUnsignedChars(DFA3_maxS);
 
-    static final short[] DFA2_accept = DFA.unpackEncodedString(DFA2_acceptS);
+    static final short[] DFA3_accept = DFA.unpackEncodedString(DFA3_acceptS);
 
-    static final short[] DFA2_special = DFA.unpackEncodedString(DFA2_specialS);
+    static final short[] DFA3_special = DFA.unpackEncodedString(DFA3_specialS);
 
-    static final short[][] DFA2_transition;
+    static final short[][] DFA3_transition;
     static {
-        int numStates = DFA2_transitionS.length;
-        DFA2_transition = new short[numStates][];
+        int numStates = DFA3_transitionS.length;
+        DFA3_transition = new short[numStates][];
         for (int i = 0; i < numStates; i++) {
-            DFA2_transition[i] = DFA.unpackEncodedString(DFA2_transitionS[i]);
+            DFA3_transition[i] = DFA.unpackEncodedString(DFA3_transitionS[i]);
         }
     }
 
-    class DFA2 extends DFA {
+    class DFA3 extends DFA {
 
-        public DFA2(BaseRecognizer recognizer) {
+        public DFA3(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 2;
-            this.eot = DFA2_eot;
-            this.eof = DFA2_eof;
-            this.min = DFA2_min;
-            this.max = DFA2_max;
-            this.accept = DFA2_accept;
-            this.special = DFA2_special;
-            this.transition = DFA2_transition;
+            this.decisionNumber = 3;
+            this.eot = DFA3_eot;
+            this.eof = DFA3_eof;
+            this.min = DFA3_min;
+            this.max = DFA3_max;
+            this.accept = DFA3_accept;
+            this.special = DFA3_special;
+            this.transition = DFA3_transition;
         }
 
         public String getDescription() {
-            return "1:1: Tokens : ( AND | AND_ | AS | AS_ | CROSS | CROSS_ | DELETE | DELETE_ | FROM | FROM_ | FULL | FULL_ | INNER | INNER_ | INSERT | INSERT_ | INTO | INTO_ | JOIN | JOIN_ | LEFT | LEFT_ | LEFT_CLOSE | ON | ON_ | OR | OR_ | PRE_SET | RIGHT | RIGHT_ | RIGHT_CLOSE | SELECT | SELECT_ | SET | SET_ | UPDATE | UPDATE_ | VALUES | VALUES_ | WHERE | WHERE_ | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | WORD | WS );";
+            return "1:1: Tokens : ( T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | SELECT | INSERT | UPDATE | DELETE | AND | OR | WHERE | GROUP | HAVING | BY | ORDER | DESC | ASC | SET | ON | FULL | INNER | AS | FROM | LEFT | RIGHT | CROSS | JOIN | VALUES | INTO | IN | EXISTS | PRE_SET | BASIC_NAME | TEXT_STRING | WS );";
         }
     }
 }

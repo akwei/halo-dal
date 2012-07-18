@@ -1,49 +1,5 @@
 grammar AntlrV3SQL;
 
-tokens{
-	INSERT='insert';
-	SELECT='select';
-	DELETE='delete';
-	UPDATE='update';
-	FROM='from';
-	SET='set';
-	ON='on';
-	AS='as';
-	WHERE='where';
-	AND='and';
-	OR='or';
-	LEFT='left';
-	RIGHT='right';
-	CROSS='cross';
-	JOIN='join';
-	INNER='inner';
-	FULL='full';
-	VALUES='values';
-	INTO='into';
-	LEFT_CLOSE='(';
-	RIGHT_CLOSE=')';
-	PRE_SET='?';
-	INSERT_='INSERT';
-	SELECT_='SELECT';
-	DELETE_='DELETE';
-	UPDATE_='UPDATE';
-	FROM_='FROM';
-	SET_='SET';
-	ON_='ON';
-	AS_='AS';
-	WHERE_='WHERE';
-	AND_='AND';
-	OR_='OR';
-	LEFT_='LEFT';
-	RIGHT_='RIGHT';
-	CROSS_='CROSS';
-	JOIN_='JOIN';
-	INNER_='INNER';
-	FULL_='FULL';
-	VALUES_='VALUES';
-	INTO_='INTO';
-}
-
 @header {
 import java.util.List;
 import java.util.ArrayList;
@@ -64,108 +20,193 @@ List<String[]> colExprs=new ArrayList<String[]>();
 
 }
 
-proc	:	
-	insertSQL|selectSQL|deleteSQL|updateSQL;
+start	:
+	sql_insert|sql_delete|sql_update|sql_select;
 
-insertSQL
+sql_insert 
 	:
-	(INSERT|INSERT_) (INTO|INTO_) table LEFT_CLOSE insertColumn (',' insertColumn)* RIGHT_CLOSE (VALUES|VALUES_) LEFT_CLOSE (PRE_SET|(',' PRE_SET))* RIGHT_CLOSE ;
-	
-insertColumn
-	:	
-	WORD {
-	colExprs.add(new String[]{$WORD.text,"="});
-	//if (this.antlrParserDelegate != null) {
-        //    this.antlrParserDelegate.onFindColExper(
-        //            (WORD1 != null ? WORD1.getText() : null), "=");
-        //}
-	};
-	
-deleteSQL
-	:	
-	(DELETE|DELETE_) (FROM|FROM_) table whereSQL?;
-	
-selectSQL
-	:	
-	(SELECT|SELECT_) selectColums (FROM|FROM_) tables ((FULL|FULL_|CROSS|CROSS_|INNER|INNER_|LEFT|LEFT_|RIGHT|RIGHT_) (JOIN|JOIN_) table ((ON|ON_) WORD '=' WORD)?)? selectWhereSQL? other*;
-	
-selectWhereSQL
-	:	
-	(WHERE|WHERE_) (k_v|k_v2) (  and_or (k_v|k_v2) | and_or WORD op '(' selectSQL ')'  )*;
+	INSERT INTO table '\(' insertColumn (',' insertColumn)* '\)' VALUES '\(' (PRE_SET|(',' PRE_SET))* '\)' ;
 
-updateSQL
+sql_delete
 	:	
-	(UPDATE|UPDATE_) table (SET|SET_) (k_v (',' k_v)*) whereSQL?;
+	DELETE FROM table (WHERE kv (and_or kv)*)?;	
 
+sql_update
+	:	
+	UPDATE table SET kv (',' kv)* (WHERE kv (and_or kv)*)?;
+	
+sql_select 
+	:
+	SELECT select_columns FROM tables 
+	((FULL|CROSS|INNER|LEFT|RIGHT) JOIN table (ON column_name '=' column_name)?)* 
+	(WHERE kv (  and_or  (kv | column_name op '\(' sql_select '\)')  )*)? 
+	(orderby|groupby|having)*
+	;
 
+func
+	:
+	BASIC_NAME '\(' (BASIC_NAME|'*') '\)' 
+	;
+	
+func_and_alias
+	:
+	func (AS? BASIC_NAME)?
+	;
+
+select_column_and_alias
+	:
+	column_name (AS? BASIC_NAME)?
+	;
+
+select_column
+	:
+	select_column_and_alias|func_and_alias|'*'
+	;
+	
+select_columns
+	:
+	select_column (',' select_column)*
+	;
+	
+and_or	:	
+	AND|OR
+	;
+	
 table	:	
-	name ((AS|AS_)? alias)? {
-	tables.add(new String[]{$name.text,$alias.text});
-	//                if (this.antlrParserDelegate != null) {
-//                    this.antlrParserDelegate.onFindTable(
-//                            (name2 != null ? input.toString(name2.start,
-//                                    name2.stop) : null),
-//                            (alias3 != null ? input.toString(alias3.start,
-//                                    alias3.stop) : null));
-//                }
-	};
+	table_name ((AS)? alias)? {
+	tables.add(new String[]{$table_name.text,$alias.text}); 
+	/**
+if (this.antlrParserDelegate != null) {
+                                this.antlrParserDelegate.onFindTable(
+                                        (table_name1 != null ? input.toString(table_name1.start,
+                                                table_name1.stop) : null),
+                                        (alias2 != null ? input.toString(alias2.start,
+                                                alias2.stop) : null));
+                            }
+                            **/
+	}; 
 	
 tables	:
-	(table (',' table)*);
+	(table (',' table)*)
+	;
 
-k_v2	:	
-	WORD op ( WORD|('\'' WORD '\''));
-
-k_v	:	
-	WORD op PRE_SET {
-	colExprs.add(new String[]{$WORD.text,$op.text});
-	//                if (this.antlrParserDelegate != null) {
-//                    this.antlrParserDelegate.onFindColExper(
-//                            (WORD4 != null ? WORD4.getText() : null),
-//                            (op5 != null ? input.toString(op5.start, op5.stop)
-//                                    : null));
-//                }
-	};
-
-column	:	
-	name ((AS|AS_)? alias)?;
-	
-sel_column	:	
-	sel_name ((AS|AS_)? sel_alias)?;
-
-selectColums
+table_name 
 	:
-	(sel_column (',' sel_column)*) ;
+	BASIC_NAME (('.') BASIC_NAME)?
+	;
 
-whereSQL:		
-	(WHERE|WHERE_) (k_v|k_v2) (and_or (k_v|k_v2))*;
-		
-and_or	:	
-	(AND|AND_|OR|OR_);
+alias	:
+	BASIC_NAME
+	;
+
+column_name
+	:
+	BASIC_NAME (('.') BASIC_NAME)?
+	;
+
+insertColumn
+	:
+	column_name
+	{
+	colExprs.add(new String[]{$column_name.text,"="});
+	/**
+	if (this.antlrParserDelegate != null) {
+                        this.antlrParserDelegate.onFindColExper(
+                                (column_name3!=null?input.toString(column_name3.start,column_name3.stop):null), "=");
+                    }
+                                    **/
+	}
+	;
+
+kv	:
+	(column_name op PRE_SET)
+	{
+	colExprs.add(new String[]{$column_name.text,$op.text});
+	/**
+	if (this.antlrParserDelegate != null) {
+                                        this.antlrParserDelegate.onFindColExper(
+                                                (column_name4!=null?input.toString(column_name4.start,column_name4.stop):null),
+                                                (op5!=null?input.toString(op5.start,op5.stop):null));
+                                    }
+	**/
+	}
+	|
+	(column_name op TEXT_STRING)
+	|
+	column_name op column_name
+	|
+	column_name op func2
+	;
+
+func2	:
+	BASIC_NAME 
+	'\(' 
+	(
+	(column_name|TEXT_STRING) (',' (column_name|TEXT_STRING))*
+	)?
+	'\)'
+	;
 
 op
 	:	
-	('='|'>'|'>='|'<'|'<='|'!='|'<>'|'in'|'IN'|'exists'|'EXISTS');
+	('='|'>'|'>='|'<'|'<='|'!='|'<>'|IN|EXISTS)
+	;
+
+orderby	:
+	ORDER BY column_name (DESC|ASC)? (',' column_name (DESC|ASC)?)*
+	;
 	
-other	:	
-	('group'|'GROUP'|'order'|'ORDER'|'having'|'HAVING'|'by'|'BY')+ WORD ('desc'|'DESC'|'asc'|'ASC');
+groupby	:
+	GROUP BY column_name (',' column_name)*
+	;
 
-sel_name:	
-	WORD (LEFT_CLOSE WORD RIGHT_CLOSE)*;
+having	:
+	HAVING (column_name|func) op (column_name|func|TEXT_STRING|PRE_SET)
+	;
+
+
 	
-sel_alias:	
-	WORD (LEFT_CLOSE WORD RIGHT_CLOSE)*;
+SELECT	:S E L E C T;
+INSERT 	:I N S E R T;
+UPDATE	:U P D A T E;
+DELETE	:D E L E T E;
+AND	:A N D;
+OR	:O R;
+WHERE	:W H E R E;
+GROUP	:G R O U P;
+HAVING	:H A V I N G;
+BY	:B Y;
+ORDER	:O R D E R;
+DESC	:D E S C;
+ASC	:A S C;
+SET	:S E T;
+ON	:O N;
+FULL	:F U L L;
+INNER	:I N N E R;
+AS	:A S;
+FROM	:F R O M;
+LEFT	:L E F T;
+RIGHT	:R I G H T;
+CROSS	:C R O S S;
+JOIN	:J O I N;
+VALUES	:V A L U E S;
+INTO	:I N T O;
+IN	:I N;
+EXISTS	:E X I S T S;
+PRE_SET	:'?';
 
-name	:	
-	WORD;
+BASIC_NAME
+	:
+	('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
 
-alias	:	
-	WORD;
-	
-WORD	:	
-	('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.'|'*'|'\\'|'\"')+;
-
-
+TEXT_STRING:
+	  ('\'' 
+	  	( 
+	  		  options{greedy=true;}: ~('\'' | '\r' | '\n' ) | '\'' '\'' 
+	  	)* 
+	  '\'' )
+		 
+	;
 
 WS  :   ( ' '
         | '\t'
@@ -174,3 +215,30 @@ WS  :   ( ' '
         ) {$channel=HIDDEN;}
     ;
 
+
+fragment A:('a'|'A');
+fragment B:('b'|'B');
+fragment C:('c'|'C');
+fragment D:('d'|'D');
+fragment E:('e'|'E');
+fragment F:('f'|'F');
+fragment G:('g'|'G');
+fragment H:('h'|'H');
+fragment I:('i'|'I');
+fragment J:('j'|'J');
+fragment K:('k'|'K');
+fragment L:('l'|'L');
+fragment M:('m'|'M');
+fragment N:('n'|'N');
+fragment O:('o'|'O');
+fragment P:('p'|'P');
+fragment Q:('q'|'Q');
+fragment R:('r'|'R');
+fragment S:('s'|'S');
+fragment T:('t'|'T');
+fragment U:('u'|'U');
+fragment V:('v'|'V');
+fragment W:('w'|'W');
+fragment X:('x'|'X');
+fragment Y:('y'|'Y');
+fragment Z:('z'|'Z');

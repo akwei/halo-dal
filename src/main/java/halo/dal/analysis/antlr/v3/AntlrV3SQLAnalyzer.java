@@ -66,7 +66,7 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
         AntlrParserDelegate delegate = new DefAntlrParserDelegate();
         parser.setAntlrParserDelegate(delegate);
         try {
-            parser.proc();
+            parser.start();
         }
         catch (RecognitionException e) {
             throw new RuntimeException(e);

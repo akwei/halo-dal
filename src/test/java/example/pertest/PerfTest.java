@@ -1,4 +1,4 @@
-package unittest;
+package example.pertest;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 
 public class PerfTest {
 
-    @Test
+//    @Test
     public void test_perf() throws Exception {
         long sum = 0;
         for (int i = 0; i < 10; ++i) {

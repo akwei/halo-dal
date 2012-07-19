@@ -1,4 +1,4 @@
-package unittest;
+package example.pertest;
 
 import halo.dal.analysis.antlr.AntlrParserDelegate;
 import halo.dal.analysis.antlr.DefAntlrParserDelegate;
@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class PerSQLAnalyzer {
 
-    @Test
+//    @Test
     public void exeTest() {
         long sum = 0;
         String sql = "SELECT nodeId, nodeName, taskflowName, taskflowVersion"

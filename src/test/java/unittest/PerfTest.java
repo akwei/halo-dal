@@ -21,7 +21,7 @@ public class PerfTest {
 
     long perfMySql(String sql) {
         long startMillis = System.currentTimeMillis();
-        for (int i = 0; i < 1000 * 100; ++i) {
+        for (int i = 0; i < 1000 * 1000; ++i) {
             execMySql(sql);
         }
         long millis = System.currentTimeMillis() - startMillis;

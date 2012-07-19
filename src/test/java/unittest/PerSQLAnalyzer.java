@@ -15,13 +15,24 @@ public class PerSQLAnalyzer {
     @Test
     public void exeTest() {
         long sum = 0;
+        String sql = "SELECT nodeId, nodeName, taskflowName, taskflowVersion"
+                + "FROM"
+                + "("
+                + "SELECT n.ID AS nodeId, n.name AS nodeName , f.name AS taskflowName,"
+                + "f.version AS taskflowVersion"
+                + "FROM HT_TASK_FLOW_NODE_WA_2 n, HT_TASK_FLOW_WA_2 f"
+                + "WHERE n.owner = ? AND "
+                + "("
+                + "n.STATUS IN (?) AND n.GMT_MODIFIED < ? AND n.IS_AUTO = 'Y' AND n.task_flow_id = f.id"
+                + ")" + "ORDER BY f.priority DESC, f.gmt_create ASC" + ")"
+                + "WHERE rownum < ?";
         for (int i = 0; i < 10; i++) {
-            sum = sum + this.performance();
+            sum = sum + this.performance(sql);
         }
         System.out.println("total : " + sum);
     }
 
-    long performance() {
+    long performance(String sql) {
         // String sql = "SELECT count(*), "
         // + "count(*) as kk,"
         // + "count(*) kk0,"
@@ -48,20 +59,9 @@ public class PerSQLAnalyzer {
         // "(select * from user where sex=? order by gid desc group by ss having a=b.c) "
         // + "AND GATEWAYEVE0_.EVENT_STATUS=?";
         //
-//        String sql = "SELECT nodeId, nodeName, taskflowName, taskflowVersion"
-//                + "FROM"
-//                + "("
-//                + "SELECT n.ID AS nodeId, n.name AS nodeName , f.name AS taskflowName,"
-//                + "f.version AS taskflowVersion"
-//                + "FROM HT_TASK_FLOW_NODE_WA_2 n, HT_TASK_FLOW_WA_2 f"
-//                + "WHERE n.owner = ? AND "
-//                + "("
-//                + "n.STATUS IN (?) AND n.GMT_MODIFIED < ? AND n.IS_AUTO = 'Y' AND n.task_flow_id = f.id"
-//                + ")" + "ORDER BY f.priority DESC, f.gmt_create ASC" + ")"
-//                + "WHERE rownum < ?";
-         String sql = "SELECT * FROM T";
+        // String sql = "SELECT * FROM T";
         long begin = System.currentTimeMillis();
-        for (int i = 0; i < 1000 * 100; i++) {
+        for (int i = 0; i < 1000 * 1000; i++) {
             this.parse(sql);
         }
         long result = System.currentTimeMillis() - begin;

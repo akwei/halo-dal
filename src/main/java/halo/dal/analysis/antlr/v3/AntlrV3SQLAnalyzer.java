@@ -100,7 +100,8 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
                 newList.add("," + realTableName + SQL_BLANK);
             }
         }
-        String _sql = StringUtils.replaceEach(sql,
+        String fmtSql = sql.replaceAll("\\. {1,}", "\\.").trim();
+        String _sql = StringUtils.replaceEach(fmtSql,
                 list.toArray(new String[list.size()]),
                 newList.toArray(new String[newList.size()]));
         // 解决sql结束字符串为表名，无法解析的问题例如 delete form user

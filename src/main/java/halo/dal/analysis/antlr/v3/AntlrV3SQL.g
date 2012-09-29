@@ -37,15 +37,29 @@ sql_update
 	
 sql_select 
 	:
-	SELECT select_columns FROM tables 
-	((FULL|CROSS|INNER|LEFT|RIGHT) JOIN table (ON column_name '=' column_name)?)* 
-	(WHERE kv (  and_or  (kv | column_name op '\(' sql_select '\)')  )*)? 
-	(orderby|groupby|having)*
+	SELECT select_columns FROM (sqlAfterFrom|inner_select) (WHERE kv_sql)? (orderby|groupby|having)*
+	;
+
+sqlAfterFrom
+	:
+	tables ((FULL|CROSS|INNER|LEFT|RIGHT) JOIN table (ON column_name '=' column_name)?)*;
+
+kv_sql_wrapper
+	:
+	kv_sql | '\(' kv_sql '\)'
+	;
+kv_sql	:	
+	kv ( and_or (kv | '\(' kv (and_or kv)* '\)')  )*
+	;
+
+inner_select
+	:
+	'\(' sql_select '\)'
 	;
 
 func
 	:
-	BASIC_NAME '\(' (BASIC_NAME|'*') '\)' 
+	BASIC_NAME '\(' (BASIC_NAME|'*')? '\)' 
 	;
 	
 func_and_alias
@@ -117,9 +131,10 @@ insertColumn
                                     **/
 	}
 	;
+	
 
 kv	:
-	(column_name op PRE_SET)
+	(column_name op (PRE_SET|'\(' PRE_SET '\)'))
 	{
 	colExprs.add(new String[]{$column_name.text,$op.text});
 	/**
@@ -136,6 +151,8 @@ kv	:
 	column_name op column_name
 	|
 	column_name op func2
+	|
+	column_name op '\(' sql_select '\)'
 	;
 
 func2	:

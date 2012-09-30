@@ -6,17 +6,15 @@ import java.util.ArrayList;
 }
 
 @members {
-List<String[]> tables = new ArrayList<String[]>();
-List<String[]> colExprs=new ArrayList<String[]>();
-//    private AntlrParserDelegate antlrParserDelegate;
-//
-//    public void setAntlrParserDelegate(AntlrParserDelegate antlrParserDelegate) {
-//        this.antlrParserDelegate = antlrParserDelegate;
-//    }
+    private AntlrParserDelegate antlrParserDelegate;
 
-//@Override
-//    public void reportError(RecognitionException e) {
-//    }
+    public void setAntlrParserDelegate(AntlrParserDelegate antlrParserDelegate) {
+        this.antlrParserDelegate = antlrParserDelegate;
+    }
+
+@Override
+    public void reportError(RecognitionException e) {
+    }
 
 }
 
@@ -25,19 +23,26 @@ start	:
 
 sql_insert 
 	:
-	INSERT INTO table '\(' insertColumn (',' insertColumn)* '\)' VALUES '\(' (PRE_SET|(',' PRE_SET))* '\)' ;
+	INSERT INTO table '\(' insertColumn (',' insertColumn)* '\)' VALUES '\(' (PRE_SET|(',' PRE_SET))* '\)' 
+	{this.antlrParserDelegate.setSqlOp(AntlrParserDelegate.SQLOP_INSERT);}
+	;
 
 sql_delete
 	:	
-	DELETE FROM table (WHERE kv (and_or kv)*)?;	
+	DELETE FROM table (WHERE kv (and_or kv)*)? 
+	{this.antlrParserDelegate.setSqlOp(AntlrParserDelegate.SQLOP_DELETE);}
+	;
 
 sql_update
 	:	
-	UPDATE table SET kv (',' kv)* (WHERE kv (and_or kv)*)?;
+	UPDATE table SET kv (',' kv)* (WHERE kv (and_or kv)*)? 
+	{this.antlrParserDelegate.setSqlOp(AntlrParserDelegate.SQLOP_UPDATE);}
+	;
 	
 sql_select 
 	:
-	SELECT select_columns FROM (sqlAfterFrom|inner_select) (WHERE kv_sql)? (orderby|groupby|having)*
+	SELECT select_columns (','db2_paging)? FROM (sqlAfterFrom|inner_select) (WHERE kv_sql)? (orderby|groupby|having)*
+	{this.antlrParserDelegate.setSqlOp(AntlrParserDelegate.SQLOP_SELECT);}
 	;
 
 sqlAfterFrom
@@ -54,7 +59,7 @@ kv_sql	:
 
 inner_select
 	:
-	'\(' sql_select '\)'
+	'\(' sql_select '\)' AS? BASIC_NAME?
 	;
 
 func
@@ -88,16 +93,9 @@ and_or	:
 	
 table	:	
 	table_name ((AS)? alias)? {
-	tables.add(new String[]{$table_name.text,$alias.text}); 
-	/**
-if (this.antlrParserDelegate != null) {
-                                this.antlrParserDelegate.onFindTable(
-                                        (table_name1 != null ? input.toString(table_name1.start,
-                                                table_name1.stop) : null),
-                                        (alias2 != null ? input.toString(alias2.start,
-                                                alias2.stop) : null));
-                            }
-                            **/
+	if (this.antlrParserDelegate != null) {
+            this.antlrParserDelegate.onFindTable( $table_name.text, $alias.text);
+        }
 	}; 
 	
 tables	:
@@ -122,13 +120,10 @@ insertColumn
 	:
 	column_name
 	{
-	colExprs.add(new String[]{$column_name.text,"="});
-	/**
 	if (this.antlrParserDelegate != null) {
-                        this.antlrParserDelegate.onFindColExper(
-                                (column_name3!=null?input.toString(column_name3.start,column_name3.stop):null), "=");
-                    }
-                                    **/
+            this.antlrParserDelegate.onFindColExper(
+                    $column_name.text, "=");
+        }
 	}
 	;
 	
@@ -136,17 +131,18 @@ insertColumn
 kv	:
 	(column_name op (PRE_SET|'\(' PRE_SET '\)'))
 	{
-	colExprs.add(new String[]{$column_name.text,$op.text});
-	/**
 	if (this.antlrParserDelegate != null) {
-                                        this.antlrParserDelegate.onFindColExper(
-                                                (column_name4!=null?input.toString(column_name4.start,column_name4.stop):null),
-                                                (op5!=null?input.toString(op5.start,op5.stop):null));
-                                    }
-	**/
+            this.antlrParserDelegate.onFindColExper( $column_name.text,  $op.text);
+        }
 	}
 	|
-	(column_name op TEXT_STRING)
+	column_name op TEXT_STRING
+	|
+	(column_name BETWEEN PRE_SET AND PRE_SET)
+		{
+		this.antlrParserDelegate.onFindColExper($column_name.text, ">=");
+		this.antlrParserDelegate.onFindColExper($column_name.text, "=<");
+		}
 	|
 	column_name op column_name
 	|
@@ -181,12 +177,19 @@ having	:
 	HAVING (column_name|func) op (column_name|func|TEXT_STRING|PRE_SET)
 	;
 
-
+db2_paging
+	:	
+	ROWNUMBER'\(''\)' OVER'\('orderby '\)' (AS)? BASIC_NAME
+	;
 	
 SELECT	:S E L E C T;
 INSERT 	:I N S E R T;
 UPDATE	:U P D A T E;
 DELETE	:D E L E T E;
+ROWNUMBER 
+	:R O W N U M B E R;
+OVER	:O V E R;
+BETWEEN	:B E T W E E N;
 AND	:A N D;
 OR	:O R;
 WHERE	:W H E R E;
@@ -220,8 +223,8 @@ TEXT_STRING:
 	  ('\'' 
 	  	( 
 	  		  options{greedy=true;}: ~('\'' | '\r' | '\n' ) | '\'' '\'' 
-	  	)* 
-	  '\'' )
+	  		  	  	)* 
+	  		  	  		  '\'' )
 		 
 	;
 

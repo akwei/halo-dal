@@ -23,102 +23,98 @@ import org.apache.commons.lang3.StringUtils;
 
 public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
 
-    protected final static String SQL_BLANK = " ";
+	protected final static String SQL_BLANK = " ";
 
-    public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values,
-            Map<String, Object> context) {
-        SQLInfoImpl info = new SQLInfoImpl();
-        SQLExpression sqlExpression;
-        int i = 0;
-        for (ColumnExper o : sqlStruct.getColumnExpers()) {
-            sqlExpression = new SQLExpression();
-            sqlExpression.setColumn(o.getColumn());
-            sqlExpression.setSqlExpressionSymbol(o.getSqlExpressionSymbol());
-            sqlExpression.setValue(values[i]);
-            info.addSQLExpression(o.getLogicTableName(), sqlExpression);
-            i++;
-        }
-        return info;
-    }
+	public SQLInfo analyse(String sql, SQLStruct sqlStruct, Object[] values,
+			Map<String, Object> context) {
+		SQLInfoImpl info = new SQLInfoImpl();
+		SQLExpression sqlExpression;
+		int i = 0;
+		for (ColumnExper o : sqlStruct.getColumnExpers()) {
+			sqlExpression = new SQLExpression();
+			sqlExpression.setColumn(o.getColumn());
+			sqlExpression.setSqlExpressionSymbol(o.getSqlExpressionSymbol());
+			sqlExpression.setValue(values[i]);
+			info.addSQLExpression(o.getLogicTableName(), sqlExpression);
+			i++;
+		}
+		return info;
+	}
 
-    public SQLStruct parse(String sql, Map<String, Object> context) {
-        AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(sql));
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        AntlrV3SQLParser parser = new AntlrV3SQLParser(tokens);
-        AntlrParserDelegate delegate = new DefAntlrParserDelegate();
-        parser.setAntlrParserDelegate(delegate);
-        try {
-            parser.start();
-        }
-        catch (RecognitionException e) {
-            throw new RuntimeException(e);
-        }
-        // if (delegate.isHasBetweenAnd()) {
-        // throw new SQLKeyErrException("not supported sql key: between ");
-        // }
-        SQLStruct sqlStruct = new SQLStruct();
-        if (delegate.getSqlOp() == AntlrParserDelegate.SQLOP_SELECT
-                && !delegate.isHasSelectFrom()) {
-            sqlStruct.setCanParse(false);
-            return sqlStruct;
-        }
-        sqlStruct.setCanParse(true);
-        Table table;
-        for (int i = 0; i < delegate.getTables().size(); i++) {
-            table = delegate.getTables().get(i);
-            sqlStruct.addTable(table.getName(), table.getAlias());
-        }
-        ColumnExper columnExper;
-        for (ColExpr colExpr : delegate.getColExprs()) {
-            columnExper = new ColumnExper();
-            columnExper.setColumn(colExpr.getColumn());
-            columnExper.setSqlExpressionSymbol(colExpr.getOp());
-            sqlStruct.addColumnExper(columnExper);
-        }
-        return sqlStruct;
-    }
+	public SQLStruct parse(String sql, Map<String, Object> context) {
+		AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(sql));
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		AntlrV3SQLParser parser = new AntlrV3SQLParser(tokens);
+		AntlrParserDelegate delegate = new DefAntlrParserDelegate();
+		parser.setAntlrParserDelegate(delegate);
+		try {
+			parser.start();
+		}
+		catch (RecognitionException e) {
+			throw new RuntimeException(e);
+		}
+		SQLStruct sqlStruct = new SQLStruct();
+		if (!delegate.isHasTable()) {
+			sqlStruct.setCanParse(false);
+			return sqlStruct;
+		}
+		sqlStruct.setCanParse(true);
+		Table table;
+		for (int i = 0; i < delegate.getTables().size(); i++) {
+			table = delegate.getTables().get(i);
+			sqlStruct.addTable(table.getName(), table.getAlias());
+		}
+		ColumnExper columnExper;
+		for (ColExpr colExpr : delegate.getColExprs()) {
+			columnExper = new ColumnExper();
+			columnExper.setColumn(colExpr.getColumn());
+			columnExper.setSqlExpressionSymbol(colExpr.getOp());
+			sqlStruct.addColumnExper(columnExper);
+		}
+		return sqlStruct;
+	}
 
-    public String outPutSQL(String sql, SQLStruct sqlStruct, SQLInfo sqlInfo,
-            ParsedTableInfo parsedTableInfo) {
-        List<String> list = new ArrayList<String>();
-        List<String> newList = new ArrayList<String>();
-        String realTableName;
-        for (String tableName : sqlStruct.getTableNames()) {
-            realTableName = parsedTableInfo.getRealTable(tableName);
-            if (realTableName != null) {
-                String alias = sqlStruct.getAliasByTableName(tableName);
-                boolean isSame = alias != null && alias.endsWith(tableName);
-                if (!isSame) {
-                    list.add(SQL_BLANK + tableName + ".");
-                    newList.add(SQL_BLANK + realTableName + ".");
-                }
-                list.add(SQL_BLANK + tableName + SQL_BLANK);
-                newList.add(SQL_BLANK + realTableName + SQL_BLANK);
-                list.add(SQL_BLANK + tableName + "(");
-                newList.add(" " + realTableName + "(");
-                list.add("," + tableName + SQL_BLANK);
-                newList.add("," + realTableName + SQL_BLANK);
-            }
-        }
-        String fmtSql = sql.replaceAll("\\. {1,}", "\\.").trim();
-        String _sql = StringUtils.replaceEach(fmtSql,
-                list.toArray(new String[list.size()]),
-                newList.toArray(new String[newList.size()]));
-        // 解决sql结束字符串为表名，无法解析的问题例如 delete form user
-        String str;
-        for (String tableName : sqlStruct.getTableNames()) {
-            realTableName = parsedTableInfo.getRealTable(tableName);
-            if (realTableName != null) {
-                str = SQL_BLANK + tableName;
-                int idx = _sql.lastIndexOf(str);
-                if (idx == -1) {
-                    continue;
-                }
-                if (_sql.substring(idx).equals(str)) {
-                    _sql = _sql.substring(0, idx) + SQL_BLANK + realTableName;
-                }
-            }
-        }
-        return _sql;
-    }
+	public String outPutSQL(String sql, SQLStruct sqlStruct, SQLInfo sqlInfo,
+			ParsedTableInfo parsedTableInfo) {
+		List<String> list = new ArrayList<String>();
+		List<String> newList = new ArrayList<String>();
+		String realTableName;
+		for (String tableName : sqlStruct.getTableNames()) {
+			realTableName = parsedTableInfo.getRealTable(tableName);
+			if (realTableName != null) {
+				String alias = sqlStruct.getAliasByTableName(tableName);
+				boolean isSame = alias != null && alias.endsWith(tableName);
+				if (!isSame) {
+					list.add(SQL_BLANK + tableName + ".");
+					newList.add(SQL_BLANK + realTableName + ".");
+				}
+				list.add(SQL_BLANK + tableName + SQL_BLANK);
+				newList.add(SQL_BLANK + realTableName + SQL_BLANK);
+				list.add(SQL_BLANK + tableName + "(");
+				newList.add(" " + realTableName + "(");
+				list.add("," + tableName + SQL_BLANK);
+				newList.add("," + realTableName + SQL_BLANK);
+			}
+		}
+		String fmtSql = sql.replaceAll("\\. {1,}", "\\.").trim();
+		String _sql = StringUtils.replaceEach(fmtSql,
+				list.toArray(new String[list.size()]),
+				newList.toArray(new String[newList.size()]));
+		// 解决sql结束字符串为表名，无法解析的问题例如 delete form user
+		String str;
+		for (String tableName : sqlStruct.getTableNames()) {
+			realTableName = parsedTableInfo.getRealTable(tableName);
+			if (realTableName != null) {
+				str = SQL_BLANK + tableName;
+				int idx = _sql.lastIndexOf(str);
+				if (idx == -1) {
+					continue;
+				}
+				if (_sql.substring(idx).equals(str)) {
+					_sql = _sql.substring(0, idx) + SQL_BLANK + realTableName;
+				}
+			}
+		}
+		return _sql;
+	}
 }

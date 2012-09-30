@@ -5,53 +5,50 @@ import java.util.List;
 
 public class DefAntlrParserDelegate implements AntlrParserDelegate {
 
-    private List<Table> tables = new ArrayList<Table>();
+	private List<Table> tables = new ArrayList<Table>();
 
-    private List<ColExpr> colExprs = new ArrayList<ColExpr>();
+	private List<ColExpr> colExprs = new ArrayList<ColExpr>();
 
-    private boolean hasBetweenAnd;
+	private boolean hasBetweenAnd;
 
-    private boolean hasSelectFrom;
+	private int sqlOp;
 
-    private int sqlOp;
+	public void setSqlOp(int sqlOp) {
+		this.sqlOp = sqlOp;
+	}
 
-    public void setSqlOp(int sqlOp) {
-        this.sqlOp = sqlOp;
-    }
+	public int getSqlOp() {
+		return sqlOp;
+	}
 
-    public int getSqlOp() {
-        return sqlOp;
-    }
+	public boolean isHasBetweenAnd() {
+		return this.hasBetweenAnd;
+	}
 
-    public boolean isHasBetweenAnd() {
-        return this.hasBetweenAnd;
-    }
+	public boolean isHasTable() {
+		if (this.tables.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 
-    public boolean isHasSelectFrom() {
-        return hasSelectFrom;
-    }
+	public void setHasBetweenAnd(boolean hasBetweenAnd) {
+		this.hasBetweenAnd = hasBetweenAnd;
+	}
 
-    public void setHasSelectFrom(boolean hasSelectFrom) {
-        this.hasSelectFrom = hasSelectFrom;
-    }
+	public void onFindTable(String name, String alias) {
+		tables.add(new Table(name, alias));
+	}
 
-    public void setHasBetweenAnd(boolean hasBetweenAnd) {
-        this.hasBetweenAnd = hasBetweenAnd;
-    }
+	public void onFindColExper(String column, String op) {
+		colExprs.add(new ColExpr(column, op));
+	}
 
-    public void onFindTable(String name, String alias) {
-        tables.add(new Table(name, alias));
-    }
+	public List<ColExpr> getColExprs() {
+		return colExprs;
+	}
 
-    public void onFindColExper(String column, String op) {
-        colExprs.add(new ColExpr(column, op));
-    }
-
-    public List<ColExpr> getColExprs() {
-        return colExprs;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
+	public List<Table> getTables() {
+		return tables;
+	}
 }

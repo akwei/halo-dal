@@ -30,350 +30,349 @@ import java.util.Properties;
  */
 public class DALConnection implements Connection {
 
-    /**
-     * 保存了真正的Connection
-     */
-    private final Map<String, Connection> conMap = new HashMap<String, Connection>();
+	/**
+	 * 保存了真正的Connection
+	 */
+	private final Map<String, Connection> conMap = new HashMap<String, Connection>();
 
-    private boolean autoCommit = true;
+	private boolean autoCommit = true;
 
-    private int transactionIsolation = 0;
+	private int transactionIsolation = 0;
 
-    private int holdability = 0;
+	private int holdability = 0;
 
-    private boolean readOnly = false;
+	private boolean readOnly = false;
 
-    private String catalog = null;
+	private String catalog = null;
 
-    private Map<String, Class<?>> typeMap = null;
+	private Map<String, Class<?>> typeMap = null;
 
-    /**
-     * 自定义的数据源
-     */
-    private DALDataSource dalDataSource;
+	/**
+	 * 自定义的数据源
+	 */
+	private DALDataSource dalDataSource;
 
-    public DALConnection(DALDataSource dalDataSource) throws SQLException {
-        this.dalDataSource = dalDataSource;
-        this.setAutoCommit(true);
-    }
+	public DALConnection(DALDataSource dalDataSource) throws SQLException {
+		this.dalDataSource = dalDataSource;
+		this.setAutoCommit(true);
+	}
 
-    public void clearWarnings() throws SQLException {
-        this.getCurrentConnection().clearWarnings();
-    }
+	public void clearWarnings() throws SQLException {
+		this.getCurrentConnection().clearWarnings();
+	}
 
-    public void close() throws SQLException {
-        Collection<Connection> c = this.conMap.values();
-        for (Connection con : c) {
-            con.close();
-        }
-        // DALDataSourceStatus.removeCurrentDsKey();
-        DALCurrentStatus.remove();
-    }
+	public void close() throws SQLException {
+		Collection<Connection> c = this.conMap.values();
+		for (Connection con : c) {
+			con.close();
+		}
+		DALCurrentStatus.remove();
+	}
 
-    public void commit() throws SQLException {
-        Collection<Connection> c = this.conMap.values();
-        for (Connection con : c) {
-            con.commit();
-        }
-    }
+	public void commit() throws SQLException {
+		Collection<Connection> c = this.conMap.values();
+		for (Connection con : c) {
+			con.commit();
+		}
+	}
 
-    public Statement createStatement() throws SQLException {
-        return this.getCurrentConnection().createStatement();
-    }
+	public Statement createStatement() throws SQLException {
+		return this.getCurrentConnection().createStatement();
+	}
 
-    /**
-     * 获得当前需要使用的Connection
-     * 
-     * @return
-     */
-    public Connection getCurrentConnection() {
-        String name = DALCurrentStatus.getDsKey();
-        if (name == null) {
-            throw new DALRunTimeException("can not get dsKey");
-        }
-        Connection con = this.conMap.get(name);
-        if (con == null) {
-            try {
-                con = this.dalDataSource.getCurrentDataSource().getConnection();
-                this.initCurrentConnection(con);
-                this.conMap.put(name, con);
-            }
-            catch (SQLException e) {
-                throw new DALRunTimeException(e);
-            }
-        }
-        return con;
-    }
+	/**
+	 * 获得当前需要使用的Connection
+	 * 
+	 * @return
+	 */
+	public Connection getCurrentConnection() {
+		String name = DALCurrentStatus.getDsKey();
+		if (name == null) {
+			throw new DALRunTimeException("can not get dsKey");
+		}
+		Connection con = this.conMap.get(name);
+		if (con == null) {
+			try {
+				con = this.dalDataSource.getCurrentDataSource().getConnection();
+				this.initCurrentConnection(con);
+				this.conMap.put(name, con);
+			}
+			catch (SQLException e) {
+				throw new DALRunTimeException(e);
+			}
+		}
+		return con;
+	}
 
-    /**
-     * 获得正在使用的Connection
-     * 
-     * @return
-     */
-    private Connection getConnectionInUsing() {
-        String name = DALCurrentStatus.getDsKey();
-        if (name == null) {
-            return null;
-        }
-        return this.conMap.get(name);
-    }
+	/**
+	 * 获得正在使用的Connection
+	 * 
+	 * @return
+	 */
+	private Connection getConnectionInUsing() {
+		String name = DALCurrentStatus.getDsKey();
+		if (name == null) {
+			return null;
+		}
+		return this.conMap.get(name);
+	}
 
-    private void initCurrentConnection(Connection con) throws SQLException {
-        if (this.transactionIsolation != 0) {
-            con.setTransactionIsolation(this.transactionIsolation);
-        }
-        if (this.getHoldability() != 0) {
-            con.setHoldability(this.holdability);
-        }
-        if (!this.autoCommit) {
-            con.setAutoCommit(this.autoCommit);
-        }
-        con.setReadOnly(this.readOnly);
-        if (this.catalog != null) {
-            con.setCatalog(this.catalog);
-        }
-        if (typeMap != null) {
-            con.setTypeMap(typeMap);
-        }
-    }
+	private void initCurrentConnection(Connection con) throws SQLException {
+		if (this.transactionIsolation != 0) {
+			con.setTransactionIsolation(this.transactionIsolation);
+		}
+		if (this.getHoldability() != 0) {
+			con.setHoldability(this.holdability);
+		}
+		if (!this.autoCommit) {
+			con.setAutoCommit(this.autoCommit);
+		}
+		con.setReadOnly(this.readOnly);
+		if (this.catalog != null) {
+			con.setCatalog(this.catalog);
+		}
+		if (typeMap != null) {
+			con.setTypeMap(typeMap);
+		}
+	}
 
-    public Statement createStatement(int resultSetType, int resultSetConcurrency)
-            throws SQLException {
-        return this.getCurrentConnection().createStatement(resultSetType,
-                resultSetConcurrency);
-    }
+	public Statement createStatement(int resultSetType, int resultSetConcurrency)
+			throws SQLException {
+		return this.getCurrentConnection().createStatement(resultSetType,
+				resultSetConcurrency);
+	}
 
-    public Statement createStatement(int resultSetType,
-            int resultSetConcurrency, int resultSetHoldability)
-            throws SQLException {
-        return this.getCurrentConnection().createStatement(resultSetType,
-                resultSetConcurrency, resultSetHoldability);
-    }
+	public Statement createStatement(int resultSetType,
+			int resultSetConcurrency, int resultSetHoldability)
+			throws SQLException {
+		return this.getCurrentConnection().createStatement(resultSetType,
+				resultSetConcurrency, resultSetHoldability);
+	}
 
-    public boolean getAutoCommit() throws SQLException {
-        return this.autoCommit;
-    }
+	public boolean getAutoCommit() throws SQLException {
+		return this.autoCommit;
+	}
 
-    public int getHoldability() throws SQLException {
-        return this.holdability;
-    }
+	public int getHoldability() throws SQLException {
+		return this.holdability;
+	}
 
-    public DatabaseMetaData getMetaData() throws SQLException {
-        return this.getCurrentConnection().getMetaData();
-    }
+	public DatabaseMetaData getMetaData() throws SQLException {
+		return this.getCurrentConnection().getMetaData();
+	}
 
-    public int getTransactionIsolation() throws SQLException {
-        return this.transactionIsolation;
-    }
+	public int getTransactionIsolation() throws SQLException {
+		return this.transactionIsolation;
+	}
 
-    public Map<String, Class<?>> getTypeMap() throws SQLException {
-        return this.getCurrentConnection().getTypeMap();
-    }
+	public Map<String, Class<?>> getTypeMap() throws SQLException {
+		return this.getCurrentConnection().getTypeMap();
+	}
 
-    public SQLWarning getWarnings() throws SQLException {
-        return this.getCurrentConnection().getWarnings();
-    }
+	public SQLWarning getWarnings() throws SQLException {
+		return this.getCurrentConnection().getWarnings();
+	}
 
-    public boolean isClosed() throws SQLException {
-        Connection con = this.getConnectionInUsing();
-        if (con == null) {
-            return false;
-        }
-        return con.isClosed();
-    }
+	public boolean isClosed() throws SQLException {
+		Connection con = this.getConnectionInUsing();
+		if (con == null) {
+			return false;
+		}
+		return con.isClosed();
+	}
 
-    public boolean isReadOnly() throws SQLException {
-        return this.readOnly;
-    }
+	public boolean isReadOnly() throws SQLException {
+		return this.readOnly;
+	}
 
-    public String nativeSQL(String sql) throws SQLException {
-        return this.getCurrentConnection().nativeSQL(sql);
-    }
+	public String nativeSQL(String sql) throws SQLException {
+		return this.getCurrentConnection().nativeSQL(sql);
+	}
 
-    public CallableStatement prepareCall(String sql) throws SQLException {
-        return this.getCurrentConnection().prepareCall(sql);
-    }
+	public CallableStatement prepareCall(String sql) throws SQLException {
+		return this.getCurrentConnection().prepareCall(sql);
+	}
 
-    public CallableStatement prepareCall(String sql, int resultSetType,
-            int resultSetConcurrency) throws SQLException {
-        return this.getCurrentConnection().prepareCall(sql, resultSetType,
-                resultSetConcurrency);
-    }
+	public CallableStatement prepareCall(String sql, int resultSetType,
+			int resultSetConcurrency) throws SQLException {
+		return this.getCurrentConnection().prepareCall(sql, resultSetType,
+				resultSetConcurrency);
+	}
 
-    public CallableStatement prepareCall(String sql, int resultSetType,
-            int resultSetConcurrency, int resultSetHoldability)
-            throws SQLException {
-        return this.getCurrentConnection().prepareCall(sql, resultSetType,
-                resultSetConcurrency, resultSetHoldability);
-    }
+	public CallableStatement prepareCall(String sql, int resultSetType,
+			int resultSetConcurrency, int resultSetHoldability)
+			throws SQLException {
+		return this.getCurrentConnection().prepareCall(sql, resultSetType,
+				resultSetConcurrency, resultSetHoldability);
+	}
 
-    public PreparedStatement prepareStatement(String sql) throws SQLException {
-        DALPreparedStatement ps = this.createDALDalPreparedStatement(sql);
-        ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S);
-        return ps;
-    }
+	public PreparedStatement prepareStatement(String sql) throws SQLException {
+		DALPreparedStatement ps = this.createDALDalPreparedStatement(sql);
+		ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S);
+		return ps;
+	}
 
-    public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys)
-            throws SQLException {
-        DALPreparedStatement ps = (DALPreparedStatement) this
-                .prepareStatement(sql);
-        ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_I);
-        ps.setAutoGeneratedKeys(autoGeneratedKeys);
-        return ps;
-    }
+	public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys)
+			throws SQLException {
+		DALPreparedStatement ps = (DALPreparedStatement) this
+				.prepareStatement(sql);
+		ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_I);
+		ps.setAutoGeneratedKeys(autoGeneratedKeys);
+		return ps;
+	}
 
-    public PreparedStatement prepareStatement(String sql, int[] columnIndexes)
-            throws SQLException {
-        DALPreparedStatement ps = (DALPreparedStatement) this.prepareStatement(
-                sql, Statement.RETURN_GENERATED_KEYS);
-        ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_$I);
-        ps.setColumnIndexes(columnIndexes);
-        return ps;
-    }
+	public PreparedStatement prepareStatement(String sql, int[] columnIndexes)
+			throws SQLException {
+		DALPreparedStatement ps = (DALPreparedStatement) this.prepareStatement(
+				sql, Statement.RETURN_GENERATED_KEYS);
+		ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_$I);
+		ps.setColumnIndexes(columnIndexes);
+		return ps;
+	}
 
-    public PreparedStatement prepareStatement(String sql, String[] columnNames)
-            throws SQLException {
-        DALPreparedStatement ps = (DALPreparedStatement) this.prepareStatement(
-                sql, Statement.RETURN_GENERATED_KEYS);
-        ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_$S);
-        ps.setColumnNames(columnNames);
-        return ps;
-    }
+	public PreparedStatement prepareStatement(String sql, String[] columnNames)
+			throws SQLException {
+		DALPreparedStatement ps = (DALPreparedStatement) this.prepareStatement(
+				sql, Statement.RETURN_GENERATED_KEYS);
+		ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_$S);
+		ps.setColumnNames(columnNames);
+		return ps;
+	}
 
-    public PreparedStatement prepareStatement(String sql, int resultSetType,
-            int resultSetConcurrency) throws SQLException {
-        DALPreparedStatement ps = (DALPreparedStatement) this
-                .prepareStatement(sql);
-        ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_I_I);
-        ps.setResultSetType(resultSetType);
-        ps.setResultSetConcurrency(resultSetConcurrency);
-        return ps;
-    }
+	public PreparedStatement prepareStatement(String sql, int resultSetType,
+			int resultSetConcurrency) throws SQLException {
+		DALPreparedStatement ps = (DALPreparedStatement) this
+				.prepareStatement(sql);
+		ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_I_I);
+		ps.setResultSetType(resultSetType);
+		ps.setResultSetConcurrency(resultSetConcurrency);
+		return ps;
+	}
 
-    public PreparedStatement prepareStatement(String sql, int resultSetType,
-            int resultSetConcurrency, int resultSetHoldability)
-            throws SQLException {
-        DALPreparedStatement ps = (DALPreparedStatement) this
-                .prepareStatement(sql);
-        ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_I_I_I);
-        ps.setResultSetType(resultSetType);
-        ps.setResultSetConcurrency(resultSetConcurrency);
-        ps.setResultSetHoldability(resultSetHoldability);
-        return ps;
-    }
+	public PreparedStatement prepareStatement(String sql, int resultSetType,
+			int resultSetConcurrency, int resultSetHoldability)
+			throws SQLException {
+		DALPreparedStatement ps = (DALPreparedStatement) this
+				.prepareStatement(sql);
+		ps.setCreateMethodByCon(DALPreparedStatement.CREATE_METHOD_BY_CON_S_I_I_I);
+		ps.setResultSetType(resultSetType);
+		ps.setResultSetConcurrency(resultSetConcurrency);
+		ps.setResultSetHoldability(resultSetHoldability);
+		return ps;
+	}
 
-    public void rollback() throws SQLException {
-        Collection<Connection> c = conMap.values();
-        for (Connection con : c) {
-            con.rollback();
-        }
-    }
+	public void rollback() throws SQLException {
+		Collection<Connection> c = conMap.values();
+		for (Connection con : c) {
+			con.rollback();
+		}
+	}
 
-    public void setAutoCommit(boolean autoCommit) throws SQLException {
-        this.autoCommit = autoCommit;
-    }
+	public void setAutoCommit(boolean autoCommit) throws SQLException {
+		this.autoCommit = autoCommit;
+	}
 
-    public void setCatalog(String catalog) throws SQLException {
-        this.catalog = catalog;
-    }
+	public void setCatalog(String catalog) throws SQLException {
+		this.catalog = catalog;
+	}
 
-    public String getCatalog() throws SQLException {
-        return this.getCurrentConnection().getCatalog();
-    }
+	public String getCatalog() throws SQLException {
+		return this.getCurrentConnection().getCatalog();
+	}
 
-    public void setHoldability(int holdability) throws SQLException {
-        this.holdability = holdability;
-    }
+	public void setHoldability(int holdability) throws SQLException {
+		this.holdability = holdability;
+	}
 
-    public void setReadOnly(boolean readOnly) throws SQLException {
-        this.readOnly = readOnly;
-    }
+	public void setReadOnly(boolean readOnly) throws SQLException {
+		this.readOnly = readOnly;
+	}
 
-    public void setTransactionIsolation(int level) throws SQLException {
-        this.transactionIsolation = level;
-    }
+	public void setTransactionIsolation(int level) throws SQLException {
+		this.transactionIsolation = level;
+	}
 
-    public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
-        this.typeMap = map;
-    }
+	public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
+		this.typeMap = map;
+	}
 
-    public void releaseSavepoint(Savepoint savepoint) throws SQLException {
-        throw new SQLException("dal do not support savepoint");
-    }
+	public void releaseSavepoint(Savepoint savepoint) throws SQLException {
+		throw new SQLException("dal do not support savepoint");
+	}
 
-    public void rollback(Savepoint savepoint) throws SQLException {
-        throw new SQLException("dal do not support savepoint");
-    }
+	public void rollback(Savepoint savepoint) throws SQLException {
+		throw new SQLException("dal do not support savepoint");
+	}
 
-    public Savepoint setSavepoint() throws SQLException {
-        throw new SQLException("dal do not support savepoint");
-    }
+	public Savepoint setSavepoint() throws SQLException {
+		throw new SQLException("dal do not support savepoint");
+	}
 
-    public Savepoint setSavepoint(String name) throws SQLException {
-        throw new SQLException("dal do not support savepoint");
-    }
+	public Savepoint setSavepoint(String name) throws SQLException {
+		throw new SQLException("dal do not support savepoint");
+	}
 
-    public Array createArrayOf(String typeName, Object[] elements)
-            throws SQLException {
-        return this.getCurrentConnection().createArrayOf(typeName, elements);
-    }
+	public Array createArrayOf(String typeName, Object[] elements)
+			throws SQLException {
+		return this.getCurrentConnection().createArrayOf(typeName, elements);
+	}
 
-    public Blob createBlob() throws SQLException {
-        return this.getCurrentConnection().createBlob();
-    }
+	public Blob createBlob() throws SQLException {
+		return this.getCurrentConnection().createBlob();
+	}
 
-    public Clob createClob() throws SQLException {
-        return this.getCurrentConnection().createClob();
-    }
+	public Clob createClob() throws SQLException {
+		return this.getCurrentConnection().createClob();
+	}
 
-    public NClob createNClob() throws SQLException {
-        return this.getCurrentConnection().createNClob();
-    }
+	public NClob createNClob() throws SQLException {
+		return this.getCurrentConnection().createNClob();
+	}
 
-    public SQLXML createSQLXML() throws SQLException {
-        return this.getCurrentConnection().createSQLXML();
-    }
+	public SQLXML createSQLXML() throws SQLException {
+		return this.getCurrentConnection().createSQLXML();
+	}
 
-    public Struct createStruct(String typeName, Object[] attributes)
-            throws SQLException {
-        return this.getCurrentConnection().createStruct(typeName, attributes);
-    }
+	public Struct createStruct(String typeName, Object[] attributes)
+			throws SQLException {
+		return this.getCurrentConnection().createStruct(typeName, attributes);
+	}
 
-    public Properties getClientInfo() throws SQLException {
-        return this.getCurrentConnection().getClientInfo();
-    }
+	public Properties getClientInfo() throws SQLException {
+		return this.getCurrentConnection().getClientInfo();
+	}
 
-    public String getClientInfo(String name) throws SQLException {
-        Connection con = this.getCurrentConnection();
-        return con.getClientInfo(name);
-    }
+	public String getClientInfo(String name) throws SQLException {
+		Connection con = this.getCurrentConnection();
+		return con.getClientInfo(name);
+	}
 
-    public boolean isValid(int timeout) throws SQLException {
-        return this.getCurrentConnection().isValid(timeout);
-    }
+	public boolean isValid(int timeout) throws SQLException {
+		return this.getCurrentConnection().isValid(timeout);
+	}
 
-    public void setClientInfo(Properties properties)
-            throws SQLClientInfoException {
-        this.getCurrentConnection().setClientInfo(properties);
-    }
+	public void setClientInfo(Properties properties)
+			throws SQLClientInfoException {
+		this.getCurrentConnection().setClientInfo(properties);
+	}
 
-    public void setClientInfo(String name, String value)
-            throws SQLClientInfoException {
-        this.getCurrentConnection().setClientInfo(name, value);
-    }
+	public void setClientInfo(String name, String value)
+			throws SQLClientInfoException {
+		this.getCurrentConnection().setClientInfo(name, value);
+	}
 
-    public boolean isWrapperFor(Class<?> iface) throws SQLException {
-        return this.getCurrentConnection().isWrapperFor(iface);
-    }
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		return this.getCurrentConnection().isWrapperFor(iface);
+	}
 
-    public <T> T unwrap(Class<T> iface) throws SQLException {
-        return this.getCurrentConnection().unwrap(iface);
-    }
+	public <T> T unwrap(Class<T> iface) throws SQLException {
+		return this.getCurrentConnection().unwrap(iface);
+	}
 
-    private DALPreparedStatement createDALDalPreparedStatement(String sql) {
-        DALPreparedStatement ps = new DALPreparedStatement();
-        ps.setDalConnection(this);
-        ps.setSql(sql);
-        return ps;
-    }
+	private DALPreparedStatement createDALDalPreparedStatement(String sql) {
+		DALPreparedStatement ps = new DALPreparedStatement();
+		ps.setDalConnection(this);
+		ps.setSql(sql);
+		return ps;
+	}
 }

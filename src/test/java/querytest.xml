@@ -12,9 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	<context:annotation-config />
-	<context:component-scan base-package="parser">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
-	</context:component-scan>
+	<context:component-scan base-package="unittest" />
 	<bean id="ds00" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/daltest00?useUnicode=true&amp;characterEncoding=UTF-8" />
@@ -80,11 +78,7 @@
 		<!-- 解析器工厂可以自定义实现，详情见README -->
 		<property name="partitionParserFactory">
 			<!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
-			<!-- 原理就是把所有的解析器类放到一个目录中 -->
-			<bean class="halo.dal.analysis.PackagePartitionParserFactory">
-				<!-- 解析器所在目录 -->
-				<property name="packageName" value="unittest.parser" />
-			</bean>
+			<bean class="halo.dal.analysis.SpringPartitionParserFactory" />
 		</property>
 	</bean>
 </beans>

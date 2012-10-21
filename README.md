@@ -59,6 +59,7 @@ import halo.dal.sql.ConnectionStatus;
  * 
  * @author akwei
  */
+@Component("user")//可以使用spring注入,字符串为logicTableName
 public class UserParser implements PartitionParser {
 
     public PartitionTableInfo parse(String tableLogicName, SQLInfo sqlInfo,
@@ -170,17 +171,13 @@ public class UserParser implements PartitionParser {
             </map>
         </property>
     </bean>
-    <bean class="halo.dal.DALFactory">
-        <!-- 解析器工厂可以自定义实现，详情见README -->
-        <property name="partitionParserFactory">
-            <!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
-            <!-- 原理就是把所有的解析器类放到一个目录中 -->
-            <bean class="halo.dal.analysis.PackagePartitionParserFactory">
-                <!-- 解析器所在目录 -->
-                <property name="packageName" value="parser" />
-            </bean>
-        </property>
-    </bean>
+	<bean class="halo.dal.DALFactory">
+		<!-- 解析器工厂可以自定义实现 -->
+		<property name="partitionParserFactory">
+			<!-- 为了尽量减少配置文件，可以使用如下的解析器工厂，此工厂可以根据logicTableName进行匹配解析器 -->
+			<bean class="halo.dal.analysis.SpringPartitionParserFactory" />
+		</property>
+	</bean>
 ````
 ##4:从DataSource中获得Connection进行使用
 ````java
@@ -202,7 +199,7 @@ dalFactory.setSqlAnalyzer(new CachedSQLAnalyzer(new DefSQLAnalyzer()));
     <property name="sqlAnalyzer">
         <bean class="halo.dal.analysis.def.CachedSQLAnalyzer">
             <constructor-arg index="0">
-                <bean class="halo.dal.analysis.def.DefSQLAnalyzer" />
+                <bean class="halo.dal.analysis.antlr.v3.AntlrV3SQLAnalyzer" /><!-- 或者使用自定义解析器 -->
             </constructor-arg>
         </bean>
     </property>

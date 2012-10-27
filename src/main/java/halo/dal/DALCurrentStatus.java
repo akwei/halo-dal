@@ -1,8 +1,5 @@
 package halo.dal;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 此类操作当前状态，包括数据源key，用户自定义信息
  * 
@@ -10,67 +7,40 @@ import java.util.Map;
  */
 public class DALCurrentStatus {
 
-    private static final String STATUS_DSKEY = "STATUS_DSKEY";
+	private static final String DSKEY_DEFAULT = "default_ds";
 
-    private static final String STATUS_CUSTOM = "STATUS_CUSTOM";
+	private static final ThreadLocal<String> dsKeyTL = new ThreadLocal<String>();
 
-    private static final String DSKEY_DEFAULT = "default_ds";
+	private static final ThreadLocal<DALCustomInfo> dalCustomInfoTL = new ThreadLocal<DALCustomInfo>();
 
-    private static final ThreadLocal<Map<String, Object>> statusTL = new ThreadLocal<Map<String, Object>>();
+	public DALCurrentStatus() {
+	}
 
-    public DALCurrentStatus() {
-    }
+	public static void setDsKey(String dsKey) {
+		dsKeyTL.set(dsKey);
+	}
 
-    public static void setDsKey(String dsKey) {
-        setValue(STATUS_DSKEY, dsKey);
-    }
+	/**
+	 * 设置默认数据源
+	 */
+	public static void setDefaultDsKey() {
+		setDsKey(DSKEY_DEFAULT);
+	}
 
-    /**
-     * 设置默认数据源
-     */
-    public static void setDefaultDsKey() {
-        setValue(STATUS_DSKEY, DSKEY_DEFAULT);
-    }
+	public static String getDsKey() {
+		return dsKeyTL.get();
+	}
 
-    public static String getDsKey() {
-        DALCustomInfo dalCustomInfo = getCustomInfo();
-        if (dalCustomInfo != null) {
-            return dalCustomInfo.getDsKey();
-        }
-        return (String) getValue(STATUS_DSKEY);
-    }
+	public static void setCustomInfo(DALCustomInfo dalCustomInfo) {
+		dalCustomInfoTL.set(dalCustomInfo);
+	}
 
-    public static void setCustomInfo(DALCustomInfo dalCustomInfo) {
-        setValue(STATUS_CUSTOM, dalCustomInfo);
-    }
+	public static DALCustomInfo getCustomInfo() {
+		return dalCustomInfoTL.get();
+	}
 
-    public static DALCustomInfo getCustomInfo() {
-        return (DALCustomInfo) getValue(STATUS_CUSTOM);
-    }
-
-    private static Map<String, Object> getMap() {
-        Map<String, Object> map = statusTL.get();
-        if (map == null) {
-            map = new HashMap<String, Object>(2);
-            statusTL.set(map);
-        }
-        return map;
-    }
-
-    private static Object getValue(String key) {
-        Map<String, Object> map = getMap();
-        return map.get(key);
-    }
-
-    private static void setValue(String key, Object value) {
-        if (value == null) {
-            throw new DALRunTimeException("value can not null");
-        }
-        Map<String, Object> map = getMap();
-        map.put(key, value);
-    }
-
-    public static void remove() {
-        statusTL.remove();
-    }
+	public static void remove() {
+		dsKeyTL.remove();
+		dalCustomInfoTL.remove();
+	}
 }

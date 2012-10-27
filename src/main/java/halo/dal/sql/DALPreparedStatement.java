@@ -236,6 +236,7 @@ public class DALPreparedStatement implements PreparedStatement {
 					parsedTableInfo.setRealTable(table,
 					        dalCustomInfo.getRealTable(table));
 				}
+				DALCurrentStatus.setDsKey(dalCustomInfo.getDsKey());
 			}
 			// 在有进行解析的条件下，获得解析后指定表的sql语句
 			if (hasParser) {

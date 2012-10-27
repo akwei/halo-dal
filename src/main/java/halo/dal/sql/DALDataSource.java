@@ -18,75 +18,79 @@ import javax.sql.DataSource;
  */
 public class DALDataSource implements DataSource {
 
-    private Map<String, DataSource> dataSourceMap;
+	private Map<String, DataSource> dataSourceMap;
 
-    private PrintWriter logWriter;
+	private PrintWriter logWriter;
 
-    private int loginTimeout = 3;
+	private int loginTimeout = 3;
 
-    private boolean debugConnection;
+	private boolean debugConnection;
 
-    public void setDebugConnection(boolean debugConnection) {
-        this.debugConnection = debugConnection;
-    }
+	public void setDebugConnection(boolean debugConnection) {
+		this.debugConnection = debugConnection;
+	}
 
-    public boolean isDebugConnection() {
-        return debugConnection;
-    }
+	public boolean isDebugConnection() {
+		return debugConnection;
+	}
 
-    public DataSource getCurrentDataSource() {
-        String name = DALCurrentStatus.getDsKey();
-        if (name == null) {
-            throw new DALRunTimeException("can not get dsKey");
-        }
-        DataSource ds = this.dataSourceMap.get(name);
-        if (ds == null) {
-            throw new DALRunTimeException("no datasource forKey [ " + name
-                    + " ]");
-        }
-        return ds;
-    }
+	public DataSource getCurrentDataSource() {
+		String name = DALCurrentStatus.getDsKey();
+		if (name == null) {
+			throw new DALRunTimeException("can not get dsKey");
+		}
+		DataSource ds = this.dataSourceMap.get(name);
+		if (ds == null) {
+			throw new DALRunTimeException("no datasource forKey [ " + name
+			        + " ]");
+		}
+		return ds;
+	}
 
-    /**
-     * 设定数据源key与真实数据源的对应关系.<br>
-     * map中的key为数据源key,value为真实数据源
-     * 
-     * @param dataSourceMap
-     */
-    public void setDataSourceMap(Map<String, DataSource> dataSourceMap) {
-        this.dataSourceMap = dataSourceMap;
-    }
+	public Connection getCurrentConnection() throws SQLException {
+		return this.getCurrentDataSource().getConnection();
+	}
 
-    public Connection getConnection() throws SQLException {
-        return new DALConnection(this);
-    }
+	/**
+	 * 设定数据源key与真实数据源的对应关系.<br>
+	 * map中的key为数据源key,value为真实数据源
+	 * 
+	 * @param dataSourceMap
+	 */
+	public void setDataSourceMap(Map<String, DataSource> dataSourceMap) {
+		this.dataSourceMap = dataSourceMap;
+	}
 
-    public Connection getConnection(String username, String password)
-            throws SQLException {
-        throw new SQLException("only support getConnection()");
-    }
+	public Connection getConnection() throws SQLException {
+		return new DALConnection(this);
+	}
 
-    public PrintWriter getLogWriter() throws SQLException {
-        return this.logWriter;
-    }
+	public Connection getConnection(String username, String password)
+	        throws SQLException {
+		throw new SQLException("only support getConnection()");
+	}
 
-    public int getLoginTimeout() throws SQLException {
-        return this.loginTimeout;
-    }
+	public PrintWriter getLogWriter() throws SQLException {
+		return this.logWriter;
+	}
 
-    public void setLogWriter(PrintWriter out) throws SQLException {
-        this.logWriter = out;
-    }
+	public int getLoginTimeout() throws SQLException {
+		return this.loginTimeout;
+	}
 
-    public void setLoginTimeout(int seconds) throws SQLException {
-        this.loginTimeout = seconds;
-    }
+	public void setLogWriter(PrintWriter out) throws SQLException {
+		this.logWriter = out;
+	}
 
-    public boolean isWrapperFor(Class<?> iface) throws SQLException {
-        return this.getCurrentDataSource().isWrapperFor(iface);
-    }
+	public void setLoginTimeout(int seconds) throws SQLException {
+		this.loginTimeout = seconds;
+	}
 
-    public <T> T unwrap(Class<T> iface) throws SQLException {
-        return this.getCurrentDataSource().unwrap(iface);
-    }
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		return this.getCurrentDataSource().isWrapperFor(iface);
+	}
+
+	public <T> T unwrap(Class<T> iface) throws SQLException {
+		return this.getCurrentDataSource().unwrap(iface);
+	}
 }

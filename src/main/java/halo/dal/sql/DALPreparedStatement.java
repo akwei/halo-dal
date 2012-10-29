@@ -223,7 +223,7 @@ public class DALPreparedStatement implements PreparedStatement {
 				}
 				// 如果不需要解析路由，就设置默认数据源
 				if (partitionTableInfo == null) {
-					DALCurrentStatus.setDefaultDsKey();
+//					DALCurrentStatus.setDefaultDsKey();
 				}
 				// 设置解析后的数据源
 				else {

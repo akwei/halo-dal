@@ -87,9 +87,6 @@ public class DALConnection implements Connection {
 	 */
 	public Connection getCurrentConnection() {
 		String name = DALCurrentStatus.getDsKey();
-		if (name == null) {
-			throw new DALRunTimeException("can not get dsKey");
-		}
 		Connection con = this.conMap.get(name);
 		if (con == null) {
 			try {
@@ -111,9 +108,6 @@ public class DALConnection implements Connection {
 	 */
 	private Connection getConnectionInUsing() {
 		String name = DALCurrentStatus.getDsKey();
-		if (name == null) {
-			return null;
-		}
 		return this.conMap.get(name);
 	}
 
@@ -176,7 +170,7 @@ public class DALConnection implements Connection {
 	public boolean isClosed() throws SQLException {
 		Connection con = this.getConnectionInUsing();
 		if (con == null) {
-			return false;
+			return true;
 		}
 		return con.isClosed();
 	}

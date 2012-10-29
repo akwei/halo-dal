@@ -18,6 +18,8 @@ import javax.sql.DataSource;
  */
 public class DALDataSource implements DataSource {
 
+	public static final String DSKEY_DEFAULT = "default_ds";
+
 	private Map<String, DataSource> dataSourceMap;
 
 	private PrintWriter logWriter;
@@ -34,11 +36,8 @@ public class DALDataSource implements DataSource {
 		return debugConnection;
 	}
 
-	public DataSource getCurrentDataSource() {
+	private DataSource getCurrentDataSource() {
 		String name = DALCurrentStatus.getDsKey();
-		if (name == null) {
-			throw new DALRunTimeException("can not get dsKey");
-		}
 		DataSource ds = this.dataSourceMap.get(name);
 		if (ds == null) {
 			throw new DALRunTimeException("no datasource forKey [ " + name

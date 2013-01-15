@@ -36,7 +36,7 @@ Insert.java Update.java Delete.java Select.java
 请先创建测试用的数据库，example/sql/dbinit.sql是数据库脚本
 
 #重要说明
-在使用sequenece作为id时，请求sequenece的sql语句是没有任何库表信息的。因此会抛出dsKey 为null 的异常。因此在使用时，请尽量先通合适的方式获得最新id。
+在使用sequenece作为id时，请求sequenece的sql语句是没有任何库表信息的。因此会抛出dsKey 为null 的异常。因此在使用时，请先使用其他方式获得最新id。
 不在分表分库的操作中首先使用sequence操作。
 
 

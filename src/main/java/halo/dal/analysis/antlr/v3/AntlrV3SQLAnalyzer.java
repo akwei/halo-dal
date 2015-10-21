@@ -117,4 +117,15 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
 		}
 		return _sql;
 	}
+
+	public static void main(String[] args) {
+		AntlrV3SQLAnalyzer antlrV3SQLAnalyzer=new AntlrV3SQLAnalyzer();
+		String sql="insert into table ( id ,name ) values ( ? ,?) ";
+		String sql1="update table set id = ? ,name=? where cnt = ?";
+		String sql2="delete * from table  where cnt = ?";
+		String sql3="select  * from table  where cnt = ?";
+		SQLStruct sqlStruct=antlrV3SQLAnalyzer.parse(sql3,null);
+		System.out.println(sqlStruct);
+		System.out.println(sqlStruct.getColumnExpers().size());
+	}
 }

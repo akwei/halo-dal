@@ -1,5 +1,8 @@
 package halo.dal.analysis;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,5 +91,10 @@ public class SQLStruct {
 
     public List<String> getTableNames() {
         return tableNames;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

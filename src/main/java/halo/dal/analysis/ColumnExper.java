@@ -18,7 +18,9 @@ public class ColumnExper {
             "!=",//
             ">",//
             "<",//
-            "=" //
+            "=" ,//
+            "=<",// 等价于 <=
+            "in" // 等价于 =
     };
 
     public static final SQLExpressionSymbol[] symbolsEnum = new SQLExpressionSymbol[] {//
@@ -28,7 +30,9 @@ public class ColumnExper {
             SQLExpressionSymbol.NOT_EQUAL2, //
             SQLExpressionSymbol.BIGGER,//
             SQLExpressionSymbol.SMALLER, //
-            SQLExpressionSymbol.EQUAL //
+            SQLExpressionSymbol.EQUAL, //
+            SQLExpressionSymbol.SMALLER_EQUAL,//
+            SQLExpressionSymbol.EQUAL,//
     };
 
     /**

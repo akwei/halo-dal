@@ -33,6 +33,8 @@ public class SQLAnalyzerTest {
         Object[] values = new Object[] { 1, 50, 10, 1, 2 };
         SQLStruct sqlStruct = sqlAnalyzer.parse(sql, context);
         SQLInfo sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        System.out.println(sqlStruct);
+        System.out.println(sqlInfo);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
         ParsedTableInfo parsedTableInfo = new ParsedTableInfo();
@@ -42,7 +44,9 @@ public class SQLAnalyzerTest {
         // no where
         sql = "delete from user";
         sqlStruct = sqlAnalyzer.parse(sql, context);
-        sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, null, context);
+        sqlInfo = sqlAnalyzer.analyse(sql, sqlStruct, values, context);
+        System.out.println(sqlStruct);
+        System.out.println(sqlInfo);
         Assert.assertEquals(1, sqlStruct.getTableNames().size());
         Assert.assertEquals("user", sqlStruct.getTableNames().get(0));
         sql2 = sqlAnalyzer.outPutSQL(sql, sqlStruct, sqlInfo, parsedTableInfo);

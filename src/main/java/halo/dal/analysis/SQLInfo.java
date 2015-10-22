@@ -23,4 +23,12 @@ public interface SQLInfo {
      * @param sqlExpression
      */
     void addSQLExpression(String logicTableName, SQLExpression sqlExpression);
+
+    /**
+     * 获取操作类型 （读写分离的时候可以用）
+     *
+     * @return
+     */
+    SQLType getSQLType();
+
 }

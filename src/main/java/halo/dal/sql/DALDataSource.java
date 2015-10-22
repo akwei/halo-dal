@@ -46,6 +46,11 @@ public class DALDataSource implements DataSource {
 		return ds;
 	}
 
+	/**
+	 * 真正的connection by zxl
+	 * @return
+	 * @throws SQLException
+	 */
 	public Connection getCurrentConnection() throws SQLException {
 		return this.getCurrentDataSource().getConnection();
 	}
@@ -60,6 +65,11 @@ public class DALDataSource implements DataSource {
 		this.dataSourceMap = dataSourceMap;
 	}
 
+	/**
+	 * 代理connection by zxl
+	 * @return
+	 * @throws SQLException
+	 */
 	public Connection getConnection() throws SQLException {
 		return new DALConnection(this);
 	}

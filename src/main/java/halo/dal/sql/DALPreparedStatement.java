@@ -217,13 +217,19 @@ public class DALPreparedStatement implements PreparedStatement {
 							                + parser.getClass().getName()
 							                + " can not be null : " + table);
 						}
+						if (partitionTableInfo.getRealTable() == null) {
+							throw new DALRunTimeException(
+									"partitionTableInfo return from "
+											+ parser.getClass().getName()
+											+ " #getRealTable() can not be null : " + table);
+						}
 						parsedTableInfo.setRealTable(table,
 						        partitionTableInfo.getRealTable());
 					}
 				}
-				// 如果不需要解析路由，就设置默认数据源
-				if (partitionTableInfo == null) {
-//					DALCurrentStatus.setDefaultDsKey();
+				// 如果不需要解析路由，或者路由器未设置数据源，就设置默认数据源
+				if (partitionTableInfo == null || partitionTableInfo.getDsName()==null) {
+					DALCurrentStatus.setDefaultDsKey();
 				}
 				// 设置解析后的数据源
 				else {

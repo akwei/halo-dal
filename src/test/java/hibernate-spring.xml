@@ -13,33 +13,31 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	<context:annotation-config />
 	<context:component-scan base-package="unittest" />
+	<bean id="dataSource00" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/daltest00?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="root" />
+		<property name="password" value="asdasd" />
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="maxPoolSize" value="20" />
+		<property name="initialPoolSize" value="10" />
+		<property name="minPoolSize" value="10" />
+	</bean>
+	<bean id="dataSource01" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/daltest01?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="root" />
+		<property name="password" value="asdasd" />
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="maxPoolSize" value="20" />
+		<property name="initialPoolSize" value="10" />
+		<property name="minPoolSize" value="10" />
+	</bean>
 	<bean id="dataSource" class="halo.dal.sql.DALDataSource">
 		<property name="dataSourceMap">
 			<map>
-				<entry key="ds00">
-					<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
-						<property name="driverClass" value="com.mysql.jdbc.Driver" />
-						<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/daltest00?useUnicode=true&amp;characterEncoding=UTF-8" />
-						<property name="user" value="root" />
-						<property name="password" value="asdasd" />
-						<property name="idleConnectionTestPeriod" value="60" />
-						<property name="maxPoolSize" value="20" />
-						<property name="initialPoolSize" value="10" />
-						<property name="minPoolSize" value="10" />
-					</bean>
-				</entry>
-				<entry key="ds01">
-					<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
-						<property name="driverClass" value="com.mysql.jdbc.Driver" />
-						<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/daltest01?useUnicode=true&amp;characterEncoding=UTF-8" />
-						<property name="user" value="root" />
-						<property name="password" value="asdasd" />
-						<property name="idleConnectionTestPeriod" value="60" />
-						<property name="maxPoolSize" value="20" />
-						<property name="initialPoolSize" value="10" />
-						<property name="minPoolSize" value="10" />
-					</bean>
-				</entry>
+				<entry key="ds00" value-ref="dataSource00"></entry>
+				<entry key="ds01" value-ref="dataSource01"></entry>
 			</map>
 		</property>
 	</bean>

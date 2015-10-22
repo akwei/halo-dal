@@ -20,7 +20,7 @@ public class DALFactory {
 
     private SQLAnalyzer sqlAnalyzer;
 
-    private PartitionParserFactory partitionParserFactory;
+    private static PartitionParserFactory partitionParserFactory;
 
     public DALFactory() {
         ins = this;
@@ -46,7 +46,11 @@ public class DALFactory {
 
     public void setPartitionParserFactory(
             PartitionParserFactory partitionParserFactory) {
-        this.partitionParserFactory = partitionParserFactory;
+        DALFactory.partitionParserFactory = partitionParserFactory;
+    }
+
+    public void setTT(String tt){
+
     }
 
     public PartitionParserFactory getPartitionParserFactory() {

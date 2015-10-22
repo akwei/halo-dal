@@ -9,6 +9,8 @@ import halo.dal.sql.DALDataSource;
  */
 public class DALCurrentStatus {
 
+	public static final String DEFAULT_DS_KEY="default_ds";
+
 	private static final ThreadLocal<String> dsKeyTL = new ThreadLocal<String>();
 
 	private static final ThreadLocal<DALCustomInfo> dalCustomInfoTL = new ThreadLocal<DALCustomInfo>();
@@ -19,6 +21,8 @@ public class DALCurrentStatus {
 	public static void setDsKey(String dsKey) {
 		dsKeyTL.set(dsKey);
 	}
+
+	public static void setDefaultDsKey(){ dsKeyTL.set(DEFAULT_DS_KEY);}
 
 	public static String getDsKey() {
 		String key = dsKeyTL.get();

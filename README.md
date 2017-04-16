@@ -1,48 +1,48 @@
-#halo-dal使用说明
-#####使用场景:数据库分布式访问
-#####使用语言:java
-#####使用条件:支持PreparedStatement处理的任何jdbc框架,最好配合spring管理数据库连接池.
-#####sql语句必须使用小写字符
-#####jdk版本:jdk1.5以及以上版本
-#####请使用spring管理数据库连接池
-#####项目依赖jar:commons-lang3-3.1.jar, commons-logging.jar,junit-4.10.jar(单元测试使用)
-#####examplelib目录下的jar为例子中使用的jar
-#####springexamplelib目录下的jar为spring例子中使用的jar
-#####使用hibernate时，请设置 hibernate.temp.use_jdbc_metadata_defaults=false
+# halo-dal使用说明
+##### 使用场景:数据库分布式访问
+##### 使用语言:java
+##### 使用条件:支持PreparedStatement处理的任何jdbc框架,最好配合spring管理数据库连接池.
+##### sql语句必须使用小写字符
+##### jdk版本:jdk1.5以及以上版本
+##### 请使用spring管理数据库连接池
+##### 项目依赖jar:commons-lang3-3.1.jar, commons-logging.jar,junit-4.10.jar(单元测试使用)
+##### examplelib目录下的jar为例子中使用的jar
+##### springexamplelib目录下的jar为spring例子中使用的jar
+##### 使用hibernate时，请设置 hibernate.temp.use_jdbc_metadata_defaults=false
 
-#支持功能:
-#####1, jdbc PreparedStatement
-#####2, 数据库分库分表访问，支持insert delete update select
-#####3, 单数据库事务
-#####4, 多数据库分步提交事务
-#####5, 读写分离
-#####6, 编程指定数据源和表
-#####7, 缓存sql结构
+# 支持功能:
+##### 1, jdbc PreparedStatement
+##### 2, 数据库分库分表访问，支持insert delete update select
+##### 3, 单数据库事务
+##### 4, 多数据库分步提交事务
+##### 5, 读写分离
+##### 6, 编程指定数据源和表
+##### 7, 缓存sql结构
 
-#不支持功能:
-#####1, jdbc Statement访问. (使用 Statement访问时，不会进行sql的分表分库的解析，最终执行的sql是没有解析的)
-#####2, 不支持 (column_name)=? 对column_name加"()"
-#####5, sql中不支持 in(?,?,?)这种使用in 的预处理语句
-#####6, 分布式事务
-#####7, 不支持与同一张表进行join查询
+# 不支持功能:
+##### 1, jdbc Statement访问. (使用 Statement访问时，不会进行sql的分表分库的解析，最终执行的sql是没有解析的)
+##### 2, 不支持 (column_name)=? 对column_name加"()"
+##### 5, sql中不支持 in(?,?,?)这种使用in 的预处理语句
+##### 6, 分布式事务
+##### 7, 不支持与同一张表进行join查询
 
-##不喜欢看以下说明，可以直接看example下的例子 
+## 不喜欢看以下说明，可以直接看example下的例子 
 Insert.java Update.java Delete.java Select.java
 
-###spring下面的例子为在spring中使用JdbcTemplate的方式，可以自定义扩展hibernate ibatis mybatis的配置
+### spring下面的例子为在spring中使用JdbcTemplate的方式，可以自定义扩展hibernate ibatis mybatis的配置
 
-###example/sql中有测试数据库脚本,例子中使用的数据库为mysql
+### example/sql中有测试数据库脚本,例子中使用的数据库为mysql
 
 请先创建测试用的数据库，example/sql/dbinit.sql是数据库脚本
 
-#重要说明
+# 重要说明
 在使用sequenece作为id时，请求sequenece的sql语句是没有任何库表信息的。因此会抛出dsKey 为null 的异常。因此在使用时，请先使用其他方式获得最新id。
 不在分表分库的操作中首先使用sequence操作。
 
 
 
-#如何使用
-##1:数据库表的分析器
+# 如何使用
+## 1:数据库表的分析器
 ````java
 
 package parser;
@@ -90,7 +90,7 @@ public class UserParser implements PartitionParser {
 
 
 ````
-##2:将解析器加入解析器工厂
+## 2:将解析器加入解析器工厂
 ````java
         // 初始化 DALFactory, 如果使用spring的话，可以使用spring初始化此类
         // DALFactory dalFactory=new DALFactory();
@@ -103,7 +103,7 @@ public class UserParser implements PartitionParser {
         dalDefPartitionParserFactory.setParserMap(parserMap);
         dalFactory.setPartitionParserFactory(dalDefPartitionParserFactory);
 ````
-##3:配置数据库连接池
+## 3:配置数据库连接池
 ### jdbc 举例
 ````java
     public void op() throws Exception {
@@ -179,14 +179,14 @@ public class UserParser implements PartitionParser {
 		</property>
 	</bean>
 ````
-##4:从DataSource中获得Connection进行使用
+## 4:从DataSource中获得Connection进行使用
 ````java
 Connection con = dalDataSource.getConnection();
 PreparedStatement ps = con.prepareStatement(sql);
 //其他处理过程
 ````
 
-#如何开启sql解析器缓存
+# 如何开启sql解析器缓存
 ## 编程开启
 ````java
 DALFactory dalFactory = DALFactory.getDefault();
@@ -206,12 +206,12 @@ dalFactory.setSqlAnalyzer(new CachedSQLAnalyzer(new DefSQLAnalyzer()));
 </bean>
 ````
 
-#如何自定义sql解析器SQLAnalyzer
-##1:编写解析器
+# 如何自定义sql解析器SQLAnalyzer
+## 1:编写解析器
 ````java
 implements SQLAnalyzer
 ````
-##2:设置解析器
+## 2:设置解析器
 ### 代码设置
 ````java
 DALFactory dalFactory = DALFactory.getDefault();

@@ -1,5 +1,8 @@
 package halo.dal.analysis;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 public class ColumnExper {
 
     private String column;
@@ -15,7 +18,9 @@ public class ColumnExper {
             "!=",//
             ">",//
             "<",//
-            "=" //
+            "=" ,//
+            "=<",// 等价于 <=
+            "in" // 等价于 =
     };
 
     public static final SQLExpressionSymbol[] symbolsEnum = new SQLExpressionSymbol[] {//
@@ -25,7 +30,9 @@ public class ColumnExper {
             SQLExpressionSymbol.NOT_EQUAL2, //
             SQLExpressionSymbol.BIGGER,//
             SQLExpressionSymbol.SMALLER, //
-            SQLExpressionSymbol.EQUAL //
+            SQLExpressionSymbol.EQUAL, //
+            SQLExpressionSymbol.SMALLER_EQUAL,//
+            SQLExpressionSymbol.EQUAL,//
     };
 
     /**
@@ -117,4 +124,10 @@ public class ColumnExper {
             this.column = null;
         }
     }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
 }

@@ -1,5 +1,9 @@
 package halo.dal.analysis;
 
+import halo.dal.analysis.antlr.AntlrParserDelegate;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +20,8 @@ public class SQLStruct {
      * 是否可以解析,如果false，将不对结构进行分析
      */
     private boolean canParse;
+
+    private SQLType sqlType=null;
 
     private Map<String, String> alias_nameMap = new HashMap<String, String>(2);
 
@@ -70,6 +76,23 @@ public class SQLStruct {
         }
     }
 
+    public void setSqlType(int flag){
+        if(flag== AntlrParserDelegate.SQLOP_INSERT){
+            sqlType=SQLType.INSERT;
+        }else if(flag== AntlrParserDelegate.SQLOP_DELETE){
+            sqlType=SQLType.DELETE;
+        }else if(flag== AntlrParserDelegate.SQLOP_UPDATE){
+            sqlType=SQLType.UPDATE;
+        }else if(flag== AntlrParserDelegate.SQLOP_SELECT){
+            sqlType=SQLType.SELECT;
+        }
+    }
+
+    public SQLType getSqlType(){
+        return sqlType;
+    }
+
+
     public boolean isCanParse() {
         return canParse;
     }
@@ -88,5 +111,10 @@ public class SQLStruct {
 
     public List<String> getTableNames() {
         return tableNames;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

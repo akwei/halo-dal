@@ -49,6 +49,7 @@ public class DALFactory {
         this.partitionParserFactory = partitionParserFactory;
     }
 
+
     public PartitionParserFactory getPartitionParserFactory() {
         return partitionParserFactory;
     }

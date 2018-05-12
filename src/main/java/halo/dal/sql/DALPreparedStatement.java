@@ -150,8 +150,9 @@ public class DALPreparedStatement implements PreparedStatement {
 		if (sqlStruct.isCanParse()) {
 			sqlInfo = dalFactory.getSqlAnalyzer().analyse(sql, sqlStruct,
 			        values.toArray(new Object[values.size()]), context);
+			//这儿可能会替换原始 sql语句
+			this.parsePartition(sqlStruct, sqlInfo);
 		}
-		this.parsePartition(sqlStruct, sqlInfo);
 		this.initRealPreparedStatement();
 		if (this.maxFieldSize != 0) {
 			ps.setMaxFieldSize(maxFieldSize);
@@ -217,13 +218,19 @@ public class DALPreparedStatement implements PreparedStatement {
 							                + parser.getClass().getName()
 							                + " can not be null : " + table);
 						}
+						if (partitionTableInfo.getRealTable() == null) {
+							throw new DALRunTimeException(
+									"partitionTableInfo return from "
+											+ parser.getClass().getName()
+											+ " #getRealTable() can not be null : " + table);
+						}
 						parsedTableInfo.setRealTable(table,
 						        partitionTableInfo.getRealTable());
 					}
 				}
-				// 如果不需要解析路由，就设置默认数据源
-				if (partitionTableInfo == null) {
-//					DALCurrentStatus.setDefaultDsKey();
+				// 如果不需要解析路由，或者路由器未设置数据源，就设置默认数据源
+				if (partitionTableInfo == null || partitionTableInfo.getDsName()==null) {
+					DALCurrentStatus.setDefaultDsKey();
 				}
 				// 设置解析后的数据源
 				else {
@@ -509,16 +516,42 @@ public class DALPreparedStatement implements PreparedStatement {
 		return ps.isWrapperFor(iface);
 	}
 
+	/**
+	 * 分库分表入口
+	 * @return
+	 * @throws SQLException
+	 */
 	public ResultSet executeQuery() throws SQLException {
 		this.prepare();
 		return ps.executeQuery();
 	}
 
+	/**
+	 * 分库分表入口
+	 * @return
+	 * @throws SQLException
+	 */
 	public int executeUpdate() throws SQLException {
 		this.prepare();
 		return ps.executeUpdate();
 	}
 
+	/**
+	 * 分库分表入口
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean execute() throws SQLException {
+		this.prepare();
+		return ps.execute();
+	}
+
+	/**
+	 * 拦截参数设置
+	 * @param parameterIndex
+	 * @param sqlType
+	 * @throws SQLException
+	 */
 	public void setNull(int parameterIndex, int sqlType) throws SQLException {
 		this.dalParameters.set(DALParameters.MN_SETNULL_I_I, parameterIndex,
 		        new Object[] { sqlType });
@@ -606,7 +639,7 @@ public class DALPreparedStatement implements PreparedStatement {
 	public void setBinaryStream(int parameterIndex, InputStream x, int length)
 	        throws SQLException {
 		this.dalParameters.set(DALParameters.MN_SETBINARYSTREAM_I_IN_I,
-		        parameterIndex, new Object[] { x, length });
+				parameterIndex, new Object[]{x, length});
 	}
 
 	public void clearParameters() throws SQLException {
@@ -624,13 +657,10 @@ public class DALPreparedStatement implements PreparedStatement {
 
 	public void setObject(int parameterIndex, Object x) throws SQLException {
 		this.dalParameters.set(DALParameters.MN_SETOBJECT_I_O, parameterIndex,
-		        new Object[] { x });
+				new Object[]{x});
 	}
 
-	public boolean execute() throws SQLException {
-		this.prepare();
-		return ps.execute();
-	}
+
 
 	public void addBatch() throws SQLException {
 		throw new SQLException("do not support batch");

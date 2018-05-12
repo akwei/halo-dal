@@ -1,25 +1,17 @@
-package halo.dal.analysis.antlr.v3;
+package halo.dal.analysis.antlr.zxl;
 
-import halo.dal.analysis.ColumnExper;
-import halo.dal.analysis.ParsedTableInfo;
-import halo.dal.analysis.SQLAnalyzer;
-import halo.dal.analysis.SQLExpression;
-import halo.dal.analysis.SQLInfo;
-import halo.dal.analysis.SQLStruct;
-import halo.dal.analysis.antlr.AntlrParserDelegate;
-import halo.dal.analysis.antlr.ColExpr;
-import halo.dal.analysis.antlr.DefAntlrParserDelegate;
-import halo.dal.analysis.antlr.SQLInfoImpl;
-import halo.dal.analysis.antlr.Table;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import halo.dal.analysis.*;
+import halo.dal.analysis.antlr.*;
+import halo.dal.analysis.antlr.zxl.AntlrV3SQLLexer;
+import halo.dal.analysis.antlr.zxl.AntlrV3SQLParser;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
 
@@ -43,7 +35,7 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
 	}
 
 	public SQLStruct parse(String sql, Map<String, Object> context) {
-		AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(sql));
+		halo.dal.analysis.antlr.zxl.AntlrV3SQLLexer lexer = new AntlrV3SQLLexer(new ANTLRStringStream(sql));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		AntlrV3SQLParser parser = new AntlrV3SQLParser(tokens);
 		AntlrParserDelegate delegate = new DefAntlrParserDelegate();
@@ -127,18 +119,20 @@ public class AntlrV3SQLAnalyzer implements SQLAnalyzer {
 		String sql1="update table set id = ? ,name=? where cnt = ?";
 		String sql2="delete * from table  where cnt = ?";
 		String sql3="select  * from table  where cnt = ?";
-		String sql4="update  user set 1 =1  where uid=? and (age>=? or age<=?) and (sex between ? and ?)  and time<=sysdate()";
-		String sql5=  "select gatewayeve0_.ID as ID1_, gatewayeve0_.ADAPTER_ID as ADAPTER2_1_, "
-				+ "gatewayeve0_.ADAPTER_MEMO as ADAPTER3_1_, gatewayeve0_.ADAPTER_NAME as ADAPTER4_1_, "
-				+ "gatewayeve0_.CREATETIME as CREATETIME1_, gatewayeve0_.END_DATE as END6_1_, "
-				+ "gatewayeve0_.EVENT_ID as EVENT7_1_, gatewayeve0_.EVENT_STATUS as EVENT8_1_, "
-				+ "gatewayeve0_.EVENT_TYPE as EVENT9_1_, gatewayeve0_.LASTUPDTIME as LASTUPD10_1_, "
-				+ "gatewayeve0_.MERCHANT_ID as MERCHANT11_1_, gatewayeve0_.MERCHANT_NAME as MERCHANT12_1_, "
-				+ "gatewayeve0_.NAME as NAME1_, gatewayeve0_.OPRID as OPRID1_, "
-				+ "gatewayeve0_.START_DATE as START15_1_ "
-				+ "from gateway_event gatewayeve0_ "
-				+ "where 1=1 and gatewayeve0_.EVENT_STATUS=?";
-		SQLStruct sqlStruct=antlrV3SQLAnalyzer.parse(sql4,null);
+		String sql4="delete from  user  where uid=? and (age>=? or age<=?) and (sex between ? and ?)  and time<=sysdate()";
+		String sql5= "SELECT count(*), \n" +
+				"count(*) as kk,\n" +
+				"count(*) kk0,\n" +
+				"GATEWAYEVE0_.ID AS ID1_, \n" +
+				"GATEWAYEVE0_.NAME  NAME1_, \n" +
+				"GATEWAYEVE0_.START_DATE AS START15_1_ \n" +
+				"FROM gateway_event1 GATEWAYEVE0_ , table2 as t2\n" +
+				"WHERE 1=? and 1=2 or 3.5=6.7 and b='s do' and time=sysdate() \n" +
+				"or name=substring(a.b,'c',b,b.c,'') and kk=substring('') \n" +
+				"and name >= ? and name > ?  and uid in ( ? ,? )\n" +
+//				"and uid in (select * from user where sex=? order by gid desc group by ss having a=b.c) \n" +
+				" AND GATEWAYEVE0_.EVENT_STATUS=?";
+		SQLStruct sqlStruct=antlrV3SQLAnalyzer.parse(sql5,null);
 		System.out.println(sqlStruct);
 		System.out.println(sqlStruct.getColumnExpers().size());
 	}

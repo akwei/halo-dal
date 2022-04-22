@@ -16,7 +16,7 @@
 		<java_target_version>1.5</java_target_version>
 
 		<findbugs.onlyAnalyze>org.mybatis.spring.*,org.mybatis.spring.mapper.*,org.mybatis.spring.support.*,org.mybatis.spring.transaction.*</findbugs.onlyAnalyze>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.version>5.3.19</spring.version>
 	</properties>
 
 	<build>
